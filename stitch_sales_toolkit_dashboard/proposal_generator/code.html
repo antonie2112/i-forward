@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecolab Proposal Generator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0069d1",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header / Top Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white">eco</span>
+</div>
+<h1 class="text-lg font-bold tracking-tight text-primary">ECOLAB <span class="text-slate-500 dark:text-slate-400 font-medium">Propose</span></h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-6 pb-32">
+<!-- Progress Stepper -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4 px-2">
+<span class="text-sm font-semibold text-primary">STEP 1 OF 4</span>
+<span class="text-sm font-medium text-slate-500">Customer Details</span>
+</div>
+<div class="flex w-full flex-row items-center justify-center gap-3">
+<div class="h-2 flex-1 rounded-full bg-primary"></div>
+<div class="h-2 flex-1 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 flex-1 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+<div class="h-2 flex-1 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+</div>
+</div>
+<!-- Form Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<!-- Card: Customer Info -->
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">domain</span>
+<h2 class="text-xl font-bold">Customer Information</h2>
+</div>
+<div class="p-6 space-y-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Company Name</span>
+<input class="form-input rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full h-12" placeholder="e.g. Grand Hyatt Hotels" type="text"/>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Industry Sector</span>
+<select class="form-select rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary h-12">
+<option>Hospitality</option>
+<option>Food &amp; Beverage</option>
+<option>Healthcare</option>
+<option>Industrial</option>
+</select>
+</label>
+</div>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Primary Contact Email</span>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+<input class="form-input rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full h-12 pl-11" placeholder="client@company.com" type="email"/>
+</div>
+</label>
+<label class="flex flex-col gap-2">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-400">Address</span>
+<textarea class="form-textarea rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:border-primary focus:ring-primary w-full" placeholder="Street address, City, Zip" rows="2"></textarea>
+</label>
+</div>
+</section>
+<!-- Card: Quick Stats / Calculator Trigger -->
+<section class="bg-primary/5 border border-primary/10 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<div class="bg-primary text-white p-3 rounded-full">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">Smart ROI Estimator</h3>
+<p class="text-slate-600 dark:text-slate-400 text-sm">Need to calculate potential savings? Use our internal calculator tool for Step 2.</p>
+</div>
+</div>
+<button class="bg-primary text-white px-6 py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-all whitespace-nowrap">
+                        Open Calculator
+                    </button>
+</section>
+</div>
+<!-- Sidebar Info -->
+<div class="space-y-6">
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+<h3 class="font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">info</span>
+                        Pro Tip
+                    </h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Completing detailed customer profiles helps our AI suggest the most relevant sustainable solutions for their specific industry.
+                    </p>
+</div>
+<div class="relative rounded-xl overflow-hidden h-48 group">
+<img alt="Environmental Conservation" class="absolute inset-0 w-full h-full object-cover" data-alt="Lush green forest aerial view representing sustainability" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB00CuorbmsLOP8qNQ0g8lstjC7WoeBqnz680yLdGOsHlVXaALeeqm8DAk3PC4BkglahmKRSj4yA0SyVwmpfDVJK1mePAulNcyEPhebcaxqmc7Ad7mQbaeWRkgMkfLxyEB27Ufp-T1XybGsXNk1Tfz4c7Uf44aW0Ky5WNFO-7wHFaGs-C3nBoDsEs-Fwt3jNPbTFJxmIy56iOdryFNvh0SMNxSywcQwtPrO_E8Vd5rgbV7vUlPZGFSSBhkG38q51YO_mFqyQ4DU0w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent p-6 flex flex-col justify-end">
+<p class="text-white text-xs font-bold uppercase tracking-wider mb-1">Impact Goal</p>
+<p class="text-white font-medium">1 Billion Gallons of Water Saved by 2030</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Modified from Template) -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-safe pt-2 z-[60]">
+<div class="max-w-5xl mx-auto flex items-center justify-between h-20">
+<!-- Mobile Navigation Links -->
+<div class="flex gap-2 flex-1 items-center">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 rounded-lg text-primary" href="#">
+<span class="material-symbols-outlined fill-1">description</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Drafts</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Templates</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">eROI</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide uppercase">Settings</p>
+</a>
+</div>
+<!-- Action Button -->
+<div class="ml-4 pl-4 border-l border-slate-200 dark:border-slate-800">
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+                    Next Step
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Header Shadow for Scroll -->
+<div class="fixed top-0 left-0 w-full h-16 pointer-events-none bg-gradient-to-b from-slate-900/5 to-transparent z-40"></div>
+</body></html>

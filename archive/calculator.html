@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecolab Pricing Calculator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0069d1",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-md mx-auto bg-white dark:bg-slate-900 min-h-screen flex flex-col shadow-xl">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Pricing Calculator</h1>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-transparent text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-32">
+<!-- Customer Details Section -->
+<section class="p-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-semibold uppercase tracking-wider mb-4">Customer Strategy</h3>
+<div class="space-y-4">
+<div class="flex flex-col">
+<label class="text-slate-600 dark:text-slate-400 text-sm font-medium pb-1.5">Customer Tier</label>
+<select class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 px-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+<option value="platinum">Platinum (15% Off)</option>
+<option value="gold">Gold (10% Off)</option>
+<option value="silver">Silver (5% Off)</option>
+<option value="standard">Standard</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="text-slate-600 dark:text-slate-400 text-sm font-medium pb-1.5">Additional Discount (%)</label>
+<div class="relative">
+<input class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 px-3 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="0" type="number"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">%</span>
+</div>
+</div>
+</div>
+</section>
+<div class="h-2 bg-slate-100 dark:bg-slate-800/50"></div>
+<!-- Product Quantities Section -->
+<section class="p-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-sm font-semibold uppercase tracking-wider">Product Inventory</h3>
+<button class="text-primary text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">add</span> Add Item
+                    </button>
+</div>
+<div class="space-y-2">
+<!-- Product Item 1 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="bg-slate-100 dark:bg-slate-700 bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16 shrink-0" data-alt="Professional cleaning solution blue bottle container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtqOV5xofCNUEHWeXwlWPJRchnXAuJFvOcHteMC8W8hQKN5ss2Va3LmHVbagSdP1Zo2p3bxxKQ6V-YgqrphFRB120pd8lfXRZIsu2xXNnHHcwq7pA3ZycySpJ8zzBcwsKR9j0S_ZqQdM4t_yPMt-japQf8ZAgy667j8aoQwi7fd5EiLMbsmRC9YEX5U148Dd0YOolpjaPXh8LApMlSFWBARlYcKnn4elfodnMEWm161T3b0l31I2cfKrpqopSDXyci6JX_rGF9QA');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold truncate">Solid Power XL</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">Case of 4x9lb • $142.00</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-900 rounded-full px-2 py-1 border border-slate-100 dark:border-slate-700">
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-slate-900 dark:text-slate-100 font-bold text-sm w-4 text-center">2</span>
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">$284.00</span>
+</div>
+</div>
+<!-- Product Item 2 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="bg-slate-100 dark:bg-slate-700 bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16 shrink-0" data-alt="Commercial kitchen sanitizer spray bottle" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCDEvfvY658_9bsodsZMZPCUqaDT1hcgIWA9atZz-2TyLWoi3_NoMNGyVc0VTgwdiCxEbZcBBCuTBxdRO9ZmOW16wcDe86rZUJOLw-jrFi7KYl876CSCjynGPEjfA16V-ufgtdb6jofMCPVwJO5m6ii2IFu6SSM3jp8-rLlHk9VAZHoI9g1WQDbUzoo8mtdBlUOCdxfj5_jGOxBkxCbU8fAHXtXvV_xdJI4yIjIS89sjuY_hKCNwhgsCvUJfXhG9UfTSKRfV1emtg');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold truncate">Quorum Yellow II</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">5 Gal Pail • $89.50</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-900 rounded-full px-2 py-1 border border-slate-100 dark:border-slate-700">
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-slate-900 dark:text-slate-100 font-bold text-sm w-4 text-center">1</span>
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<span class="text-sm font-bold text-slate-900 dark:text-slate-100">$89.50</span>
+</div>
+</div>
+<!-- Product Item 3 -->
+<div class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm">
+<div class="bg-slate-100 dark:bg-slate-700 bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-16 shrink-0" data-alt="Detergent eco friendly packaging container" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBn6D2y71mmP03YOJT8JOFj43GGm7l2weeTFTrYP4TezSXR6an4IUWFuJMOI6c3nWKtUqin6lOtETkp3PRli5D_j_Bjul-8YKTXzxcKZM-8Ojt2gPDTT5KGxIBdGyn1MhDVoFmwUzehcAFUVP0bed-p-hwYv_VDFQvZi53xBun-qve65YrX5zfSiwWmCxiaTrHpHqm8u3Lidg3AZp_tGzpT2riKbVUhp48siKo6Qa9PTj322SwzkorIed23h_Ayj0hOXra9L7dkfQ');"></div>
+<div class="flex-1 min-w-0">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold truncate">Eco-Star Detergent</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-normal">15 Gal Drum • $210.00</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-900 rounded-full px-2 py-1 border border-slate-100 dark:border-slate-700">
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="text-slate-900 dark:text-slate-100 font-bold text-sm w-4 text-center">0</span>
+<button class="size-6 flex items-center justify-center rounded-full bg-white dark:bg-slate-800 shadow-sm hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<span class="text-sm font-bold text-slate-400 dark:text-slate-500">$0.00</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Calculation Bar -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 space-y-4 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500 dark:text-slate-400">Subtotal</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">$373.50</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500 dark:text-slate-400">Applied Tier Discount (15%)</span>
+<span class="text-green-600 dark:text-green-400 font-medium">-$56.03</span>
+</div>
+<div class="pt-2 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+<span class="text-slate-900 dark:text-slate-100 font-bold text-lg">Final Price</span>
+<div class="text-right">
+<span class="block text-[10px] text-primary font-bold uppercase tracking-widest">Estimated</span>
+<span class="text-primary text-2xl font-black">$317.47</span>
+</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_circle</span>
+                    Add to Proposal
+                </button>
+<button class="bg-primary/10 text-primary p-4 rounded-xl hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

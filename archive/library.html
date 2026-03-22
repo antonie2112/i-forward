@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ecolab Resource Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0069d1",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-tab { border-bottom: 3px solid #0069d1; color: #0069d1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="max-w-4xl mx-auto flex flex-col min-h-screen shadow-sm bg-white dark:bg-slate-900">
+<!-- Header -->
+<header class="flex items-center p-4 border-b border-slate-200 dark:border-slate-800 justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">science</span>
+<h1 class="text-xl font-bold tracking-tight">Resource Library</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Search Bar -->
+<div class="px-4 py-4 sticky top-0 bg-white dark:bg-slate-900 z-10 shadow-sm">
+<label class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-4 text-slate-400">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-slate-100 dark:bg-slate-800 border-none rounded-xl focus:ring-2 focus:ring-primary text-base placeholder:text-slate-500" placeholder="Search SDS, manuals, product sheets..." type="text"/>
+</label>
+</div>
+<!-- Industry Filters -->
+<div class="flex gap-3 px-4 pb-4 overflow-x-auto no-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-white px-4 text-sm font-medium">
+                All Industries
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 text-sm font-medium hover:bg-primary/10">
+                Food &amp; Beverage <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 text-sm font-medium hover:bg-primary/10">
+                Hospitality <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 text-sm font-medium hover:bg-primary/10">
+                Healthcare <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-2 rounded-full bg-slate-100 dark:bg-slate-800 px-4 text-sm font-medium hover:bg-primary/10">
+                Industrial <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<!-- Category Tabs -->
+<div class="flex border-b border-slate-200 dark:border-slate-800 px-4 gap-6">
+<button class="flex flex-col items-center justify-center active-tab pb-3 pt-2">
+<span class="text-sm font-bold">Catsheets</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 pb-3 pt-2 hover:text-primary">
+<span class="text-sm font-bold">User Manuals</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 pb-3 pt-2 hover:text-primary">
+<span class="text-sm font-bold">Safety Data (SDS)</span>
+</button>
+</div>
+<!-- Document List -->
+<main class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Document Item 1 -->
+<div class="flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md transition-shadow">
+<div class="w-20 h-24 bg-slate-200 dark:bg-slate-700 rounded overflow-hidden flex-shrink-0 relative">
+<div class="absolute inset-0 bg-gradient-to-br from-slate-400 to-slate-600 opacity-20"></div>
+<img alt="Document Preview" class="w-full h-full object-cover" data-alt="Professional blue product specification sheet thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2WJ_eQNGEQ_OmlzyvKnMUjdcEIfoQ28AVO-VsNExT2PfMVbIgouMcK0LVxrVCHGBcujfWUd5SDO7qpfGCz5XcB3_NC3hTjl9yu22f-js6_Xwx6bG6z-Xy2UAFYw0FRX6IWxYEYYHz3F8ehiamGHBy15a7qJ60UL8u3Pb9HU4eq-v6rPnW5k28CF6QLf1MFjmdYMiLFftqZXgACrtbF61imyHxPQ3UCIOT8kRw1cEM9lrbxAuUAMu-9C9OrbQxK-0aY755HpnBNg"/>
+<div class="absolute top-1 right-1 bg-red-600 text-white text-[8px] font-bold px-1 rounded">PDF</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-white leading-tight">Advantage LL Tech Sheet</h3>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">star</span></button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Food &amp; Beverage • 1.2 MB • Updated Oct 2023</p>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">download</span> Download
+                        </button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Document Item 2 -->
+<div class="flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md transition-shadow">
+<div class="w-20 h-24 bg-slate-200 dark:bg-slate-700 rounded overflow-hidden flex-shrink-0 relative">
+<img alt="Document Preview" class="w-full h-full object-cover" data-alt="Technical manual preview with diagrams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4w2BqQV3Thb0rd60k1Mn7aMeBzzbp4QVL5p_zdJoozISdLd-zA1lpnkFvcRfQgAvNGqfgpL44kWzfykimKqwQ7mcfFeW3Zfrlot9CXdTY5Cl9TaTlva-FjRkQ-B7n8KYC8sTzxoFbl9j4C6rBVFgukfWUhO8AVADtLe65NE7-RUiRJYzTr9hsGJChxYx2mabMTyhp8dHn_sPDIRxO4g99U2vNyk6NzcgOGNFk0EbOlsIPZNGyKrOX5NH-ZsOB1xdwCcWZKSnBBw"/>
+<div class="absolute top-1 right-1 bg-red-600 text-white text-[8px] font-bold px-1 rounded">PDF</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-white leading-tight">Sanitizer 1500 Concentration Guide</h3>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">star</span></button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Hospitality • 850 KB • Updated Jan 2024</p>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">download</span> Download
+                        </button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Document Item 3 -->
+<div class="flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md transition-shadow">
+<div class="w-20 h-24 bg-slate-200 dark:bg-slate-700 rounded overflow-hidden flex-shrink-0 relative">
+<img alt="Document Preview" class="w-full h-full object-cover" data-alt="Laboratory safety data sheet cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV21rSxw6tJoz4M6l7JnfFfU6dQL9mS2tYqU-xDgxMsdHZ7JXquQ03gRp10aIf5P7WXBPFyVEApaRaGhH8VHHED-D2FC4w-qP03vTyeKMHDJJtBqf4uvpEFEhTTU5SM9OufGEgzt76A3et2-girWsWyjJwt_8bWn4pOoqK299cms_zS5ydafOT1ZHQIUKNUvZlFIxA_vrtEsqF49_aIVjuiWDYJNnNMcTYGFnDjeR3j3nJh8xqVVoQx0qZfUcs2wWz7rpxlbAjMQ"/>
+<div class="absolute top-1 right-1 bg-red-600 text-white text-[8px] font-bold px-1 rounded">PDF</div>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-white leading-tight">Oasis 146 Multi-Surface Cleaner</h3>
+<button class="text-primary"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">star</span></button>
+</div>
+<p class="text-xs text-slate-500 mt-1">General • 2.4 MB • Updated Feb 2024</p>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">download</span> Download
+                        </button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Document Item 4 -->
+<div class="flex gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-md transition-shadow opacity-70">
+<div class="w-20 h-24 bg-slate-100 dark:bg-slate-800 rounded overflow-hidden flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-slate-300">description</span>
+</div>
+<div class="flex-1 flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-white leading-tight">Manual Dispensing Station - V2</h3>
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined">star</span></button>
+</div>
+<p class="text-xs text-slate-500 mt-1">Healthcare • 3.1 MB • Updated Dec 2023</p>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 flex items-center justify-center gap-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-primary/90">
+<span class="material-symbols-outlined text-sm">download</span> Download
+                        </button>
+<button class="px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="flex gap-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-4 pt-2 sticky bottom-0">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">library_books</span>
+<p class="text-xs font-medium">Library</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">star</span>
+<p class="text-xs font-medium">Favorites</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">download_for_offline</span>
+<p class="text-xs font-medium">Offline</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<p class="text-xs font-medium">Settings</p>
+</a>
+</nav>
+</div>
+</body></html>

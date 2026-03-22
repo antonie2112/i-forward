@@ -1,0 +1,509 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-148579199-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-148579199-1');
+</script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>[ EcoLab ] Sales Manual Generator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3372c1;">
+    <a class="navbar-brand" href="index.php">Ecolab Wall Chart Generator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item ">
+                    <a class="nav-link" href="home_2.php?l=2">Generate</a>
+                </li>
+                            <li class="nav-item ">
+                <a class="nav-link" href="manage_check.php?l=2">Manage</a>
+            </li>
+                        <li class='nav-item'><a class='nav-link' href='stat.php'>Statistics</a></li><li class='nav-item'><a class='nav-link' href =mailto:ecolab.wallchart@gmail.com?subject = Report Issue&body = I would like to ...>Report Problem</a></li>            <li class="nav-item">
+                <a class="nav-link" href="#" target="new">Help</a>
+            </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#" class="nav-link">
+                    Welcome, Ecolab Institutional
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav><div class="container">
+    <br>
+    <form action='show_pdf_th.php' method='post' enctype='multipart/form-data'>    <input type="hidden" name="table_to_show" id="table_to_show" value="2">
+    <input type="hidden" name="product_id_list" id="product_id_list" value="">
+    <input type="hidden" name="language_list" id="language_list" value="">
+    <input type="hidden" name="dilution_mode" id="dilution_mode" value="">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <button type='button' class='btn btn-outline-secondary btn-sm btn-lang' id='en'><img src='img/lang_icon/en_flag.jpeg' width=18 height=18> English </button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm btn-lang' id='th'><img src='img/lang_icon/th_flag.png' width=18 height=18> Thai </button>&nbsp;        </div>
+    </div>
+    <br>
+    <div class="row clearfix">
+        <div class="col-md-1 column">
+            <b>Category</b>
+        </div>
+        <div class="col-md-2 column">
+            <select class="form-control product-segment">
+                <option value=0>---------------</option>
+                <option value=1>Kitchen</option><option value=2>Housekeeping</option><option value=3>Floor Care</option><option value=4>Laundry</option><option value=5>Hand Hygiene</option><option value=6>Environmental Cleaning </option><option value=7>Bathroom</option><option value=8>Warewashing</option><option value=9>Facility Management</option>
+            </select>
+        </div>
+        <div class="col-md-5 column">
+            <input type="text" class="form-control query" placeholder="Search by product name"><br>
+        </div>
+        <div class="col-md-4 column">
+            <button type="button" class="btn btn-primary btn-search"><i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search
+            </button>&nbsp;
+            <button type="submit" class="btn btn-success btn-pdf"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;Generate
+            </button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-warning btn-clear"><i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Clear
+            </button>
+            <!-- </a> -->
+        </div>
+    </div>
+    <hr>
+    <div class="pagination-area"></div>
+    <hr>
+    <div class="row clearfix">
+        <div class="col-md-12 column selected-product-area"></div>
+    </div>
+    <br>
+
+    <div class="row clearfix">
+        <div class="col-md-4 column">
+            <table class='table table-borderless table-option'>
+                <tbody>
+                <tr>
+                    <td width="20%" style="border-top: 0;"><b>Logo:</b></td>
+                    <td width="80%" style="border-top: 0;">
+                        <input type="file" class="form-control" name="fileToUpload" id="fileToUpload">
+                        <small> (.png or .jpg only )</small>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: 0;"><b>Dilution:</b></td>
+                    <td style="border-top: 0;">
+                        <button type="button" class="btn btn-outline-secondary btn-hide-dilution">Hide Text</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 column">
+            <table class='table table-borderless table-option'>
+                <tbody>
+                <tr>
+                    <td width="25%" style="border-top: 0;"><b>Sales 1 Name:</b></td>
+                    <td width="75%" style="border-top: 0;">
+                        <input type="text" class="form-control" name="sales-name-1" id="sales-name-1"
+                               placeholder="Salesperson 1 Full Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: 0;"><b>Sales 1 Tel:</b></td>
+                    <td style="border-top: 0;">
+                        <input type="text" class="form-control" name="sales-tel-1" id="sales-tel-1"
+                               placeholder="Salesperson 2 phone no.">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 column">
+            <table class='table table-borderless table-option'>
+                <tbody>
+                <tr>
+                    <td width="25%" style="border-top: 0;"><b>Sales 2 Name:</b></td>
+                    <td width="75%" style="border-top: 0;">
+                        <input type="text" class="form-control" name="sales-name-2" id="sales-name-2"
+                               placeholder="Salesperson 1 full name">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: 0;"><b>Sales 2 Tel:</b></td>
+                    <td style="border-top: 0;">
+                        <input type="text" class="form-control" name="sales-tel-2" id="sales-tel-2"
+                               placeholder="Salesperson 2 phone no.">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <hr>
+    <!--Show Select 4 item-->
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-1" style="text-align: center">
+
+            </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-2" style="text-align: center">
+
+            </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-3" style="text-align: center">
+
+            </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-4" style="text-align: center">
+
+            </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-5" style="text-align: center">
+
+            </div>
+        </div>
+        <div class="col-md-3 column">
+            <div class="selected-product-area selected-product-6" style="text-align: center">
+
+            </div>
+        </div>
+        <!--             <div class="col-md-3 column">
+                    <div class="selected-product-area selected-product-7" style="text-align: center">
+
+                    </div>
+                </div>
+                    <div class="col-md-3 column">
+                    <div class="selected-product-area selected-product-8" style="text-align: center">
+
+                    </div>
+                </div>-->
+    </div>
+    <!--end-Show Select-->
+    <br><br>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div id="preloader-area"></div>
+            <div class="result-area"></div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="pagination-area"></div>
+    </form>
+
+</div>
+
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" language="javascript">
+
+    var q = ""
+    var s = ""
+    var lang = ""
+    var btn_counter = 0
+    var selected_counter = 0
+    var selected_products = []
+    var selected_products_detailed = []
+
+
+    $(document).ready(function (e) {
+        $(".selected-product-area").hide()
+
+        // $(".table-option").hide()
+
+        function get_form_value() {
+            q = $(".query").val()
+            s = $(".product-segment option:selected").val()
+            lang = ""
+            $.each($(".btn-lang"), function (key, value) {
+                if ($(this).hasClass("btn-secondary")) {
+                    lang += value.id + "|"
+                }
+
+            })
+            $("#language_list").val(lang)
+        }
+
+
+        // =================
+        // Search function
+        // =================
+        $('.query').keypress(function (e) {
+
+            var key = e.which;
+            if (key == 13)  // the enter key code
+            {
+                $(".btn-search").trigger("click");
+                return false;
+            }
+        });
+
+        $(".btn-lang").on("click", function (e) {
+            if ($(this).hasClass("btn-outline-secondary")) {
+                btn_counter++
+                if (btn_counter <= 2)
+                    $(this).removeClass("btn-outline-secondary").addClass("btn-secondary")
+                else {
+                    $(".btn-lang").removeClass("btn-secondary").addClass("btn-outline-secondary")
+                    $(this).removeClass("btn-outline-secondary").addClass("btn-secondary")
+                    btn_counter = 1
+                }
+            } else {
+                $(this).removeClass("btn-secondary").addClass("btn-outline-secondary")
+                btn_counter--
+            }
+            $(".btn-search").trigger("click");
+
+
+        })
+
+        $(".btn-hide-dilution").on("click", function (e) {
+            if ($(this).hasClass("btn-outline-secondary")) {
+                $(this).removeClass("btn-outline-secondary").addClass("btn-secondary")
+                $("#dilution_mode").val("hide")
+            } else {
+                $(this).removeClass("btn-secondary").addClass("btn-outline-secondary")
+                $("#dilution_mode").val("show")
+            }
+
+
+        })
+
+        $(".product-segment").on("change", function (e) {
+            $(".btn-search").trigger("click");
+        })
+
+
+        $(".btn-clear").on("click", function (e) {
+            location.reload()
+        })
+
+        $('form').on("submit", function (e) {
+            if (selected_products.length != 0) {
+                return true
+            } else {
+                alert("You must select at least one product to proceed")
+                return false
+            }
+        });
+
+        $(".btn-search").click(function (e) {
+            // get query from input
+            get_form_value()
+            // reset all
+            $(".result-area, .pagination-area").empty()
+            if (lang != "") {
+                $.post("show_result_pagination.php",
+                    {
+                        q: q,
+                        s: s,
+                        lang: lang,
+                        table: '2',
+                    }, function (data) {
+                        get_result(q, 1)
+                        $(".pagination-area").empty().append(data).fadeIn("fast")
+                        $(".pageSelect").on("click", function () {
+                            page = $(this).attr("p")
+
+                            $(".page-item").removeClass("active")
+                            $(".page-item-" + page).addClass("active")
+                            get_result(q, page)
+                            // make the highlight
+
+                        });
+                        $('html, body').animate({
+                            scrollTop: $(".result-area").offset().top - 300
+                        }, 500)
+
+                    })
+            } else {
+                alert("Please select at least one language to proceed")
+            }
+
+        });
+
+        function update_stat(c, p) {
+            $.post("api_update_stat_product.php", {
+                table: c,
+                pid: p
+            }, function (data) {
+
+            })
+        }
+
+        function get_result(q, page) {
+            $("#preloader-area").empty().append('<img src="img/progress.gif" width=24 height=24>').show();
+
+            $.post("show_result.php",
+                {
+                    q: q,
+                    s: s,
+                    lang: lang,
+                    table: '2',
+                    page: page
+
+                }, function (data) {
+
+                    function update_product(plist) {
+                        $(".selected-product-area").empty()
+                        if (selected_products.length != 0) {
+                            counter = 1
+                            len = plist.length
+                            $.each(plist, function (index, value) {
+                                product_id = value[0]
+                                product_name = value[1]
+                                product_img = value[2]
+
+                                option_string = ""
+
+                                for (i = 0; i < len; i++) {
+                                    if (index == i)
+                                        option_string += "<option value=" + i + " selected>" + (i + 1) + "</option>"
+                                    else
+                                        option_string += "<option value=" + i + ">" + (i + 1) + "</option>"
+                                }
+
+
+                                $(".selected-product-" + counter).empty().append("<table class='table table-selected table-sm table-bordered'><tbody><tr><td style='vertical-align:middle;border:0;'><a href='#' class='remove-product' data-toggle='tooltip' data-placement='bottom' title='Remove this product' pid=" + product_id + "><i class='fa fa-close fa-2x' aria-hidden='true' style='color:red'></i></a></td><td style='vertical-align:middle;border:0'><select class='form-control product-seq' pos=" + (counter - 1) + ">" + option_string + "</select></td></tr><tr><td width=20% height='100' style='vertical-align:middle;border:0'><img src=" + product_img + " style='max-width:64px;max-height:64px'></td><td width=80% height='100' style='vertical-align:middle;border:0'><small>" + product_name + "</small></td></tr></tbody></table>")
+                                counter++
+                            })
+                        }
+
+                        $(".remove-product").on("click", function (e) {
+                            e.preventDefault()
+                            pid = parseInt($(this).attr("pid"))
+                            // console.log("========================")
+                            // console.log(selected_products)
+                            // console.log(selected_products_detailed)
+                            pos = jQuery.inArray(pid, selected_products)
+                            // console.log("We found [" + pid + "] at position = " + pos)
+                            selected_products.splice(pos, 1);
+                            selected_products_detailed.splice(pos, 1);
+                            $("#product_id_list").val(selected_products)
+                            // console.log(selected_products)
+                            // console.log(selected_products_detailed)
+                            // console.log("========================")
+                            $('[data-toggle="tooltip"]').tooltip('hide')
+                            $(".product-box[pid=" + pid + "]").css("background-color", "")
+                            selected_counter--
+                            update_product(selected_products_detailed)
+
+                        })
+
+                        $(".product-seq").on("change", function (e) {
+                            var current_seq = $(this).attr("pos")
+                            var current_selected_products_val = selected_products[current_seq]
+                            var current_selected_products_detail_val = selected_products_detailed[current_seq]
+                            var selected_seq = $(this).val()
+
+                            // console.log(current_selected_products_val)
+                            selected_products.splice(current_seq, 1)
+                            selected_products.splice(selected_seq, 0, current_selected_products_val)
+                            $("#product_id_list").val(selected_products)
+
+                            selected_products_detailed.splice(current_seq, 1)
+                            selected_products_detailed.splice(selected_seq, 0, current_selected_products_detail_val)
+
+                            update_product(selected_products_detailed)
+                        })
+
+
+                        $(function () {
+                            $('[data-toggle="tooltip"]').tooltip({trigger: "hover"})
+                        })
+
+                    }
+
+                    $("#preloader-area").hide()
+                    $(".result-area").empty().append(data).fadeIn("fast")
+
+                    $(".select-product").on("click", function (e) {
+                        var pid = parseInt($(this).attr("pid"))
+                        if (!selected_products.includes(pid)) {
+                            selected_counter++
+                            var table = '2'
+                            if (selected_counter < 7) {
+
+                                var pname = $(this).attr("pname").replace(/_/g, "<br>")
+                                var pimg = $(this).find('.product-image').attr("src")
+                                var each_product = []
+                                each_product.push(pid, pname, pimg)
+                                selected_products.push(pid)
+                                selected_products_detailed.push(each_product)
+
+                                // set background
+                                $("#product_id_list").val(selected_products)
+                                $(this).css("background-color", "#CCCCCC")
+                                $(".table-option").show()
+                                update_product(selected_products_detailed)
+
+                                $(".selected-product-area").fadeIn(200)
+                                update_stat(table, pid)
+                            } else {
+                                alert("Please remove one or more items before adding the new one")
+                                selected_counter--
+                            }
+                        } else {
+                            alert("You have already added this item")
+                        }
+                        // console.log(selected_products)
+                    })
+
+                    $(".product-box").on("mouseover", function (e) {
+                        current_bg = $(this).css("background-color")
+                        // console.log(current_bg)
+                        if (current_bg == "rgba(0, 0, 0, 0)") {
+                            $(this).css("background-color", "#E5E5E5")
+                        }
+                    })
+                    $(".product-box").on("mouseout", function (e) {
+                        current_bg = $(this).css("background-color")
+                        if (current_bg == "rgb(229, 229, 229)") {
+                            $(this).css("background-color", "")
+                        }
+                    })
+
+                    $(function () {
+                        $('[data-toggle="tooltip"]').tooltip({trigger: "hover"})
+                    })
+
+
+                })
+        }
+
+
+    });
+
+</script>
+</body>
+</html>

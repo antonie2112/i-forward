@@ -1,0 +1,382 @@
+[
+  {
+    "id": 101,
+    "code": "7107037",
+    "name": "EcoKlene HD 20L",
+    "specs": "Ch\u1ea5t r\u1eeda cho m\u00e1y r\u1eeda / Liquid detergent for WW",
+    "unit": "can 20lit",
+    "price": 1423475.0,
+    "discountPrice": 1305326.575,
+    "dilution": "2 ml/lit"
+  },
+  {
+    "id": 102,
+    "code": "7107038",
+    "name": "Rinse Dry 20L",
+    "specs": "Ch\u1ea5t tr\u00e1ng cho m\u00e1y r\u1eeda / Rinse additive for WW",
+    "unit": "can 20lit",
+    "price": 1977050.0,
+    "discountPrice": 1812954.85,
+    "dilution": "0,16 ml/lit"
+  },
+  {
+    "id": 103,
+    "code": "7106040",
+    "name": "Neo",
+    "specs": "N\u01b0\u1edbc r\u1eeda ch\u00e9n xoong n\u1ed3i / Maunal detergent for pot and pan",
+    "unit": "can 10l",
+    "price": 972708.0,
+    "discountPrice": 891973.236,
+    "dilution": "1 ml/lit"
+  },
+  {
+    "id": 104,
+    "code": "7106063",
+    "name": "22 Multi Quat sanitizer",
+    "specs": "Ch\u1ea5t kh\u1eed tr\u00f9ng b\u1ec1 m\u1eb7t ti\u1ebfp x\u00fac th\u1ef1c ph\u1ea9m /Food contact sanitizer, SARS-CoV-2 disinfectant",
+    "unit": "th\u00f9ng 2 can x 2 l\u00edt",
+    "price": 2411844.0,
+    "discountPrice": 2211660.948,
+    "dilution": "24 ml/lit"
+  },
+  {
+    "id": 105,
+    "code": "7106053",
+    "name": "Dip It Plus",
+    "specs": "Ng\u00e2m s\u00e0nh s\u1ee9 / Chinaware presoak",
+    "unit": "th\u00f9ng 5 kg",
+    "price": 1219656.0,
+    "discountPrice": 1118424.5520000001,
+    "dilution": "3,7 ml/lit"
+  },
+  {
+    "id": 106,
+    "code": "7106044",
+    "name": "Lime Away",
+    "specs": "Ch\u1ea5t t\u1ea9y c\u1eb7n v\u00f4i / Delimer",
+    "unit": "th\u00f9ng 4 can x 3.8l",
+    "price": 2195380.0,
+    "discountPrice": 2013163.4600000002,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 107,
+    "code": "7106043",
+    "name": "Greasecutter",
+    "specs": "T\u1ea9y l\u00f2 / Heavy duty degreaser",
+    "unit": "th\u00f9ng 4 can x 3.8l",
+    "price": 2317346.0,
+    "discountPrice": 2125006.282,
+    "dilution": "D\u00f9ng ng\u00e0y"
+  },
+  {
+    "id": 108,
+    "code": "7106045",
+    "name": "Mikro Quat",
+    "specs": "V\u1ec7 sinh c\u1ed1ng r\u00e3nh, kh\u1eed m\u00f9i c\u1ed1ng / Cleaner, germicide and deodorizer for drain",
+    "unit": "th\u00f9ng 4 can x 3.8l",
+    "price": 2645446.0,
+    "discountPrice": 2425873.9820000003,
+    "dilution": "16 ml/lit"
+  },
+  {
+    "id": 109,
+    "code": "7306280",
+    "name": "Topax 66",
+    "specs": "Lau s\u00e0n b\u1ebfp / Kitchen floor cleaner",
+    "unit": "can 21 kg",
+    "price": 2689932.0,
+    "discountPrice": 2466667.6440000003,
+    "dilution": "10 ml/lit"
+  },
+  {
+    "id": "s1",
+    "type": "section",
+    "name": "Soil Master Plus 2"
+  },
+  {
+    "id": 110,
+    "code": "7101070",
+    "name": "Hand Fresh Plus",
+    "specs": "X\u00e0 b\u00f4ng r\u1eeda tay / Hand soap",
+    "unit": "th\u00f9ng 4 can x 3.8l",
+    "price": 1135403.0,
+    "discountPrice": 1041164.5510000001,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": "s2",
+    "type": "section",
+    "name": "XY-12"
+  },
+  {
+    "id": 111,
+    "code": "7106666",
+    "name": "First Impression",
+    "specs": "V\u1ec7 sinh inox \u0111\u1ed3ng / Stainless steel, cooper cleaner",
+    "unit": "th\u00f9ng 6 chai x 475ml",
+    "price": 2032760.0,
+    "discountPrice": 1864040.9200000002,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 112,
+    "code": "7106865",
+    "name": "Medallion",
+    "specs": "V\u1ec7 sinh inox / Stainless steel cleaner",
+    "unit": "th\u00f9ng 6 chai x 32oz",
+    "price": 2490751.0,
+    "discountPrice": 2284018.667,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": "s3",
+    "type": "section",
+    "name": "T\u00caN H\u00c0NG H\u00d3A\nITEMS"
+  },
+  {
+    "id": 113,
+    "code": "7103980",
+    "name": "Oasis Pro Garden Sunshine/ Morning Breeze",
+    "specs": "X\u1ecbt m\u00f9i / Air Freshener",
+    "unit": "th\u00f9ng 2 b\u1ecbch x2l",
+    "price": 3923225.0,
+    "discountPrice": 3597597.325,
+    "dilution": "31,3 ml/lit"
+  },
+  {
+    "id": 114,
+    "code": "7106115",
+    "name": "Sanigard",
+    "specs": "V\u1ec7 sinh toilet / Toilet cleaner",
+    "unit": "can 3.8l",
+    "price": 435610.0,
+    "discountPrice": 399454.37,
+    "dilution": "100 ml/lit"
+  },
+  {
+    "id": 115,
+    "code": "7106104",
+    "name": "Future DC",
+    "specs": "V\u1ec7 sinh \u0111a n\u0103ng / Mutipurpose cleaner",
+    "unit": "can 3.8l",
+    "price": 282323.0,
+    "discountPrice": 258890.19100000002,
+    "dilution": "7 ml/lit"
+  },
+  {
+    "id": 116,
+    "code": "7106119",
+    "name": "Miraglo",
+    "specs": "V\u1ec7 sinh k\u00ednh / Glass cleaner",
+    "unit": "can 3.8l",
+    "price": 314508.0,
+    "discountPrice": 288403.836,
+    "dilution": "100 ml/lit"
+  },
+  {
+    "id": 117,
+    "code": "7101070",
+    "name": "Hand Fresh Plus",
+    "specs": "X\u00e0 b\u00f4ng r\u1eeda tay / Hand soap",
+    "unit": "th\u00f9ng 4 can x 3.8l",
+    "price": 1135403.0,
+    "discountPrice": 1041164.5510000001,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 118,
+    "code": "6113094",
+    "name": "Lemon Eze",
+    "specs": "Kem t\u1ea9y \u0111a n\u0103ng / Multipurpose cream",
+    "unit": "th\u00f9ng 12 chai x32 oz",
+    "price": 5102857.0,
+    "discountPrice": 4679319.869,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 119,
+    "code": "7106134",
+    "name": "Mop Dressing A",
+    "specs": "Dust mop",
+    "unit": "can 3.8l",
+    "price": 902565.0,
+    "discountPrice": 827652.105,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 120,
+    "code": "7106864",
+    "name": "First Impression",
+    "specs": "V\u1ec7 sinh inox \u0111\u1ed3ng / Stainless steel, cooper cleaner",
+    "unit": "th\u00f9ng 12 chai x 8oz",
+    "price": 2032760.0,
+    "discountPrice": 1864040.9200000002,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 121,
+    "code": "7106121",
+    "name": "Deep Gloss",
+    "specs": "Lau g\u1ed7 / Furniture polish",
+    "unit": "can 3.8l",
+    "price": 864959.0,
+    "discountPrice": 793167.403,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 122,
+    "code": "7106056",
+    "name": "Floordress T500",
+    "specs": "X\u00e0 b\u00f4ng gi\u1eb7t th\u1ea3m / Carpet shampoo",
+    "unit": "can 10l",
+    "price": 1165233.0,
+    "discountPrice": 1068518.661,
+    "dilution": "33 ml/lit"
+  },
+  {
+    "id": 123,
+    "code": "7106057",
+    "name": "Floordress T510",
+    "specs": "Phun h\u00fat th\u1ea3m / Carpet extraction",
+    "unit": "can 10l",
+    "price": 1250148.0,
+    "discountPrice": 1146385.716,
+    "dilution": "25 ml/lit"
+  },
+  {
+    "id": 124,
+    "code": "7106055",
+    "name": "Floordress R600",
+    "specs": "Lau s\u00e0n trung t\u00ednh / Neutral floor cleaner",
+    "unit": "can 10l",
+    "price": 853759.0,
+    "discountPrice": 782897.003,
+    "dilution": "6 ml/lit"
+  },
+  {
+    "id": 125,
+    "code": "7106330",
+    "name": "Pinnacle Marble Polishing Paste",
+    "specs": "\u0110\u00e1nh b\u00f3ng \u0111\u00e1 marble / Marble poshing paste",
+    "unit": "th\u00f9ng 10lb",
+    "price": 6539086.0,
+    "discountPrice": 5996341.862000001,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 126,
+    "code": "7106069",
+    "name": "Nettoclar Rapid",
+    "specs": "Buffing s\u00e0n marble / Marble crytalizer",
+    "unit": "th\u00f9ng 2 can x5l",
+    "price": 4190482.0,
+    "discountPrice": 3842671.994,
+    "dilution": "D\u00f9ng ngay"
+  },
+  {
+    "id": 127,
+    "code": "7106054",
+    "name": "Carestrip NR",
+    "specs": "B\u00f3c t\u1ea9y s\u00e0n / Floor stripper",
+    "unit": "can 10l",
+    "price": 1280639.0,
+    "discountPrice": 1174345.963,
+    "dilution": "200 ml/lit"
+  },
+  {
+    "id": "s4",
+    "type": "section",
+    "name": "T\u00caN H\u00c0NG H\u00d3A\nITEMS"
+  },
+  {
+    "id": 128,
+    "code": "7106095",
+    "name": "Eco-brite 150",
+    "specs": "B\u1ed9t gi\u1eb7t tr\u1eafng s\u00e1ng / Powder detergent",
+    "unit": "th\u00f9ng 25kg",
+    "price": 3495421.0,
+    "discountPrice": 3205301.057,
+    "dilution": "10gr/kg"
+  },
+  {
+    "id": 129,
+    "code": "7106093",
+    "name": "BC 50",
+    "specs": "B\u1ed9t t\u1ea9y g\u1ed1c chlorine / Chlorinse based powder bleach",
+    "unit": "can 25kg",
+    "price": 3435362.0,
+    "discountPrice": 3150226.954,
+    "dilution": "7gr/kg"
+  },
+  {
+    "id": 130,
+    "code": "7107393",
+    "name": "Turbo Oxy Brite",
+    "specs": "T\u1ea9y tr\u1eafng oxy / Oxygen bleach",
+    "unit": "can 20l",
+    "price": 2187249.0,
+    "discountPrice": 2005707.333,
+    "dilution": "2 - 3ml/kg"
+  },
+  {
+    "id": 131,
+    "code": "7106578",
+    "name": "Ecostar Soft",
+    "specs": "X\u1ea3 v\u1ea3i / Softener",
+    "unit": "can 20l",
+    "price": 1384301.0,
+    "discountPrice": 1269404.017,
+    "dilution": "2 - 3 ml/kg"
+  },
+  {
+    "id": 132,
+    "code": "7102011",
+    "name": "EC Sour",
+    "specs": "Ch\u1ea5t trung ho\u00e0 / Neutralizer",
+    "unit": "can 20l",
+    "price": 1623555.0,
+    "discountPrice": 1488799.935,
+    "dilution": "1 - 2 ml/kg"
+  },
+  {
+    "id": 133,
+    "code": "7106090",
+    "name": "Sericol",
+    "specs": "Ch\u1ea5t nh\u0169 ho\u00e1 b\u1ec1 m\u1eb7t, t\u1ea9y d\u1ea7u / Emulsifier",
+    "unit": "can 20l",
+    "price": 5092061.0,
+    "discountPrice": 4669419.937,
+    "dilution": "0.5 - 0.8 ml/kg"
+  },
+  {
+    "id": 134,
+    "code": "7106096",
+    "name": "Laundri Instant Starch",
+    "specs": "H\u1ed3 v\u1ea3i / Starch",
+    "unit": "can 15kg",
+    "price": 1844257.0,
+    "discountPrice": 1691183.669,
+    "dilution": "7gr/kg"
+  },
+  {
+    "id": 135,
+    "code": "7107046",
+    "name": "Turbo Break",
+    "specs": "T\u0103ng m\u00f4i tr\u01b0\u1eddng ki\u1ec1m / Alkaline booster",
+    "unit": "can 20l",
+    "price": 1871606.0,
+    "discountPrice": 1716262.702,
+    "dilution": "1-3ml/kg"
+  },
+  {
+    "id": 136,
+    "code": "8300089",
+    "name": "Turbo Detergent",
+    "specs": "N\u01b0\u1edbc gi\u1eb7t ch\u00ednh / Main liquid detergent",
+    "unit": "can 20l",
+    "price": 4358235.0,
+    "discountPrice": 3996501.495,
+    "dilution": "0.8 - 1.0 ml/kg"
+  }
+]
