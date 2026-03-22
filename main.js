@@ -1520,27 +1520,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Theme Toggle
+    applyTheme();
 });
 
 // ---------------------------------------------------------
 // HELPER FUNCTIONS
 // ---------------------------------------------------------
 
-function applyTheme(theme) {
-    // Force Daylight (light mode) on mobile as requested
-    const isMobile = window.innerWidth <= 768;
-    const finalTheme = isMobile ? 'light' : theme;
-
-    if (finalTheme === 'dark') {
-        document.body.classList.add('dark');
-    } else {
-        document.body.classList.remove('dark');
-    }
-    const isDark = document.body.classList.contains('dark');
-    if (themeToggle) {
-        themeToggle.innerHTML = isDark
-            ? '<span class="material-symbols-outlined text-[20px] flex items-center justify-center">light_mode</span>'
-            : '<span class="material-symbols-outlined text-[20px] flex items-center justify-center">dark_mode</span>';
+function applyTheme() {
+    // Force Daylight (light mode) globally as requested
+    document.body.classList.remove('dark');
+    
+    // Ensure theme toggle (if exists) reflects light mode
+    const themeToggleBtn = document.getElementById('theme-toggle') || document.getElementById('themeToggle');
+    if (themeToggleBtn) {
+        themeToggleBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] flex items-center justify-center">light_mode</span>';
     }
 }
 
