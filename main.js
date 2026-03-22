@@ -1527,7 +1527,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // ---------------------------------------------------------
 
 function applyTheme(theme) {
-    if (theme === 'dark') {
+    // Force Daylight (light mode) on mobile as requested
+    const isMobile = window.innerWidth <= 768;
+    const finalTheme = isMobile ? 'light' : theme;
+
+    if (finalTheme === 'dark') {
         document.body.classList.add('dark');
     } else {
         document.body.classList.remove('dark');

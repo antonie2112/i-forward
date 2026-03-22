@@ -1553,41 +1553,47 @@ main:has(#home.active) {
         padding: 0 !important;
     }
 
+    /* Tab Button Refinement */
     .tab-btn {
         white-space: nowrap !important;
-        padding: 0.5rem 1rem !important;
-        background: #f1f5f9 !important; /* slate-100 */
-        border-radius: 0.75rem !important;
+        padding: 0.6rem 1.25rem !important;
+        background: #f8fafc !important; /* slate-50 */
+        border: 1px solid rgba(0,0,0,0.05) !important;
+        border-radius: 1rem !important;
+        color: #64748b !important;
+        font-weight: 700 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
     .tab-btn.active {
         background: white !important;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+        border-color: rgba(0,0,0,0.1) !important;
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15) !important;
         color: #0ea5e9 !important;
+        transform: scale(1.05);
     }
 
-    /* Hide redundant elements in header on mobile */
-    .header-actions {
-        order: 2;
-    }
-    
-    #langLabel {
-        display: none !important;
+    /* Force Daylight on Mobile (Ignoring .dark class) */
+    .dark body {
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
     }
 
     /* Bottom Navigation Bar (PWA Standard) */
     .mobile-bottom-nav {
         display: flex !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.05) !important;
     }
 
     /* Adjust main content padding for bottom nav */
-    main.max-w-7xl {
-        padding-bottom: 80px !important;
-    }
-
-    /* Stack grid cards more aggressively */
-    .docs-grid {
-        grid-template-columns: 1fr !important;
+    main.max-w-7xl, 
+    #quote-builder, 
+    #calculator-screen {
+        padding-bottom: 90px !important;
     }
 }
 
@@ -1598,15 +1604,12 @@ main:has(#home.active) {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 64px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    height: 72px;
+    background: white;
     z-index: 1000;
     justify-content: space-around;
     align-items: center;
     padding-bottom: env(safe-area-inset-bottom);
-    box-shadow: 0 -4px 12px rgba(0,0,0,0.03);
 }
 
 .mobile-nav-item {
@@ -1614,24 +1617,38 @@ main:has(#home.active) {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #94a3b8; /* slate-400 */
+    color: #94a3b8;
     text-decoration: none;
     font-size: 10px;
-    font-weight: 700;
-    gap: 3px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 800;
+    gap: 4px;
+    transition: all 0.2s ease;
     flex: 1;
 }
 
 .mobile-nav-item.active {
-    color: #0ea5e9; /* primary/sky-500 */
+    color: #0ea5e9;
+    transform: translateY(-2px);
 }
 
 .mobile-nav-item .material-symbols-outlined {
-    font-size: 24px;
-    font-variation-settings: 'FILL' 0;
+    font-size: 26px;
+    font-variation-settings: 'FILL' 0, 'wght' 400;
 }
 
 .mobile-nav-item.active .material-symbols-outlined {
-    font-variation-settings: 'FILL' 1;
+    font-variation-settings: 'FILL' 1, 'wght' 600;
+}
+
+/* Scroll smooth for all containers */
+* {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom shadow for mobile cards */
+@media (max-width: 768px) {
+    .bg-white {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+    }
 }
