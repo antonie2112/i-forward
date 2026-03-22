@@ -34,7 +34,10 @@ export const saveDraft = async (tvdData) => {
 // Log user activity
 export const logActivity = async (action) => {
     const user = auth.currentUser;
-    if (!user) return;
+    if (!user) {
+        console.warn("Guest session: Activity not logged to cloud.");
+        return;
+    }
 
     try {
         await addDoc(collection(db, "activities"), {

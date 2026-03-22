@@ -1010,7 +1010,8 @@ const PRESETS = {
 };
 
 // --- State ---
-let quoteItems = [];
+window.quoteItems = [];
+let quoteItems = window.quoteItems; // Maintain local reference for main.js functions
 let idCounter = Date.now();
 let currentLang = localStorage.getItem('inst_lang') || 'en';
 let showDiscount = false;
@@ -1427,33 +1428,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // Tabs
-    const sections = document.querySelectorAll('.tab-content');
+    // Tabs Logic (Phase 117 - Unified)
+    window.switchTab = function(tabId) {
+        const sections = document.querySelectorAll('.tab-content');
+        const mobileNavItems = document.querySelectorAll('.mobile-bottom-nav .mobile-nav-item');
+        
+        // Update Top Navigation Buttons
+        tabBtns.forEach(b => {
+            if (b.getAttribute('data-tab') === tabId) {
+                b.classList.add('active', 'text-slate-900', 'bg-white', 'shadow-sm');
+                b.classList.remove('text-slate-500', 'hover:text-primary');
+            } else {
+                b.classList.remove('active', 'text-slate-900', 'bg-white', 'shadow-sm');
+                b.classList.add('text-slate-500', 'hover:text-primary');
+            }
+        });
+
+        // Update Mobile Bottom Nav Items
+        mobileNavItems.forEach(item => {
+            if (item.getAttribute('data-tab') === tabId) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+
+        // Show targets
+        sections.forEach(sec => sec.classList.remove('active'));
+        const target = document.getElementById(tabId);
+        if (target) target.classList.add('active');
+
+        // View Resets
+        if (tabId === 'quotation') {
+            document.getElementById('quote-selection').style.display = 'block';
+            document.getElementById('quote-builder').style.display = 'none';
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (typeof applyLanguage === 'function') applyLanguage(currentLang);
+    };
+
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const tab = btn.getAttribute('data-tab');
-
-            // Update Buttons
-            tabBtns.forEach(b => b.classList.remove('active', 'text-slate-900', 'bg-white', 'shadow-sm'));
-            tabBtns.forEach(b => b.classList.add('text-slate-500', 'hover:text-primary'));
-
-            btn.classList.add('active', 'text-slate-900', 'bg-white', 'shadow-sm');
-            btn.classList.remove('text-slate-500', 'hover:text-primary');
-
-            // Show sections
-            sections.forEach(sec => sec.classList.remove('active'));
-            const target = document.getElementById(tab);
-            if (target) target.classList.add('active');
-
-            // Reset specific states if needed
-            if (tab === 'quotation') {
-                document.getElementById('quote-selection').style.display = 'block';
-                document.getElementById('quote-builder').style.display = 'none';
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            applyLanguage(currentLang);
+            window.switchTab(tab);
         });
     });
 

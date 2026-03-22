@@ -41,8 +41,23 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+const skipLoginBtn = document.getElementById('skipLoginBtn');
+
+// Guest Access function
+const handleGuestAccess = () => {
+    loginOverlay.classList.add('hidden');
+    console.log("Accessing as Guest");
+    // Mock user for UI if needed
+    if (window.initializeAppData) window.initializeAppData({ 
+        email: "guest@iforward.app", 
+        displayName: "Guest User",
+        isGuest: true
+    });
+};
+
 // Attach to UI
 if (loginBtn) loginBtn.addEventListener('click', handleLogin);
+if (skipLoginBtn) skipLoginBtn.addEventListener('click', handleGuestAccess);
 
 // Export logout for global use
 window.logoutUser = async () => {
