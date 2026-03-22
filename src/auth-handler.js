@@ -3,6 +3,18 @@ import { auth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged,
 const loginOverlay = document.getElementById('login-overlay');
 const loginBtn = document.getElementById('loginBtn');
 const loginError = document.getElementById('loginError');
+const bottomNav = document.querySelector('.mobile-bottom-nav');
+const skipLoginBtn = document.getElementById('skipLoginBtn');
+
+function toggleBottomNav(show) {
+    if (bottomNav) {
+        if (show) {
+            bottomNav.classList.remove('hidden');
+        } else {
+            bottomNav.classList.add('hidden');
+        }
+    }
+}
 
 // Login function
 const handleLogin = async () => {
@@ -14,6 +26,7 @@ const handleLogin = async () => {
         if (checkEcolabUser(user)) {
             // Success
             loginOverlay.classList.add('hidden');
+            toggleBottomNav(true);
             loginError.classList.add('hidden');
             console.log("Logged in as:", user.email);
             // Initialize app data if needed
@@ -35,17 +48,19 @@ const handleLogin = async () => {
 onAuthStateChanged(auth, (user) => {
     if (user && checkEcolabUser(user)) {
         loginOverlay.classList.add('hidden');
+        toggleBottomNav(true);
         if (window.initializeAppData) window.initializeAppData(user);
     } else {
         loginOverlay.classList.remove('hidden');
+        toggleBottomNav(false);
     }
 });
 
-const skipLoginBtn = document.getElementById('skipLoginBtn');
 
 // Guest Access function
 const handleGuestAccess = () => {
     loginOverlay.classList.add('hidden');
+    toggleBottomNav(true);
     console.log("Accessing as Guest");
     // Mock user for UI if needed
     if (window.initializeAppData) window.initializeAppData({ 
