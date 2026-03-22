@@ -1536,6 +1536,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
+ 
+    // --- Smart Scroll for Mobile Bottom Nav ---
+    let lastScrollY = window.scrollY;
+    const mobileBottomNav = document.querySelector('.mobile-bottom-nav');
+    
+    window.addEventListener('scroll', () => {
+        if (!mobileBottomNav) return;
+        
+        const currentScrollY = window.scrollY;
+        // Don't hide if we're at the very top (safeguard)
+        if (currentScrollY < 10) {
+            mobileBottomNav.classList.remove('nav-hidden');
+            return;
+        }
+
+        // Only trigger on mobile view and for significant scrolls
+        if (window.innerWidth <= 768) {
+            if (currentScrollY > lastScrollY && currentScrollY > 72) {
+                // Scrolling down - hide
+                mobileBottomNav.classList.add('nav-hidden');
+            } else if (currentScrollY < lastScrollY - 5) {
+                // Scrolling up - show (with small buffer)
+                mobileBottomNav.classList.remove('nav-hidden');
+            }
+        }
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 });
 
 // ---------------------------------------------------------
