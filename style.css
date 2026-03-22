@@ -1607,16 +1607,11 @@ main:has(#home.active) {
     height: 72px;
     background: white;
     z-index: 1000;
-    justify-content: space-around;
+    display: flex; /* Force flex */
+    justify-content: center; /* Center items */
     align-items: center;
     padding-bottom: env(safe-area-inset-bottom);
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-.mobile-bottom-nav.items-6 .mobile-nav-item {
-    font-size: 8.5px;
-    gap: 2px;
+    border-top: 1px solid #f1f5f9;
 }
 
 .mobile-nav-item {
@@ -1627,11 +1622,12 @@ main:has(#home.active) {
     color: #94a3b8;
     text-decoration: none;
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 700;
     gap: 4px;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    flex: 1;
+    flex: 1; /* Equal space */
     min-width: 0;
+    text-align: center;
 }
 
 .mobile-nav-item.active {
