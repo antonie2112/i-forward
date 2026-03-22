@@ -1853,7 +1853,7 @@
       </section>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 py-8 no-print">
+    <footer class="bg-white border-t border-slate-100 py-8 no-print hidden md:block">
       <div class="max-w-7xl mx-auto px-4 text-center">
         <p class="text-xs font-normal text-slate-400 opacity-70" data-i18n="footer_simple">
           © 2026 I.Forward. Một dự án cá nhân của Antonie.
@@ -1863,26 +1863,30 @@
   </div>
   <!-- I.Forward Authentication & PWA -->
   <!-- Mobile Bottom Navigation (PWA) -->
-  <div class="mobile-bottom-nav flex">
+  <div class="mobile-bottom-nav items-6 flex">
     <a href="#" class="mobile-nav-item active" data-tab="home" onclick="if(window.switchTab) window.switchTab('home'); return false;">
-      <span class="material-symbols-outlined">home</span>
-      <span data-i18n="tab_home">Home</span>
+      <span class="material-symbols-outlined text-[22px]">home</span>
+      <span data-i18n="tab_home" class="text-[9px]">Home</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="quotation" onclick="if(window.switchTab) window.switchTab('quotation'); return false;">
-      <span class="material-symbols-outlined">request_quote</span>
-      <span data-i18n="tab_quote">Quote</span>
+      <span class="material-symbols-outlined text-[22px]">request_quote</span>
+      <span data-i18n="tab_quote" class="text-[9px]">Quote</span>
+    </a>
+    <a href="#" class="mobile-nav-item" data-tab="proposal" onclick="if(window.switchTab) window.switchTab('proposal'); return false;">
+      <span class="material-symbols-outlined text-[22px]">description</span>
+      <span data-i18n="tab_proposal" class="text-[9px]">Prop</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="catsheets" onclick="if(window.switchTab) window.switchTab('catsheets'); return false;">
-      <span class="material-symbols-outlined">description</span>
-      <span data-i18n="tab_catsheets">Docs</span>
+      <span class="material-symbols-outlined text-[22px]">library_books</span>
+      <span data-i18n="tab_catsheets" class="text-[9px]">Docs</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="calculator" onclick="if(window.switchTab) window.switchTab('calculator'); return false;">
-      <span class="material-symbols-outlined">calculate</span>
-      <span data-i18n="tab_calculator">Calc</span>
+      <span class="material-symbols-outlined text-[22px]">calculate</span>
+      <span data-i18n="tab_calculator" class="text-[9px]">Calc</span>
     </a>
     <a href="#" class="mobile-nav-item" id="moreNavBtn" onclick="toggleMoreMenu(); return false;">
-      <span class="material-symbols-outlined">more_horiz</span>
-      <span data-i18n="nav_more">More</span>
+      <span class="material-symbols-outlined text-[22px]">more_horiz</span>
+      <span data-i18n="nav_more" class="text-[9px]">More</span>
     </a>
   </div>
 
