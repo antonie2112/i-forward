@@ -1863,75 +1863,71 @@
   </div>
   <!-- I.Forward Authentication & PWA -->
   <!-- Mobile Bottom Navigation (PWA) -->
-  <div class="mobile-bottom-nav items-6 flex">
+  <div class="mobile-bottom-nav flex">
     <a href="#" class="mobile-nav-item active" data-tab="home" onclick="if(window.switchTab) window.switchTab('home'); return false;">
-      <span class="material-symbols-outlined text-[22px]">home</span>
-      <span data-i18n="tab_home" class="text-[9px]">Home</span>
+      <span class="material-symbols-outlined">home</span>
+      <span data-i18n="tab_home">Home</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="quotation" onclick="if(window.switchTab) window.switchTab('quotation'); return false;">
-      <span class="material-symbols-outlined text-[22px]">request_quote</span>
-      <span data-i18n="tab_quote" class="text-[9px]">Quote</span>
-    </a>
-    <a href="#" class="mobile-nav-item" data-tab="proposal" onclick="if(window.switchTab) window.switchTab('proposal'); return false;">
-      <span class="material-symbols-outlined text-[22px]">description</span>
-      <span data-i18n="tab_proposal" class="text-[9px]">Prop</span>
+      <span class="material-symbols-outlined">request_quote</span>
+      <span data-i18n="tab_quote">Quote</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="catsheets" onclick="if(window.switchTab) window.switchTab('catsheets'); return false;">
-      <span class="material-symbols-outlined text-[22px]">library_books</span>
-      <span data-i18n="tab_catsheets" class="text-[9px]">Docs</span>
+      <span class="material-symbols-outlined">library_books</span>
+      <span data-i18n="tab_catsheets">Docs</span>
     </a>
     <a href="#" class="mobile-nav-item" data-tab="calculator" onclick="if(window.switchTab) window.switchTab('calculator'); return false;">
-      <span class="material-symbols-outlined text-[22px]">calculate</span>
-      <span data-i18n="tab_calculator" class="text-[9px]">Calc</span>
+      <span class="material-symbols-outlined">calculate</span>
+      <span data-i18n="tab_calculator">Calc</span>
     </a>
     <a href="#" class="mobile-nav-item" id="moreNavBtn" onclick="toggleMoreMenu(); return false;">
-      <span class="material-symbols-outlined text-[22px]">more_horiz</span>
-      <span data-i18n="nav_more" class="text-[9px]">More</span>
+      <span class="material-symbols-outlined">more_horiz</span>
+      <span data-i18n="nav_more">More</span>
     </a>
   </div>
 
   <!-- More Menu Mobile Modal -->
-  <div id="more-menu-mobile" class="hidden fixed inset-0 z-[1500] flex items-end justify-center bg-slate-900/40 backdrop-blur-sm p-4 transition-all duration-300">
-      <div class="w-full max-w-sm bg-white rounded-t-3xl p-6 shadow-2xl animate-in slide-in-from-bottom duration-300 border-t border-slate-200">
-          <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-6" onclick="toggleMoreMenu()"></div>
-          <h3 class="text-slate-900 font-black text-xl mb-6">Menu</h3>
+  <div id="more-menu-mobile" class="hidden fixed inset-0 z-[1500] flex items-end justify-center bg-slate-900/20 backdrop-blur-[2px] p-4 transition-all duration-300" onclick="if(event.target === this) toggleMoreMenu()">
+      <div class="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl animate-in slide-in-from-bottom duration-300">
+          <div class="w-12 h-1 bg-slate-100 rounded-full mx-auto mb-8" onclick="toggleMoreMenu()"></div>
           
-          <div class="grid grid-cols-1 gap-3">
-              <!-- SDS Section moved to More for space optimization -->
-              <button onclick="window.switchTab('sds'); toggleMoreMenu();" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all text-left">
-                  <div class="size-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
-                      <span class="material-symbols-outlined">security</span>
+          <div class="grid grid-cols-2 gap-4 mb-8">
+              <button onclick="window.switchTab('proposal'); toggleMoreMenu();" class="flex flex-col items-center gap-3 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all active:scale-95">
+                  <div class="size-12 rounded-2xl bg-primary/5 text-primary flex items-center justify-center">
+                      <span class="material-symbols-outlined text-2xl">description</span>
                   </div>
-                  <div>
-                      <h4 class="font-bold text-slate-900">SDS Viewer</h4>
-                      <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Safety Data Sheets</p>
-                  </div>
+                  <span class="text-xs font-bold text-slate-700">Proposal</span>
               </button>
-
-              <button onclick="document.getElementById('langToggle').click();" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all text-left mt-2">
-                  <div class="size-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">
-                      <span id="moreLangFlag">🇻🇳</span>
+              
+              <button onclick="window.switchTab('sds'); toggleMoreMenu();" class="flex flex-col items-center gap-3 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all active:scale-95">
+                  <div class="size-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-2xl">security</span>
                   </div>
-                  <div>
-                      <h4 class="font-bold text-slate-900">Change Language</h4>
-                      <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest" id="moreLangLabel">Vietnamese / English</p>
-                  </div>
-              </button>
-
-              <button onclick="window.logoutUser()" class="flex items-center gap-4 p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 transition-all text-left mt-2">
-                  <div class="size-12 rounded-xl bg-white text-rose-500 flex items-center justify-center shadow-sm">
-                      <span class="material-symbols-outlined">logout</span>
-                  </div>
-                  <div>
-                      <h4 class="font-bold text-rose-600">Sign Out</h4>
-                      <p class="text-[10px] text-rose-400 font-bold uppercase tracking-widest">End Current Session</p>
-                  </div>
+                  <span class="text-xs font-bold text-slate-700">SDS Viewer</span>
               </button>
           </div>
-          
-          <button onclick="toggleMoreMenu()" class="w-full mt-8 py-4 rounded-2xl text-slate-500 font-bold text-sm uppercase tracking-widest border border-slate-200">
-              Close
-          </button>
+
+          <div class="space-y-2 border-t border-slate-50 pt-6">
+              <button onclick="document.getElementById('langToggle').click();" class="w-full flex items-center justify-between p-4 rounded-2xl hover:bg-slate-50 transition-all active:scale-95">
+                  <div class="flex items-center gap-4">
+                      <div class="size-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                          <span id="moreLangFlag">🇻🇳</span>
+                      </div>
+                      <span class="text-sm font-bold text-slate-800">Language</span>
+                  </div>
+                  <span class="text-[10px] font-black text-slate-300 uppercase tracking-widest" id="moreLangLabel">VN</span>
+              </button>
+
+              <button onclick="window.logoutUser()" class="w-full flex items-center justify-between p-4 rounded-2xl hover:bg-rose-50 transition-all active:scale-95 group">
+                  <div class="flex items-center gap-4">
+                      <div class="size-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center">
+                          <span class="material-symbols-outlined text-xl">logout</span>
+                      </div>
+                      <span class="text-sm font-bold text-slate-800 group-hover:text-rose-600">Sign Out</span>
+                  </div>
+                  <span class="material-symbols-outlined text-slate-300 group-hover:text-rose-300">chevron_right</span>
+              </button>
+          </div>
       </div>
   </div>
 
