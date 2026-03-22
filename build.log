@@ -1,0 +1,30 @@
+
+> inst.sale@1.0.0 build
+> vite build
+
+vite v7.3.1 building client environment for production...
+transforming...
+✓ 5 modules transformed.
+✗ Build failed in 43ms
+error during build:
+[vite-plugin-pwa:build] There was an error during the build:
+  main.js?v=117.1 (1972:9): Identifier "updateItem" has already been declared
+Additionally, handling the error in the 'buildEnd' hook caused the following error:
+  main.js?v=117.1 (1972:9): Identifier "updateItem" has already been declared
+file: /Users/nguyenphong/Desktop/Inst.sale/main.js?v=117.1:1972:9 (/Users/nguyenphong/Desktop/Inst.sale/index.html)
+
+1970: });
+1971: 
+1972: function updateItem(itemId, field, value) {
+               ^
+1973:     const item = quoteItems.find(i => i.id === itemId);
+1974:     if (item) {
+
+    at getRollupError (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/rollup/dist/es/shared/parseAst.js:406:41)
+    at file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/rollup/dist/es/shared/node-entry.js:23522:39
+    at async catchUnfinishedHookActions (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/rollup/dist/es/shared/node-entry.js:22980:16)
+    at async rollupInternal (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/rollup/dist/es/shared/node-entry.js:23505:5)
+    at async buildEnvironment (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/vite/dist/node/chunks/config.js:33541:12)
+    at async Object.build (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/vite/dist/node/chunks/config.js:33900:19)
+    at async Object.buildApp (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/vite/dist/node/chunks/config.js:33897:153)
+    at async CAC.<anonymous> (file:///Users/nguyenphong/Desktop/Inst.sale/node_modules/vite/dist/node/cli.js:629:3)

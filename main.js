@@ -1589,52 +1589,19 @@ function applyLanguage(lang) {
     renderDocs();
 }
 
-function addEmptyRow() {
+window.addEmptyRow = function() {
     const id = Date.now();
     quoteItems.push({
         id, code: "", name: "", specs: "", image: "", unit: "can", price: 0, discountPrice: 0, dilution: "1 ml/lit"
     });
     renderRows();
-}
+};
 
-function removeRow(id) {
-    quoteItems = quoteItems.filter(item => item.id !== id);
-    renderRows();
-}
-
-function removeSection(id) {
-    if (!confirm("Delete this section and all items in it?")) return;
-
-    const newItems = [];
-    let skipping = false;
-
-    for (const item of quoteItems) {
-        if (String(item.id) === String(id)) {
-            skipping = true;
-            continue; // Skip section head
-        }
-
-        if (skipping) {
-            if (item.type === 'section') {
-                skipping = false;
-                newItems.push(item);
-            }
-            // else skip child
-        } else {
-            newItems.push(item);
-        }
-    }
-
-    quoteItems = newItems;
-    renderRows();
-}
-
-function updateItem(id, field, value) {
+window.updateItem = function(id, field, value) {
     const item = quoteItems.find(i => i.id === id);
-    if (!item) {
-        return;
-    }
+    if (!item) return;
 
+    // Handle number formatting and parsing for price/discount
     if (field === 'price' || field === 'discountPercent') {
         if (typeof value === 'string') {
             if (currentLang === 'vn') {
@@ -1647,16 +1614,30 @@ function updateItem(id, field, value) {
 
     item[field] = value;
 
+    // Autocomplete logic for product names
+    if (field === 'name' && window.productsDB) {
+        const match = window.productsDB.find(p => p.name.toUpperCase() === value.toUpperCase());
+        if (match) {
+            item.code = match.code || '';
+            item.specs = match.specs || '';
+            item.unit = match.unit || '';
+            item.price = match.price || 0;
+            item.dilution = match.dilution || '';
+            renderRows(true);
+            return;
+        }
+    }
+
     if (field === 'price' || field === 'discountPercent') {
         const price = parseFloat(item.price) || 0;
         const percent = parseFloat(item.discountPercent) || 0;
-
-        // Calculate Discount Price
         item.discountPrice = Math.round(price * (1 - percent / 100));
+        renderRows(true);
+    } else {
+        // For name/specs typing, just update totals without full re-render to avoid focus loss
+        calculateTotals();
     }
-
-    renderRows();
-}
+};
 
 function updateItemName(id, value) {
     const item = quoteItems.find(i => i.id === id);
@@ -1682,12 +1663,6 @@ function updateItemName(id, value) {
     renderRows();
 }
 
-function updateSection(id, value) {
-    const item = quoteItems.find(i => i.id === id);
-    if (item && item.type === 'section') {
-        item.name = value;
-    }
-}
 
 function formatCurrency(num) {
     if (currentLang === 'vn') {
@@ -1699,11 +1674,7 @@ function formatCurrency(num) {
 // ---------------------------------------------------------
 // EXPORTS & RENDER
 // ---------------------------------------------------------
-window.updateItem = updateItem;
 window.updateItemName = updateItemName;
-window.updateSection = updateSection;
-window.removeRow = removeRow;
-window.removeSection = removeSection;
 window.selectQuoteType = selectQuoteType;
 window.showSelectionScreen = showSelectionScreen;
 
@@ -1968,38 +1939,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof loadPdfTemplate === 'function') loadPdfTemplate();
     }, 500);
 });
-
-function updateItem(itemId, field, value) {
-    const item = quoteItems.find(i => i.id === itemId);
-    if (item) {
-        item[field] = value;
-
-        // Autocomplete logic for product names
-        if (field === 'name' && productsDB) {
-            const match = productsDB.find(p => p.name.toUpperCase() === value.toUpperCase());
-            if (match) {
-                item.code = match.code || '';
-                item.specs = match.specs || '';
-                item.unit = match.unit || '';
-                item.price = match.price || 0;
-                item.dilution = match.dilution || '';
-                renderRows(true);
-                return;
-            }
-        }
-
-        if (field === 'price' || field === 'discountPercent') {
-            item[field] = parseFloat(value) || 0;
-            renderRows(true);
-            return;
-        }
-
-        // For name/specs typing, just update totals without re-rendering the whole table
-        // This prevents focus loss
-        calculateTotals();
-    }
-}
-window.updateItem = updateItem;
 
 function addItemToCategory(categoryId) {
     const id = Number(categoryId);

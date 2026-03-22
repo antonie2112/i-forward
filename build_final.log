@@ -1,0 +1,31 @@
+
+> inst.sale@1.0.0 build
+> vite build
+
+vite v7.3.1 building client environment for production...
+transforming...
+✓ 54 modules transformed.
+rendering chunks...
+
+PWA WARNING:
+</head> not found in the html, adding it to the html tag: add empty <head></head> to your html to remove this warning.
+computing gzip size...
+dist/registerSW.js                                  0.13 kB
+dist/manifest.webmanifest                           0.45 kB
+dist/assets/ecolab-logo-tagline svg-Daivi_vr.svg   10.11 kB │ gzip:   4.13 kB
+dist/index.html                                   158.93 kB │ gzip:  22.38 kB
+dist/assets/main-CtEAHdSC.css                      23.29 kB │ gzip:   5.51 kB
+dist/assets/main-v2vqIudJ.js                      746.42 kB │ gzip: 224.39 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 890ms
+
+PWA v1.2.0
+mode      generateSW
+precache  5 entries (907.00 KiB)
+files generated
+  dist/sw.js
+  dist/workbox-8c29f6e4.js
