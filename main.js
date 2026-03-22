@@ -1495,15 +1495,19 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateLangFlag(lang) {
         const flagEl = document.getElementById('langFlag');
         const labelEl = document.getElementById('langLabel');
-        if (!flagEl) return;
+        const moreFlagEl = document.getElementById('moreLangFlag');
+        const moreLabelEl = document.getElementById('moreLangLabel');
+
         if (lang === 'vn') {
-            // Showing Vietnamese — clicking will switch to EN
-            flagEl.textContent = '🇻🇳';
+            if (flagEl) flagEl.textContent = '🇻🇳';
             if (labelEl) labelEl.textContent = 'VI';
+            if (moreFlagEl) moreFlagEl.textContent = '🇻🇳';
+            if (moreLabelEl) moreLabelEl.textContent = 'Vietnamese (Switch to EN)';
         } else {
-            // Showing English — clicking will switch to VI
-            flagEl.textContent = '🇺🇸';
+            if (flagEl) flagEl.textContent = '🇺🇸';
             if (labelEl) labelEl.textContent = 'EN';
+            if (moreFlagEl) moreFlagEl.textContent = '🇺🇸';
+            if (moreLabelEl) moreLabelEl.textContent = 'English (Switch to VI)';
         }
     }
 
@@ -1521,6 +1525,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Theme Toggle
     applyTheme();
+
+    window.toggleMoreMenu = function() {
+        const menu = document.getElementById('more-menu-mobile');
+        if (menu) {
+            menu.classList.toggle('hidden');
+            if (!menu.classList.contains('hidden')) {
+                // Ensure lang sync when menu opens
+                updateLangFlag(currentLang);
+            }
+        }
+    };
 });
 
 // ---------------------------------------------------------

@@ -118,16 +118,6 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-3 header-actions md:hidden">
-            <button
-              class="flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all active:scale-95 font-semibold text-sm"
-              onclick="document.getElementById('langToggle').click()">
-              <span style="font-size:20px; line-height:1;">🇻🇳</span>
-            </button>
-            <button onclick="window.logoutUser()" class="p-2 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-all active:scale-95">
-              <span class="material-symbols-outlined">logout</span>
-            </button>
-          </div>
         </div>
 
         <div class="nav-scroll-wrapper hide-scrollbar hidden md:block">
@@ -1873,7 +1863,7 @@
   </div>
   <!-- I.Forward Authentication & PWA -->
   <!-- Mobile Bottom Navigation (PWA) -->
-  <div class="mobile-bottom-nav">
+  <div class="mobile-bottom-nav flex">
     <a href="#" class="mobile-nav-item active" data-tab="home" onclick="if(window.switchTab) window.switchTab('home'); return false;">
       <span class="material-symbols-outlined">home</span>
       <span data-i18n="tab_home">Home</span>
@@ -1884,16 +1874,61 @@
     </a>
     <a href="#" class="mobile-nav-item" data-tab="catsheets" onclick="if(window.switchTab) window.switchTab('catsheets'); return false;">
       <span class="material-symbols-outlined">description</span>
-      <span data-i18n="tab_catsheets">Cats</span>
+      <span data-i18n="tab_catsheets">Docs</span>
     </a>
-    <a href="#" class="mobile-nav-item" data-tab="sds" onclick="if(window.switchTab) window.switchTab('sds'); return false;">
-      <span class="material-symbols-outlined">security</span>
-      <span data-i18n="tab_sds">SDS</span>
+    <a href="#" class="mobile-nav-item" data-tab="calculator" onclick="if(window.switchTab) window.switchTab('calculator'); return false;">
+      <span class="material-symbols-outlined">calculate</span>
+      <span data-i18n="tab_calculator">Calc</span>
     </a>
-    <a href="#" class="mobile-nav-item" onclick="const btn = document.getElementById('langToggle'); if(btn) btn.click(); return false;">
-      <span class="material-symbols-outlined">language</span>
-      <span data-i18n="nav_lang">Lang</span>
+    <a href="#" class="mobile-nav-item" id="moreNavBtn" onclick="toggleMoreMenu(); return false;">
+      <span class="material-symbols-outlined">more_horiz</span>
+      <span data-i18n="nav_more">More</span>
     </a>
+  </div>
+
+  <!-- More Menu Mobile Modal -->
+  <div id="more-menu-mobile" class="hidden fixed inset-0 z-[1500] flex items-end justify-center bg-slate-900/40 backdrop-blur-sm p-4 transition-all duration-300">
+      <div class="w-full max-w-sm bg-white rounded-t-3xl p-6 shadow-2xl animate-in slide-in-from-bottom duration-300 border-t border-slate-200">
+          <div class="w-12 h-1.5 bg-slate-200 rounded-full mx-auto mb-6" onclick="toggleMoreMenu()"></div>
+          <h3 class="text-slate-900 font-black text-xl mb-6">Menu</h3>
+          
+          <div class="grid grid-cols-1 gap-3">
+              <!-- SDS Section moved to More for space optimization -->
+              <button onclick="window.switchTab('sds'); toggleMoreMenu();" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all text-left">
+                  <div class="size-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                      <span class="material-symbols-outlined">security</span>
+                  </div>
+                  <div>
+                      <h4 class="font-bold text-slate-900">SDS Viewer</h4>
+                      <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Safety Data Sheets</p>
+                  </div>
+              </button>
+
+              <button onclick="document.getElementById('langToggle').click();" class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all text-left mt-2">
+                  <div class="size-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl">
+                      <span id="moreLangFlag">🇻🇳</span>
+                  </div>
+                  <div>
+                      <h4 class="font-bold text-slate-900">Change Language</h4>
+                      <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest" id="moreLangLabel">Vietnamese / English</p>
+                  </div>
+              </button>
+
+              <button onclick="window.logoutUser()" class="flex items-center gap-4 p-4 rounded-2xl bg-rose-50 hover:bg-rose-100 transition-all text-left mt-2">
+                  <div class="size-12 rounded-xl bg-white text-rose-500 flex items-center justify-center shadow-sm">
+                      <span class="material-symbols-outlined">logout</span>
+                  </div>
+                  <div>
+                      <h4 class="font-bold text-rose-600">Sign Out</h4>
+                      <p class="text-[10px] text-rose-400 font-bold uppercase tracking-widest">End Current Session</p>
+                  </div>
+              </button>
+          </div>
+          
+          <button onclick="toggleMoreMenu()" class="w-full mt-8 py-4 rounded-2xl text-slate-500 font-bold text-sm uppercase tracking-widest border border-slate-200">
+              Close
+          </button>
+      </div>
   </div>
 
   <script type="module" src="/src/auth-handler.js"></script>

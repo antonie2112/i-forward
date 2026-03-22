@@ -1652,3 +1652,21 @@ main:has(#home.active) {
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
     }
 }
+
+/* Mobile More Menu */
+#more-menu-mobile:not(.hidden) {
+    display: flex !important;
+}
+
+#more-menu-mobile.hidden {
+    display: none !important;
+}
+
+@keyframes slide-up {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-in.slide-in-from-bottom {
+    animation: slide-up 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
