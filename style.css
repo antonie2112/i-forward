@@ -1384,6 +1384,13 @@ main:has(#home.active) {
     color: white;
 }
 
+@media (max-width: 768px) {
+    .tvd-hero-card {
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+}
+
 .tvd-hero-card::after {
     content: '';
     position: absolute;
@@ -1407,7 +1414,7 @@ main:has(#home.active) {
 
 .impact-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
@@ -1489,6 +1496,15 @@ main:has(#home.active) {
         grid-template-columns: 1fr;
     }
 }
+@media (max-width: 768px) {
+    .tvd-dashboard-container {
+        padding: 0.75rem;
+        gap: 1rem;
+    }
+    .tvd-module-card {
+        padding: 1.25rem;
+    }
+}
 /* Scanner Animation */
 @keyframes scan {
   0% { top: 20%; opacity: 0; }
@@ -1551,6 +1567,27 @@ main:has(#home.active) {
         background: transparent !important;
         border: none !important;
         padding: 0 !important;
+    }
+
+    /* Price Calculator Mobile Refinement */
+    #calculator .max-w-7xl {
+        margin-top: 1rem !important;
+        margin-bottom: 5rem !important;
+        border-radius: 20px !important;
+    }
+
+    .calc-tab-content {
+        padding: 1rem !important;
+    }
+
+    #calculator main {
+        padding: 1rem !important;
+    }
+
+    .calc-tab-btn {
+        white-space: nowrap;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 
     /* Tab Button Refinement */
