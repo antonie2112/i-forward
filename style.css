@@ -1386,8 +1386,9 @@ main:has(#home.active) {
 
 @media (max-width: 768px) {
     .tvd-hero-card {
-        padding: 1.5rem;
-        border-radius: 20px;
+        padding: 2rem 1rem !important;
+        border-radius: 0 !important;
+        border: none !important;
     }
 }
 
@@ -1596,6 +1597,20 @@ main:has(#home.active) {
 
     .calc-tab-content {
         padding: 1rem !important;
+    }
+
+    #calctab-tvd.calc-tab-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 1rem !important;
+    }
+
+    .tvd-module-card {
+        padding: 1.25rem 0.75rem !important;
+        border-radius: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        box-shadow: none !important;
     }
 
     #calculator main {
