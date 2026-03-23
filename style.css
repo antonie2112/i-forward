@@ -1694,7 +1694,7 @@ main:has(#home.active) {
 }
 
 .mobile-nav-item.active {
-    color: #0069d1;
+    color: #006bd3;
     transform: translateY(-2px);
 }
 
