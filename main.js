@@ -3068,12 +3068,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const plasticSavKg = stdPlasticKgYear * plasticSavPct;
                 const co2SavedKg = plasticSavKg * 6; // 6kg CO2 per 1kg plastic
 
-                // Plastic disposal/env cost (placeholder 50k/kg)
+                // Plastic disposal/env cost (Not in monetary total as requested)
                 const stdPlasticVal = stdPlasticKgYear * 50000;
                 const gsPlasticVal = (stdPlasticKgYear - plasticSavKg) * 50000;
 
-                const stdTotal = stdChem + stdLabor + stdPlasticVal;
-                const gsTotal = gsChem + gsLabor + gsPlasticVal;
+                // Monetary Total (Chem + Labor)
+                const stdTotal = stdChem + stdLabor;
+                const gsTotal = gsChem + gsLabor;
                 const hkAnnualNet = stdTotal - gsTotal;
 
                 setTxt('tvd-hk-result', hkAnnualNet);
@@ -3090,11 +3091,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTxt('tvd-hk-brk-cans-gs', gsCans.toFixed(1));
                 setTxt('tvd-hk-brk-labor-std', stdLabor);
                 setTxt('tvd-hk-brk-labor-gs', gsLabor);
-                setTxt('tvd-hk-brk-co2-gs', co2SavedKg.toFixed(1));
-                setTxt('tvd-hk-brk-plastic-std', stdPlasticVal);
-                setTxt('tvd-hk-brk-plastic-gs', gsPlasticVal);
+
+                // Total Costs (Monetary)
                 setTxt('tvd-hk-brk-total-std', stdTotal);
                 setTxt('tvd-hk-brk-total-gs', gsTotal);
+                
+                // Sustainability (Not in total sum)
+                setTxt('tvd-hk-brk-co2-std', (stdPlasticKgYear * 6).toFixed(1));
+                setTxt('tvd-hk-brk-co2-gs', ((stdPlasticKgYear - plasticSavKg) * 6).toFixed(1));
 
                 totalFacilityTVD += hkAnnualNet;
                 totalPlasticSavedKg += plasticSavKg;
@@ -3105,19 +3109,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- MODULE 3: KITCHEN ---
             const ktRacksDay = getVal('tvd-kitchen-racks');
-            const ktWastePct = getVal('tvd-kitchen-waste');
-            const ktFoodCost = getVal('tvd-kitchen-food-cost');
             
-            if (ktRacksDay > 0 || ktFoodCost > 0) {
+            // New Chemical Cost Inputs
+            const ktStdChemPerRack = getVal('tvd-kitchen-std-cpr-override') || 1000;
+            const ktSolidChemPerRack = getVal('tvd-kitchen-solid-cpr-override') || 1200;
+
+            // Advanced Benchmarks Overrides
+            const ktEnergySavRate = getVal('tvd-kitchen-energy-sav-override') || 0.1;
+            const ktRewashSavRate = getVal('tvd-kitchen-rewash-sav-override') || 3; // in %
+            const ktCO2SavPct = getVal('tvd-kitchen-co2-sav-pct-override') || 90; // CO2 reduction %
+
+            if (ktRacksDay > 0) {
                 const racksYear = ktRacksDay * 365;
-                const waterSav = (racksYear * 0.5 * waterPrice) / 1000;
-                const energySavValue = racksYear * 0.1 * elecPrice;
-                const rewashSav = racksYear * 0.03 * 15000; 
-                const foodWasteMonthlySav = ktFoodCost * (ktWastePct / 100) * 0.05;
-                const ktAnnual = waterSav + energySavValue + rewashSav + (foodWasteMonthlySav * 12);
+                
+                // Baselines and Costs Per Rack
+                const stdEnergyPerRack = 0.5;
+                const stdRewashRate = 0.05; // 5%
+                const stdCO2PerRack = 0.1; // kg CO2 baseline
+
+                // Standard side
+                const stdChem = ktStdChemPerRack;
+                const stdEnergyCost = stdEnergyPerRack * elecPrice;
+                const stdRewashCost = stdRewashRate * 15000;
+                const stdTotalPerRack = stdChem + stdEnergyCost + stdRewashCost;
+                const stdCO2 = stdCO2PerRack;
+
+                // Solid Power side
+                const solidChem = ktSolidChemPerRack;
+                const solidEnergyCost = (stdEnergyPerRack - ktEnergySavRate) * elecPrice;
+                const solidRewashCost = (stdRewashRate - (ktRewashSavRate / 100)) * 15000;
+                const solidTotalPerRack = solidChem + solidEnergyCost + solidRewashCost;
+                const solidCO2 = stdCO2PerRack * (1 - ktCO2SavPct / 100);
+
+                const ktAnnual = (stdTotalPerRack - solidTotalPerRack) * racksYear;
                 setTxt('tvd-kitchen-result', ktAnnual);
+                
+                // Update Comparative Breakdown
+                setTxt('tvd-kitchen-brk-chem-std', stdChem);
+                setTxt('tvd-kitchen-brk-chem-solid', solidChem);
+                setTxt('tvd-kitchen-brk-energy-std', stdEnergyCost);
+                setTxt('tvd-kitchen-brk-energy-solid', solidEnergyCost);
+                setTxt('tvd-kitchen-brk-rewash-std', stdRewashCost);
+                setTxt('tvd-kitchen-brk-rewash-solid', solidRewashCost);
+                
+                // Total Costs
+                setTxt('tvd-kitchen-brk-total-std', stdTotalPerRack);
+                setTxt('tvd-kitchen-brk-total-solid', solidTotalPerRack);
+
+                // Sustainability (Not in total sum)
+                setTxt('tvd-kitchen-brk-co2-std', stdCO2.toFixed(3));
+                setTxt('tvd-kitchen-brk-co2-solid', solidCO2.toFixed(3));
+
                 totalFacilityTVD += ktAnnual;
-                totalCO2SavedKg += (racksYear * 0.1 * 0.5);
+                totalCO2SavedKg += (racksYear * (stdCO2 - solidCO2)); 
             }
 
             // --- SUMMARY DASHBOARD UPDATE ---
@@ -3179,12 +3223,17 @@ document.addEventListener('DOMContentLoaded', () => {
     calculateCPC(); calculateCPS(); calculateCPOR(); calculateCPSQM(); calculateTVD();
 });
 
+// Toggles for TVD Breakdowns
 window.toggleLaundryBreakdown = function() {
     const area = document.getElementById('laundry-breakdown-area');
     if (area) area.classList.toggle('hidden');
 };
 window.toggleHKBreakdown = function() {
     const area = document.getElementById('hk-breakdown-area');
+    if (area) area.classList.toggle('hidden');
+};
+window.toggleKitchenBreakdown = function() {
+    const area = document.getElementById('kitchen-breakdown-area');
     if (area) area.classList.toggle('hidden');
 };
 
@@ -3216,8 +3265,64 @@ async function saveTvdDraft(module) {
 }
 window.saveTvdDraft = saveTvdDraft;
 
-function toggleHKBreakdown() {
-    const area = document.getElementById('hk-breakdown-area');
-    if (area) area.classList.toggle('hidden');
+// Functions consolidated at internal definitions above
+
+async function exportHkToImage() {
+    const element = document.getElementById('tvd-hk-module');
+    if (!element) return;
+    
+    // Temporarily hide the "Share" button during capture
+    const shareBtn = element.querySelector('button[onclick="exportHkToImage()"]');
+    if (shareBtn) shareBtn.style.visibility = 'hidden';
+
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            logging: false
+        });
+        
+        const link = document.createElement('a');
+        link.download = `Housekeeping_TVD_${new Date().getTime()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    } catch (err) {
+        console.error('Export failed:', err);
+        alert('Không thể xuất ảnh. Vui lòng thử lại.');
+    } finally {
+        if (shareBtn) shareBtn.style.visibility = 'visible';
+    }
 }
-window.toggleHKBreakdown = toggleHKBreakdown;
+window.exportHkToImage = exportHkToImage;
+
+// Functions consolidated at internal definitions above
+
+async function exportKitchenToImage() {
+    const element = document.getElementById('tvd-kitchen-module');
+    if (!element) return;
+    
+    // Temporarily hide the "Share" button during capture
+    const shareBtn = element.querySelector('button[onclick="exportKitchenToImage()"]');
+    if (shareBtn) shareBtn.style.visibility = 'hidden';
+
+    try {
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            logging: false
+        });
+        
+        const link = document.createElement('a');
+        link.download = `Kitchen_TVD_${new Date().getTime()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    } catch (err) {
+        console.error('Export failed:', err);
+        alert('Không thể xuất ảnh. Vui lòng thử lại.');
+    } finally {
+        if (shareBtn) shareBtn.style.visibility = 'visible';
+    }
+}
+window.exportKitchenToImage = exportKitchenToImage;

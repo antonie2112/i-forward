@@ -5,6 +5,7 @@ const loginBtn = document.getElementById('loginBtn');
 const loginError = document.getElementById('loginError');
 const bottomNav = document.querySelector('.mobile-bottom-nav');
 const skipLoginBtn = document.getElementById('skipLoginBtn');
+const mainDashboard = document.getElementById('main-dashboard');
 
 function toggleBottomNav(show) {
     if (bottomNav) {
@@ -12,6 +13,16 @@ function toggleBottomNav(show) {
             bottomNav.classList.remove('hidden');
         } else {
             bottomNav.classList.add('hidden');
+        }
+    }
+}
+
+function toggleDashVisibility(show) {
+    if (mainDashboard) {
+        if (show) {
+            mainDashboard.classList.remove('hidden');
+        } else {
+            mainDashboard.classList.add('hidden');
         }
     }
 }
@@ -26,6 +37,7 @@ const handleLogin = async () => {
         if (checkEcolabUser(user)) {
             // Success
             loginOverlay.classList.add('hidden');
+            toggleDashVisibility(true);
             toggleBottomNav(true);
             loginError.classList.add('hidden');
             console.log("Logged in as:", user.email);
@@ -48,10 +60,12 @@ const handleLogin = async () => {
 onAuthStateChanged(auth, (user) => {
     if (user && checkEcolabUser(user)) {
         loginOverlay.classList.add('hidden');
+        toggleDashVisibility(true);
         toggleBottomNav(true);
         if (window.initializeAppData) window.initializeAppData(user);
     } else {
         loginOverlay.classList.remove('hidden');
+        toggleDashVisibility(false);
         toggleBottomNav(false);
     }
 });
@@ -60,6 +74,7 @@ onAuthStateChanged(auth, (user) => {
 // Guest Access function
 const handleGuestAccess = () => {
     loginOverlay.classList.add('hidden');
+    toggleDashVisibility(true);
     toggleBottomNav(true);
     console.log("Accessing as Guest");
     // Mock user for UI if needed

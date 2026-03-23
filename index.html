@@ -9,7 +9,7 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
     rel="stylesheet" />
   
@@ -28,8 +28,9 @@
             "background-light": "#f5f7f8",
           },
           fontFamily: {
-            "display": ["Inter", "sans-serif"]
-          },
+            "sans": ["Roboto", "sans-serif"],
+          "display": ["Roboto", "sans-serif"]
+        },
           borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
         },
       },
@@ -37,7 +38,7 @@
   </script>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Roboto', sans-serif;
     }
 
     .material-symbols-outlined {
@@ -54,7 +55,7 @@
 <body>
   <div id="app">
     <!-- Login Overlay -->
-    <div id="login-overlay" class="fixed inset-0 z-[1000] bg-slate-50 flex items-center justify-center p-4">
+    <div id="login-overlay" class="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-slate-50">
       <div class="w-full max-w-md bg-white border border-slate-200 rounded-[2rem] p-8 text-center space-y-6 shadow-2xl relative overflow-hidden">
           <!-- Decorative Background Elements -->
           <div class="absolute -top-24 -right-24 size-48 bg-primary/5 rounded-full blur-3xl"></div>
@@ -77,7 +78,10 @@
               </button>
               <p id="loginError" class="mt-4 text-rose-500 text-xs font-bold hidden">Access restricted to @ecolab.com emails only.</p>
           </div>
-          <p class="text-[10px] text-slate-400 font-medium whitespace-nowrap relative z-10">Institutional Việt Nam • Internal Use Only • v6.1</p>
+          <div class="text-[10px] text-slate-400 font-medium whitespace-nowrap relative z-10 space-y-0.5">
+            <p>Institutional Việt Nam • Internal Use Only • v6.1</p>
+            <p>Một dự án cá nhân của Antonie</p>
+          </div>
       </div>
     </div>
 
@@ -96,8 +100,9 @@
           </button>
       </div>
     </div>
-
-    <header class="bg-white/80 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-[100] transition-all">
+    <!-- Main Application Container -->
+    <div id="main-dashboard" class="hidden">
+      <header class="bg-white/80 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-[100] transition-all">
       <div class="bg-primary/5 py-2 border-b border-primary/10">
         <div
           class="max-w-7xl mx-auto px-4 text-[10px] uppercase tracking-[0.2em] font-bold text-primary flex items-center gap-2">
@@ -527,7 +532,7 @@
 
             <!-- Formal Message -->
             <div class="max-w-3xl mb-4">
-              <p class="text-[11px] leading-relaxed text-slate-600 font-medium">
+              <p class="text-[13px] leading-relaxed text-slate-600 font-medium">
                 Cám ơn Quý Khách hàng đã quan tâm đến sản phẩm của chúng tôi. Chúng tôi xin trân trọng gửi đến Quý Khách Hàng bảng báo giá chi tiết các sản phẩm như sau:<br>
                 <span class="italic text-slate-400">Thank you for your interest. We are pleased to send the detailed quotation of the following products:</span>
               </p>
@@ -990,7 +995,7 @@
                          <input type="number" id="cpr-factor" class="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-10 px-3 focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500 outline-none transition-all" value="5">
                        </div>
                      </div>
-                     <div class="flex justify-between items-center text-rose-500 font-bold text-[11px] uppercase tracking-widest bg-rose-50 dark:bg-rose-500/10 p-2 px-3 rounded-lg border border-rose-100 dark:border-rose-500/20">
+                     <div class="flex justify-between items-center text-rose-500 font-bold text-[13px] uppercase tracking-widest bg-rose-50 dark:bg-rose-500/10 p-2 px-3 rounded-lg border border-rose-100 dark:border-rose-500/20">
                        <span>Dự phóng Số Rack/tháng:</span>
                        <span id="cpr-racks-out" class="text-sm font-black">0</span>
                      </div>
@@ -1016,11 +1021,11 @@
                      </div>
 
                      <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700/50 space-y-2 mt-4">
-                       <div class="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
+                       <div class="flex justify-between text-[13px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
                          <span>Chi phí Rửa/tháng:</span>
                          <span id="cpr-wash-total-out" class="font-black text-rose-500 text-right">0 VND</span>
                        </div>
-                       <div class="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
+                       <div class="flex justify-between text-[13px] font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
                          <span>Chi phí Tráng/tháng:</span>
                          <span id="cpr-rinse-total-out" class="font-black text-rose-500 text-right">0 VND</span>
                        </div>
@@ -1096,11 +1101,11 @@
                       </div>
 
                       <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700/50 space-y-2 mt-4 mb-2">
-                        <div class="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400 tracking-widest uppercase">
+                        <div class="flex justify-between text-[13px] font-semibold text-slate-600 dark:text-slate-400 tracking-widest uppercase">
                           <span>Chi phí ngâm 1 Sink:</span>
                           <span id="cps-sink-cost-out" class="font-black text-blue-500 text-right">0 VND</span>
                         </div>
-                        <div class="flex justify-between text-[11px] font-semibold text-slate-600 dark:text-slate-400 tracking-widest uppercase">
+                        <div class="flex justify-between text-[13px] font-semibold text-slate-600 dark:text-slate-400 tracking-widest uppercase">
                           <span>Ngân sách Bồn/tháng:</span>
                           <span id="cps-grand-total-out" class="font-black text-blue-500 text-right">0 VND</span>
                         </div>
@@ -1158,70 +1163,70 @@
                          <!-- Toilet Cleaner -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh Toilet <span class="text-[9px] font-medium normal-case text-slate-500">(100 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh Toilet <span class="text-[12px] font-medium normal-case text-slate-500">(100 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-std-toilet-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="350,000">
-                              <input type="number" id="cpor-std-toilet-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
-                              <input type="number" id="cpor-std-toilet-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
+                              <input type="text" inputmode="numeric" id="cpor-std-toilet-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="350,000">
+                              <input type="number" id="cpor-std-toilet-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
+                              <input type="number" id="cpor-std-toilet-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
                             </div>
-                            <p id="cpor-std-toilet-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-std-toilet-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- Glass Cleaner -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh kính <span class="text-[9px] font-medium normal-case text-slate-500">(100 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh kính <span class="text-[12px] font-medium normal-case text-slate-500">(100 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-std-glass-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="280,000">
-                              <input type="number" id="cpor-std-glass-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
-                              <input type="number" id="cpor-std-glass-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
+                              <input type="text" inputmode="numeric" id="cpor-std-glass-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="280,000">
+                              <input type="number" id="cpor-std-glass-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
+                              <input type="number" id="cpor-std-glass-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
                             </div>
-                            <p id="cpor-std-glass-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-std-glass-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- MPC -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh Đa năng <span class="text-[9px] font-medium normal-case text-slate-500">(7 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-blue-600 uppercase">Vệ sinh Đa năng <span class="text-[12px] font-medium normal-case text-slate-500">(7 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-std-mpc-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="450,000">
-                              <input type="number" id="cpor-std-mpc-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
-                              <input type="number" id="cpor-std-mpc-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
+                              <input type="text" inputmode="numeric" id="cpor-std-mpc-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="450,000">
+                              <input type="number" id="cpor-std-mpc-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
+                              <input type="number" id="cpor-std-mpc-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
                             </div>
-                            <p id="cpor-std-mpc-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-std-mpc-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- Odor -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-blue-600 uppercase">Xử lý mùi <span class="text-[9px] font-medium normal-case text-slate-500">(16 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-blue-600 uppercase">Xử lý mùi <span class="text-[12px] font-medium normal-case text-slate-500">(16 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-std-odor-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="650,000">
-                              <input type="number" id="cpor-std-odor-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
-                              <input type="number" id="cpor-std-odor-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
+                              <input type="text" inputmode="numeric" id="cpor-std-odor-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="650,000">
+                              <input type="number" id="cpor-std-odor-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-blue-500" value="5" step="0.1">
+                              <input type="number" id="cpor-std-odor-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-blue-50 dark:bg-blue-900/20 px-2 outline-none border-blue-200 font-bold" value="0">
                             </div>
-                            <p id="cpor-std-odor-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-std-odor-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                       </div>
 
@@ -1230,70 +1235,70 @@
                          <!-- Bathroom Cleaner -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-emerald-600 uppercase">Bathroom Cleaner <span class="text-[9px] font-medium normal-case text-slate-500">(32 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-emerald-600 uppercase">Bathroom Cleaner <span class="text-[12px] font-medium normal-case text-slate-500">(32 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-gs-bath-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,200,000">
-                              <input type="number" id="cpor-gs-bath-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
-                              <input type="number" id="cpor-gs-bath-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="5">
+                              <input type="text" inputmode="numeric" id="cpor-gs-bath-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,200,000">
+                              <input type="number" id="cpor-gs-bath-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
+                              <input type="number" id="cpor-gs-bath-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="5">
                             </div>
-                            <p id="cpor-gs-bath-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-gs-bath-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- Glass Cleaner -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-emerald-600 uppercase">Glass Cleaner <span class="text-[9px] font-medium normal-case text-slate-500">(32 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-emerald-600 uppercase">Glass Cleaner <span class="text-[12px] font-medium normal-case text-slate-500">(32 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-gs-glass-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="950,000">
-                              <input type="number" id="cpor-gs-glass-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
-                              <input type="number" id="cpor-gs-glass-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="3">
+                              <input type="text" inputmode="numeric" id="cpor-gs-glass-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="950,000">
+                              <input type="number" id="cpor-gs-glass-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
+                              <input type="number" id="cpor-gs-glass-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="3">
                             </div>
-                            <p id="cpor-gs-glass-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-gs-glass-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- Peroxide MPC -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-emerald-600 uppercase">Peroxide MPC <span class="text-[9px] font-medium normal-case text-slate-500">(7 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-emerald-600 uppercase">Peroxide MPC <span class="text-[12px] font-medium normal-case text-slate-500">(7 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-gs-mpc-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2,100,000">
-                              <input type="number" id="cpor-gs-mpc-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
-                              <input type="number" id="cpor-gs-mpc-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="8">
+                              <input type="text" inputmode="numeric" id="cpor-gs-mpc-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2,100,000">
+                              <input type="number" id="cpor-gs-mpc-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
+                              <input type="number" id="cpor-gs-mpc-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="8">
                             </div>
-                            <p id="cpor-gs-mpc-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-gs-mpc-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                          <!-- Air Freshener -->
                          <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                             <div class="flex justify-between items-center mb-2">
-                              <span class="text-[10px] font-black text-emerald-600 uppercase">Air Freshener <span class="text-[9px] font-medium normal-case text-slate-500">(16 mL/L)</span></span>
+                              <span class="text-[10px] font-black text-emerald-600 uppercase">Air Freshener <span class="text-[12px] font-medium normal-case text-slate-500">(16 mL/L)</span></span>
                             </div>
-                            <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                            <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                               <span>Giá/Can (VND)</span>
                               <span>Số Lít/Can</span>
                               <span>Số Bình/Ngày</span>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
-                              <input type="text" inputmode="numeric" id="cpor-gs-air-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,850,000">
-                              <input type="number" id="cpor-gs-air-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
-                              <input type="number" id="cpor-gs-air-bottles" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="4">
+                              <input type="text" inputmode="numeric" id="cpor-gs-air-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,850,000">
+                              <input type="number" id="cpor-gs-air-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="2" step="0.1">
+                              <input type="number" id="cpor-gs-air-bottles" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="4">
                             </div>
-                            <p id="cpor-gs-air-desc" class="text-[9px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
+                            <p id="cpor-gs-air-desc" class="text-[12px] text-slate-500 mt-1.5 italic">Đang tính toán...</p>
                          </div>
                        </div>
 
@@ -1310,7 +1315,7 @@
                       </div>
 
                       <div class="bg-emerald-50 dark:bg-emerald-500/5 p-3 rounded-xl border border-emerald-100 dark:border-emerald-500/20 space-y-1">
-                         <div class="flex justify-between text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
+                         <div class="flex justify-between text-[13px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
                            <span>Tổng Ngân sách/tháng:</span>
                            <span id="cpor-monthly-out" class="text-emerald-600 font-black">0 VND</span>
                          </div>
@@ -1353,95 +1358,95 @@
                       <!-- Carpet Soap -->
                       <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                         <div class="flex justify-between items-center mb-2">
-                          <span class="text-[10px] font-black text-emerald-600 uppercase">Giặt thảm <span class="text-[9px] font-medium normal-case text-slate-500">(50 mL/L)</span></span>
+                          <span class="text-[10px] font-black text-emerald-600 uppercase">Giặt thảm <span class="text-[12px] font-medium normal-case text-slate-500">(50 mL/L)</span></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                        <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                           <span>Giá/Can (VND)</span>
                           <span>Số Lít/Can</span>
                           <span>m²/Xô 10L</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                          <input type="text" inputmode="numeric" id="cpsqm-soap-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="450,000">
-                          <input type="number" id="cpsqm-soap-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
-                          <input type="number" id="cpsqm-soap-m2" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="10">
+                          <input type="text" inputmode="numeric" id="cpsqm-soap-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="450,000">
+                          <input type="number" id="cpsqm-soap-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
+                          <input type="number" id="cpsqm-soap-m2" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="10">
                         </div>
-                        <p id="cpsqm-soap-result-row" class="text-[9px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
+                        <p id="cpsqm-soap-result-row" class="text-[12px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
                       </div>
 
                       <!-- Carpet Extraction -->
                       <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                         <div class="flex justify-between items-center mb-2">
-                          <span class="text-[10px] font-black text-emerald-600 uppercase">Phun hút thảm <span class="text-[9px] font-medium normal-case text-slate-500">(50 mL/L)</span></span>
+                          <span class="text-[10px] font-black text-emerald-600 uppercase">Phun hút thảm <span class="text-[12px] font-medium normal-case text-slate-500">(50 mL/L)</span></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                        <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                           <span>Giá/Can (VND)</span>
                           <span>Số Lít/Can</span>
                           <span>m²/Xô 10L</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                          <input type="text" inputmode="numeric" id="cpsqm-ext-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="480,000">
-                          <input type="number" id="cpsqm-ext-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
-                          <input type="number" id="cpsqm-ext-m2" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="15">
+                          <input type="text" inputmode="numeric" id="cpsqm-ext-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="480,000">
+                          <input type="number" id="cpsqm-ext-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
+                          <input type="number" id="cpsqm-ext-m2" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="15">
                         </div>
-                        <p id="cpsqm-ext-result-row" class="text-[9px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
+                        <p id="cpsqm-ext-result-row" class="text-[12px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
                       </div>
 
                       <!-- Floor Neutral -->
                       <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                         <div class="flex justify-between items-center mb-2">
-                          <span class="text-[10px] font-black text-emerald-600 uppercase">Lau sàn đá <span class="text-[9px] font-medium normal-case text-slate-500">(25 mL/L)</span></span>
+                          <span class="text-[10px] font-black text-emerald-600 uppercase">Lau sàn đá <span class="text-[12px] font-medium normal-case text-slate-500">(25 mL/L)</span></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                        <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                           <span>Giá/Can (VND)</span>
                           <span>Số Lít/Can</span>
                           <span>m²/Xô 10L</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                          <input type="text" inputmode="numeric" id="cpsqm-floor-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="380,000">
-                          <input type="number" id="cpsqm-floor-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
-                          <input type="number" id="cpsqm-floor-m2" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="50">
+                          <input type="text" inputmode="numeric" id="cpsqm-floor-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="380,000">
+                          <input type="number" id="cpsqm-floor-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
+                          <input type="number" id="cpsqm-floor-m2" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="50">
                         </div>
-                        <p id="cpsqm-floor-result-row" class="text-[9px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
+                        <p id="cpsqm-floor-result-row" class="text-[12px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
                       </div>
 
                       <!-- Marble Polish -->
                       <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                         <div class="flex justify-between items-center mb-2">
-                          <span class="text-[10px] font-black text-emerald-600 uppercase">Đánh bóng đá Marble <span class="text-[9px] font-medium normal-case text-slate-500">(Spoon 20g)</span></span>
+                          <span class="text-[10px] font-black text-emerald-600 uppercase">Đánh bóng đá Marble <span class="text-[12px] font-medium normal-case text-slate-500">(Spoon 20g)</span></span>
                         </div>
-                        <div class="grid grid-cols-3 gap-2 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                        <div class="grid grid-cols-3 gap-2 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                           <span>Giá/Can (VND)</span>
                           <span>Số Lít/Can</span>
                           <span>m²/Muỗng 20g</span>
                         </div>
                         <div class="grid grid-cols-3 gap-2">
-                          <input type="text" inputmode="numeric" id="cpsqm-m-pol-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="950,000">
-                          <input type="number" id="cpsqm-m-pol-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
-                          <input type="number" id="cpsqm-m-pol-m2" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="4">
+                          <input type="text" inputmode="numeric" id="cpsqm-m-pol-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="950,000">
+                          <input type="number" id="cpsqm-m-pol-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
+                          <input type="number" id="cpsqm-m-pol-m2" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-emerald-50 dark:bg-emerald-900/20 px-2 outline-none border-emerald-200 font-bold" value="4">
                         </div>
-                        <p id="cpsqm-pol-result-row" class="text-[9px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
+                        <p id="cpsqm-pol-result-row" class="text-[12px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
                       </div>
 
                       <!-- Crystal Buffing -->
                       <div class="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700/50">
                         <div class="flex justify-between items-center mb-2">
-                          <span class="text-[10px] font-black text-emerald-600 uppercase">Buffing Kết tinh đá <span class="text-[9px] font-medium normal-case text-slate-500">(2 nhát xịt/m²)</span></span>
+                          <span class="text-[10px] font-black text-emerald-600 uppercase">Buffing Kết tinh đá <span class="text-[12px] font-medium normal-case text-slate-500">(2 nhát xịt/m²)</span></span>
                         </div>
-                        <div class="grid grid-cols-2 gap-3 text-[8px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
+                        <div class="grid grid-cols-2 gap-3 text-[13px] font-bold text-slate-400 uppercase tracking-tighter mb-1 px-1">
                           <span>Giá/Can (VND)</span>
                           <span>Số Lít/Can</span>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
-                          <input type="text" inputmode="numeric" id="cpsqm-m-cry-price" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,850,000">
-                          <input type="number" id="cpsqm-m-cry-vol" class="h-8 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
+                          <input type="text" inputmode="numeric" id="cpsqm-m-cry-price" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="1,850,000">
+                          <input type="number" id="cpsqm-m-cry-vol" class="h-10 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 outline-none focus:border-emerald-500" value="5">
                         </div>
-                        <p id="cpsqm-cry-result-row" class="text-[9px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
-                        <p class="text-[9px] text-slate-500 mt-1 italic tracking-tight">Logic: 2 nhát xịt (~2.4mL) xử lý 1 m²</p>
+                        <p id="cpsqm-cry-result-row" class="text-[12px] text-emerald-500 mt-1.5 italic font-bold">Cost: 0 VND/m²</p>
+                        <p class="text-[12px] text-slate-500 mt-1 italic tracking-tight">Logic: 2 nhát xịt (~2.4mL) xử lý 1 m²</p>
                       </div>
 
                       <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col items-end mt-4">
                         <span class="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest text-right">Result: Avg Cost per m²</span>
-                        <p class="text-[8px] text-slate-400 normal-case mb-1 tracking-normal">(Tùy chọn sản phẩm đã nhập)</p>
+                        <p class="text-[13px] text-slate-400 normal-case mb-1 tracking-normal">(Tùy chọn sản phẩm đã nhập)</p>
                         <span class="text-emerald-500 text-3xl font-black leading-none"><span id="cpsqm-result">0</span> <span class="text-base tracking-normal font-bold">VND</span></span>
                       </div>
               </div>
@@ -1451,7 +1456,7 @@
       </div>
 
              <!-- Tab 2: TVD Calculator -->
-             <div id="calctab-tvd" class="calc-tab-content hidden p-6">
+             <div id="calctab-tvd" class="calc-tab-content hidden p-2 md:p-6">
                <div class="tvd-dashboard-container max-w-[1400px] mx-auto">
                  
                  <div class="flex flex-col lg:flex-row gap-8 items-start">
@@ -1464,32 +1469,31 @@
                        <div class="flex flex-col gap-6 relative z-10">
                          <div class="space-y-4">
                            <div class="flex flex-col">
-                             <span class="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Ecolab Solution Impact</span>
                              <h2 class="text-xs font-bold text-white/60 uppercase tracking-widest mt-1">Total Value Delivered (Facility)</h2>
                            </div>
                            <div class="flex items-baseline gap-2">
-                             <span id="tvd-total-facility" class="text-4xl md:text-6xl font-black tracking-tighter text-white">0</span>
-                             <span class="text-xl font-bold text-white/40">₫ / Năm</span>
+                             <span id="tvd-total-facility" class="text-3xl md:text-5xl font-black tracking-tighter text-white">0</span>
+                             <span class="text-lg font-bold text-white/40">₫ / Năm</span>
                            </div>
                            <div class="flex items-center gap-3 pt-2">
                               <div class="glass-pill flex items-center gap-2 text-amber-400 border-amber-400/20 py-1.5 px-4 shadow-lg shadow-amber-900/20">
                                 <span class="material-symbols-outlined text-sm">verified</span>
-                                <span id="tvd-status-badge">PLATINUM LEVEL</span>
+                                <span id="tvd-status-badge" class="font-black tracking-widest text-[12px]">ECOLAB SOLUTION IMPACT</span>
                               </div>
                            </div>
-                           <p class="text-[9px] font-medium text-blue-400/70 italic max-w-[280px] leading-relaxed">* Dự toán tiết kiệm dựa trên benchmark vận hành tại Việt Nam.</p>
+                           <p class="text-[12px] font-medium text-blue-200/60 italic max-w-[280px] leading-relaxed">* Dự toán tiết kiệm dựa trên benchmark vận hành tại Việt Nam.</p>
                          </div>
                          
                          <div class="flex flex-col gap-3 pt-6 border-t border-white/5">
-                           <span class="text-[8px] font-black text-white/30 uppercase tracking-[0.2em]">Sustainability Metrics</span>
+                           <span class="text-[13px] font-black text-white/30 uppercase tracking-[0.2em]">Sustainability Metrics</span>
                            <div class="grid grid-cols-1 gap-3">
                              <div class="impact-metric-card">
                                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
                                  <span class="material-symbols-outlined text-xl">forest</span>
                                </div>
                                <div>
-                                 <span class="text-[8px] font-black text-white/30 uppercase block">CO₂ Reduced</span>
-                                 <span class="text-lg font-black text-white"><span id="tvd-total-co2">0</span> <small class="text-[9px] opacity-50">Tons</small></span>
+                                 <span class="text-[13px] font-black text-white/30 uppercase block">CO₂ Reduced</span>
+                                 <span class="text-lg font-black text-white"><span id="tvd-total-co2">0</span> <small class="text-[12px] opacity-50">Tons</small></span>
                                </div>
                              </div>
                              <div class="impact-metric-card">
@@ -1497,8 +1501,8 @@
                                  <span class="material-symbols-outlined text-xl">recycling</span>
                                </div>
                                <div>
-                                 <span class="text-[8px] font-black text-white/30 uppercase block">Plastic Saved</span>
-                                 <span class="text-lg font-black text-white"><span id="tvd-total-plastic">0</span> <small class="text-[9px] opacity-50">Kg</small></span>
+                                 <span class="text-[13px] font-black text-white/30 uppercase block">Plastic Saved</span>
+                                 <span class="text-lg font-black text-white"><span id="tvd-total-plastic">0</span> <small class="text-[12px] opacity-50">Kg</small></span>
                                </div>
                              </div>
                            </div>
@@ -1514,20 +1518,20 @@
                         </div>
                         <div class="space-y-4">
                            <div class="flex items-center justify-between">
-                             <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Electricity (₫/kWh)</span>
-                             <input type="text" id="tvd-elec-price" class="h-8 w-20 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="2,014">
+                             <span class="text-[13px] font-black text-slate-400 uppercase tracking-widest">Electricity (₫/kWh)</span>
+                             <input type="text" id="tvd-elec-price" class="h-10 w-24 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="2,014">
                            </div>
                            <div class="flex items-center justify-between">
-                             <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Water (₫/m³)</span>
-                             <input type="text" id="tvd-water-price" class="h-8 w-20 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="11,500">
+                             <span class="text-[13px] font-black text-slate-400 uppercase tracking-widest">Water (₫/m³)</span>
+                             <input type="text" id="tvd-water-price" class="h-10 w-24 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="11,500">
                            </div>
                            <div class="flex items-center justify-between">
-                             <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Gas (₫/kg)</span>
-                             <input type="text" id="tvd-gas-price" class="h-8 w-20 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="22,500">
+                             <span class="text-[13px] font-black text-slate-400 uppercase tracking-widest">Gas (₫/kg)</span>
+                             <input type="text" id="tvd-gas-price" class="h-10 w-24 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="22,500">
                            </div>
                            <div class="flex items-center justify-between">
-                             <span class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Labor (₫/Hr)</span>
-                             <input type="text" id="tvd-labor-rate" class="h-8 w-20 text-[10px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="45,000">
+                             <span class="text-[13px] font-black text-slate-400 uppercase tracking-widest">Labor (₫/Hr)</span>
+                             <input type="text" id="tvd-labor-rate" class="h-10 w-24 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 px-3 font-bold text-center" value="45,000">
                            </div>
                         </div>
                      </div>
@@ -1538,82 +1542,82 @@
                      <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
                    
                    <!-- LAUNDRY MODULE -->
-                   <div class="tvd-module-card p-6">
+                   <div class="tvd-module-card p-6 xl:col-span-2">
                      <div class="flex items-center justify-between mb-4">
                        <div class="flex items-center gap-3">
                          <div class="tvd-accent-icon tvd-accent-blue">
                            <span class="material-symbols-outlined">local_laundry_service</span>
                          </div>
-                         <h3 class="text-xs font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Laundry</h3>
+                         <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Laundry</h3>
                        </div>
                        <div class="flex items-center gap-2">
                           <button onclick="document.getElementById('tvd-laundry-math-modal').classList.remove('hidden')" class="hover:bg-blue-100 dark:hover:bg-blue-900/30 p-1 rounded-lg transition-colors group">
                                <span class="material-symbols-outlined text-[14px] text-blue-500 group-hover:text-blue-600 transition-colors">help</span>
                           </button>
-                          <span class="text-[9px] font-bold text-blue-500 px-2 py-1 bg-blue-50 dark:bg-blue-900/20 rounded-lg">Low Temp</span>
+                          <span class="text-[12px] font-bold text-blue-500 px-2 py-1 bg-blue-50 dark:bg-blue-900/20 rounded-lg">Low Temp</span>
                        </div>
                      </div>
 
                      <div class="space-y-4 flex flex-col h-full">
                         <div class="mb-3">
                           <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Số Kg đồ giặt / Tháng</label>
-                            <input type="number" id="tvd-total-kg-mo" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-blue-500 font-bold" value="24000">
+                            <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Số Kg đồ giặt / Tháng</label>
+                            <input type="number" id="tvd-total-kg-mo" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-blue-500 font-bold" value="24000">
                           </div>
                         </div>
 
                         <!-- Benchmarks Accordion -->
                         <div class="rounded-2xl border border-slate-100 dark:border-slate-800 overflow-hidden">
-                          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full p-2 text-[8px] font-black text-slate-400 uppercase flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                          <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full p-2 text-[13px] font-black text-slate-400 uppercase flex justify-between items-center hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                             Advanced Benchmarks <span class="material-symbols-outlined text-xs">expand_more</span>
                           </button>
                           <div class="p-3 bg-slate-50/50 dark:bg-slate-900/30 space-y-3 border-t border-slate-100 dark:border-slate-800">
                             <div class="grid grid-cols-2 gap-2">
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold">Hoá chất high temp (₫/kg)</label>
-                                <input type="number" id="tvd-chem-std" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="800">
+                                <label class="text-[10px] text-slate-400 font-bold">Hoá chất high temp (₫/kg)</label>
+                                <input type="number" id="tvd-chem-std" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="800">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold">Hoá chất low temp (₫/kg)</label>
-                                <input type="number" id="tvd-chem-lt" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold text-blue-600" value="1100">
+                                <label class="text-[10px] text-slate-400 font-bold">Hoá chất low temp (₫/kg)</label>
+                                <input type="number" id="tvd-chem-lt" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold text-blue-600" value="1100">
                               </div>
                             </div>
                             <div class="grid grid-cols-3 gap-2">
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Máy hiện tại tiêu thụ bao nhiêu lít/kg?">Nước Tiêu Chuẩn (L/kg)</label>
-                                <input type="number" id="tvd-water-base" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="20">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Máy hiện tại tiêu thụ bao nhiêu lít/kg?">Nước Tiêu Chuẩn (L/kg)</label>
+                                <input type="number" id="tvd-water-base" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="20">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Máy hiện tại giặt mất bao nhiêu phút một mẻ?">Chu trình gốc (Phút/Mẻ)</label>
-                                <input type="number" id="tvd-time-base" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="90">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Máy hiện tại giặt mất bao nhiêu phút một mẻ?">Chu trình gốc (Phút/Mẻ)</label>
+                                <input type="number" id="tvd-time-base" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="90">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Công suất máy giặt để tính toán số mẻ">Máy giặt (Kg/mẻ)</label>
-                                <input type="number" id="tvd-kg-load" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="60">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Công suất máy giặt để tính toán số mẻ">Máy giặt (Kg/mẻ)</label>
+                                <input type="number" id="tvd-kg-load" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="60">
                               </div>
                             </div>
                             <div class="grid grid-cols-3 gap-2 mt-2">
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Nước (%)">Giảm Nước (L/kg)</label>
-                                <input type="number" id="tvd-water-sav" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="7">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Nước (%)">Giảm Nước (L/kg)</label>
+                                <input type="number" id="tvd-water-sav" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="7">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Năng lượng (%)">Giảm Nhiệt (%)</label>
-                                <input type="number" id="tvd-energy-sav" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="26">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Năng lượng (%)">Giảm Nhiệt (%)</label>
+                                <input type="number" id="tvd-energy-sav" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="26">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Thời gian (%)">Giảm Thời Gian (P)</label>
-                                <input type="number" id="tvd-time-sav" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="20">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Tỷ lệ giảm Thời gian (%)">Giảm Thời Gian (P)</label>
+                                <input type="number" id="tvd-time-sav" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="20">
                               </div>
                             </div>
                             <div class="grid grid-cols-2 gap-2 mt-2">
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Điện năng tiêu thụ mặc định (kWh/kg)">Điện TC (kWh/kg)</label>
-                                <input type="number" step="0.01" id="tvd-elec-base" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.65">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Điện năng tiêu thụ mặc định (kWh/kg)">Điện TC (kWh/kg)</label>
+                                <input type="number" step="0.01" id="tvd-elec-base" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.65">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-[7px] text-slate-400 font-bold truncate block" title="Gas tiêu thụ mặc định (kg/kg)">Gas TC (kg/kg)</label>
-                                <input type="number" step="0.01" id="tvd-gas-base" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.07">
+                                <label class="text-[10px] text-slate-400 font-bold truncate block" title="Gas tiêu thụ mặc định (kg/kg)">Gas TC (kg/kg)</label>
+                                <input type="number" step="0.01" id="tvd-gas-base" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.07">
                               </div>
                             </div>
                           </div>
@@ -1626,7 +1630,7 @@
                            </div>
                            <div class="flex justify-between items-center bg-blue-50/50 dark:bg-blue-900/10 p-3 rounded-2xl border border-blue-100 dark:border-blue-900/20">
                              <div class="flex flex-col">
-                               <span class="text-[8px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">Net Savings</span>
+                               <span class="text-[13px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">Net Savings</span>
                                <span id="tvd-laundry-pct" class="text-xs font-bold text-blue-600">0%</span>
                              </div>
                              <div class="text-right">
@@ -1636,16 +1640,16 @@
                         </div>
 
                         <div class="flex items-center gap-2 mt-4">
-                          <button onclick="toggleLaundryBreakdown()" class="flex-[3] py-2 text-[8px] font-black text-slate-400 hover:text-blue-500 uppercase tracking-widest border border-dashed border-slate-200 dark:border-slate-800 rounded-xl transition-all">
+                          <button onclick="toggleLaundryBreakdown()" class="flex-[3] py-2 text-[13px] font-black text-slate-400 hover:text-blue-500 uppercase tracking-widest border border-dashed border-slate-200 dark:border-slate-800 rounded-xl transition-all">
                             Analyze Cost Structure
                           </button>
                           <button onclick="saveTvdDraft('laundry')" class="flex-1 py-1.5 rounded-xl text-blue-500 hover:bg-blue-50 border border-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2" title="Save to Cloud">
                             <span class="material-symbols-outlined text-[16px]">cloud_upload</span>
-                            <span class="text-[8px] font-black uppercase tracking-widest">Save</span>
+                            <span class="text-[13px] font-black uppercase tracking-widest">Save</span>
                           </button>
                         </div>
                         <div id="laundry-breakdown-area" class="hidden overflow-hidden transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/20 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
-                             <table class="w-full text-[9px] text-left">
+                             <table class="w-full text-[12px] text-left">
                                <thead>
                                  <tr class="text-slate-400 border-b border-slate-200 dark:border-slate-700">
                                    <th class="pb-1 font-medium">Hạng mục</th>
@@ -1669,7 +1673,7 @@
                              </table>
                              
                              <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700">
-                               <p class="text-[8px] text-slate-500 dark:text-slate-400 italic leading-relaxed">
+                               <p class="text-[13px] text-slate-500 dark:text-slate-400 italic leading-relaxed">
                                  <span class="font-bold text-slate-600 dark:text-slate-300">* Giải thích cách tính chi phí:</span><br/>
                                  <span class="inline-block mt-0.5">- <b>Khối lượng tính:</b> Toàn bộ chi phí được tính quy đổi ra 1 năm (dựa trên Số Kg đồ giặt mỗi tháng × 12 tháng).</span><br/>
                                  <span class="inline-block mt-0.5">- <b>Nguyên lý Low Temp:</b> Tuy đơn giá hóa chất giặt nhiệt độ thấp cao hơn ban đầu, nhưng giải pháp này giúp <b>tiết kiệm một khối lượng lớn điện/gas</b> dùng để đun nóng nước, đồng thời <b>giảm số lần xả</b> (giúp tiết kiệm nước và rút ngắn thời gian nhân công giặt).</span><br/>
@@ -1681,176 +1685,218 @@
                      </div>
 
                    <!-- HOUSEKEEPING MODULE -->
-                   <div class="tvd-module-card p-6">
+                   <div id="tvd-hk-module" class="tvd-module-card p-6 xl:col-span-2">
                      <div class="flex items-center justify-between mb-4">
                        <div class="flex items-center gap-3">
                          <div class="tvd-accent-icon tvd-accent-green">
                            <span class="material-symbols-outlined">house</span>
                          </div>
-                         <h3 class="text-xs font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Housekeeping</h3>
+                         <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Housekeeping</h3>
                        </div>
                         <div class="flex items-center gap-2">
                            <button onclick="document.getElementById('tvd-hk-math-modal').classList.remove('hidden')" class="hover:bg-emerald-100 dark:hover:bg-emerald-900/30 p-1 rounded-lg transition-colors group">
                                 <span class="material-symbols-outlined text-[14px] text-emerald-400 group-hover:text-emerald-600 transition-colors">help</span>
                            </button>
-                           <span class="text-[9px] font-bold text-emerald-500 px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">Green Seal</span>
+                           <span class="text-[12px] font-bold text-emerald-500 px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg">Green Seal</span>
                         </div>
                      </div>
                      
                      <div class="space-y-4 flex flex-col h-full">
-                        <div class="grid grid-cols-2 gap-3">
+                        <div class="grid grid-cols-2 gap-3 mb-2">
                           <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Total Rooms</label>
-                            <input type="number" id="tvd-hk-rooms" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-emerald-500 font-bold" value="200">
+                            <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Total Rooms</label>
+                            <input type="number" id="tvd-hk-rooms" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-emerald-500 font-bold" value="200">
                           </div>
                           <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Occupancy %</label>
-                            <input type="number" id="tvd-hk-occ" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-emerald-500 font-bold" value="70">
+                            <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Occupancy %</label>
+                            <input type="number" id="tvd-hk-occ" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-emerald-500 font-bold" value="70">
                           </div>
                         </div>
 
-                         <div class="mt-2 text-center pb-2 border-b border-slate-100 dark:border-slate-800/50 mb-2">
-                            <div class="inline-flex items-center gap-1 text-[8px] font-black text-emerald-500 uppercase tracking-widest mx-auto">
-                              <span class="material-symbols-outlined text-[12px]">settings</span>
-                              Benchmarks Overrides
+                          <div class="grid grid-cols-2 gap-3 mb-4">
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Hoá chất thông dụng (đ/room)</label>
+                              <input type="text" id="tvd-hk-std-cpor-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="750">
+                            </div>
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Hoá chất Green Seal (đ/room)</label>
+                              <input type="text" id="tvd-hk-gs-cpor-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="1,100">
+                            </div>
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Giảm Thời Gian (P)</label>
+                              <input type="number" id="tvd-hk-time-sav-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="4">
+                            </div>
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">% Giảm Nhựa (%)</label>
+                              <input type="number" id="tvd-hk-plastic-sav-pct-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="85">
+                            </div>
+                          </div>
+
+                         <div class="mt-auto p-4 bg-emerald-50/50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/20 flex flex-col items-center text-center relative overflow-hidden">
+                            <span class="text-[13px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-1.5 opacity-80">Annual Savings</span>
+                            <div class="flex items-center gap-2">
+                               <span class="text-3xl font-black text-emerald-600 dark:text-emerald-400"><span id="tvd-hk-result">0</span> ₫</span>
                             </div>
                          </div>
                          
-                         <div id="tvd-hk-advanced" class="mt-2 p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-800 space-y-2 text-left">
-                             <div class="grid grid-cols-2 gap-2">
-                                 <div class="space-y-1">
-                                   <label class="text-[7px] text-slate-400 font-bold uppercase truncate block" title="Chi phí hoá chất thông dụng / phòng (VND)">Std Chem/Room (VND)</label>
-                                   <input type="text" id="tvd-hk-std-cpor-override" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" placeholder="Tự động...">
-                                 </div>
-                                 <div class="space-y-1">
-                                   <label class="text-[7px] text-slate-400 font-bold uppercase truncate block" title="Chi phí hoá chất Green Seal / phòng (VND)">GS Chem/Room (VND)</label>
-                                   <input type="text" id="tvd-hk-gs-cpor-override" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" placeholder="Tự động...">
-                                 </div>
-                             </div>
-                             <div class="grid grid-cols-2 gap-2">
-                                 <div class="space-y-1">
-                                   <label class="text-[7px] text-slate-400 font-bold uppercase truncate block" title="Số phút giảm / phòng">Giảm Thời Gian (P)</label>
-                                   <input type="number" id="tvd-hk-time-sav-override" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="4">
-                                 </div>
-                                 <div class="space-y-1">
-                                   <label class="text-[7px] text-slate-400 font-bold uppercase truncate block" title="% giảm nhựa thường là 80 tới 90%">% Giảm Nhựa (%)</label>
-                                   <input type="number" id="tvd-hk-plastic-sav-pct-override" class="w-full h-7 text-[9px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="85">
-                                 </div>
-                             </div>
-                           </div>
-                        </div>
-
-                        <div class="mt-auto p-4 bg-emerald-50/50 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/20 flex flex-col items-center text-center relative overflow-hidden">
-                           <!-- Badges -->
-                           <div class="flex flex-wrap justify-center gap-2 mb-2">
-                              <div class="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-[7px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest border border-emerald-200/50">
-                                <span id="tvd-hk-plastic-pct">85%</span> Plastic
-                              </div>
-                              <div class="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-[7px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest border border-emerald-200/50">
-                                <span id="tvd-hk-time-sav">4</span> Mins/Room
-                              </div>
-                              <div class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-[7px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest border border-blue-200/50">
-                                <span id="tvd-hk-co2-sav">0</span> kg CO2
-                              </div>
-                           </div>
-                           <span class="text-[8px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">Annual Savings</span>
-                           <div class="text-3xl font-black text-emerald-600"><span id="tvd-hk-result">0</span> ₫</div>
-                           <p class="text-[8px] text-emerald-400/80 mt-1 italic">* Dựa trên hiệu suất hệ thống Green Seal.</p>
-                        </div>
-
-                        <div class="flex items-center gap-2 mt-3">
-                          <button onclick="toggleHKBreakdown()" class="flex-[3] py-2 text-[8px] font-black text-slate-400 hover:text-emerald-500 uppercase tracking-widest border border-dashed border-slate-200 dark:border-slate-800 rounded-xl transition-all">
-                            Analyze Cost Structure
-                          </button>
-                          <button onclick="saveTvdDraft('housekeeping')" class="flex-1 py-1.5 rounded-xl text-emerald-500 hover:bg-emerald-50 border border-emerald-100 transition-all active:scale-95 flex items-center justify-center gap-2" title="Save to Cloud">
-                            <span class="material-symbols-outlined text-[16px]">cloud_upload</span>
-                            <span class="text-[8px] font-black uppercase tracking-widest">Save</span>
-                          </button>
-                        </div>
-
-                        <div id="hk-breakdown-area" class="hidden mt-3 overflow-hidden transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/20 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
-                             <table class="w-full text-[9px] text-left">
-                               <thead>
-                                 <tr class="text-slate-400 border-b border-slate-200 dark:border-slate-700">
-                                   <th class="pb-1 font-medium">Hạng mục</th>
-                                   <th class="pb-1 text-right font-medium">Standard (₫)</th>
-                                   <th class="pb-1 text-right font-medium">Green Seal (₫)</th>
-                                 </tr>
-                               </thead>
-                               <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-                                 <tr><td class="py-2 text-slate-500">Hóa chất</td><td id="tvd-hk-brk-chem-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-chem-gs" class="text-right text-green-600">0</td></tr>
-                                 <tr><td class="py-2 text-slate-500">Số can sử dụng</td><td id="tvd-hk-brk-cans-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-cans-gs" class="text-right text-green-600">0</td></tr>
-                                 <tr><td class="py-2 text-slate-500">Nhân công</td><td id="tvd-hk-brk-labor-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-labor-gs" class="text-right text-green-600">0</td></tr>
-                                 <tr><td class="py-2 text-slate-500">CO2 Giảm (kg)</td><td class="text-right text-slate-400">0</td><td id="tvd-hk-brk-co2-gs" class="text-right text-green-600 font-bold">0</td></tr>
-                                 <tr><td class="py-2 text-slate-500">Xử lý nhựa</td><td id="tvd-hk-brk-plastic-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-plastic-gs" class="text-right text-green-600">0</td></tr>
-                               </tbody>
-                               <tfoot>
-                                 <tr class="font-bold border-t border-slate-200 dark:border-slate-700">
-                                   <td class="pt-2 text-slate-700 dark:text-slate-300">Tổng chi phí/năm</td>
-                                   <td id="tvd-hk-brk-total-std" class="pt-2 text-right text-slate-700 dark:text-slate-300">0</td>
-                                   <td id="tvd-hk-brk-total-gs" class="pt-2 text-right text-emerald-600 dark:text-emerald-400">0</td>
-                                 </tr>
-                               </tfoot>
-                             </table>
-                             
-                             <div class="mt-3 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700">
-                               <p class="text-[8px] text-slate-500 dark:text-slate-400 italic leading-relaxed">
-                                 <span class="font-bold text-slate-600 dark:text-slate-300">* Lưu ý:</span><br/>
-                                 <span class="inline-block mt-0.5">- Green Seal giúp <b>bảo vệ vật tư</b> (vải vóc, thiết bị phòng tắm) nhờ độ pH trung tính và hoạt chất an toàn.</span><br/>
-                                 <span class="inline-block mt-0.5">- Bảng tính trên <b>không bao gồm</b> giá trị tiết kiệm từ việc kéo dài tuổi thọ vật tư.</span>
-                               </p>
-                             </div>
-                        </div>
-                     </div>
-
-                   <!-- KITCHEN MODULE -->
-                   <div class="tvd-module-card p-6 xl:col-span-2">
-                     <div class="flex items-center justify-between mb-4">
-                       <div class="flex items-center gap-3">
-                         <div class="tvd-accent-icon tvd-accent-amber">
-                           <span class="material-symbols-outlined">restaurant</span>
-                         </div>
-                         <h3 class="text-xs font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Kitchen</h3>
-                       </div>
-                       <div class="flex items-center gap-2">
-                           <button onclick="document.getElementById('tvd-kitchen-math-modal').classList.remove('hidden')" class="hover:bg-amber-100 dark:hover:bg-amber-900/30 p-1 rounded-lg transition-colors group">
-                                <span class="material-symbols-outlined text-[14px] text-amber-400 group-hover:text-amber-600 transition-colors">help</span>
+                         <div class="flex items-center gap-2 mt-4">
+                           <button onclick="toggleHKBreakdown()" class="flex-[3] py-2 text-[13px] font-black text-slate-400 hover:text-emerald-500 uppercase tracking-widest border border-dashed border-slate-200 dark:border-slate-800 rounded-xl transition-all">
+                             Analyze Cost Structure
                            </button>
-                           <span class="text-[9px] font-bold text-amber-500 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 rounded-lg">Solid Power</span>
-                       </div>
-                     </div>
-                     
-                     <div class="space-y-4 flex flex-col h-full">
-                        <div class="grid grid-cols-2 gap-3">
-                          <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Racks / Day</label>
-                            <input type="number" id="tvd-kitchen-racks" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="150">
-                          </div>
-                          <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Food Waste %</label>
-                            <input type="number" id="tvd-kitchen-waste" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="5">
-                          </div>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-[8px] font-black text-slate-400 uppercase tracking-widest pl-1">Food Cost / Mo</label>
-                            <input type="text" id="tvd-kitchen-food-cost" class="w-full h-9 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="500,000,000">
-                        </div>
+                           <button onclick="exportHkToImage()" class="flex-1 py-1.5 rounded-xl text-emerald-500 hover:bg-emerald-50 border border-emerald-100 transition-all active:scale-95 flex items-center justify-center gap-2" title="Share as Image">
+                             <span class="material-symbols-outlined text-[16px]">share</span>
+                             <span class="text-[13px] font-black uppercase tracking-widest">Share</span>
+                           </button>
+                         </div>
+                         
+                         <!-- Breakdown Area -->
+                         <div id="hk-breakdown-area" class="hidden mt-4 overflow-hidden transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/20 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                              <table class="w-full text-[12px] text-left">
+                                <thead>
+                                  <tr class="text-slate-400 border-b border-slate-200 dark:border-slate-700">
+                                    <th class="pb-1 font-medium">Hạng mục</th>
+                                    <th class="pb-1 text-right font-medium">Standard (₫)</th>
+                                    <th class="pb-1 text-right font-medium">Green Seal (₫)</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                  <tr><td class="py-2 text-slate-500">Hóa chất</td><td id="tvd-hk-brk-chem-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-chem-gs" class="text-right text-red-500">0</td></tr>
+                                  <tr><td class="py-2 text-slate-500">Nhân công</td><td id="tvd-hk-brk-labor-std" class="text-right text-slate-400">0</td><td id="tvd-hk-brk-labor-gs" class="text-right text-green-600">0</td></tr>
 
-                        <div class="mt-auto p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-900/20 flex flex-col items-center text-center">
-                           <span class="text-[8px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest">Annual Savings</span>
-                           <div class="text-3xl font-black text-amber-600"><span id="tvd-kitchen-result">0</span> ₫</div>
-                           <p class="text-[8px] text-amber-400/80 mt-1 italic">* Tiết kiệm 5% lãng phí đồ ăn & nước/năng lượng.</p>
-                        </div>
+                                </tbody>
+                                <tfoot>
+                                  <tr class="font-bold border-t border-slate-200 dark:border-slate-700">
+                                    <td class="pt-2 text-slate-700 dark:text-slate-300">Tổng chi phí/năm</td>
+                                    <td id="tvd-hk-brk-total-std" class="pt-2 text-right text-slate-700 dark:text-slate-300">0</td>
+                                    <td id="tvd-hk-brk-total-gs" class="pt-2 text-right text-emerald-600 dark:text-emerald-400">0</td>
+                                  </tr>
+                                   <tr class="text-slate-500 border-t border-slate-100 dark:border-slate-800 italic">
+                                     <td class="pt-2">Kg CO2 (Sustainability)</td>
+                                     <td id="tvd-hk-brk-co2-std" class="pt-2 text-right">0</td>
+                                     <td id="tvd-hk-brk-co2-gs" class="pt-2 text-right text-green-600 font-bold">0</td>
+                                   </tr>
+                                </tfoot>
+                              </table>
+                         </div>
                      </div>
                    </div>
+                     </div>
 
-                 </div>
+                    <!-- KITCHEN MODULE -->
+                    <div id="tvd-kitchen-module" class="tvd-module-card p-6 xl:col-span-2">
+                      <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                          <div class="tvd-accent-icon tvd-accent-amber">
+                            <span class="material-symbols-outlined">restaurant</span>
+                          </div>
+                          <h3 class="text-sm font-black text-slate-800 dark:text-slate-100 uppercase tracking-widest">Kitchen</h3>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="document.getElementById('tvd-kitchen-math-modal').classList.remove('hidden')" class="hover:bg-amber-100 dark:hover:bg-amber-900/30 p-1 rounded-lg transition-colors group">
+                                 <span class="material-symbols-outlined text-[14px] text-amber-400 group-hover:text-amber-600 transition-colors">help</span>
+                            </button>
+                            <span class="text-[12px] font-bold text-amber-500 px-2 py-1 bg-amber-50 dark:bg-amber-900/20 rounded-lg">Solid Power</span>
+                        </div>
+                      </div>
+                      
+                      <div class="space-y-4 flex flex-col h-full">
+                         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                           <div class="space-y-1">
+                             <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Racks / Day</label>
+                             <input type="number" id="tvd-kitchen-racks" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="150">
+                           </div>
+                           <div class="space-y-1">
+                             <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Hoá chất Thông dụng (đ/rack)</label>
+                             <input type="number" id="tvd-kitchen-std-cpr-override" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="1000">
+                           </div>
+                           <div class="space-y-1">
+                             <label class="text-[13px] font-black text-slate-400 uppercase tracking-widest pl-1">Solid Power (đ/rack)</label>
+                             <input type="number" id="tvd-kitchen-solid-cpr-override" class="w-full h-10 text-[13px] rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-3 outline-none focus:border-amber-500 font-bold" value="1200">
+                           </div>
+                         </div>
 
+                         <!-- Advanced Benchmarks -->
+                         <div class="grid grid-cols-3 gap-3 mb-2">
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Giảm năng lượng (kWh/rack)</label>
+                              <input type="number" step="0.01" id="tvd-kitchen-energy-sav-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="0.1">
+                            </div>
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Giảm rewash (%)</label>
+                              <input type="number" id="tvd-kitchen-rewash-sav-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="3">
+                            </div>
+                            <div class="space-y-1">
+                              <label class="text-[10px] text-slate-400 font-bold uppercase truncate block">Giảm CO2 (%)</label>
+                              <input type="number" id="tvd-kitchen-co2-sav-pct-override" class="w-full h-9 text-[13px] rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold" value="90">
+                            </div>
+                         </div>
 
-               </div>
-               <div class="mt-12 opacity-30 text-center pb-12">
-                  <img src="https://www.ecolab.com/-/media/Themes/Shared/Ecolab/Ecolab-Logo/Ecolab_Logo_Red_RGB.svg" class="h-4 mx-auto" alt="Ecolab">
-               </div>
+                         <div class="mt-auto p-4 bg-amber-50/50 dark:bg-amber-900/10 rounded-2xl border border-amber-100 dark:border-amber-900/20 flex flex-col items-center text-center relative overflow-hidden">
+                            <span class="text-[13px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-1.5 opacity-80">Annual Savings</span>
+                            <div class="flex items-center gap-2">
+                               <span class="text-3xl font-black text-amber-600 dark:text-amber-400"><span id="tvd-kitchen-result">0</span> ₫</span>
+                            </div>
+                         </div>
+
+                         <div class="flex items-center gap-2 mt-4">
+                           <button onclick="toggleKitchenBreakdown()" class="flex-[3] py-2 text-[13px] font-black text-slate-400 hover:text-amber-500 uppercase tracking-widest border border-dashed border-slate-200 dark:border-slate-800 rounded-xl transition-all">
+                             Analyze Cost Structure
+                           </button>
+                           <button onclick="exportKitchenToImage()" class="flex-1 py-1.5 rounded-xl text-amber-500 hover:bg-emerald-50 border border-amber-100 transition-all active:scale-95 flex items-center justify-center gap-2" title="Share as Image">
+                             <span class="material-symbols-outlined text-[16px]">share</span>
+                             <span class="text-[13px] font-black uppercase tracking-widest">Share</span>
+                           </button>
+                         </div>
+
+                         <!-- Kitchen Breakdown Area -->
+                         <div id="kitchen-breakdown-area" class="hidden mt-4 overflow-hidden transition-all duration-300 bg-slate-50/50 dark:bg-slate-900/20 p-3 rounded-2xl border border-slate-100 dark:border-slate-800">
+                              <table class="w-full text-[12px] text-left">
+                                <thead>
+                                  <tr class="text-slate-400 border-b border-slate-200 dark:border-slate-700">
+                                    <th class="pb-1 font-medium">Hạng mục</th>
+                                    <th class="pb-1 text-right font-medium">Thông dụng (₫)</th>
+                                    <th class="pb-1 text-right font-medium">Solid Power (₫)</th>
+                                  </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                  <tr>
+                                    <td class="py-2 text-slate-500">Hóa chất</td>
+                                    <td id="tvd-kitchen-brk-chem-std" class="text-right text-slate-400">0</td>
+                                    <td id="tvd-kitchen-brk-chem-solid" class="text-right text-amber-600 font-bold">0</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="py-2 text-slate-500">Năng lượng</td>
+                                    <td id="tvd-kitchen-brk-energy-std" class="text-right text-slate-400">0</td>
+                                    <td id="tvd-kitchen-brk-energy-solid" class="text-right text-green-600 font-bold">0</td>
+                                  </tr>
+                                  <tr>
+                                    <td class="py-2 text-slate-500">Rửa lại (Rewash)</td>
+                                    <td id="tvd-kitchen-brk-rewash-std" class="text-right text-slate-400">0</td>
+                                    <td id="tvd-kitchen-brk-rewash-solid" class="text-right text-green-600 font-bold">0</td>
+                                  </tr>
+                                </tbody>
+                                <tfoot>
+                                  <tr class="font-bold border-t border-slate-200 dark:border-slate-700">
+                                    <td class="pt-2 text-slate-700 dark:text-slate-300">Tổng chi phí/rack</td>
+                                    <td id="tvd-kitchen-brk-total-std" class="pt-2 text-right text-slate-500">0</td>
+                                    <td id="tvd-kitchen-brk-total-solid" class="pt-2 text-right text-blue-600 dark:text-blue-400">0</td>
+                                  </tr>
+                                  <tr class="text-slate-500 border-t border-slate-100 dark:border-slate-800 italic">
+                                    <td class="pt-2">Kg CO2 (Sustainability)</td>
+                                    <td id="tvd-kitchen-brk-co2-std" class="pt-2 text-right">0</td>
+                                    <td id="tvd-kitchen-brk-co2-solid" class="pt-2 text-right text-emerald-600">0</td>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                         </div>
+                      </div>
+                    </div>
+
+                 </div> <!-- Operational Grid -->
+               </div> <!-- Right side content -->
+             </div> <!-- Flex row wrapper -->
+           </div> <!-- Dashboard container -->
+         </div> <!-- Tab content -->
              </div>
              <!-- Tab 3: H "D" H -->
              <div id="calctab-hdh" class="calc-tab-content hidden">
@@ -2021,7 +2067,7 @@
       </div>
       <div class="p-5 overflow-y-auto text-xs text-slate-600 dark:text-slate-300 space-y-5">
         <div class="space-y-4">
-          <p class="mb-2 italic text-[11px]">Tiết kiệm khi chuyển đổi từ sản phẩm thông thường sang hệ thống Green Seal.</p>
+          <p class="mb-2 italic text-[13px]">Tiết kiệm khi chuyển đổi từ sản phẩm thông thường sang hệ thống Green Seal.</p>
           <ul class="list-disc pl-5 space-y-1.5 ml-1">
             <li><strong class="text-slate-700 dark:text-slate-300">Nhân công:</strong> Giảm <strong class="text-emerald-600">4 phút/phòng</strong> (do giảm thời gian pha chế, thay bình và vận chuyển).</li>
             <li><strong class="text-slate-700 dark:text-slate-300">Hóa chất:</strong> Tiết kiệm hiệu suất <strong class="text-emerald-600">1,500 ₫/phòng</strong> (kiểm soát liều lượng chính xác, giảm lãng phí).</li>
@@ -2049,7 +2095,7 @@
       </div>
       <div class="p-5 overflow-y-auto text-xs text-slate-600 dark:text-slate-300 space-y-5">
         <div class="space-y-4">
-          <p class="mb-2 italic text-[11px]">Hiệu quả vượt trội của công nghệ Solid Power so với hóa chất lỏng thông thường.</p>
+          <p class="mb-2 italic text-[13px]">Hiệu quả vượt trội của công nghệ Solid Power so với hóa chất lỏng thông thường.</p>
           <ul class="list-disc pl-5 space-y-1.5 ml-1">
             <li><strong class="text-slate-700 dark:text-slate-300">Nước:</strong> Tiết kiệm <strong class="text-amber-600">0.5 Lít/rack</strong> (chu trình rửa sạch nhanh hơn, ít bọt).</li>
             <li><strong class="text-slate-700 dark:text-slate-300">Năng lượng:</strong> Tiết kiệm <strong class="text-amber-600">0.1 kWh/rack</strong> (giảm thời gian gia nhiệt nước).</li>
@@ -2057,9 +2103,8 @@
           </ul>
         </div>
       </div>
-    </div>
-  </div>
-
+    </div> <!-- End main-dashboard -->
+  </div> <!-- End app -->
 </body>
 
 </html>
