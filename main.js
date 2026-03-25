@@ -1057,28 +1057,44 @@ Promise.all([
 window.handleProductImageError = function(img, code, isSearch = false) {
     if (!code) return;
     // Prevent infinite loop
-    if (img.dataset.errorAttempted) return;
-    img.dataset.errorAttempted = "true";
-
-    const attemptFallback = () => {
-        const fallback = window.productImageMap[code.toString()];
-        if (fallback) {
-            console.log(`Loading proxy fallback for ${code}: ${fallback}`);
-            // crossorigin is no longer needed because it's same-origin proxy
-            img.src = fallback;
-            img.onerror = () => {
-                console.warn(`Fallback failed for ${code}`);
+    if (img.dataset.errorAttempted === "2") return; 
+    
+    // Attempt 1: Proxy
+    if (!img.dataset.errorAttempted) {
+        img.dataset.errorAttempted = "1";
+        const attemptFallback = () => {
+            const fallback = window.productImageMap[code.toString()];
+            if (fallback) {
+                console.log(`Loading proxy fallback for ${code}: ${fallback}`);
+                img.src = fallback;
+                // If even the proxy fails, we try direct in the next error event
+            } else {
                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            }
+        };
+
+        if (Object.keys(window.productImageMap).length === 0) {
+            setTimeout(attemptFallback, 1000);
+        } else {
+            attemptFallback();
+        }
+        return;
+    }
+
+    // Attempt 2: Direct Azure URL (Security bypass for mobile)
+    if (img.dataset.errorAttempted === "1") {
+        img.dataset.errorAttempted = "2";
+        const fallback = window.productImageMap[code.toString()];
+        if (fallback && fallback.includes('/azure-images')) {
+            const directUrl = fallback.replace('/azure-images', 'https://ecolabwallchart.azurewebsites.net');
+            console.warn(`Proxy failed for ${code}, attempting direct: ${directUrl}`);
+            img.src = directUrl;
+            img.onerror = () => {
+                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             };
         } else {
-            img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+             img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
         }
-    };
-
-    if (Object.keys(window.productImageMap).length === 0) {
-        setTimeout(attemptFallback, 1000);
-    } else {
-        attemptFallback();
     }
 };
 fetch('products_2026.json')
