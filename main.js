@@ -1054,6 +1054,38 @@ Promise.all([
     console.error("Critical error loading system data:", err);
 });
 
+// Mobile Debug Helper
+function mobileLog(msg, color = 'slate-500') {
+    let logDiv = document.getElementById('mobile-debug-log');
+    if (!logDiv) {
+        logDiv = document.createElement('div');
+        logDiv.id = 'mobile-debug-log';
+        logDiv.style = "position:fixed; bottom:0; left:0; width:100%; max-height:100px; overflow-y:auto; background:rgba(255,255,255,0.9); font-size:10px; z-index:9999; border-top:1px solid #ccc; display:none;";
+        document.body.appendChild(logDiv);
+    }
+    const entry = document.createElement('div');
+    entry.className = `px-2 py-0.5 border-b border-slate-100 text-${color}`;
+    entry.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+    logDiv.prepend(entry);
+}
+window.toggleMobileDebug = () => {
+    const logDiv = document.getElementById('mobile-debug-log');
+    if (logDiv) logDiv.style.display = logDiv.style.display === 'none' ? 'block' : 'none';
+};
+// Add a hidden trigger (Triple tap on footer)
+let footerTapCount = 0;
+document.addEventListener('touchstart', (e) => {
+    if (e.target.closest('footer')) {
+        footerTapCount++;
+        if (footerTapCount >= 5) {
+            window.toggleMobileDebug();
+            footerTapCount = 0;
+            alert("Debug panel toggled");
+        }
+        setTimeout(() => { footerTapCount = 0; }, 2000);
+    }
+});
+
 window.handleProductImageError = function(img, code, isSearch = false) {
     if (!code) return;
     // Prevent infinite loop
@@ -1065,13 +1097,15 @@ window.handleProductImageError = function(img, code, isSearch = false) {
         const attemptFallback = () => {
             const fallback = window.productImageMap[code.toString()];
             if (fallback) {
-                console.log(`Loading proxy fallback for ${code}: ${fallback}`);
-                img.src = fallback;
-                // If even the proxy fails, we try direct in the next error event
+                const proxyUrl = window.location.origin + fallback;
+                mobileLog(`Try Proxy ${code}: ${proxyUrl}`, 'blue-500');
+                img.src = proxyUrl;
             } else {
+                mobileLog(`No Map for ${code}`, 'red-500');
                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             }
         };
+// ... (rest of logic)
 
         if (Object.keys(window.productImageMap).length === 0) {
             setTimeout(attemptFallback, 1000);
@@ -1087,9 +1121,10 @@ window.handleProductImageError = function(img, code, isSearch = false) {
         const fallback = window.productImageMap[code.toString()];
         if (fallback && fallback.includes('/azure-images')) {
             const directUrl = fallback.replace('/azure-images', 'https://ecolabwallchart.azurewebsites.net');
-            console.warn(`Proxy failed for ${code}, attempting direct: ${directUrl}`);
+            mobileLog(`Try Direct ${code}: ${directUrl}`, 'orange-500');
             img.src = directUrl;
             img.onerror = () => {
+                 mobileLog(`Fail ${code}`, 'red-600');
                  img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             };
         } else {
