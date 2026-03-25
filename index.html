@@ -12,6 +12,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block"
     rel="stylesheet" />
+  <style>
+    @media (max-width: 768px) {
+      #calculator .max-w-7xl, 
+      #calctab-tvd .tvd-module-card, 
+      #calctab-tvd .tvd-hero-card,
+      #calctab-tvd .tvd-module-block-edge {
+        border-radius: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      #calculator main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .tvd-dashboard-container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+    }
+  </style>
   
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/logo-highres.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/logo-highres.png">
@@ -504,7 +531,7 @@
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
               <div class="flex items-center gap-4">
                 <div class="h-12 flex items-center">
-                  <img src="ecolab-logo-tagline svg.svg" alt="Ecolab Logo" class="h-10 w-auto">
+                  <img src="/ecolab-logo.svg" alt="Ecolab Logo" class="h-10 w-auto">
                 </div>
                 <div class="h-10 w-px bg-slate-200 mx-2"></div>
                 <div>
@@ -831,7 +858,7 @@
 
             <!-- SECTION 5: PRICE CALCULATOR -->
       <section id="calculator" class="tab-content">
-        <div class="max-w-7xl mx-auto flex flex-col min-h-screen shadow-2xl bg-background-light dark:bg-background-dark rounded-3xl overflow-hidden my-8 border border-slate-200">
+        <div class="max-w-7xl mx-auto flex flex-col min-h-screen shadow-2xl bg-background-light dark:bg-background-dark md:rounded-3xl md:my-8 md:border md:border-slate-200 !rounded-none !my-0 !border-none overflow-hidden transition-all" style="border-radius: 0 !important;">
           
           <!-- Header & Sub-Tabs -->
           <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4">
@@ -847,11 +874,11 @@
           </header>
 
           <!-- Content Area -->
-          <main class="flex-1 p-4 md:p-6 overflow-y-auto">
+          <main class="flex-1 px-0 py-4 md:p-6 overflow-y-auto">
              
              
              <!-- Tab 1: Cost Calculator -->
-             <div id="calctab-cost" class="calc-tab-content active">
+             <div id="calctab-cost" class="calc-tab-content active px-4">
               
               <!-- Sub-tab Navigation (Kitchen / Housekeeping) -->
               <div class="flex overflow-x-auto hide-scrollbar items-center gap-2 mb-6 bg-slate-100 dark:bg-slate-800/50 p-1 rounded-xl w-full md:w-fit border border-slate-200 dark:border-slate-700/50">
@@ -1465,7 +1492,7 @@
                    <div class="lg:w-[400px] w-full flex-shrink-0 lg:sticky lg:top-8 space-y-8">
                      
                      <!-- EXECUTIVE HERO CARD -->
-                     <div class="tvd-hero-card !p-8 !rounded-[32px] w-full">
+                     <div class="tvd-hero-card !p-8 !rounded-none md:!rounded-[32px] w-full" style="border-radius: 0 !important;">
                        <div class="flex flex-col gap-6 relative z-10">
                          <div class="space-y-4">
                            <div class="flex flex-col">
@@ -1511,7 +1538,7 @@
                      </div>
 
                      <!-- GLOBAL BENCHMARKS BAR (SIDEBAR ADAPTATION) -->
-                     <div class="bg-white dark:bg-[#0f172a] p-8 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none space-y-6">
+                     <div class="tvd-module-block-edge bg-white dark:bg-[#0f172a] p-8 !rounded-none md:rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none space-y-6" style="border-radius: 0 !important;">
                         <div class="flex items-center gap-2 pb-4 border-b border-slate-50 dark:border-slate-800/50 mb-2">
                            <span class="material-symbols-outlined text-primary text-xl">payments</span>
                            <h4 class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Giá đơn vị</h4>
@@ -1542,7 +1569,7 @@
                      <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
                    
                    <!-- LAUNDRY MODULE -->
-                   <div class="tvd-module-card p-6 xl:col-span-2">
+                   <div class="tvd-module-card p-4 md:p-6 xl:col-span-2 !rounded-none md:rounded-[28px] !w-full" style="border-radius: 0 !important;">
                      <div class="flex items-center justify-between mb-4">
                        <div class="flex items-center gap-3">
                          <div class="tvd-accent-icon tvd-accent-blue">
@@ -1582,7 +1609,7 @@
                                 <input type="number" id="tvd-chem-lt" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900 font-bold text-blue-600" value="1100">
                               </div>
                             </div>
-                            <div class="grid grid-cols-3 gap-2">
+                            <div class="grid grid-cols-2 lg:grid-cols-3 gap-2">
                               <div class="space-y-1">
                                 <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Máy hiện tại tiêu thụ bao nhiêu lít/kg?">Nước Tiêu Chuẩn (L/kg)</label>
                                 <input type="number" id="tvd-water-base" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="20">
@@ -1595,8 +1622,6 @@
                                 <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Công suất máy giặt để tính toán số mẻ">Máy giặt (Kg/mẻ)</label>
                                 <input type="number" id="tvd-kg-load" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="60">
                               </div>
-                            </div>
-                            <div class="grid grid-cols-3 gap-2 mt-2">
                               <div class="space-y-1">
                                 <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Tỷ lệ giảm Nước (%)">Giảm Nước (L/kg)</label>
                                 <input type="number" id="tvd-water-sav" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="7">
@@ -1612,11 +1637,11 @@
                             </div>
                             <div class="grid grid-cols-2 gap-2 mt-2">
                               <div class="space-y-1">
-                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Điện năng tiêu thụ mặc định (kWh/kg)">Điện TC (kWh/kg)</label>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Điện năng tiêu thụ mặc định (kWh/kg đồ vải)">Điện tiêu thụ (kWh/kg đồ vải)</label>
                                 <input type="number" step="0.01" id="tvd-elec-base" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.65">
                               </div>
                               <div class="space-y-1">
-                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Gas tiêu thụ mặc định (kg/kg)">Gas TC (kg/kg)</label>
+                                <label class="text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1 truncate block" title="Gas tiêu thụ mặc định (kg/kg đồ vải)">Gas tiêu thụ (kg/kg đồ vải)</label>
                                 <input type="number" step="0.01" id="tvd-gas-base" class="w-full h-9 text-sm transition-all rounded-lg border border-slate-200 dark:border-slate-700 px-2 bg-white dark:bg-slate-900" value="0.07">
                               </div>
                             </div>
@@ -1685,7 +1710,7 @@
                      </div>
 
                    <!-- HOUSEKEEPING MODULE -->
-                   <div id="tvd-hk-module" class="tvd-module-card p-6 xl:col-span-2">
+                   <div id="tvd-hk-module" class="tvd-module-card p-4 md:p-6 xl:col-span-2 !rounded-none md:rounded-[28px] !w-full" style="border-radius: 0 !important;">
                      <div class="flex items-center justify-between mb-4">
                        <div class="flex items-center gap-3">
                          <div class="tvd-accent-icon tvd-accent-green">
@@ -1783,7 +1808,7 @@
                      </div>
 
                     <!-- KITCHEN MODULE -->
-                    <div id="tvd-kitchen-module" class="tvd-module-card p-6 xl:col-span-2">
+                    <div id="tvd-kitchen-module" class="tvd-module-card p-4 md:p-6 xl:col-span-2 !rounded-none md:rounded-[28px] !w-full" style="border-radius: 0 !important;">
                       <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center gap-3">
                           <div class="tvd-accent-icon tvd-accent-amber">
@@ -1899,7 +1924,7 @@
          </div> <!-- Tab content -->
              </div>
              <!-- Tab 3: H "D" H -->
-             <div id="calctab-hdh" class="calc-tab-content hidden">
+             <div id="calctab-hdh" class="calc-tab-content hidden px-4">
                <div class="flex flex-col items-center justify-center py-20 text-slate-400 dark:text-slate-600">
                  <span class="material-symbols-outlined text-6xl mb-4 opacity-50">construction</span>
                  <p class="font-medium">H "D" H tool is under construction.</p>

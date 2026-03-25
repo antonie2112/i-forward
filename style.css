@@ -1589,32 +1589,9 @@ main:has(#home.active) {
     }
 
     /* Price Calculator Mobile Refinement */
-    #calculator .max-w-7xl {
-        margin-top: 1rem !important;
-        margin-bottom: 5rem !important;
-        border-radius: 20px !important;
-    }
-
-    .calc-tab-content {
-        padding: 1rem !important;
-    }
-
-    #calctab-tvd.calc-tab-content {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        padding-top: 1rem !important;
-    }
-
-    .tvd-module-card {
-        padding: 1.25rem 0.75rem !important;
-        border-radius: 0 !important;
-        border-left: 0 !important;
-        border-right: 0 !important;
-        box-shadow: none !important;
-    }
 
     #calculator main {
-        padding: 1rem !important;
+        padding: 1rem 0 !important;
     }
 
     .calc-tab-btn {
@@ -1754,3 +1731,52 @@ main:has(#home.active) {
 }
 
 
+/* --- FINAL MOBILE OVERRIDES FOR TRUE EDGE-TO-EDGE (Phase 160) --- */
+@media (max-width: 768px) {
+    #calculator .max-w-7xl {
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+
+    #calculator main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-top: 1rem !important;
+    }
+
+    #calctab-tvd.calc-tab-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .tvd-module-card, 
+    .tvd-module-block-edge,
+    [class*="tvd-module-card"],
+    #calctab-tvd .bg-white.rounded-\[32px\] {
+        padding: 1.5rem 1rem !important;
+        border-radius: 0 !important;
+        border-left: 0 !important;
+        border-right: 0 !important;
+        border-top: 1px solid rgba(0,0,0,0.05) !important;
+        border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+        box-shadow: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Target the container that might have gaps */
+    .tvd-dashboard-container,
+    .tvd-dashboard-container > div {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+    }
+}

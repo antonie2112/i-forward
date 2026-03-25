@@ -1018,6 +1018,17 @@ let showDiscount = false;
 
 // --- Product Database ---
 let productsDB = [];
+window.productImageMap = {};
+
+// Load external image fallbacks
+fetch('image_urls.json')
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(p => {
+            if (p.code) window.productImageMap[p.code.toString()] = p.image_url;
+        });
+    })
+    .catch(err => console.warn("External image_urls.json not found, falling back to local only."));
 fetch('products_2026.json')
     .then(res => res.json())
     .then(data => {
@@ -1891,7 +1902,7 @@ function renderRows(fullRender = true) {
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
                         <img src="${imagePath}" class="mx-auto" style="width: auto; height: auto; max-width: 80px; max-height: 80px; display: block; object-fit: contain;" 
-                             onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'">
+                             onerror="this.onerror=null; const fallback = window.productImageMap[('${item.code}' || '').toString()]; if(fallback) { this.src=fallback; this.onerror=()=>this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; } else { this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; }">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
                     <td class="text-right font-mono text-xs px-3 border border-slate-200 font-bold text-slate-600">${formatCurrency(price)}</td>
@@ -2155,7 +2166,9 @@ function searchLibrary() {
         <div class="group flex gap-4 p-4 rounded-2xl border border-slate-200 dark:border-white/5 transition-all hover:border-primary/30 overflow-hidden relative">
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="w-16 h-20 overflow-hidden flex-shrink-0 relative">
-            <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" src="${imgPath}" onerror="this.onerror=null; this.src='https://placehold.co/80x100?text=📦';">
+            <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" 
+                 src="${imgPath}" 
+                 onerror="this.onerror=null; const fallback = window.productImageMap['${p.code}']; if(fallback) { this.src=fallback; this.onerror=()=>this.src='https://placehold.co/80x100?text=📦'; } else { this.src='https://placehold.co/80x100?text=📦'; }">
             <div class="absolute top-1 right-1 bg-primary text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-lg">PDF</div>
           </div>
           <div class="flex-1 flex flex-col justify-between relative z-10">
