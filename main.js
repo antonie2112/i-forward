@@ -1020,18 +1020,39 @@ let showDiscount = false;
 let productsDB = [];
 window.productImageMap = {};
 
-// Load external image fallbacks
-fetch('image_urls.json')
-    .then(res => res.json())
-    .then(data => {
-        data.forEach(p => {
-            if (p.code) window.productImageMap[p.code.toString()] = p.image_url;
-        });
-        console.log("Image map loaded:", Object.keys(window.productImageMap).length);
-        // Trigger a re-render if we have items to ensure they get the right images
-        if (typeof renderRows === 'function') renderRows();
+// Load all required data before initial render
+Promise.all([
+    fetch('/products_2026.json').then(res => res.json()),
+    fetch('/image_urls.json').then(res => res.json()).catch(err => {
+        console.warn("External image_urls.json not found:", err);
+        return [];
     })
-    .catch(err => console.warn("External image_urls.json not found, falling back to local only."));
+]).then(([products, images]) => {
+    productsDB = products;
+    images.forEach(p => {
+        if (p.code && p.image_url) {
+            // Rewrite URL to use local proxy to bypass CORS
+            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/azure-images');
+        }
+    });
+    
+    // Update Datalist
+    let dl = document.getElementById('products2026List');
+    if (!dl) {
+        dl = document.createElement('datalist');
+        dl.id = 'products2026List';
+        document.body.appendChild(dl);
+    }
+    dl.innerHTML = productsDB.map(p => `<option value="${p.name}"></option>`).join('');
+
+    // Trigger Initial Render
+    if (typeof renderRows === 'function') renderRows();
+    if (typeof renderDocs === 'function') renderDocs();
+    
+    console.log("System Data Loaded: ", { products: productsDB.length, imageMaps: Object.keys(window.productImageMap).length });
+}).catch(err => {
+    console.error("Critical error loading system data:", err);
+});
 
 window.handleProductImageError = function(img, code, isSearch = false) {
     if (!code) return;
@@ -1042,7 +1063,8 @@ window.handleProductImageError = function(img, code, isSearch = false) {
     const attemptFallback = () => {
         const fallback = window.productImageMap[code.toString()];
         if (fallback) {
-            console.log(`Loading fallback for ${code}: ${fallback}`);
+            console.log(`Loading proxy fallback for ${code}: ${fallback}`);
+            // crossorigin is no longer needed because it's same-origin proxy
             img.src = fallback;
             img.onerror = () => {
                 console.warn(`Fallback failed for ${code}`);

@@ -41,5 +41,14 @@ export default defineConfig({
         main: 'index.html'
       }
     }
+  },
+  server: {
+    proxy: {
+      '/azure-images': {
+        target: 'https://ecolabwallchart.azurewebsites.net',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/azure-images/, '')
+      }
+    }
   }
 });

@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/azure-images/(.*)", "destination": "https://ecolabwallchart.azurewebsites.net/:1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
