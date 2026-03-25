@@ -1031,8 +1031,8 @@ Promise.all([
     productsDB = products;
     images.forEach(p => {
         if (p.code && p.image_url) {
-            // Rewrite URL to use local proxy to bypass CORS
-            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/azure-images');
+            // Rewrite URL to use local proxy to bypass CORS/Privacy
+            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/system-assets');
         }
     });
     
@@ -1119,8 +1119,8 @@ window.handleProductImageError = function(img, code, isSearch = false) {
     if (img.dataset.errorAttempted === "1") {
         img.dataset.errorAttempted = "2";
         const fallback = window.productImageMap[code.toString()];
-        if (fallback && fallback.includes('/azure-images')) {
-            const directUrl = fallback.replace('/azure-images', 'https://ecolabwallchart.azurewebsites.net');
+        if (fallback && fallback.includes('/system-assets')) {
+            const directUrl = fallback.replace('/system-assets', 'https://ecolabwallchart.azurewebsites.net');
             mobileLog(`Try Direct ${code}: ${directUrl}`, 'orange-500');
             img.src = directUrl;
             img.onerror = () => {
@@ -2004,7 +2004,8 @@ function renderRows(fullRender = true) {
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
-                        <img src="${imagePath}" class="mx-auto" style="width: auto; height: auto; max-width: 80px; max-height: 80px; display: block; object-fit: contain;" 
+                        <img src="/product_images/${(item.code || '').trim()}.jpg" 
+                             class="mx-auto" style="width: auto; height: auto; max-width: 80px; max-height: 80px; display: block; object-fit: contain;" 
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
@@ -2270,7 +2271,7 @@ function searchLibrary() {
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="w-16 h-20 overflow-hidden flex-shrink-0 relative">
             <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" 
-                 src="${imgPath}" 
+                 src="/product_images/${(p.code || '').trim()}.jpg" 
                  onerror="window.handleProductImageError(this, '${p.code || ''}', true)">
             <div class="absolute top-1 right-1 bg-primary text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-lg">PDF</div>
           </div>

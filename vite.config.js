@@ -46,11 +46,11 @@ export default defineConfig({
     host: true, // Allow external access via IP
     port: 8080,
     proxy: {
-      '/azure-images': {
+      '/system-assets': {
         target: 'https://ecolabwallchart.azurewebsites.net',
         changeOrigin: true,
         secure: false, // Bypass potential SSL verification issues on mobile
-        rewrite: (path) => path.replace(/^\/azure-images/, '')
+        rewrite: (path) => path.replace(/^\/system-assets/, '')
       }
     }
   }
