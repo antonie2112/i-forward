@@ -1027,8 +1027,38 @@ fetch('image_urls.json')
         data.forEach(p => {
             if (p.code) window.productImageMap[p.code.toString()] = p.image_url;
         });
+        console.log("Image map loaded:", Object.keys(window.productImageMap).length);
+        // Trigger a re-render if we have items to ensure they get the right images
+        if (typeof renderRows === 'function') renderRows();
     })
     .catch(err => console.warn("External image_urls.json not found, falling back to local only."));
+
+window.handleProductImageError = function(img, code, isSearch = false) {
+    if (!code) return;
+    // Prevent infinite loop
+    if (img.dataset.errorAttempted) return;
+    img.dataset.errorAttempted = "true";
+
+    const attemptFallback = () => {
+        const fallback = window.productImageMap[code.toString()];
+        if (fallback) {
+            console.log(`Loading fallback for ${code}: ${fallback}`);
+            img.src = fallback;
+            img.onerror = () => {
+                console.warn(`Fallback failed for ${code}`);
+                img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            };
+        } else {
+            img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        }
+    };
+
+    if (Object.keys(window.productImageMap).length === 0) {
+        setTimeout(attemptFallback, 1000);
+    } else {
+        attemptFallback();
+    }
+};
 fetch('products_2026.json')
     .then(res => res.json())
     .then(data => {
@@ -1902,7 +1932,7 @@ function renderRows(fullRender = true) {
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
                         <img src="${imagePath}" class="mx-auto" style="width: auto; height: auto; max-width: 80px; max-height: 80px; display: block; object-fit: contain;" 
-                             onerror="this.onerror=null; const fallback = window.productImageMap[('${item.code}' || '').toString()]; if(fallback) { this.src=fallback; this.onerror=()=>this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; } else { this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; }">
+                             onerror="window.handleProductImageError(this, '${item.code || ''}')">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
                     <td class="text-right font-mono text-xs px-3 border border-slate-200 font-bold text-slate-600">${formatCurrency(price)}</td>
@@ -2168,7 +2198,7 @@ function searchLibrary() {
           <div class="w-16 h-20 overflow-hidden flex-shrink-0 relative">
             <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" 
                  src="${imgPath}" 
-                 onerror="this.onerror=null; const fallback = window.productImageMap['${p.code}']; if(fallback) { this.src=fallback; this.onerror=()=>this.src='https://placehold.co/80x100?text=📦'; } else { this.src='https://placehold.co/80x100?text=📦'; }">
+                 onerror="window.handleProductImageError(this, '${p.code || ''}', true)">
             <div class="absolute top-1 right-1 bg-primary text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-lg">PDF</div>
           </div>
           <div class="flex-1 flex flex-col justify-between relative z-10">
