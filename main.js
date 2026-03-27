@@ -1032,7 +1032,7 @@ Promise.all([
     images.forEach(p => {
         if (p.code && p.image_url) {
             // Rewrite URL to use local proxy to bypass CORS/Privacy + cache bust
-            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/cdn-proxy') + '?v=150.0';
+            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/cdn-proxy') + '?v=181.0';
         }
     });
     
@@ -1969,7 +1969,7 @@ function renderRows(fullRender = true) {
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
-                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=176.0" 
+                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=181.0" 
                              class="mx-auto" style="width: 80px; height: 100px; min-width: 80px; min-height: 100px; display: block; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
                              onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'; this.style.opacity='1'"
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
