@@ -1022,8 +1022,8 @@ window.blobImageCache = {}; // Phase 176: Memory cache for blob URLs
 
 // Load all required data before initial render
 Promise.all([
-    fetch('/products_2026.json').then(res => res.json()),
-    fetch('/image_urls.json').then(res => res.json()).catch(err => {
+    fetch('/products_2026.json?v=183').then(res => res.json()),
+    fetch('/image_urls.json?v=183').then(res => res.json()).catch(err => {
         console.warn("External image_urls.json not found:", err);
         return [];
     })
@@ -1953,7 +1953,7 @@ function renderRows(fullRender = true) {
             } else {
                 const safeCode = (item.code || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
                 const safeName = (item.name || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
-                const imagePath = `Product images/${safeCode} - ${safeName}.jpg`;
+                const imagePath = `/product_images/${safeCode}.jpg?v=183`;
                 const price = Number(item.price) || 0;
                 const priceAfterDiscount = Math.round(price * (1 - (combinedDiscount / 100)));
 
@@ -2229,7 +2229,7 @@ function searchLibrary() {
     resultsContainer.innerHTML = matches.map(p => {
         const safeName = (p.name || '').replace(/[\\/*?:"<>|]/g, '').trim();
         const safeCode = (p.code || '').replace(/[\\/*?:"<>|]/g, '').trim();
-        const imgPath = `Product images/${safeCode} - ${safeName}.jpg`;
+        const imgPath = `/product_images/${safeCode}.jpg?v=183`;
         const category = p.category || 'General';
 
         return `
