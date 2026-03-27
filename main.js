@@ -1120,16 +1120,25 @@ window.handleProductImageError = function(img, code, isSearch = false) {
         img.dataset.errorAttempted = "2";
         const fallback = window.productImageMap[code.toString()];
         if (fallback && fallback.includes('/system-assets')) {
-            const directUrl = fallback.replace('/system-assets', 'https://ecolabwallchart.azurewebsites.net');
+            const directUrl = fallback.replace('/system-assets', 'https://ecolabwallchart.azurewebsites.net') + '?v=122.0';
             mobileLog(`Try Direct ${code}: ${directUrl}`, 'orange-500');
             img.src = directUrl;
-            img.onerror = () => {
-                 mobileLog(`Fail ${code}`, 'red-600');
-                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-            };
         } else {
-             img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            // If no map, jump to GitHub Raw
+            const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg`;
+            mobileLog(`Try Github ${code}`, 'purple-500');
+            img.src = githubUrl;
         }
+    } else if (img.dataset.errorAttempted === "2") {
+        // Attempt 3: GitHub Raw Fallback (The ultimate reliable source)
+        img.dataset.errorAttempted = "3";
+        const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg`;
+        mobileLog(`Try Github Fallback ${code}`, 'purple-600');
+        img.src = githubUrl;
+        img.onerror = () => {
+             mobileLog(`FINAL FAIL ${code}`, 'red-700');
+             img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        };
     }
 };
 fetch('products_2026.json')
