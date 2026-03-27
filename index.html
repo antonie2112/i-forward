@@ -2014,9 +2014,30 @@
                   </div>
                   <span class="material-symbols-outlined text-slate-300 group-hover:text-rose-300">chevron_right</span>
               </button>
+
+              <div class="mt-4 pt-4 border-t border-slate-50 flex flex-col items-center gap-2">
+                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v150.0.175</p>
+                  <button onclick="clearAllSiteCache()" class="w-full py-3 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-red-100 active:bg-red-100 transition-colors">
+                      ⚠️ FIX SITE CACHING (HARD REFRESH)
+                  </button>
+              </div>
           </div>
       </div>
   </div>
+
+  <script>
+      function clearAllSiteCache() {
+          if (confirm("Clear all App Cache & reload?")) {
+              if ('serviceWorker' in navigator) {
+                  navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+              }
+              caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+              localStorage.clear();
+              sessionStorage.clear();
+              window.location.href = window.location.origin + window.location.pathname + '?v=' + Date.now();
+          }
+      }
+  </script>
 
   <script type="module" src="/src/auth-handler.js"></script>
   <script type="module" src="/src/scanner.js"></script>
