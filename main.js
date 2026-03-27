@@ -1969,7 +1969,7 @@ function renderRows(fullRender = true) {
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
-                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=181.0" 
+                        <img src="${window.getProductImageURL(item.code)}" 
                              class="mx-auto" style="width: 80px; height: 100px; min-width: 80px; min-height: 100px; display: block; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
                              onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'; this.style.opacity='1'"
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
@@ -2237,7 +2237,7 @@ function searchLibrary() {
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="w-16 h-20 overflow-hidden flex-shrink-0 relative">
             <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" 
-                 src="/product_images/${(p.code || '').trim()}.jpg?v=181.0" 
+                 src="${window.getProductImageURL(p.code)}" 
                  onerror="window.handleProductImageError(this, '${p.code || ''}', true)">
             <div class="absolute top-1 right-1 bg-primary text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-lg">PDF</div>
           </div>
