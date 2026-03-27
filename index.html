@@ -101,6 +101,10 @@
             return fetch(url, { mode: 'cors', cache: 'no-cache', credentials: 'omit' })
                 .then(function(res) {
                     if (!res.ok) throw new Error("HTTP " + res.status);
+                    var ct = res.headers.get('content-type') || "";
+                    if (ct.indexOf('text/html') !== -1) {
+                        throw new Error("Redirected to HTML");
+                    }
                     return res.blob();
                 })
                 .then(function(blob) {
@@ -2072,7 +2076,7 @@
               </button>
 
               <div class="mt-4 pt-4 border-t border-slate-50 flex flex-col items-center gap-2">
-                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v180.0.SyncHandler</p>
+                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v181.0.Strict</p>
                   <button onclick="window.testConnectivity()" class="w-full py-3 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-blue-100 active:bg-blue-100 mb-2">
                       📡 CHECK CONNECTIVITY (GITHUB)
                   </button>
@@ -2086,7 +2090,7 @@
 
   <script>
       // Phase 177: Force-Purge stale caches if version < 177
-      const EXPECTED_VERSION = 180;
+      const EXPECTED_VERSION = 181;
       const currentVersion = parseInt(localStorage.getItem('inst_app_v') || '0');
       if (currentVersion < EXPECTED_VERSION) {
           console.log("Auth-Purge: Stale version detected. Cleaning...");
@@ -2118,7 +2122,7 @@
   <script type="module" src="/src/scanner.js"></script>
   <script type="module" src="/src/store.js"></script>
   <script type="module" src="/src/quotation.js"></script>
-  <script type="module" src="/main.js?v=180.0"></script>
+  <script type="module" src="/main.js?v=181.0"></script>
   <!-- TVD Math Modal -->
   <!-- LAUNDRY MATH MODAL -->
   <div id="tvd-laundry-math-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 transition-opacity duration-300">
