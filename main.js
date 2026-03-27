@@ -2,74 +2,6 @@
 
 // --- Localization Data ---
 const translations = {
-// ... (translations truncated for brevity)
-};
-
-// Global Error Handler for Images (Moved to top for compatibility)
-window.blobImageCache = window.blobImageCache || {};
-window.handleProductImageError = function(img, code, isSearch = false) {
-    if (!code || !img) return;
-    const codeStr = code.toString().trim();
-    if (img.dataset.loadingBlob === "1") return;
-    img.dataset.loadingBlob = "1";
-
-    // Diagnostic visual indicator (Solid Blue)
-    img.style.border = '3px solid #3b82f6'; 
-    img.style.opacity = '0.7';
-
-    // Helper for fetch sequence
-    const trySource = (url, name) => {
-        return fetch(url, { mode: 'cors', cache: 'no-cache' })
-            .then(res => {
-                if (!res.ok) throw new Error("HTTP " + res.status);
-                return res.blob();
-            })
-            .then(blob => {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        window.blobImageCache[codeStr] = reader.result;
-                        resolve(reader.result);
-                    };
-                    reader.onerror = reject;
-                    reader.readAsDataURL(blob);
-                });
-            });
-    };
-
-    // Chain: Local -> Proxy -> GitHub
-    let p = Promise.reject();
-    
-    // 0. Cache
-    if (window.blobImageCache[codeStr]) {
-        p = Promise.resolve(window.blobImageCache[codeStr]);
-    } else {
-        // 1. Local
-        p = trySource(`/product_images/${codeStr}.jpg?v=178`, 'Local')
-            .catch(() => {
-                // 2. Proxy
-                const fallbackPath = window.productImageMap ? window.productImageMap[codeStr] : null;
-                if (fallbackPath) return trySource(window.location.origin + fallbackPath, 'Proxy');
-                throw new Error("No Proxy map");
-            })
-            .catch(() => {
-                // 3. GitHub
-                return trySource(`https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=178`, 'GitHub');
-            });
-    }
-
-    p.then(dataUrl => {
-        img.src = dataUrl;
-        img.style.border = '2px solid #22c55e'; // Solid Green
-        img.style.opacity = '1';
-        delete img.dataset.loadingBlob;
-    }).catch(err => {
-        img.style.border = '2px solid #ef4444'; // Solid Red
-        img.style.opacity = '0.4';
-        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        delete img.dataset.loadingBlob;
-    });
-};
     en: {
         tagline: "Institutional Việt Nam - Internal Use",
         toolkit_name: "A Sales Hub",
@@ -189,6 +121,192 @@ window.handleProductImageError = function(img, code, isSearch = false) {
         lbl_sqm: "Square Meters (m²)",
         lbl_result: "Result:"
     },
+    vn: {
+        tagline: "Institutional Việt Nam - Lưu hành nội bộ",
+        toolkit_name: "Cổng thông tin bán hàng",
+        tab_quote: "Báo giá",
+        tab_catsheets: "Tài liệu KT",
+        tab_sds: "Tra cứu SDS",
+        btn_print: "In Báo giá",
+        quote_title_excel: "CHƯƠNG TRÌNH HÓA CHẤT - ECOLAB APPLICATION",
+        quote_subtitle_excel: "Kính gửi: Ban giám đốc và quản lý dự án / To: - đại diện quý khách hàng",
+        quote_intro_excel: "Cám ơn Quý Khách hàng đã quan tâm đến sản phẩm của chúng tôi. Chúng tôi xin trân trọng gửi đến Quý Khách Hàng bảng báo giá chi tiết các sản phẩm như sau:",
+        label_date: "Ngày:",
+        btn_add_item: "+ Thêm dòng",
+        label_total: "Tổng cộng:",
+        label_kinh_gui: "Kính gửi: ",
+        btn_export: "Xuất Báo Giá",
+        btn_export_pdf: "Xuất file PDF (A4)",
+        btn_export_img: "Xuất Hình Ảnh (HD)",
+        catsheet_title: "Tài liệu Kỹ thuật (Catsheets)",
+        tab_proposal: "Đề Xuất Hợp Tác",
+        sds_title: "Bảng An toàn Hóa chất (SDS)",
+        ph_search_prod: "Tìm kiếm sản phẩm...",
+        ph_search_sds: "Tìm kiếm dữ liệu an toàn...",
+        btn_view: "Xem KT",
+        btn_view_sds: "Xem SDS",
+        btn_download: "Tải về",
+        th_stt: "STT",
+        th_code: "Mã SP",
+        th_name: "Tên Sản Phẩm / Công Dụng",
+        th_image: "Hình ảnh",
+        th_unit: "Đơn vị",
+        th_price: "Giá 2026 (VNĐ)",
+        th_discount: "Giá Sau Chiết Khấu",
+        th_dilution: "Tỉ lệ pha",
+        quote_note: "* Giá chưa gồm VAT và phí vận chuyển (nếu có)",
+        quote_title: "BÁO GIÁ",
+        quote_subtitle: "CHƯƠNG TRÌNH HÓA CHẤT",
+        cat_hk: "BUỒNG PHÒNG",
+        cat_ki: "BẾP",
+        cat_la: "GIẶT LÀ",
+        label_client: "Tên khách hàng / Dự án",
+        label_recipient: "Tên người nhận",
+        copyright_line: "© 2026 I.Forward. Được hoàn thiện bởi ❤️",
+        personal_dedication: "Dự án tâm huyết cá nhân • Đồng hành cùng sự chuyên nghiệp",
+        selection_title: "Tạo Báo Giá Mới",
+        selection_desc: "Chọn một mẫu để bắt đầu tạo báo giá chuyên nghiệp.",
+        preset_common: "Thông dụng",
+        preset_common_desc: "Các sản phẩm làm sạch Institutional thông dụng.",
+        preset_premium: "Cao cấp",
+        preset_premium_desc: "Hóa chất chuyên dụng cao cấp & dụng cụ bổ trợ.",
+        preset_custom: "Tự nhập liệu",
+        preset_custom_desc: "Tạo bảng báo giá tùy chỉnh từ đầu.",
+        btn_start_template: "Bắt đầu Mẫu",
+        btn_create_blank: "Tạo mới",
+        ph_client_name: "ví dụ: Khách sạn Sheraton Sài Gòn",
+        ph_recipient: "ví dụ: Ông Nguyễn Văn A",
+        label_prop_date: "Ngày đề xuất",
+        label_client_logo: "Logo khách hàng (Tùy chọn)",
+        btn_download_proposal: "Tải Đề xuất PDF",
+        library_title: "Tài liệu KT (Catsheets)",
+        ph_library_search: "Tìm Catsheets, hướng dẫn, tài liệu sản phẩm...",
+        lib_all_ind: "Tất cả ngành hàng",
+        lib_catsheets: "Tài liệu KT",
+        lib_manuals: "Hướng dẫn SD",
+        lib_empty: "Hãy nhập tên sản phẩm để tìm kiếm tài liệu...",
+        lib_no_results: "Không tìm thấy sản phẩm nào khớp với từ khóa.",
+        personal_dedication: "Dự án tâm huyết cá nhân • Đồng hành cùng sự chuyên nghiệp",
+        tab_home: "Trang chủ",
+        home_welcome: "Xin chào, Antonie!",
+        home_welcome_sub: "Bạn có <span class=\"text-primary font-semibold\">5 công cụ</span> sẵn sàng hỗ trợ bạn hôm nay.",
+        home_new_quote: "Báo giá mới",
+        stat_products: "Sản phẩm",
+        stat_docs: "Tài liệu KT",
+        stat_tools: "Công cụ",
+        stat_sds: "SDS",
+        home_tools_title: "Công cụ bán hàng",
+        home_quick_title: "Thao tác nhanh",
+        home_action_new_quote: "Tạo báo giá mới",
+        home_action_new_quote_sub: "Chọn sản phẩm và xuất PDF ngay.",
+        home_action_find_doc: "Tìm tài liệu kỹ thuật",
+        home_action_find_doc_sub: "Duyệt 500+ catsheet và tài liệu.",
+        home_action_sds: "Tra cứu SDS",
+        home_action_sds_sub: "Dữ liệu an toàn trực tiếp từ Ecolab.",
+        home_about_title: "Về I.Forward",
+        home_about_line1: "Ecolab Institutional – Việt Nam",
+        home_about_line1_sub: "Phiên bản nội bộ, dùng cho đội ngũ kinh doanh.",
+        home_about_line2: "Cập nhật liên tục",
+        home_about_line2_sub: "Dữ liệu giá & tài liệu được đồng bộ định kỳ.",
+        home_about_line3: "Phát triển bởi Antonie",
+        hero_title: "Sự Chính Xác Trong Mọi Đề Xuất",
+        hero_subtitle: "Bộ công cụ toàn diện hỗ trợ bán hàng chuyên nghiệp và chính xác kỹ thuật trong ngành vệ sinh công nghiệp.",
+        quick_start: "Bắt đầu nhanh",
+        home_quote_desc: "Xây dựng bảng giá chuyên nghiệp, tùy chỉnh cho mọi phân khúc khách hàng.",
+        home_cat_desc: "Truy cập tài liệu kỹ thuật và marketing ngay lập tức.",
+        home_sds_desc: "Tra cứu an toàn hóa chất để đảm bảo tuân thủ và vận hành an toàn.",
+        home_prop_desc: "Tạo đề xuất hợp tác đầy đủ trong vài phút, thay vì hàng giờ.",
+        home_calc_desc: "Công cụ hỗ trợ tính toán chi phí hóa chất tối ưu cho vận hành.",
+        tab_calculator: "Tính Giá",
+        calculator_title: "Công Cụ Tính Giá",
+        calc_tab_cost: "Tính Chi Phí Tối Ưu",
+        calc_tab_tvd: "Ecolab TVD Calculator",
+        calc_tab_hdh: "H \"D\" H",
+        cpc_title: "Cost per Cover",
+        cpc_desc: "Chi phí hóa chất trên 1 thực khách",
+        cpr_title: "Cost per Rack",
+        cpr_desc: "Chi phí hóa chất trên 1 rack máy rửa",
+        cps_title: "Cost per Sink",
+        cps_desc: "Chi phí hóa chất trên 1 bồn rửa tay/chén",
+        cpor_title: "Cost per Occupied Room",
+        cpor_desc: "Chi phí hóa chất trên 1 phòng có khách",
+        cpsqm_title: "Cost per Sqm",
+        cpsqm_desc: "Chi phí vệ sinh trên 1 mét vuông",
+        lbl_total_chem: "Tổng Hóa Chất (VND)",
+        lbl_covers: "Tổng số Khách (Covers)",
+        lbl_racks: "Tổng số Racks",
+        lbl_sinks: "Tổng số Bồn (Sinks)",
+        lbl_rooms: "Số phòng có khách",
+        lbl_sqm: "Diện tích (m²)",
+        lbl_result: "Kết quả:"
+    }
+};
+
+// Global Error Handler for Images (Moved to top for compatibility)
+window.blobImageCache = window.blobImageCache || {};
+window.handleProductImageError = function(img, code, isSearch = false) {
+    if (!code || !img) return;
+    const codeStr = code.toString().trim();
+    if (img.dataset.loadingBlob === "1") return;
+    img.dataset.loadingBlob = "1";
+
+    // Diagnostic visual indicator (Solid Blue)
+    img.style.border = '3px solid #3b82f6'; 
+    img.style.opacity = '0.7';
+
+    // Helper for fetch sequence
+    const trySource = (url, name) => {
+        return fetch(url, { mode: 'cors', cache: 'no-cache' })
+            .then(res => {
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                return res.blob();
+            })
+            .then(blob => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        window.blobImageCache[codeStr] = reader.result;
+                        resolve(reader.result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            });
+    };
+
+    // Chain: Local -> Proxy -> GitHub
+    let p = Promise.reject();
+    
+    // 0. Cache
+    if (window.blobImageCache[codeStr]) {
+        p = Promise.resolve(window.blobImageCache[codeStr]);
+    } else {
+        // 1. Local
+        p = trySource(`/product_images/${codeStr}.jpg?v=178`, 'Local')
+            .catch(() => {
+                // 2. Proxy
+                const fallbackPath = window.productImageMap ? window.productImageMap[codeStr] : null;
+                if (fallbackPath) return trySource(window.location.origin + fallbackPath, 'Proxy');
+                throw new Error("No Proxy map");
+            })
+            .catch(() => {
+                // 3. GitHub
+                return trySource(`https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=178`, 'GitHub');
+            });
+    }
+
+    p.then(dataUrl => {
+        img.src = dataUrl;
+        img.style.border = '2px solid #22c55e'; // Solid Green
+        img.style.opacity = '1';
+        delete img.dataset.loadingBlob;
+    }).catch(err => {
+        img.style.border = '2px solid #ef4444'; // Solid Red
+        img.style.opacity = '0.4';
+        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        delete img.dataset.loadingBlob;
+    });
+};
     vn: {
         tagline: "Institutional Việt Nam - Lưu hành nội bộ",
         toolkit_name: "Cổng thông tin bán hàng",
