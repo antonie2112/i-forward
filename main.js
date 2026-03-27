@@ -2237,7 +2237,7 @@ function searchLibrary() {
           <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <div class="w-16 h-20 overflow-hidden flex-shrink-0 relative">
             <img alt="${p.name}" class="w-full h-full object-contain transition-transform group-hover:scale-110" 
-                 src="/product_images/${(p.code || '').trim()}.jpg?v=122.0" 
+                 src="/product_images/${(p.code || '').trim()}.jpg?v=181.0" 
                  onerror="window.handleProductImageError(this, '${p.code || ''}', true)">
             <div class="absolute top-1 right-1 bg-primary text-white text-[8px] font-bold px-1.5 py-0.5 rounded shadow-lg">PDF</div>
           </div>
