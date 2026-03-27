@@ -1019,6 +1019,7 @@ let showDiscount = false;
 // --- Product Database ---
 let productsDB = [];
 window.productImageMap = {};
+window.blobImageCache = {}; // Phase 176: Memory cache for blob URLs
 
 // Load all required data before initial render
 Promise.all([
@@ -1086,64 +1087,73 @@ document.addEventListener('touchstart', (e) => {
     }
 });
 
-window.handleProductImageError = function(img, code, isSearch = false) {
+window.handleProductImageError = async function(img, code, isSearch = false) {
     if (!code) return;
-    // Prevent infinite loop
-    if (img.dataset.errorAttempted === "2") return; 
+    const codeStr = code.toString().trim();
     
-    // Attempt 1: Proxy
-    if (!img.dataset.errorAttempted) {
-        img.dataset.errorAttempted = "1";
-        const attemptFallback = () => {
-            const fallback = window.productImageMap[code.toString()];
-            if (fallback) {
-                const proxyUrl = window.location.origin + fallback;
-                mobileLog(`Try Proxy ${code}: ${proxyUrl}`, 'blue-500');
-                img.src = proxyUrl;
-            } else {
-                mobileLog(`No Map for ${code}`, 'red-500');
-                img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-            }
-        };
-        const fallback = window.productImageMap[code.toString()];
-        if (fallback) {
-            mobileLog(`Try Proxy ${code}`, 'blue-500');
-            img.src = fallback;
-        } else {
-            // Force Attempt 2 if no proxy map
-            img.dataset.errorAttempted = "2";
-            const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg?v=150.0`;
-            mobileLog(`Skip to Direct ${code}`, 'orange-500');
-            img.src = githubUrl;
+    // Prevent multiple parallel loads for same image
+    if (img.dataset.loadingBlob === "1") return;
+    img.dataset.loadingBlob = "1";
+
+    // Visual start
+    img.style.border = '2px solid orange';
+    img.style.opacity = '0.6';
+
+    const tryFetch = async (url, sourceName) => {
+        try {
+            mobileLog(`Fetch[${sourceName}] ${codeStr}...`, 'slate-400');
+            const response = await fetch(url, { mode: 'cors', cache: 'no-cache' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            window.blobImageCache[codeStr] = blobUrl;
+            return blobUrl;
+        } catch (e) {
+            mobileLog(`Fail[${sourceName}] ${codeStr}: ${e.message}`, 'red-400');
+            return null;
         }
+    };
+
+    // 0. Check Cache
+    if (window.blobImageCache[codeStr]) {
+        img.src = window.blobImageCache[codeStr];
+        img.style.border = '2px solid green';
+        img.style.opacity = '1';
         return;
     }
 
-    // Attempt 2: Direct Azure URL (Security bypass for mobile)
-    if (img.dataset.errorAttempted === "1") {
-        img.dataset.errorAttempted = "2";
-        const fallback = window.productImageMap[code.toString()];
-        if (fallback && fallback.includes('/cdn-proxy')) { // Renamed from /system-assets to /cdn-proxy
-            const directUrl = fallback.replace('/cdn-proxy', 'https://ecolabwallchart.azurewebsites.net') + '?v=122.0';
-            mobileLog(`Try Direct ${code}: ${directUrl}`, 'orange-500');
-            img.src = directUrl;
-        } else {
-            // If no map, jump to GitHub Raw
-            const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg`;
-            mobileLog(`Try Github ${code}`, 'purple-500');
-            img.src = githubUrl;
+    // 1. Try Local
+    let url = `/product_images/${codeStr}.jpg?v=176.0`;
+    let res = await tryFetch(url, 'Local');
+    
+    // 2. Try Proxy
+    if (!res) {
+        const fallbackPath = window.productImageMap[codeStr];
+        if (fallbackPath) {
+            url = window.location.origin + fallbackPath;
+            res = await tryFetch(url, 'Proxy');
         }
-    } else if (img.dataset.errorAttempted === "2") {
-        // Attempt 3: GitHub Raw Fallback (The ultimate reliable source)
-        img.dataset.errorAttempted = "3";
-        const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg`;
-        mobileLog(`Try Github Fallback ${code}`, 'purple-600');
-        img.src = githubUrl;
-        img.onerror = () => {
-             mobileLog(`FINAL FAIL ${code}`, 'red-700');
-             img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        };
     }
+
+    // 3. Try GitHub Raw
+    if (!res) {
+        url = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=176.0`;
+        res = await tryFetch(url, 'GitHub');
+    }
+
+    // Final Apply
+    if (res) {
+        img.src = res;
+        img.style.border = '2px solid green';
+        img.style.opacity = '1';
+        mobileLog(`SUCCESS[${codeStr}]`, 'green-600');
+    } else {
+        img.style.border = '2px solid red';
+        img.style.opacity = '0.3';
+        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+    }
+    
+    delete img.dataset.loadingBlob;
 };
 fetch('products_2026.json')
     .then(res => res.json())
@@ -2017,9 +2027,9 @@ function renderRows(fullRender = true) {
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
-                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=150.0" 
+                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=176.0" 
                              class="mx-auto" style="width: 80px; height: 100px; min-width: 80px; min-height: 100px; display: block; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
-                             onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'"
+                             onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'; this.style.opacity='1'"
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
