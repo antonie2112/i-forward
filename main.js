@@ -248,28 +248,7 @@ const products = [
     { id: 4, name: "Respirator Mask N95 (Box)", cat: "Safety Gear", price: 32.00, catsheet: "#cat4", sds: "#sds4" },
     { id: 5, name: "Hydraulic Fluid H-46", cat: "Fluids", price: 210.00, catsheet: "#cat5", sds: "#sds5" }
 ];
-,
-        cpor_desc: "Chi phí hóa chất trên 1 phòng có khách",
-        cpsqm_title: "Cost per Sqm",
-        cpsqm_desc: "Chi phí vệ sinh trên 1 mét vuông",
-        lbl_total_chem: "Tổng Hóa Chất (VND)",
-        lbl_covers: "Tổng số Khách (Covers)",
-        lbl_racks: "Tổng số Racks",
-        lbl_sinks: "Tổng số Bồn (Sinks)",
-        lbl_rooms: "Số phòng có khách",
-        lbl_sqm: "Diện tích (m²)",
-        lbl_result: "Kết quả:"
-    }
-};
 
-// --- Mock Data ---
-const products = [
-    { id: 1, name: "Industrial SolveClean X1", cat: "Chemicals", price: 120.00, catsheet: "#cat1", sds: "#sds1" },
-    { id: 2, name: "Safety Gloves Pro (L)", cat: "Safety Gear", price: 25.50, catsheet: "#cat2", sds: "#sds2" },
-    { id: 3, name: "Lubricant Heavy Duty 500ml", cat: "Lubricants", price: 45.00, catsheet: "#cat3", sds: "#sds3" },
-    { id: 4, name: "Respirator Mask N95 (Box)", cat: "Safety Gear", price: 32.00, catsheet: "#cat4", sds: "#sds4" },
-    { id: 5, name: "Hydraulic Fluid H-46", cat: "Fluids", price: 210.00, catsheet: "#cat5", sds: "#sds5" }
-];
 
 // --- Quote Presets ---
 const PRESETS = {
