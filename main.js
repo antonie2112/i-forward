@@ -1032,7 +1032,7 @@ Promise.all([
     images.forEach(p => {
         if (p.code && p.image_url) {
             // Rewrite URL to use local proxy to bypass CORS/Privacy + cache bust
-            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/system-assets') + '?v=122.0';
+            window.productImageMap[p.code.toString()] = p.image_url.replace('https://ecolabwallchart.azurewebsites.net', '/cdn-proxy') + '?v=150.0';
         }
     });
     
@@ -1105,12 +1105,16 @@ window.handleProductImageError = function(img, code, isSearch = false) {
                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
             }
         };
-// ... (rest of logic)
-
-        if (Object.keys(window.productImageMap).length === 0) {
-            setTimeout(attemptFallback, 1000);
+        const fallback = window.productImageMap[code.toString()];
+        if (fallback) {
+            mobileLog(`Try Proxy ${code}`, 'blue-500');
+            img.src = fallback;
         } else {
-            attemptFallback();
+            // Force Attempt 2 if no proxy map
+            img.dataset.errorAttempted = "2";
+            const githubUrl = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${code}.jpg?v=150.0`;
+            mobileLog(`Skip to Direct ${code}`, 'orange-500');
+            img.src = githubUrl;
         }
         return;
     }
@@ -1119,8 +1123,8 @@ window.handleProductImageError = function(img, code, isSearch = false) {
     if (img.dataset.errorAttempted === "1") {
         img.dataset.errorAttempted = "2";
         const fallback = window.productImageMap[code.toString()];
-        if (fallback && fallback.includes('/system-assets')) {
-            const directUrl = fallback.replace('/system-assets', 'https://ecolabwallchart.azurewebsites.net') + '?v=122.0';
+        if (fallback && fallback.includes('/cdn-proxy')) { // Renamed from /system-assets to /cdn-proxy
+            const directUrl = fallback.replace('/cdn-proxy', 'https://ecolabwallchart.azurewebsites.net') + '?v=122.0';
             mobileLog(`Try Direct ${code}: ${directUrl}`, 'orange-500');
             img.src = directUrl;
         } else {
@@ -2013,8 +2017,9 @@ function renderRows(fullRender = true) {
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
                     <td class="p-2 border border-slate-200 text-center">
-                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=122.0" 
-                             class="mx-auto" style="width: auto; height: auto; max-width: 80px; max-height: 80px; display: block; object-fit: contain;" 
+                        <img src="/product_images/${(item.code || '').trim()}.jpg?v=150.0" 
+                             class="mx-auto" style="width: 80px; height: 100px; min-width: 80px; min-height: 100px; display: block; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
+                             onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'"
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
