@@ -2016,7 +2016,10 @@
               </button>
 
               <div class="mt-4 pt-4 border-t border-slate-50 flex flex-col items-center gap-2">
-                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v176.0.MobileBlob</p>
+                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v177.0.DataURL</p>
+                  <button onclick="window.testConnectivity()" class="w-full py-3 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-blue-100 active:bg-blue-100 mb-2">
+                      📡 CHECK CONNECTIVITY (GITHUB)
+                  </button>
                   <button onclick="clearAllSiteCache()" class="w-full py-3 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-red-100 active:bg-red-100 transition-colors">
                       ⚠️ FIX SITE CACHING (HARD REFRESH)
                   </button>
@@ -2026,6 +2029,22 @@
   </div>
 
   <script>
+      // Phase 177: Force-Purge stale caches if version < 177
+      const EXPECTED_VERSION = 177;
+      const currentVersion = parseInt(localStorage.getItem('inst_app_v') || '0');
+      if (currentVersion < EXPECTED_VERSION) {
+          console.log("Auth-Purge: Stale version detected. Cleaning...");
+          if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+          }
+          caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+          localStorage.setItem('inst_app_v', EXPECTED_VERSION.toString());
+          // Only reload once to avoid loop
+          if (!window.location.search.includes('purged=1')) {
+              window.location.href = window.location.origin + window.location.pathname + '?purged=1&v=' + Date.now();
+          }
+      }
+
       function clearAllSiteCache() {
           if (confirm("Clear all App Cache & reload?")) {
               if ('serviceWorker' in navigator) {
@@ -2043,7 +2062,7 @@
   <script type="module" src="/src/scanner.js"></script>
   <script type="module" src="/src/store.js"></script>
   <script type="module" src="/src/quotation.js"></script>
-  <script type="module" src="/main.js?v=176.0"></script>
+  <script type="module" src="/main.js?v=177.0"></script>
   <!-- TVD Math Modal -->
   <!-- LAUNDRY MATH MODAL -->
   <div id="tvd-laundry-math-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 transition-opacity duration-300">

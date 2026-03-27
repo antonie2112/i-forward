@@ -1051,6 +1051,16 @@ Promise.all([
     if (typeof renderDocs === 'function') renderDocs();
     
     console.log("System Data Loaded: ", { products: productsDB.length, imageMaps: Object.keys(window.productImageMap).length });
+    
+    // Phase 177: Self-Diagnostics & GitHub Check
+    window.testConnectivity = async () => {
+        try {
+            const res = await fetch('https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/7101070.jpg', { mode: 'no-cors' });
+            alert("✅ GitHub Raw is REACHABLE from this phone.");
+        } catch(e) {
+            alert("❌ GitHub Raw is BLOCKED or unreachable: " + e.message);
+        }
+    };
 }).catch(err => {
     console.error("Critical error loading system data:", err);
 });
@@ -1105,9 +1115,18 @@ window.handleProductImageError = async function(img, code, isSearch = false) {
             const response = await fetch(url, { mode: 'cors', cache: 'no-cache' });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const blob = await response.blob();
-            const blobUrl = URL.createObjectURL(blob);
-            window.blobImageCache[codeStr] = blobUrl;
-            return blobUrl;
+            
+            // Phase 177: Use FileReader instead of URL.createObjectURL for Brave compatibility
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const dataUrl = reader.result;
+                    window.blobImageCache[codeStr] = dataUrl;
+                    resolve(dataUrl);
+                };
+                reader.onerror = () => reject(new Error("FileReader failed"));
+                reader.readAsDataURL(blob);
+            });
         } catch (e) {
             mobileLog(`Fail[${sourceName}] ${codeStr}: ${e.message}`, 'red-400');
             return null;
