@@ -2,6 +2,74 @@
 
 // --- Localization Data ---
 const translations = {
+// ... (translations truncated for brevity)
+};
+
+// Global Error Handler for Images (Moved to top for compatibility)
+window.blobImageCache = window.blobImageCache || {};
+window.handleProductImageError = function(img, code, isSearch = false) {
+    if (!code || !img) return;
+    const codeStr = code.toString().trim();
+    if (img.dataset.loadingBlob === "1") return;
+    img.dataset.loadingBlob = "1";
+
+    // Diagnostic visual indicator (Solid Blue)
+    img.style.border = '3px solid #3b82f6'; 
+    img.style.opacity = '0.7';
+
+    // Helper for fetch sequence
+    const trySource = (url, name) => {
+        return fetch(url, { mode: 'cors', cache: 'no-cache' })
+            .then(res => {
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                return res.blob();
+            })
+            .then(blob => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        window.blobImageCache[codeStr] = reader.result;
+                        resolve(reader.result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(blob);
+                });
+            });
+    };
+
+    // Chain: Local -> Proxy -> GitHub
+    let p = Promise.reject();
+    
+    // 0. Cache
+    if (window.blobImageCache[codeStr]) {
+        p = Promise.resolve(window.blobImageCache[codeStr]);
+    } else {
+        // 1. Local
+        p = trySource(`/product_images/${codeStr}.jpg?v=178`, 'Local')
+            .catch(() => {
+                // 2. Proxy
+                const fallbackPath = window.productImageMap ? window.productImageMap[codeStr] : null;
+                if (fallbackPath) return trySource(window.location.origin + fallbackPath, 'Proxy');
+                throw new Error("No Proxy map");
+            })
+            .catch(() => {
+                // 3. GitHub
+                return trySource(`https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=178`, 'GitHub');
+            });
+    }
+
+    p.then(dataUrl => {
+        img.src = dataUrl;
+        img.style.border = '2px solid #22c55e'; // Solid Green
+        img.style.opacity = '1';
+        delete img.dataset.loadingBlob;
+    }).catch(err => {
+        img.style.border = '2px solid #ef4444'; // Solid Red
+        img.style.opacity = '0.4';
+        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+        delete img.dataset.loadingBlob;
+    });
+};
     en: {
         tagline: "Institutional Việt Nam - Internal Use",
         toolkit_name: "A Sales Hub",
@@ -1097,83 +1165,7 @@ document.addEventListener('touchstart', (e) => {
     }
 });
 
-window.handleProductImageError = async function(img, code, isSearch = false) {
-    if (!code) return;
-    const codeStr = code.toString().trim();
-    
-    // Prevent multiple parallel loads for same image
-    if (img.dataset.loadingBlob === "1") return;
-    img.dataset.loadingBlob = "1";
-
-    // Visual start
-    img.style.border = '2px solid orange';
-    img.style.opacity = '0.6';
-
-    const tryFetch = async (url, sourceName) => {
-        try {
-            mobileLog(`Fetch[${sourceName}] ${codeStr}...`, 'slate-400');
-            const response = await fetch(url, { mode: 'cors', cache: 'no-cache' });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const blob = await response.blob();
-            
-            // Phase 177: Use FileReader instead of URL.createObjectURL for Brave compatibility
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const dataUrl = reader.result;
-                    window.blobImageCache[codeStr] = dataUrl;
-                    resolve(dataUrl);
-                };
-                reader.onerror = () => reject(new Error("FileReader failed"));
-                reader.readAsDataURL(blob);
-            });
-        } catch (e) {
-            mobileLog(`Fail[${sourceName}] ${codeStr}: ${e.message}`, 'red-400');
-            return null;
-        }
-    };
-
-    // 0. Check Cache
-    if (window.blobImageCache[codeStr]) {
-        img.src = window.blobImageCache[codeStr];
-        img.style.border = '2px solid green';
-        img.style.opacity = '1';
-        return;
-    }
-
-    // 1. Try Local
-    let url = `/product_images/${codeStr}.jpg?v=176.0`;
-    let res = await tryFetch(url, 'Local');
-    
-    // 2. Try Proxy
-    if (!res) {
-        const fallbackPath = window.productImageMap[codeStr];
-        if (fallbackPath) {
-            url = window.location.origin + fallbackPath;
-            res = await tryFetch(url, 'Proxy');
-        }
-    }
-
-    // 3. Try GitHub Raw
-    if (!res) {
-        url = `https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=176.0`;
-        res = await tryFetch(url, 'GitHub');
-    }
-
-    // Final Apply
-    if (res) {
-        img.src = res;
-        img.style.border = '2px solid green';
-        img.style.opacity = '1';
-        mobileLog(`SUCCESS[${codeStr}]`, 'green-600');
-    } else {
-        img.style.border = '2px solid red';
-        img.style.opacity = '0.3';
-        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-    }
-    
-    delete img.dataset.loadingBlob;
-};
+// handleProductImageError was moved to the top for compatibility
 fetch('products_2026.json')
     .then(res => res.json())
     .then(data => {
