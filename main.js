@@ -1,73 +1,3 @@
-// --- Global Helper ---
-window.blobImageCache = window.blobImageCache || {};
-window.handleProductImageError = function(img, code, isSearch = false) {
-    if (!code || !img) return;
-    const codeStr = code.toString().trim();
-    if (img.dataset.loadingBlob === "1") return;
-    img.dataset.loadingBlob = "1";
-
-    console.log(`[IMG-FIX] Error triggered for: ${codeStr}`);
-
-    // Diagnostic visual indicator (Solid Blue)
-    img.style.border = '3px solid #3b82f6'; 
-    img.style.opacity = '0.7';
-
-    // Helper for fetch sequence
-    const trySource = (url, name) => {
-        return fetch(url, { mode: 'cors', cache: 'no-cache' })
-            .then(res => {
-                if (!res.ok) throw new Error("HTTP " + res.status);
-                return res.blob();
-            })
-            .then(blob => {
-                return new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => {
-                        window.blobImageCache[codeStr] = reader.result;
-                        resolve(reader.result);
-                    };
-                    reader.onerror = reject;
-                    reader.readAsDataURL(blob);
-                });
-            });
-    };
-
-    // Chain: Local -> Proxy -> GitHub
-    let p = Promise.reject();
-    
-    // 0. Cache
-    if (window.blobImageCache[codeStr]) {
-        p = Promise.resolve(window.blobImageCache[codeStr]);
-    } else {
-        // 1. Local
-        p = trySource(`/product_images/${codeStr}.jpg?v=179`, 'Local')
-            .catch(() => {
-                // 2. Proxy
-                const fallbackPath = window.productImageMap ? window.productImageMap[codeStr] : null;
-                if (fallbackPath) return trySource(window.location.origin + fallbackPath, 'Proxy');
-                throw new Error("No Proxy map");
-            })
-            .catch(() => {
-                // 3. GitHub
-                return trySource(`https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/${codeStr}.jpg?v=179`, 'GitHub');
-            });
-    }
-
-    p.then(dataUrl => {
-        console.log(`[IMG-FIX] Success for: ${codeStr}`);
-        img.src = dataUrl;
-        img.style.border = '2px solid #22c55e'; // Solid Green
-        img.style.opacity = '1';
-        delete img.dataset.loadingBlob;
-    }).catch(err => {
-        console.error(`[IMG-FIX] ALL SOURCES FAILED for: ${codeStr}`, err);
-        img.style.border = '2px solid #ef4444'; // Solid Red
-        img.style.opacity = '0.4';
-        img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-        delete img.dataset.loadingBlob;
-    });
-};
-
 // --- Localization Data ---
 const translations = {
     en: {
@@ -309,25 +239,16 @@ const translations = {
         lbl_result: "Kết quả:"
     }
 };
-à chính xác kỹ thuật trong ngành vệ sinh công nghiệp.",
-        quick_start: "Bắt đầu nhanh",
-        home_quote_desc: "Xây dựng bảng giá chuyên nghiệp, tùy chỉnh cho mọi phân khúc khách hàng.",
-        home_cat_desc: "Truy cập tài liệu kỹ thuật và marketing ngay lập tức.",
-        home_sds_desc: "Tra cứu an toàn hóa chất để đảm bảo tuân thủ và vận hành an toàn.",
-        home_prop_desc: "Tạo đề xuất hợp tác đầy đủ trong vài phút, thay vì hàng giờ.",
-        home_calc_desc: "Công cụ hỗ trợ tính toán chi phí hóa chất tối ưu cho vận hành.",
-        tab_calculator: "Tính Giá",
-        calculator_title: "Công Cụ Tính Giá",
-        calc_tab_cost: "Tính Chi Phí Tối Ưu",
-        calc_tab_tvd: "Ecolab TVD Calculator",
-        calc_tab_hdh: "H \"D\" H",
-        cpc_title: "Cost per Cover",
-        cpc_desc: "Chi phí hóa chất trên 1 thực khách",
-        cpr_title: "Cost per Rack",
-        cpr_desc: "Chi phí hóa chất trên 1 rack máy rửa",
-        cps_title: "Cost per Sink",
-        cps_desc: "Chi phí hóa chất trên 1 bồn rửa tay/chén",
-        cpor_title: "Cost per Occupied Room",
+
+// --- Mock Data ---
+const products = [
+    { id: 1, name: "Industrial SolveClean X1", cat: "Chemicals", price: 120.00, catsheet: "#cat1", sds: "#sds1" },
+    { id: 2, name: "Safety Gloves Pro (L)", cat: "Safety Gear", price: 25.50, catsheet: "#cat2", sds: "#sds2" },
+    { id: 3, name: "Lubricant Heavy Duty 500ml", cat: "Lubricants", price: 45.00, catsheet: "#cat3", sds: "#sds3" },
+    { id: 4, name: "Respirator Mask N95 (Box)", cat: "Safety Gear", price: 32.00, catsheet: "#cat4", sds: "#sds4" },
+    { id: 5, name: "Hydraulic Fluid H-46", cat: "Fluids", price: 210.00, catsheet: "#cat5", sds: "#sds5" }
+];
+,
         cpor_desc: "Chi phí hóa chất trên 1 phòng có khách",
         cpsqm_title: "Cost per Sqm",
         cpsqm_desc: "Chi phí vệ sinh trên 1 mét vuông",

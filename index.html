@@ -84,6 +84,62 @@
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script src="https://unpkg.com/@pdf-lib/fontkit/dist/fontkit.umd.min.js"></script>
 
+  <!-- Phase 180: Synchronous Image Handler (Bypasses Module Deferral) -->
+  <script>
+    window.blobImageCache = {};
+    window.handleProductImageError = function(img, code, isSearch) {
+        if (!code || !img) return;
+        var codeStr = code.toString().trim();
+        if (img.getAttribute('data-loading-blob') === "1") return;
+        img.setAttribute('data-loading-blob', "1");
+
+        // Diagnostic visual indicator
+        img.style.border = '3px solid #3b82f6'; // Blue
+        img.style.opacity = '0.7';
+
+        var trySource = function(url) {
+            return fetch(url, { mode: 'cors', cache: 'no-cache', credentials: 'omit' })
+                .then(function(res) {
+                    if (!res.ok) throw new Error("HTTP " + res.status);
+                    return res.blob();
+                })
+                .then(function(blob) {
+                    return new Promise(function(resolve, reject) {
+                        var reader = new FileReader();
+                        reader.onloadend = function() {
+                            window.blobImageCache[codeStr] = reader.result;
+                            resolve(reader.result);
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                });
+        };
+
+        var p = Promise.resolve();
+        if (window.blobImageCache[codeStr]) {
+            p = Promise.resolve(window.blobImageCache[codeStr]);
+        } else {
+            p = trySource('/product_images/' + codeStr + '.jpg?v=180')
+                .catch(function() {
+                    return trySource('https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/' + codeStr + '.jpg?v=180');
+                });
+        }
+
+        p.then(function(dataUrl) {
+            img.src = dataUrl;
+            img.style.border = '2px solid #22c55e'; // Green
+            img.style.opacity = '1';
+            img.removeAttribute('data-loading-blob');
+        }).catch(function() {
+            img.style.border = '2px solid #ef4444'; // Red
+            img.style.opacity = '0.4';
+            img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            img.removeAttribute('data-loading-blob');
+        });
+    };
+  </script>
+
 <body>
   <div id="app">
     <!-- Login Overlay -->
@@ -2016,7 +2072,7 @@
               </button>
 
               <div class="mt-4 pt-4 border-t border-slate-50 flex flex-col items-center gap-2">
-                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v179.0.StableFix</p>
+                  <p class="text-[9px] text-slate-300 font-mono uppercase tracking-widest">Build v180.0.SyncHandler</p>
                   <button onclick="window.testConnectivity()" class="w-full py-3 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-xl border border-blue-100 active:bg-blue-100 mb-2">
                       📡 CHECK CONNECTIVITY (GITHUB)
                   </button>
@@ -2030,7 +2086,7 @@
 
   <script>
       // Phase 177: Force-Purge stale caches if version < 177
-      const EXPECTED_VERSION = 179;
+      const EXPECTED_VERSION = 180;
       const currentVersion = parseInt(localStorage.getItem('inst_app_v') || '0');
       if (currentVersion < EXPECTED_VERSION) {
           console.log("Auth-Purge: Stale version detected. Cleaning...");
@@ -2062,7 +2118,7 @@
   <script type="module" src="/src/scanner.js"></script>
   <script type="module" src="/src/store.js"></script>
   <script type="module" src="/src/quotation.js"></script>
-  <script type="module" src="/main.js?v=179.0"></script>
+  <script type="module" src="/main.js?v=180.0"></script>
   <!-- TVD Math Modal -->
   <!-- LAUNDRY MATH MODAL -->
   <div id="tvd-laundry-math-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 transition-opacity duration-300">
