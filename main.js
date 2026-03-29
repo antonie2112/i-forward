@@ -1968,10 +1968,10 @@ function renderRows(fullRender = true) {
                         <textarea class="bg-transparent border-none p-0 text-[11px] font-medium text-slate-500 w-full focus:ring-2 focus:ring-primary/20 rounded resize-none" 
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
-                    <td class="p-2 border border-slate-200 text-center">
+                    <td class="p-2 border border-slate-200 text-center" style="min-width: 100px; width: 100px; max-width: 100px;">
                         <img src="${window.getProductImageURL(item.code)}" 
-                             class="mx-auto" style="width: 80px; height: 100px; min-width: 80px; min-height: 100px; display: block; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
-                             onload="this.style.border='1px solid green'; this.style.backgroundColor='transparent'; this.style.opacity='1'"
+                             class="mx-auto block" style="width: 80px; height: 100px; object-fit: contain; border: 1px solid #e2e8f0; background: #f8fafc;" 
+                             onload="this.style.border='1px solid #22c55e'; this.style.backgroundColor='transparent'; this.style.opacity='1'"
                              onerror="window.handleProductImageError(this, '${item.code || ''}')">
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
