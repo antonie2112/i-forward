@@ -1,5 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/cdn-proxy/:path*", "destination": "https://ecolabwallchart.azurewebsites.net/:path*" },  ]
+    { "source": "/cdn-proxy/:path*", "destination": "https://ecolabwallchart.azurewebsites.net/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
