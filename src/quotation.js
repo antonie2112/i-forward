@@ -1,4 +1,4 @@
-import productData from "../image_urls.json";
+import productData from "../public/products_2026.json";
 
 const searchInput = document.getElementById('quoteProductSearch');
 const searchDropdown = document.getElementById('quoteSearchDropdown');

@@ -1,5 +1,5 @@
 import { Html5Qrcode } from "html5-qrcode";
-import productData from "../image_urls.json";
+import productData from "../public/products_2026.json";
 
 let html5QrCode = null;
 const scannerOverlay = document.getElementById('scanner-overlay');
