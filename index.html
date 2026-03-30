@@ -104,7 +104,7 @@
             return window.productImageMap[codeStr];
         }
         // Priority 2: Local folder
-        return '/product_images/' + codeStr + '.jpg?v=182';
+        return '/product_images/' + codeStr + '.png?v=197';
     };
 
     window.handleProductImageError = function(img, code, isSearch) {
@@ -116,7 +116,7 @@
         // UI Feedback
         img.style.border = 'none'; // No border while loading
         
-        var githubURL = 'https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/' + codeStr + '.jpg?v=182';
+        var githubURL = 'https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/' + codeStr + '.png?v=197';
         
         // Rapid Fallback Logic
         fetch(githubURL, { mode: 'cors', cache: 'no-cache' })
