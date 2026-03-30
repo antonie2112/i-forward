@@ -145,9 +145,10 @@
                 img.removeAttribute('data-loading-blob');
             })
             .catch(function() {
-                // Final Failure State
-                img.style.border = '2px solid #ef4444'; // Red
-                img.style.opacity = '0.4';
+                // Final Failure State - Transparent, no border
+                img.style.border = 'none'; 
+                img.style.background = 'transparent';
+                img.style.opacity = '1';
                 img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
                 img.removeAttribute('data-loading-blob');
             });
