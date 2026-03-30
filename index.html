@@ -99,12 +99,12 @@
 
     // Proactive Resolver: Returns the most likely working URL immediately
     window.getProductImageURL = function(code) {
-        if (!code) return '/product_images/placeholder.jpg';
+        if (!code) return '/images_hq/placeholder.jpg';
         var codeStr = code.toString().trim();
         
         // Priority 1: High-Fidelity U2Net Local Transparent PNGs
         if (window.localAlphaMasks.indexOf(codeStr) !== -1) {
-            return '/product_images/' + codeStr + '.png?v=199';
+            return '/images_hq/' + codeStr + '.png?v=199';
         }
         
         // Priority 2: Ecolab CDN (via Proxy)
@@ -113,7 +113,7 @@
         }
         
         // Fallback: General local payload
-        return '/product_images/' + codeStr + '.png?v=199';
+        return '/images_hq/' + codeStr + '.png?v=199';
     };
 
     window.handleProductImageError = function(img, code, isSearch) {
@@ -125,7 +125,7 @@
         // UI Feedback
         img.style.border = 'none'; // No border while loading
         
-        var githubURL = 'https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/' + codeStr + '.png?v=199';
+        var githubURL = 'https://raw.githubusercontent.com/antonie2112/i-forward/main/public/images_hq/' + codeStr + '.png?v=199';
         
         // Rapid Fallback Logic
         fetch(githubURL, { mode: 'cors', cache: 'no-cache' })

@@ -1074,7 +1074,7 @@ Promise.all([
     // Phase 177: Self-Diagnostics & GitHub Check
     window.testConnectivity = async () => {
         try {
-            const res = await fetch('https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/7101070.png', { mode: 'no-cors' });
+            const res = await fetch('https://raw.githubusercontent.com/antonie2112/i-forward/main/public/images_hq/7101070.png', { mode: 'no-cors' });
             alert("✅ GitHub Raw is REACHABLE from this phone.");
         } catch(e) {
             alert("❌ GitHub Raw is BLOCKED or unreachable: " + e.message);
@@ -1973,7 +1973,7 @@ function renderRows(fullRender = true) {
             } else {
                 const safeCode = (item.code || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
                 const safeName = (item.name || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
-                const imagePath = `/product_images/${safeCode}.png?v=199`;
+                const imagePath = `/images_hq/${safeCode}.png?v=199`;
                 const price = Number(item.price) || 0;
                 const priceAfterDiscount = Math.round(price * (1 - (combinedDiscount / 100)));
 
@@ -2249,7 +2249,7 @@ function searchLibrary() {
     resultsContainer.innerHTML = matches.map(p => {
         const safeName = (p.name || '').replace(/[\\/*?:"<>|]/g, '').trim();
         const safeCode = (p.code || '').replace(/[\\/*?:"<>|]/g, '').trim();
-        const imgPath = `/product_images/${safeCode}.png?v=199`;
+        const imgPath = `/images_hq/${safeCode}.png?v=199`;
         const category = p.category || 'General';
 
         return `
