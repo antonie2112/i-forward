@@ -114,7 +114,7 @@
         img.setAttribute('data-loading-blob', "1");
 
         // UI Feedback
-        img.style.border = '2px solid #3b82f6'; // Blue (Recovery in progress)
+        img.style.border = 'none'; // No border while loading
         
         var githubURL = 'https://raw.githubusercontent.com/antonie2112/i-forward/main/public/product_images/' + codeStr + '.jpg?v=182';
         
@@ -139,7 +139,8 @@
             })
             .then(function(dataUrl) {
                 img.src = dataUrl;
-                img.style.border = '2px solid #22c55e'; // Green (Recovered)
+                img.style.border = 'none';
+                img.style.background = 'transparent';
                 img.style.opacity = '1';
                 img.removeAttribute('data-loading-blob');
             })
