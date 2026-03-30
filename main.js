@@ -1973,7 +1973,7 @@ function renderRows(fullRender = true) {
             } else {
                 const safeCode = (item.code || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
                 const safeName = (item.name || '').toString().replace(/[\\/*?:"<>|]/g, '').trim();
-                const imagePath = `/product_images/${safeCode}.png?v=197`;
+                const imagePath = `/product_images/${safeCode}.png?v=199`;
                 const price = Number(item.price) || 0;
                 const priceAfterDiscount = Math.round(price * (1 - (combinedDiscount / 100)));
 
@@ -2249,7 +2249,7 @@ function searchLibrary() {
     resultsContainer.innerHTML = matches.map(p => {
         const safeName = (p.name || '').replace(/[\\/*?:"<>|]/g, '').trim();
         const safeCode = (p.code || '').replace(/[\\/*?:"<>|]/g, '').trim();
-        const imgPath = `/product_images/${safeCode}.png?v=197`;
+        const imgPath = `/product_images/${safeCode}.png?v=199`;
         const category = p.category || 'General';
 
         return `
