@@ -484,6 +484,16 @@ const PRESETS = {
             dilution: "Dùng ngay"
         },
         {
+            id: 1092,
+            code: "7307249",
+            name: "XY-12 4x5 LT",
+            specs: "Khử trùng / Sanitizer",
+            unit: "thùng 4 can x 5L",
+            price: 3124300,
+            discountPrice: 2835945,
+            dilution: "Dùng ngay"
+        },
+        {
             id: 107,
             code: "7106043",
             name: "GREASECUTTER",
@@ -657,33 +667,33 @@ const PRESETS = {
         },
         {
             id: 114,
-            code: "7106115",
-            name: "SANIGARD",
+            code: "7101088",
+            name: "ECOLAB ACID BATHROOM CLN",
             specs: "Vệ sinh toilet / Toilet cleaner",
-            unit: "can 3.8l",
-            price: 440000.0,
-            discountPrice: 399454,
-            dilution: "100 ml/lit"
+            unit: "thùng 2 can x 2L",
+            price: 4129900,
+            discountPrice: 3749430,
+            dilution: "Dùng ngay"
         },
         {
             id: 115,
-            code: "7106104",
-            name: "FUTURE DC",
+            code: "6100925",
+            name: "PEROXIDE MULTI SURFACE CLN",
             specs: "Vệ sinh đa năng / Mutipurpose cleaner",
-            unit: "can 3.8l",
-            price: 285200.0,
-            discountPrice: 258890,
-            dilution: "7 ml/lit"
+            unit: "thùng 2 can x 2L",
+            price: 3818800,
+            discountPrice: 3466822,
+            dilution: "15 ml/lit"
         },
         {
             id: 116,
-            code: "7106119",
-            name: "MIRAGLO",
+            code: "7101085",
+            name: "ECOLAB GLASS CLEANER",
             specs: "Vệ sinh kính / Glass cleaner",
-            unit: "can 3.8l",
-            price: 317700.0,
-            discountPrice: 288404,
-            dilution: "100 ml/lit"
+            unit: "thùng 2 can x 2L",
+            price: 3531400,
+            discountPrice: 3205934,
+            dilution: "15 ml/lit"
         },
         {
             id: 117,
@@ -802,22 +812,22 @@ const PRESETS = {
         },
         {
             id: 101,
-            code: "7107037",
-            name: "ECO KLENE HD 20LT",
+            code: "7107648",
+            name: "SUPER TRUMP 4X5L",
             specs: "Chất rửa cho máy rửa / Liquid detergent for WW",
-            unit: "can 20lit",
-            price: 1437800.0,
-            discountPrice: 1305327,
+            unit: "thùng 4 can x 5L",
+            price: 2759500,
+            discountPrice: 2505290,
             dilution: "2 ml/lit"
         },
         {
             id: 102,
-            code: "7107038",
-            name: "RINSE DRY 20LT",
+            code: "7106036",
+            name: "RINSE DRY EXTRA",
             specs: "Chất tráng cho máy rửa / Rinse additive for WW",
-            unit: "can 20lit",
-            price: 1996900.0,
-            discountPrice: 1812955,
+            unit: "thùng 4 can x 1 GAL",
+            price: 3695600,
+            discountPrice: 3354426,
             dilution: "0,16 ml/lit"
         },
         {
@@ -891,6 +901,16 @@ const PRESETS = {
             dilution: "10 ml/lit"
         },
         {
+            id: 1091,
+            code: "7307249",
+            name: "XY-12 4x5 LT",
+            specs: "Khử trùng / Sanitizer",
+            unit: "thùng 4 can x 5L",
+            price: 3124300,
+            discountPrice: 2835945,
+            dilution: "Dùng ngay"
+        },
+        {
             id: 111,
             code: "7106666",
             name: "ECOLAB FIRST IMPRESSION (METAL POLISH)",
@@ -937,22 +957,22 @@ const PRESETS = {
         },
         {
             id: 130,
-            code: "7107393",
-            name: "TURBO OXYBRITE 20L",
+            code: "7107391",
+            name: "ECO-STAR OXY-BRITE 50 20 LT",
             specs: "Tẩy trắng oxy / Oxygen bleach",
             unit: "can 20l",
-            price: 2209200.0,
-            discountPrice: 2005707,
+            price: 2761500,
+            discountPrice: 2506634,
             dilution: "2 - 3ml/kg"
         },
         {
             id: 132,
-            code: "7102011",
-            name: "EC-SOUR 20 LT.",
+            code: "7107042",
+            name: "ECO-STAR SOUR 20L",
             specs: "Chất trung hoà / Neutralizer",
             unit: "can 20l",
-            price: 1639800.0,
-            discountPrice: 1488800,
+            price: 2648500,
+            discountPrice: 2404052,
             dilution: "1 - 2 ml/kg"
         },
         {
@@ -967,32 +987,32 @@ const PRESETS = {
         },
         {
             id: 135,
-            code: "7107046",
-            name: "TURBO BREAK 20L",
+            code: "7107039",
+            name: "ECO-STAR BUILDER C 20L",
             specs: "Tăng môi trường kiềm / Alkaline booster",
             unit: "can 20l",
-            price: 1890400.0,
-            discountPrice: 1716263,
+            price: 2363000,
+            discountPrice: 2144856,
             dilution: "1-3ml/kg"
         },
         {
             id: 136,
-            code: "8300089",
-            name: "TURBO DETERGENT 20LT",
+            code: "7107040",
+            name: "ECO-STAR DETERGENT PLUS 20LT",
             specs: "Nước giặt chính / Main liquid detergent",
             unit: "can 20l",
-            price: 4401900.0,
-            discountPrice: 3996501,
+            price: 5502300,
+            discountPrice: 4994437,
             dilution: "0.8 - 1.0 ml/kg"
         },
         {
             id: 131,
-            code: "7106578",
-            name: "Ecostar Soft",
+            code: "7106072",
+            name: "ECO-STAR SOFT C",
             specs: "Xả vải / Softener",
             unit: "can 20l",
-            price: 1384301.0,
-            discountPrice: 1269404,
+            price: 2022800,
+            discountPrice: 1836096,
             dilution: "2 - 3 ml/kg"
         },
         {
@@ -1962,7 +1982,7 @@ function renderRows(fullRender = true) {
                     <td class="text-center font-bold border border-slate-200 text-slate-400 group-hover:text-primary transition-colors">${sttCounter++}</td>
                     <td class="text-center border border-slate-200 text-slate-400 font-bold">${item.code || '-'}</td>
                     <td class="p-2 border border-slate-200">
-                        <input type="text" class="bg-transparent border-none p-0 text-sm w-full focus:ring-2 focus:ring-primary/20 rounded font-black text-slate-900" 
+                        <input type="text" class="uppercase bg-transparent border-none p-0 text-sm w-full focus:ring-2 focus:ring-primary/20 rounded font-black text-slate-900" 
                                 list="products2026List"
                                 value="${item.name || ''}" placeholder="Tên sản phẩm..." oninput="window.updateItem(${item.id}, 'name', this.value)">
                         <textarea class="bg-transparent border-none p-0 text-[11px] font-medium text-slate-500 w-full focus:ring-2 focus:ring-primary/20 rounded resize-none" 
