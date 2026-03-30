@@ -656,13 +656,13 @@
 
             <!-- Discount Controls (no-print) -->
             <div class="flex items-center gap-4 no-print mt-2">
-              <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-100 shadow-sm">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Global Discount:</span>
-                <div class="relative w-16">
+              <div class="flex items-center gap-1 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-sm">
+                <span class="text-[10px] font-bold text-slate-600 uppercase tracking-tighter">Chiết khấu:</span>
+                <div class="flex items-center">
                   <input id="globalDiscount"
-                    class="w-full bg-transparent border-none p-0 text-slate-900 font-bold text-xs outline-none focus:ring-0"
+                    class="w-7 bg-transparent border-none p-0 text-slate-900 font-bold text-[13px] outline-none focus:ring-0 text-right pr-0.5"
                     placeholder="0" type="number" onchange="window.renderRows()">
-                  <span class="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]">%</span>
+                  <span class="text-slate-500 text-[11px] font-bold">%</span>
                 </div>
               </div>
               
@@ -670,7 +670,7 @@
                 <input type="checkbox" id="showDiscountToggle"
                   class="size-3.5 rounded border-slate-300 text-primary focus:ring-primary" checked
                   onchange="window.renderRows()">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Show Discount</span>
+                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">Hiển thị</span>
               </label>
             </div>
           </div>
