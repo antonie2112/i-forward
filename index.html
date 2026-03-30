@@ -145,11 +145,14 @@
                 img.removeAttribute('data-loading-blob');
             })
             .catch(function() {
-                // Final Failure State - Transparent, no border
-                img.style.border = 'none'; 
-                img.style.background = 'transparent';
-                img.style.opacity = '1';
-                img.src = isSearch ? 'https://placehold.co/80x100?text=📦' : 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+                // Final Failure State - True Invisibility
+                if (isSearch) {
+                    img.src = 'https://placehold.co/80x100/ffffff/ffffff?text=📦';
+                    img.style.border = 'none';
+                    img.style.opacity = '1';
+                } else {
+                    img.style.visibility = 'hidden'; 
+                }
                 img.removeAttribute('data-loading-blob');
             });
     };
