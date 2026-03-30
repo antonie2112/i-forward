@@ -1734,8 +1734,8 @@ window.updateItem = function(id, field, value) {
     item[field] = value;
 
     // Autocomplete logic for product names
-    if (field === 'name' && window.productsDB) {
-        const match = window.productsDB.find(p => p.name.toUpperCase() === value.toUpperCase());
+    if (field === 'name' && productsDB) {
+        const match = productsDB.find(p => p.name.toUpperCase() === value.toUpperCase());
         if (match) {
             item.code = match.code || '';
             item.specs = match.specs || '';
