@@ -1947,11 +1947,14 @@ function renderRows(fullRender = true) {
                         <textarea class="bg-transparent border-none p-0 text-[11px] font-medium text-slate-500 w-full focus:ring-2 focus:ring-primary/20 rounded resize-none" 
                                   placeholder="Công dụng..." oninput="window.updateItem(${item.id}, 'specs', this.value)">${item.specs || ''}</textarea>
                     </td>
-                    <td class="p-2 border border-slate-200 text-center bg-transparent" style="min-width: 100px; width: 100px; max-width: 100px;">
-                        <img src="${window.getProductImageURL(item.code)}" 
-                             class="mx-auto block" style="width: 80px; height: 100px; object-fit: contain; background: transparent;" 
-                             onload="this.style.opacity='1'"
-                             onerror="window.handleProductImageError(this, '${item.code || ''}')">
+                    <td class="p-2 border border-slate-200 text-center bg-transparent" style="min-width: 100px; width: 100px; max-width: 100px; position: relative;">
+                        <!-- Safari WebKit 0px object-fit bug mitigation: strict absolute width/height and eager loading -->
+                        <div style="width: 80px; height: 100px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                            <img src="${window.getProductImageURL(item.code)}" 
+                                 class="mx-auto block" style="width: 100%; height: 100%; object-fit: contain; background: transparent;"
+                                 loading="eager" decoding="sync"
+                                 onerror="window.handleProductImageError(this, '${item.code || ''}')">
+                        </div>
                     </td>
                     <td class="text-center text-xs text-slate-600 border border-slate-200 px-2 font-black uppercase tracking-widest">${item.unit || '-'}</td>
                     <td class="text-right font-mono text-xs px-3 border border-slate-200 font-bold text-slate-600">${formatCurrency(price)}</td>
