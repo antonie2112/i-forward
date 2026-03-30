@@ -653,34 +653,6 @@
               </p>
             </div>
 
-            <!-- Line 4: Quick Tools (no-print) -->
-            <div class="flex flex-col md:flex-row gap-4 no-print bg-slate-50 p-4 md:p-6 rounded-2xl border border-slate-100 shadow-inner">
-                <div class="flex-1 relative group">
-                    <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">add_shopping_cart</span>
-                    <input id="quoteProductSearch" 
-                        class="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm placeholder:text-slate-400 transition-all shadow-sm"
-                        placeholder="Quick Add Product (Type name or code)..." 
-                        type="text"
-                        oninput="window.handleQuoteSearch(this.value)">
-                    <!-- Search Results Dropdown -->
-                    <div id="quoteSearchDropdown" class="hidden absolute left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-100 z-[100] max-h-64 overflow-y-auto overflow-x-hidden"></div>
-                </div>
-                
-                <div class="grid grid-cols-2 md:flex items-center gap-2">
-                    <button onclick="window.addSectionPrompt()" class="col-span-1 px-3 py-3 bg-slate-900 text-white rounded-xl font-bold text-[10px] uppercase tracking-wider hover:bg-black transition-all flex items-center justify-center gap-2 shadow-lg shadow-slate-900/10 active:scale-95">
-                        <span class="material-symbols-outlined text-sm">create_new_folder</span>
-                        Category
-                    </button>
-                    <button onclick="window.addEmptyRow()" class="col-span-1 px-3 py-3 bg-white text-slate-700 border border-slate-200 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:bg-slate-50 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
-                        <span class="material-symbols-outlined text-sm">add_circle</span>
-                        Row
-                    </button>
-                    <button onclick="window.clearQuotation()" class="col-span-2 px-3 py-2 bg-white text-rose-500 border border-rose-100 rounded-xl font-bold text-[10px] uppercase tracking-wider hover:bg-rose-50 transition-all flex items-center justify-center gap-2 shadow-sm active:scale-95">
-                        <span class="material-symbols-outlined text-sm">delete_sweep</span>
-                        Clear All
-                    </button>
-                </div>
-            </div>
 
             <!-- Discount Controls (no-print) -->
             <div class="flex items-center gap-4 no-print mt-2">
