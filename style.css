@@ -557,7 +557,7 @@ header {
 @media print {
   @page {
     size: A4 landscape;
-    margin: 0; /* Hides browser headers/footers */
+    margin: 15mm; /* Standard print margins */
   }
 
   body {
@@ -568,13 +568,30 @@ header {
   }
 
   #exportableQuotation {
-    padding: 0 6mm 6mm 6mm !important; /* Removed top padding to pull logo to the very top */
-    width: 290mm !important; /* Perfect fit for A4 landscape (297mm) */
-    min-height: 202mm !important;
+    padding: 0 !important; 
+    width: 100% !important; 
     margin: 0 auto !important;
     box-sizing: border-box !important;
     background: white !important;
     overflow: visible !important;
+  }
+
+  /* Force table fixed layout for deterministic widths */
+  .excel-table {
+    table-layout: fixed !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .excel-table th, .excel-table td {
+    word-break: break-word !important;
+    white-space: normal !important;
+  }
+
+  /* Force Category breaks page EXCEPT the first one */
+  tbody tr.category-section-header ~ tr.category-section-header {
+    page-break-before: always !important;
+    break-before: page !important;
   }
 
   /* Force Pure White Background for content rows/cells in print - EXCLUDING HEADERS */

@@ -1246,52 +1246,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const clonedThemeSnapshot = document.body.dataset.theme;
                 document.body.dataset.theme = 'light';
 
-                // 2. Fetch all images to Base64 (Parallel)
-                setStatus("Đang xử lý dữ liệu hình ảnh...");
-                const images = Array.from(element.querySelectorAll('img'));
-                const imageMap = new Map();
-
-                const convertToBase64 = async (img) => {
-                    if (!img.src || img.src.startsWith('data:')) return;
-                    try {
-                        const response = await fetch(img.src);
-                        if (!response.ok) throw new Error("Fetch failed");
-                        const blob = await response.blob();
-                        return new Promise((resolve) => {
-                            const reader = new FileReader();
-                            reader.onloadend = () => resolve({ original: img.src, b64: reader.result });
-                            reader.readAsDataURL(blob);
-                        });
-                    } catch (e) {
-                        // Fallback to canvas conversion
-                        return new Promise((resolve) => {
-                            const tempImg = new Image();
-                            tempImg.crossOrigin = 'Anonymous';
-                            tempImg.onload = () => {
-                                const canvas = document.createElement('canvas');
-                                canvas.width = tempImg.width;
-                                canvas.height = tempImg.height;
-                                const ctx = canvas.getContext('2d');
-                                ctx.drawImage(tempImg, 0, 0);
-                                resolve({ original: img.src, b64: canvas.toDataURL('image/png') });
-                            };
-                            tempImg.onerror = () => resolve(null);
-                            tempImg.src = img.src;
-                        });
-                    }
-                };
-
-                const results = await Promise.all(images.map(convertToBase64));
-                results.forEach(res => {
-                    if (res) imageMap.set(res.original, res.b64);
-                });
-
-                // 3. Render Canvas
+                // 2. Render Canvas Directly (images are same-origin via Vercel proxy)
                 setStatus("Đang chụp ảnh báo giá...");
+                
                 const canvas = await html2canvas(element, {
                     scale: 2,
                     useCORS: true,
-                    logging: true,
+                    allowTaint: false,
+                    logging: false,
                     backgroundColor: "#ffffff",
                     scrollX: 0,
                     scrollY: 0,
@@ -1301,9 +1263,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (clonedElement) {
                             clonedElement.style.width = '1200px';
                             clonedElement.style.margin = '0 auto';
-                            clonedElement.querySelectorAll('img').forEach(img => {
-                                if (imageMap.has(img.src)) img.src = imageMap.get(img.src);
-                            });
                             // Replace inputs with spans
                             clonedElement.querySelectorAll('input:not([type="checkbox"]), textarea').forEach(input => {
                                 const parent = input.parentNode;
