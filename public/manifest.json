@@ -4,17 +4,27 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0ea5e9",
+  "theme_color": "#0098CC",
   "description": "Enterprise Sales Hub for Ecolab Professionals",
   "icons": [
     {
-      "src": "/PWA_logo.png",
+      "src": "/appstore-images/android/launchericon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/appstore-images/android/launchericon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/appstore-images/android/launchericon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/PWA_logo.png",
+      "src": "/appstore-images/android/launchericon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
