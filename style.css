@@ -737,6 +737,7 @@ header {
     width: auto !important;
     margin: 0 auto !important;
     object-fit: contain !important;
+    background-color: white !important;
   }
 
   /* Force display of inputs as plain text and hide resize handles */

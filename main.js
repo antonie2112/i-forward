@@ -1951,7 +1951,7 @@ function renderRows(fullRender = true) {
                         <!-- Safari WebKit 0px object-fit bug mitigation: strict absolute width/height and eager loading -->
                         <div style="width: 80px; height: 100px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
                             <img src="${window.getProductImageURL(item.code)}" 
-                                 class="mx-auto block" style="width: 100%; height: 100%; object-fit: contain; background: transparent;"
+                                 class="mx-auto block" style="width: 100%; height: 100%; object-fit: contain; background: white;"
                                  loading="eager" decoding="sync"
                                  onerror="window.handleProductImageError(this, '${item.code || ''}')">
                         </div>
