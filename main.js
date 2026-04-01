@@ -1522,6 +1522,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('quote-builder').style.display = 'none';
         }
 
+        // Initialize Catsheets if navigating there
+        if (tabId === 'catsheets') {
+            if (typeof window.initCatsheets === 'function') {
+                window.initCatsheets();
+            }
+        }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
         if (typeof applyLanguage === 'function') applyLanguage(currentLang);
     };
@@ -3391,3 +3398,172 @@ async function exportKitchenToImage() {
     }
 }
 window.exportKitchenToImage = exportKitchenToImage;
+
+// ==========================================
+// Phase 217: Catsheet Database Architecture
+// ==========================================
+window.catsheetsData = null;
+window.currentCsLang = 'en';
+
+window.initCatsheets = async () => {
+    if (window.catsheetsData) return; // Cached mapping
+    
+    const loading = document.getElementById('catsheetLoading');
+    const list = document.getElementById('catsheetsList');
+    
+    try {
+        if (loading) loading.classList.remove('hidden');
+        if (list) list.classList.add('hidden');
+        
+        // Edge JSON Database Access
+        const res = await fetch('./catsheets.json');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        window.catsheetsData = await res.json();
+        
+        window.renderCatsheets();
+    } catch (e) {
+        console.error('Failed to load Catsheet Matrix:', e);
+        if (loading) {
+            loading.innerHTML = '<span class="material-symbols-outlined text-rose-500 text-4xl mb-3">error</span><p class="text-rose-500 font-bold">Lỗi kết nối cơ sở dữ liệu. Vui lòng thử lại.</p>';
+        }
+    } finally {
+        if (loading && window.catsheetsData) loading.classList.add('hidden');
+    }
+};
+
+window.renderCatsheets = () => {
+    if (!window.catsheetsData) return;
+    const list = document.getElementById('catsheetsList');
+    const empty = document.getElementById('catsheetEmptyData');
+    const q = (document.getElementById('catsheetSearchInput')?.value || '').toLowerCase().trim();
+    
+    list.innerHTML = '';
+    let found = 0;
+    
+    const products = Object.keys(window.catsheetsData).sort();
+    
+    products.forEach(prodName => {
+        if (q && !prodName.toLowerCase().includes(q)) return;
+        
+        const prodData = window.catsheetsData[prodName];
+        const langData = prodData[window.currentCsLang] || (window.currentCsLang === 'en' ? prodData['vi'] : prodData['en']);
+        if (!langData) return;
+        
+        found++;
+        
+        const cardHTML = `
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:shadow-xl hover:border-primary/30 transition-all duration-300 flex flex-col h-full group cursor-pointer" onclick="window.viewCatsheetDetail('${prodName.replace(/'/g, "\\'")}')">
+                <div class="flex items-start gap-4 mb-4">
+                    <div class="h-14 w-14 rounded-xl bg-slate-50 flex items-center justify-center shrink-0 border border-slate-200 group-hover:bg-primary/10 group-hover:border-primary/20 transition-colors">
+                        <span class="material-symbols-outlined text-slate-400 group-hover:text-primary text-2xl">book_4</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-black text-slate-800 text-lg leading-tight line-clamp-2 group-hover:text-primary transition-colors">${prodName}</h3>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-0.5 rounded uppercase tracking-widest">CATS</span>
+                            ${prodData[window.currentCsLang] ? '' : '<span class="text-[10px] font-bold text-amber-500 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-widest">FALLBACK LANG</span>'}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex-1 space-y-4 pt-2 border-t border-slate-50">
+                    ${langData.properties ? `
+                    <div class="space-y-1">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Công dụng / Properties</p>
+                        <p class="text-sm text-slate-600 line-clamp-2 leading-relaxed">${langData.properties.replace(/\\n/g, ' ')}</p>
+                    </div>` : ''}
+                    
+                    ${langData.dilution ? `
+                    <div class="space-y-1">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tỉ lệ pha / Dilution</p>
+                        <p class="text-sm text-slate-600 line-clamp-1 leading-relaxed">${langData.dilution.replace(/\\n/g, ' ')}</p>
+                    </div>` : ''}
+                </div>
+                
+                <div class="mt-5 w-full py-2.5 bg-slate-50 group-hover:bg-primary text-slate-500 group-hover:text-white font-bold text-sm rounded-xl transition-colors text-center">
+                    Xem Chi Tiết Dữ Liệu
+                </div>
+            </div>
+        `;
+        list.insertAdjacentHTML('beforeend', cardHTML);
+    });
+    
+    if (found > 0) {
+        list.classList.remove('hidden');
+        if (empty) empty.classList.add('hidden');
+    } else {
+        list.classList.add('hidden');
+        if (empty) empty.classList.remove('hidden');
+    }
+};
+
+window.searchCatsheets = () => {
+    window.renderCatsheets();
+};
+
+window.toggleCatsheetLang = () => {
+    window.currentCsLang = window.currentCsLang === 'en' ? 'vi' : 'en';
+    const enEl = document.getElementById('csLangEn');
+    const viEl = document.getElementById('csLangVi');
+    if (window.currentCsLang === 'en') {
+        if (enEl) enEl.className = 'font-bold text-primary transition-all';
+        if (viEl) viEl.className = 'text-slate-400 transition-all';
+    } else {
+        if (viEl) viEl.className = 'font-bold text-primary transition-all';
+        if (enEl) enEl.className = 'text-slate-400 transition-all';
+    }
+    window.renderCatsheets();
+};
+
+window.viewCatsheetDetail = (prodName) => {
+    if (!window.catsheetsData) return;
+    const prodData = window.catsheetsData[prodName];
+    if (!prodData) return;
+    
+    const langData = prodData[window.currentCsLang] || prodData['en'] || prodData['vi'];
+    if (!langData) return;
+    
+    let htmlContent = '<div class="text-left space-y-5 text-sm mt-4 bg-white select-text">';
+    
+    const formatSection = (title, icon, content) => {
+        if (!content) return '';
+        const cleaned = content.replace(/\\n/g, '<br>').replace(/•/g, '&bull;');
+        return `
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 relative group">
+                <div class="absolute -top-3 left-4 bg-white px-2 py-0.5 border border-slate-200 rounded text-[10px] font-black tracking-widest text-primary uppercase flex items-center gap-1 shadow-sm">
+                    <span class="material-symbols-outlined text-[14px]">${icon}</span> ${title}
+                </div>
+                <div class="text-slate-700 leading-relaxed font-medium mt-2">
+                    ${cleaned}
+                </div>
+            </div>
+        `;
+    };
+    
+    htmlContent += formatSection('Thành Phần / Ingredients', 'science', langData.ingredients);
+    htmlContent += formatSection('Công Dụng / Properties', 'verified', langData.properties);
+    htmlContent += formatSection('Tỉ Lệ Pha / Dilution', 'opacity', langData.dilution);
+    htmlContent += formatSection('Hướng Dẫn / Usage', 'integration_instructions', langData.usage);
+    
+    if (!langData.ingredients && !langData.properties && !langData.dilution && !langData.usage) {
+        htmlContent += '<div class="text-center py-10 text-slate-400"><span class="material-symbols-outlined text-5xl mb-2">scan_delete</span><br>Tài liệu này không thể tự động nhận dạng text do định dạng ảnh/bản scan cũ. Vui lòng xem bản vẽ tĩnh.</div>';
+    }
+    
+    htmlContent += '</div>';
+    
+    Swal.fire({
+        title: prodName,
+        html: htmlContent,
+        width: '800px',
+        showCloseButton: true,
+        showConfirmButton: false,
+        padding: '2em',
+        customClass: {
+            container: 'catsheet-sweet-container',
+            popup: 'rounded-[2rem] shadow-2xl overflow-hidden catsheet-popup border border-slate-200',
+            title: 'text-left text-2xl md:text-3xl font-black text-slate-800 border-b border-slate-100 pb-4 pt-2 px-2',
+            htmlContainer: 'catsheet-html-container',
+            closeButton: 'focus:outline-none hover:text-rose-500 transition-colors catsheet-close'
+        }
+    });
+};

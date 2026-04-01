@@ -1798,3 +1798,23 @@ main:has(#home.active) {
         width: 100% !important;
     }
 }
+
+/* ==========================================
+   Phase 217: Catsheet Reference Database UI 
+   ========================================== */
+.catsheet-sweet-container {
+    z-index: 99999 !important;
+}
+.catsheet-html-container {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    text-align: left !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.catsheet-popup {
+    border: 1px solid #e2e8f0 !important;
+}
+.catsheet-close {
+    outline: none !important;
+}
