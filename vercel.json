@@ -6,24 +6,9 @@
   ],
   "headers": [
     {
-      "source": "/(.*\\.js)",
+      "source": "/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/(.*\\.(png|jpg|jpeg|gif|webp|svg))",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
-      ]
-    },
-    {
-      "source": "/(.*\\.html)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" },
-        { "key": "Pragma", "value": "no-cache" },
-        { "key": "Expires", "value": "0" }
+        { "key": "Cache-Control", "value": "s-maxage=86400" }
       ]
     }
   ]
