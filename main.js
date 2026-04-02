@@ -3530,33 +3530,56 @@ window.viewCatsheetDetail = (prodName) => {
     if (!renderArea) return;
     
     // Safety helpers
+    // Semantic AST text parser
     const f = (str) => {
         if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
-        const actualLines = str.replace(/\\n/g, '\n').split('\n');
-        let out = '';
-        let inList = false;
         
-        actualLines.forEach(line => {
-            let l = line.trim();
-            if (!l) return;
-            if (l.startsWith('•') || l.startsWith('-')) {
-                if (!inList) {
-                    out += '<ul class="mt-2 space-y-2 list-none pl-0">';
-                    inList = true;
+        const actualLines = str.replace(/\\n/g, '\n').split('\n').map(x => x.trim());
+        const blocks = [];
+        let currentBlock = null;
+
+        const isBullet = (l) => l.startsWith('•') || l.startsWith('-') || /^\\d+\\.\\s/.test(l);
+
+        actualLines.forEach(l => {
+            if (!l) {
+                currentBlock = null;
+                return;
+            }
+            
+            if (isBullet(l)) {
+                if (!currentBlock || currentBlock.type !== 'list') {
+                    currentBlock = { type: 'list', items: [] };
+                    blocks.push(currentBlock);
                 }
-                const content = l.substring(1).trim();
-                out += `<li class="relative pl-5 text-slate-600 dark:text-slate-300"><span class="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60"></span>${content}</li>`;
+                let content = l.replace(/^[•\\-]\\s*/, '').replace(/^\\d+\\.\\s*/, '');
+                currentBlock.items.push(content);
             } else {
-                if (inList) {
-                    out += '</ul>';
-                    inList = false;
+                if (currentBlock && currentBlock.type === 'list') {
+                    currentBlock.items[currentBlock.items.length - 1] += ' ' + l;
+                } else {
+                    if (!currentBlock || currentBlock.type !== 'p') {
+                        currentBlock = { type: 'p', text: '' };
+                        blocks.push(currentBlock);
+                    }
+                    currentBlock.text += (currentBlock.text ? ' ' : '') + l;
                 }
-                out += `<p class="mb-2 text-slate-700 dark:text-slate-200 leading-relaxed">${l}</p>`;
+            }
+        });
+
+        let out = '';
+        blocks.forEach(b => {
+            if (b.type === 'p') {
+                out += `<p class="mb-4 text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${b.text}</p>`;
+            } else if (b.type === 'list') {
+                out += '<ul class="mt-3 mb-5 space-y-3 list-none pl-0 border-l border-slate-200 dark:border-slate-800 ml-1 py-1">';
+                b.items.forEach(itm => {
+                    out += `<li class="relative pl-6 text-slate-600 dark:text-slate-300 leading-relaxed"><span class="absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-primary ring-4 ring-white dark:ring-slate-900 shadow-sm border border-primary/20"></span>${itm}</li>`;
+                });
+                out += '</ul>';
             }
         });
         
-        if (inList) out += '</ul>';
-        return out;
+        return out || '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
     };
     
     renderArea.innerHTML = `
