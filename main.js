@@ -3534,7 +3534,12 @@ window.viewCatsheetDetail = (prodName) => {
     const f = (str) => {
         if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
         
-        const actualLines = str.replace(/\\n/g, '\n').split('\n').map(x => x.trim());
+        // Unescape PDF line breaks and pre-process inline numbers merged by the PDF parser
+        // e.g., "bộ pha ECOLAB 1. Làm sạch" -> "bộ pha ECOLAB \n 1. Làm sạch"
+        let rawStr = str.replace(/\\n/g, '\n');
+        rawStr = rawStr.replace(/(?:^|\s+)(\d+\.\s+|[•\-]\s+(?=[A-ZĐÁÀẢÃẠÂĂÊÔƠƯÍÌỈĨỊÝỲỶỸỴÚÙỦŨỤÓÒỎÕỌÉÈẺẼẸ]))/g, '\n$1');
+        
+        const actualLines = rawStr.split('\n').map(x => x.trim());
         const blocks = [];
         let currentBlock = null;
 
