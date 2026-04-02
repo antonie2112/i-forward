@@ -3530,37 +3530,31 @@ window.viewCatsheetDetail = (prodName) => {
     if (!renderArea) return;
     
     // Safety helpers
-    // Semantic line text parser
-    const f = (str) => {
+    // Baseline formatter (Preserves PDF Raw Formats natively)
+    const f_base = (str) => {
+        if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
+        return str.replace(/\\n/g, '<br>');
+    };
+
+    // Semantic line text parser exclusively for Instructions/Usage
+    const f_usage = (str) => {
         if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
         
-        // Unescape PDF line breaks and pre-process inline numbers merged by the PDF parser
-        let rawStr = str.replace(/\\n/g, '\n');
-        rawStr = rawStr.replace(/(?:^|\s+)(\d+\.\s+|[•\-]\s+)/g, '\n$1');
-        
-        const actualLines = rawStr.split('\n').map(x => x.trim()).filter(Boolean);
-        let out = '';
-        let inList = false;
+        let flat = str.replace(/\\n/g, ' '); 
+        let listItems = flat.split(/\s+(?=\d+\.\s+)/);
 
-        actualLines.forEach(l => {
-            const isBullet = /^\d+\.\s/.test(l) || l.startsWith('•') || l.startsWith('-');
-            if (isBullet) {
-                if (!inList) {
-                    out += '<ul class="mt-3 mb-4 space-y-3 list-none pl-0 border-l border-slate-200 dark:border-slate-800 ml-1 py-1">';
-                    inList = true;
-                }
-                const content = l.replace(/^(\d+\.|[•\-])\s*/, '');
-                out += `<li class="relative pl-6 text-slate-600 dark:text-slate-300 leading-relaxed"><span class="absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-primary ring-4 ring-white dark:ring-slate-900 shadow-sm border border-primary/20"></span>${content}</li>`;
+        let out = '';
+        listItems.forEach(item => {
+            if (/^\d+\.\s/.test(item)) {
+                let content = item.replace(/^\d+\.\s*/, '');
+                out += `<div class="flex items-start gap-3 mt-4 mb-2"><span class="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-primary ring-4 ring-primary/10 shadow-sm border border-primary/30"></span><span class="text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${content}</span></div>`;
             } else {
-                if (inList) {
-                    out += '</ul>';
-                    inList = false;
+                if (item.trim()) {
+                    out += `<div class="mb-3 text-slate-600 dark:text-slate-300 leading-relaxed">${item}</div>`;
                 }
-                out += `<div class="mb-3 text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${l}</div>`;
             }
         });
 
-        if (inList) out += '</ul>';
         return out;
     };
     
@@ -3590,7 +3584,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Công dụng / Properties</h3>
       </div>
-      <div class="text-sm font-medium">${f(langData.properties)}</div>
+      <div class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${f_base(langData.properties)}</div>
       </section>
       ` : ''}
 
@@ -3600,7 +3594,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Thành phần / Ingredients</h3>
       </div>
-      <div class="text-sm font-medium">${f(langData.ingredients)}</div>
+      <div class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">${f_base(langData.ingredients)}</div>
       </section>
       ` : ''}
 
@@ -3610,17 +3604,17 @@ window.viewCatsheetDetail = (prodName) => {
       <span class="material-symbols-outlined text-primary">opacity</span>
       <h3 class="text-lg font-bold tracking-tight text-primary">Tỉ lệ pha / Dilution</h3>
       </div>
-      <div class="text-sm">${f(langData.dilution)}</div>
+      <div class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-bold">${f_base(langData.dilution)}</div>
       </section>
       ` : ''}
 
       ${langData.usage ? `
       <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
-      <div class="flex items-center gap-3 mb-4">
+      <div class="flex items-center gap-3 mb-2">
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Hướng dẫn / Usage</h3>
       </div>
-      <div class="text-sm font-medium">${f(langData.usage)}</div>
+      <div class="text-sm">${f_usage(langData.usage)}</div>
       </section>
       ` : ''}
 
