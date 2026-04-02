@@ -3530,7 +3530,34 @@ window.viewCatsheetDetail = (prodName) => {
     if (!renderArea) return;
     
     // Safety helpers
-    const f = (str) => str ? str.replace(/\\n/g, '<br>') : 'Chưa có thông tin.';
+    const f = (str) => {
+        if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
+        const actualLines = str.replace(/\\n/g, '\n').split('\n');
+        let out = '';
+        let inList = false;
+        
+        actualLines.forEach(line => {
+            let l = line.trim();
+            if (!l) return;
+            if (l.startsWith('•') || l.startsWith('-')) {
+                if (!inList) {
+                    out += '<ul class="mt-2 space-y-2 list-none pl-0">';
+                    inList = true;
+                }
+                const content = l.substring(1).trim();
+                out += `<li class="relative pl-5 text-slate-600 dark:text-slate-300"><span class="absolute left-0 top-2 w-1.5 h-1.5 rounded-full bg-primary/60"></span>${content}</li>`;
+            } else {
+                if (inList) {
+                    out += '</ul>';
+                    inList = false;
+                }
+                out += `<p class="mb-2 text-slate-700 dark:text-slate-200 leading-relaxed">${l}</p>`;
+            }
+        });
+        
+        if (inList) out += '</ul>';
+        return out;
+    };
     
     renderArea.innerHTML = `
       <!-- Hero Section: Product Image & Identity -->
@@ -3538,7 +3565,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="aspect-[4/5] relative flex items-center justify-center p-8 bg-gradient-to-br from-[#ffffff] to-[#f3f4f4] dark:from-slate-900 dark:to-slate-800">
       <!-- Blue Background Card Accent -->
       <div class="absolute inset-x-8 inset-y-16 bg-primary rounded-2xl rotate-3 opacity-[0.03] dark:opacity-[0.05]"></div>
-      <img alt="${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal" src="https://ecolabwallchart.azurewebsites.net/Product%20images/${prodName}.jpg" onerror="this.onerror=null;this.src='/logo.svg';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-10','p-20');" />
+      <img alt="${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal rounded-xl max-h-64 object-contain" src="https://ecolabwallchart.azurewebsites.net/Product%20images/${encodeURIComponent(prodName)}.jpg" onerror="this.onerror=null;this.src='/PWA_logo.png';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-30','w-32','h-32','mx-auto','grayscale');" />
       </div>
       <div class="p-6 space-y-2 bg-white dark:bg-slate-900">
       <div class="flex items-center gap-2">
@@ -3558,7 +3585,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Công dụng / Properties</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.properties)}</p>
+      <div class="text-sm font-medium">${f(langData.properties)}</div>
       </section>
       ` : ''}
 
@@ -3568,7 +3595,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Thành phần / Ingredients</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.ingredients)}</p>
+      <div class="text-sm font-medium">${f(langData.ingredients)}</div>
       </section>
       ` : ''}
 
@@ -3578,7 +3605,7 @@ window.viewCatsheetDetail = (prodName) => {
       <span class="material-symbols-outlined text-primary">opacity</span>
       <h3 class="text-lg font-bold tracking-tight text-primary">Tỉ lệ pha / Dilution</h3>
       </div>
-      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${f(langData.dilution)}</p>
+      <div class="text-sm">${f(langData.dilution)}</div>
       </section>
       ` : ''}
 
@@ -3588,7 +3615,7 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Hướng dẫn / Usage</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.usage)}</p>
+      <div class="text-sm font-medium">${f(langData.usage)}</div>
       </section>
       ` : ''}
 
