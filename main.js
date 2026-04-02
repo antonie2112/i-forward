@@ -3538,13 +3538,13 @@ window.viewCatsheetDetail = (prodName) => {
       <div class="aspect-[4/5] relative flex items-center justify-center p-8 bg-gradient-to-br from-[#ffffff] to-[#f3f4f4] dark:from-slate-900 dark:to-slate-800">
       <!-- Blue Background Card Accent -->
       <div class="absolute inset-x-8 inset-y-16 bg-primary rounded-2xl rotate-3 opacity-[0.03] dark:opacity-[0.05]"></div>
-      <img alt="\${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal" src="https://ecolabwallchart.azurewebsites.net/Product%20images/\${prodName}.jpg" onerror="this.onerror=null;this.src='/logo.svg';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-10','p-20');" />
+      <img alt="${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal" src="https://ecolabwallchart.azurewebsites.net/Product%20images/${prodName}.jpg" onerror="this.onerror=null;this.src='/logo.svg';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-10','p-20');" />
       </div>
       <div class="p-6 space-y-2 bg-white dark:bg-slate-900">
       <div class="flex items-center gap-2">
       <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase rounded">Inst.Sale Data</span>
       </div>
-      <h2 class="text-3xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-none">\${prodName}</h2>
+      <h2 class="text-3xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-none">${prodName}</h2>
       <p class="text-slate-500 dark:text-slate-400 text-sm font-light italic">Ecolab Technical Reference Model</p>
       </div>
       </section>
@@ -3552,52 +3552,52 @@ window.viewCatsheetDetail = (prodName) => {
       <!-- Details Sections: Tonal Layering -->
       <div class="space-y-4">
       
-      \${langData.properties ? \`
+      ${langData.properties ? `
       <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
       <div class="flex items-center gap-3 mb-4">
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Công dụng / Properties</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.properties)}</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.properties)}</p>
       </section>
-      \` : ''}
+      ` : ''}
 
-      \${langData.ingredients ? \`
+      ${langData.ingredients ? `
       <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
       <div class="flex items-center gap-3 mb-4">
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Thành phần / Ingredients</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.ingredients)}</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.ingredients)}</p>
       </section>
-      \` : ''}
+      ` : ''}
 
-      \${langData.dilution ? \`
+      ${langData.dilution ? `
       <section class="p-6 bg-primary/10 rounded-xl border border-primary/20">
       <div class="flex items-center gap-3 mb-4">
       <span class="material-symbols-outlined text-primary">opacity</span>
       <h3 class="text-lg font-bold tracking-tight text-primary">Tỉ lệ pha / Dilution</h3>
       </div>
-      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">\${f(langData.dilution)}</p>
+      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${f(langData.dilution)}</p>
       </section>
-      \` : ''}
+      ` : ''}
 
-      \${langData.usage ? \`
+      ${langData.usage ? `
       <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
       <div class="flex items-center gap-3 mb-4">
       <div class="w-1 h-6 bg-primary rounded-full"></div>
       <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Hướng dẫn / Usage</h3>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.usage)}</p>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">${f(langData.usage)}</p>
       </section>
-      \` : ''}
+      ` : ''}
 
-      \${(!langData.ingredients && !langData.properties && !langData.dilution && !langData.usage) ? \`
+      ${(!langData.ingredients && !langData.properties && !langData.dilution && !langData.usage) ? `
         <div class="text-center py-10 text-slate-400 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800">
             <span class="material-symbols-outlined text-5xl mb-2">scan_delete</span><br>
             Tài liệu này không thể tự động nhận dạng.<br>Vui lòng xem bản vẽ tĩnh.
         </div>
-      \` : ''}
+      ` : ''}
 
       </div>
     `;
