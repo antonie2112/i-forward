@@ -3558,13 +3558,22 @@ window.viewCatsheetDetail = (prodName) => {
         return out;
     };
     
+    // Reverse SKU Lookup Strategy for Native High-Fidelity CDN
+    let resolvedImgSrc = `https://ecolabwallchart.azurewebsites.net/Product%20images/${encodeURIComponent(prodName)}.jpg`;
+    if (window.filteredData && Array.isArray(window.filteredData)) {
+        const exactMatch = window.filteredData.find(p => p.name && p.name.trim().toLowerCase() === prodName.trim().toLowerCase());
+        if (exactMatch && exactMatch.id && typeof window.getProductImageURL === 'function') {
+            resolvedImgSrc = window.getProductImageURL(exactMatch.id);
+        }
+    }
+
     renderArea.innerHTML = `
       <!-- Hero Section: Product Image & Identity -->
       <section class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm">
       <div class="aspect-[4/5] relative flex items-center justify-center p-8 bg-gradient-to-br from-[#ffffff] to-[#f3f4f4] dark:from-slate-900 dark:to-slate-800">
       <!-- Blue Background Card Accent -->
       <div class="absolute inset-x-8 inset-y-16 bg-primary rounded-2xl rotate-3 opacity-[0.03] dark:opacity-[0.05]"></div>
-      <img alt="${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal rounded-xl max-h-64 object-contain" src="https://ecolabwallchart.azurewebsites.net/Product%20images/${encodeURIComponent(prodName)}.jpg" onerror="this.onerror=null;this.src='/PWA_logo.png';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-30','w-32','h-32','mx-auto','grayscale');" />
+      <img alt="${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal rounded-xl max-h-64 object-contain" src="${resolvedImgSrc}" onerror="this.onerror=null;this.src='/logo.svg';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-10','p-20');" />
       </div>
       <div class="p-6 space-y-2 bg-white dark:bg-slate-900">
       <div class="flex items-center gap-2">
