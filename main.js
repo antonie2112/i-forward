@@ -3520,50 +3520,210 @@ window.viewCatsheetDetail = (prodName) => {
     const prodData = window.catsheetsData[prodName];
     if (!prodData) return;
     
+    // Store globally for print/export
+    window.currentViewedCatsheet = prodName;
+    
     const langData = prodData[window.currentCsLang] || prodData['en'] || prodData['vi'];
     if (!langData) return;
     
-    let htmlContent = '<div class="text-left space-y-5 text-sm mt-4 bg-white select-text">';
+    const renderArea = document.getElementById('guidexRenderArea');
+    if (!renderArea) return;
     
-    const formatSection = (title, icon, content) => {
-        if (!content) return '';
-        const cleaned = content.replace(/\\n/g, '<br>').replace(/•/g, '&bull;');
-        return `
-            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 relative group">
-                <div class="absolute -top-3 left-4 bg-white px-2 py-0.5 border border-slate-200 rounded text-[10px] font-black tracking-widest text-primary uppercase flex items-center gap-1 shadow-sm">
-                    <span class="material-symbols-outlined text-[14px]">${icon}</span> ${title}
-                </div>
-                <div class="text-slate-700 leading-relaxed font-medium mt-2">
-                    ${cleaned}
-                </div>
-            </div>
-        `;
-    };
+    // Safety helpers
+    const f = (str) => str ? str.replace(/\\n/g, '<br>') : 'Chưa có thông tin.';
     
-    htmlContent += formatSection('Thành Phần / Ingredients', 'science', langData.ingredients);
-    htmlContent += formatSection('Công Dụng / Properties', 'verified', langData.properties);
-    htmlContent += formatSection('Tỉ Lệ Pha / Dilution', 'opacity', langData.dilution);
-    htmlContent += formatSection('Hướng Dẫn / Usage', 'integration_instructions', langData.usage);
-    
-    if (!langData.ingredients && !langData.properties && !langData.dilution && !langData.usage) {
-        htmlContent += '<div class="text-center py-10 text-slate-400"><span class="material-symbols-outlined text-5xl mb-2">scan_delete</span><br>Tài liệu này không thể tự động nhận dạng text do định dạng ảnh/bản scan cũ. Vui lòng xem bản vẽ tĩnh.</div>';
-    }
-    
-    htmlContent += '</div>';
-    
+    renderArea.innerHTML = `
+      <!-- Hero Section: Product Image & Identity -->
+      <section class="relative overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm">
+      <div class="aspect-[4/5] relative flex items-center justify-center p-8 bg-gradient-to-br from-[#ffffff] to-[#f3f4f4] dark:from-slate-900 dark:to-slate-800">
+      <!-- Blue Background Card Accent -->
+      <div class="absolute inset-x-8 inset-y-16 bg-primary rounded-2xl rotate-3 opacity-[0.03] dark:opacity-[0.05]"></div>
+      <img alt="\${prodName}" class="relative z-10 w-full h-auto drop-shadow-2xl mix-blend-multiply dark:mix-blend-normal" src="https://ecolabwallchart.azurewebsites.net/Product%20images/\${prodName}.jpg" onerror="this.onerror=null;this.src='/logo.svg';this.classList.remove('mix-blend-multiply');this.classList.add('opacity-10','p-20');" />
+      </div>
+      <div class="p-6 space-y-2 bg-white dark:bg-slate-900">
+      <div class="flex items-center gap-2">
+      <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold tracking-widest uppercase rounded">Inst.Sale Data</span>
+      </div>
+      <h2 class="text-3xl font-extrabold text-slate-800 dark:text-slate-100 tracking-tight leading-none">\${prodName}</h2>
+      <p class="text-slate-500 dark:text-slate-400 text-sm font-light italic">Ecolab Technical Reference Model</p>
+      </div>
+      </section>
+
+      <!-- Details Sections: Tonal Layering -->
+      <div class="space-y-4">
+      
+      \${langData.properties ? \`
+      <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+      <div class="flex items-center gap-3 mb-4">
+      <div class="w-1 h-6 bg-primary rounded-full"></div>
+      <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Công dụng / Properties</h3>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.properties)}</p>
+      </section>
+      \` : ''}
+
+      \${langData.ingredients ? \`
+      <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+      <div class="flex items-center gap-3 mb-4">
+      <div class="w-1 h-6 bg-primary rounded-full"></div>
+      <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Thành phần / Ingredients</h3>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.ingredients)}</p>
+      </section>
+      \` : ''}
+
+      \${langData.dilution ? \`
+      <section class="p-6 bg-primary/10 rounded-xl border border-primary/20">
+      <div class="flex items-center gap-3 mb-4">
+      <span class="material-symbols-outlined text-primary">opacity</span>
+      <h3 class="text-lg font-bold tracking-tight text-primary">Tỉ lệ pha / Dilution</h3>
+      </div>
+      <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">\${f(langData.dilution)}</p>
+      </section>
+      \` : ''}
+
+      \${langData.usage ? \`
+      <section class="p-6 bg-white dark:bg-slate-900 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 dark:border-slate-800">
+      <div class="flex items-center gap-3 mb-4">
+      <div class="w-1 h-6 bg-primary rounded-full"></div>
+      <h3 class="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">Hướng dẫn / Usage</h3>
+      </div>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">\${f(langData.usage)}</p>
+      </section>
+      \` : ''}
+
+      \${(!langData.ingredients && !langData.properties && !langData.dilution && !langData.usage) ? \`
+        <div class="text-center py-10 text-slate-400 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800">
+            <span class="material-symbols-outlined text-5xl mb-2">scan_delete</span><br>
+            Tài liệu này không thể tự động nhận dạng.<br>Vui lòng xem bản vẽ tĩnh.
+        </div>
+      \` : ''}
+
+      </div>
+    `;
+
+    const overlay = document.getElementById('catsheetGuidexOverlay');
+    overlay.classList.remove('hidden');
+    // slight delay for animation
+    setTimeout(() => {
+        overlay.classList.remove('opacity-0');
+        overlay.classList.add('opacity-100');
+    }, 10);
+};
+
+window.closeGuidexOverlay = () => {
+    const overlay = document.getElementById('catsheetGuidexOverlay');
+    overlay.classList.remove('opacity-100');
+    overlay.classList.add('opacity-0');
+    setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.getElementById('guidexRenderArea').innerHTML = ''; // memory wipe
+    }, 300);
+};
+
+// Actions
+window.printCatsheet = () => {
+    window.print();
+};
+
+window.downloadCatsheetPDF = () => {
     Swal.fire({
-        title: prodName,
-        html: htmlContent,
-        width: '800px',
-        showCloseButton: true,
-        showConfirmButton: false,
-        padding: '2em',
-        customClass: {
-            container: 'catsheet-sweet-container',
-            popup: 'rounded-[2rem] shadow-2xl overflow-hidden catsheet-popup border border-slate-200',
-            title: 'text-left text-2xl md:text-3xl font-black text-slate-800 border-b border-slate-100 pb-4 pt-2 px-2',
-            htmlContainer: 'catsheet-html-container',
-            closeButton: 'focus:outline-none hover:text-rose-500 transition-colors catsheet-close'
-        }
+      icon: 'info',
+      title: 'PDF Export',
+      text: 'Tính năng in/xuất PDF đang được hoàn thiện bằng công cụ html2canvas cục bộ.',
+      confirmButtonColor: '#006bd3'
     });
+};
+
+// Tesseract OCR Logic
+window.processOCRImage = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // Show loading
+    const loader = document.getElementById('ocrLoadingOverlay');
+    loader.classList.remove('hidden');
+    setTimeout(() => loader.classList.remove('opacity-0'), 10);
+    const textEl = document.getElementById('ocrLoadingText');
+
+    try {
+        if (!window.Tesseract) {
+            textEl.innerText = "Mạng lưới WebAssembly lỗi chặn CDN/WiFi.";
+            setTimeout(() => {
+                loader.classList.add('opacity-0');
+                setTimeout(() => loader.classList.add('hidden'), 300);
+            }, 2000);
+            return;
+        }
+
+        textEl.innerText = "Khởi tạo Machine Learning...";
+        
+        // Convert to dataurl
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+            textEl.innerText = "Trích xuất Text quang học...";
+            try {
+                const result = await window.Tesseract.recognize(e.target.result, 'eng+vie', { logger: m => {
+                    if (m.status === 'recognizing text') {
+                        textEl.innerText = `Phân tích Neural... ${Math.round(m.progress * 100)}%`;
+                    }
+                }});
+                
+                const rawText = result.data.text.toUpperCase();
+                console.log("OCR Result Matrix:", rawText);
+                textEl.innerText = "Đối chiếu Database...";
+
+                // Fuzzy Match
+                const dbKeys = Object.keys(window.catsheetsData || {});
+                let bestMatch = null;
+                let bestScore = 0;
+
+                for (let key of dbKeys) {
+                    const uKey = key.toUpperCase();
+                    // Generate dense substrings > 2 chars
+                    let score = 0;
+                    const tokens = uKey.split(' ').filter(t => t.length > 2);
+                    for (let t of tokens) {
+                        if (rawText.includes(t)) {
+                            score += t.length; // weight longer word matches
+                        }
+                    }
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = key;
+                    }
+                }
+
+                if (bestMatch && bestScore > 4) { // Minimum threshold to prevent wildcard
+                     loader.classList.add('opacity-0');
+                     setTimeout(() => {
+                         loader.classList.add('hidden');
+                         document.getElementById('catsheetSearchInput').value = bestMatch;
+                         window.searchCatsheets(); // auto filter
+                         window.viewCatsheetDetail(bestMatch); // pop the UI
+                     }, 300);
+                } else {
+                     textEl.innerText = "Không nhận diện được tên hóa chất. Xin thử lại.";
+                     setTimeout(() => {
+                        loader.classList.add('opacity-0');
+                        setTimeout(() => loader.classList.add('hidden'), 300);
+                     }, 2500);
+                }
+
+            } catch(err) {
+                console.error("AI Error:", err);
+                textEl.innerText = "Lỗi xử lý AI. Ảnh quá lớn hoặc mờ.";
+                setTimeout(() => {
+                    loader.classList.add('opacity-0');
+                    setTimeout(() => loader.classList.add('hidden'), 300);
+                }, 2000);
+            }
+        };
+        reader.readAsDataURL(file);
+
+    } catch (err) {
+        console.error(err);
+        loader.classList.add('opacity-0');
+        setTimeout(() => loader.classList.add('hidden'), 300);
+    }
 };

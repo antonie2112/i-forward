@@ -733,14 +733,21 @@
             </div>
           </header>
 
-          <!-- Search Bar -->
+          <!-- Search Bar & Scan -->
           <div class="px-6 py-4 bg-white z-10 shadow-sm border-b border-slate-100">
-            <div class="relative max-w-2xl mx-auto">
-              <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-              <input id="catsheetSearchInput"
-                class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base placeholder:text-slate-400 shadow-inner transition-all"
-                placeholder="Search by Product Name..."
-                type="text" oninput="window.searchCatsheets()" />
+            <div class="relative max-w-2xl mx-auto flex gap-2">
+              <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                <input id="catsheetSearchInput"
+                  class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base placeholder:text-slate-400 shadow-inner transition-all"
+                  placeholder="Search by Product Name..."
+                  type="text" oninput="window.searchCatsheets()" />
+              </div>
+              <label for="catsheetOcrInput" class="bg-primary text-white rounded-xl px-4 flex flex-col items-center justify-center hover:bg-primary/90 transition-colors shadow-md shrink-0 cursor-pointer active:scale-95">
+                <span class="material-symbols-outlined text-xl">center_focus_strong</span>
+                <span class="text-[10px] font-bold uppercase mt-0.5 tracking-widest">Scan</span>
+              </label>
+              <input type="file" id="catsheetOcrInput" accept="image/*" capture="environment" class="hidden" onchange="window.processOCRImage(event)">
             </div>
           </div>
 
@@ -2221,6 +2228,46 @@
       </div>
     </div> <!-- End main-dashboard -->
   </div> <!-- End app -->
+  <!-- OCR Loading Overlay -->
+  <div id="ocrLoadingOverlay" class="hidden fixed inset-0 z-[300] bg-slate-900/80 flex flex-col items-center justify-center backdrop-blur-md opacity-0 transition-opacity duration-300">
+     <span class="material-symbols-outlined text-white text-5xl animate-spin mb-4">progress_activity</span>
+     <p id="ocrLoadingText" class="text-white font-bold tracking-wide">Scanning Label...</p>
+     <p class="text-white/60 text-xs mt-2 italic">This may take a few seconds...</p>
+  </div>
+
+  <!-- CATSHEET FULLSCREEN OVERLAY (STITCH_GUIDEX) -->
+  <div id="catsheetGuidexOverlay" class="hidden fixed inset-0 z-[200] overflow-y-auto bg-surface text-on-surface antialiased opacity-0 transition-opacity duration-300">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 bg-[#f9f9fa] dark:bg-slate-950/90 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800">
+      <div class="flex items-center gap-4 w-full">
+        <span onclick="window.closeGuidexOverlay()" class="material-symbols-outlined text-primary dark:text-blue-400 active:scale-95 duration-150 cursor-pointer">arrow_back</span>
+        <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100 font-['Inter'] tracking-tight flex-1">Ecolab Sales Toolkit</h1>
+        <span class="material-symbols-outlined text-slate-500">more_vert</span>
+      </div>
+    </header>
+
+    <main class="pt-20 pb-24 px-4 max-w-md mx-auto space-y-6" id="guidexRenderArea">
+      <!-- Dynamically Rendered by JS -->
+    </main>
+
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full z-[201] flex justify-around items-center px-2 py-3 pb-safe bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-200/50 dark:border-slate-800 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] rounded-t-xl">
+      <a class="flex flex-col flex-1 items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-primary transition-all active:opacity-70" href="#" onclick="window.printCatsheet()">
+        <span class="material-symbols-outlined">print</span>
+        <span class="text-[10px] font-medium tracking-wide uppercase mt-1">Print</span>
+      </a>
+      <a class="flex flex-col flex-1 items-center justify-center text-primary bg-primary/10 dark:bg-primary/20 rounded-xl px-4 py-2 hover:bg-primary/20 transition-all active:opacity-70 mx-2" href="#" onclick="window.downloadCatsheetPDF()">
+        <span class="material-symbols-outlined font-bold">download</span>
+        <span class="text-[11px] font-bold tracking-wide uppercase mt-1">Export PDF</span>
+      </a>
+      <a class="flex flex-col flex-1 items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-primary transition-all active:opacity-70" href="#" onclick="navigator.share({title: 'Ecolab PDS', url: window.location.href})">
+        <span class="material-symbols-outlined">share</span>
+        <span class="text-[10px] font-medium tracking-wide uppercase mt-1">Share</span>
+      </a>
+    </nav>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </body>
 
 </html>
