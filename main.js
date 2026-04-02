@@ -3530,61 +3530,38 @@ window.viewCatsheetDetail = (prodName) => {
     if (!renderArea) return;
     
     // Safety helpers
-    // Semantic AST text parser
+    // Semantic line text parser
     const f = (str) => {
         if (!str) return '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
         
         // Unescape PDF line breaks and pre-process inline numbers merged by the PDF parser
-        // e.g., "bộ pha ECOLAB 1. Làm sạch" -> "bộ pha ECOLAB \n 1. Làm sạch"
         let rawStr = str.replace(/\\n/g, '\n');
-        rawStr = rawStr.replace(/(?:^|\s+)(\d+\.\s+|[•\-]\s+(?=[A-ZĐÁÀẢÃẠÂĂÊÔƠƯÍÌỈĨỊÝỲỶỸỴÚÙỦŨỤÓÒỎÕỌÉÈẺẼẸ]))/g, '\n$1');
+        rawStr = rawStr.replace(/(?:^|\s+)(\d+\.\s+|[•\-]\s+)/g, '\n$1');
         
-        const actualLines = rawStr.split('\n').map(x => x.trim());
-        const blocks = [];
-        let currentBlock = null;
-
-        const isBullet = (l) => l.startsWith('•') || l.startsWith('-') || /^\\d+\\.\\s/.test(l);
+        const actualLines = rawStr.split('\n').map(x => x.trim()).filter(Boolean);
+        let out = '';
+        let inList = false;
 
         actualLines.forEach(l => {
-            if (!l) {
-                currentBlock = null;
-                return;
-            }
-            
-            if (isBullet(l)) {
-                if (!currentBlock || currentBlock.type !== 'list') {
-                    currentBlock = { type: 'list', items: [] };
-                    blocks.push(currentBlock);
+            const isBullet = /^\d+\.\s/.test(l) || l.startsWith('•') || l.startsWith('-');
+            if (isBullet) {
+                if (!inList) {
+                    out += '<ul class="mt-3 mb-4 space-y-3 list-none pl-0 border-l border-slate-200 dark:border-slate-800 ml-1 py-1">';
+                    inList = true;
                 }
-                let content = l.replace(/^[•\\-]\\s*/, '').replace(/^\\d+\\.\\s*/, '');
-                currentBlock.items.push(content);
+                const content = l.replace(/^(\d+\.|[•\-])\s*/, '');
+                out += `<li class="relative pl-6 text-slate-600 dark:text-slate-300 leading-relaxed"><span class="absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-primary ring-4 ring-white dark:ring-slate-900 shadow-sm border border-primary/20"></span>${content}</li>`;
             } else {
-                if (currentBlock && currentBlock.type === 'list') {
-                    currentBlock.items[currentBlock.items.length - 1] += ' ' + l;
-                } else {
-                    if (!currentBlock || currentBlock.type !== 'p') {
-                        currentBlock = { type: 'p', text: '' };
-                        blocks.push(currentBlock);
-                    }
-                    currentBlock.text += (currentBlock.text ? ' ' : '') + l;
+                if (inList) {
+                    out += '</ul>';
+                    inList = false;
                 }
+                out += `<div class="mb-3 text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${l}</div>`;
             }
         });
 
-        let out = '';
-        blocks.forEach(b => {
-            if (b.type === 'p') {
-                out += `<p class="mb-4 text-slate-700 dark:text-slate-200 leading-relaxed font-medium">${b.text}</p>`;
-            } else if (b.type === 'list') {
-                out += '<ul class="mt-3 mb-5 space-y-3 list-none pl-0 border-l border-slate-200 dark:border-slate-800 ml-1 py-1">';
-                b.items.forEach(itm => {
-                    out += `<li class="relative pl-6 text-slate-600 dark:text-slate-300 leading-relaxed"><span class="absolute -left-1 top-2.5 w-2 h-2 rounded-full bg-primary ring-4 ring-white dark:ring-slate-900 shadow-sm border border-primary/20"></span>${itm}</li>`;
-                });
-                out += '</ul>';
-            }
-        });
-        
-        return out || '<span class="text-slate-400 italic">Chưa có thông tin.</span>';
+        if (inList) out += '</ul>';
+        return out;
     };
     
     renderArea.innerHTML = `
