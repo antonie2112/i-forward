@@ -4,7 +4,7 @@ const translations = {
         tagline: "Institutional Việt Nam - Internal Use",
         toolkit_name: "A Sales Hub",
         tab_quote: "Quotation",
-        tab_catsheets: "Catsheets",
+        tab_guidex: "GuideX",
         tab_sds: "SDS Viewer",
         btn_print: "Print Quote",
         quote_title_excel: "CHƯƠNG TRÌNH HÓA CHẤT - ECOLAB APPLICATION",
@@ -17,7 +17,7 @@ const translations = {
         btn_export: "Export Tools",
         btn_export_pdf: "Export PDF (A4)",
         btn_export_img: "Export Image (HD)",
-        catsheet_title: "Product Catsheets",
+        guidex_title: "GuideX Database",
         tab_proposal: "Proposal Maker",
         sds_title: "Safety Data Sheets (SDS)",
         ph_search_prod: "Search products...",
@@ -123,7 +123,7 @@ const translations = {
         tagline: "Institutional Việt Nam - Lưu hành nội bộ",
         toolkit_name: "Cổng thông tin bán hàng",
         tab_quote: "Báo giá",
-        tab_catsheets: "Tài liệu KT",
+        tab_guidex: "GuideX",
         tab_sds: "Tra cứu SDS",
         btn_print: "In Báo giá",
         quote_title_excel: "CHƯƠNG TRÌNH HÓA CHẤT - ECOLAB APPLICATION",
@@ -136,7 +136,7 @@ const translations = {
         btn_export: "Xuất Báo Giá",
         btn_export_pdf: "Xuất file PDF (A4)",
         btn_export_img: "Xuất Hình Ảnh (HD)",
-        catsheet_title: "Tài liệu Kỹ thuật (Catsheets)",
+        guidex_title: "Hệ thống GuideX",
         tab_proposal: "Đề Xuất Hợp Tác",
         sds_title: "Bảng An toàn Hóa chất (SDS)",
         ph_search_prod: "Tìm kiếm sản phẩm...",
@@ -1523,7 +1523,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Initialize Catsheets if navigating there
-        if (tabId === 'catsheets') {
+        if (tabId === 'guidex') {
             if (typeof window.initCatsheets === 'function') {
                 window.initCatsheets();
             }
