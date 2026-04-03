@@ -761,57 +761,9 @@
 
       <!-- SECTION 2: CATSHEETS & TRAINING LIBRARY -->
       <section id="guidex" class="tab-content">
-        <div class="max-w-7xl mx-auto flex flex-col min-h-[85vh] shadow-2xl bg-white rounded-3xl overflow-hidden my-8 border border-slate-200">
-          <!-- Header -->
-          <header class="flex items-center p-6 border-b border-slate-200 justify-between bg-slate-50">
-            <div class="flex items-center gap-3">
-              <span class="material-symbols-outlined text-primary text-3xl">library_books</span>
-              <div>
-                <h1 class="text-xl font-bold tracking-tight text-slate-800 leading-tight">Catsheet Database</h1>
-                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">ECOLAB REFERENCE MATERIAL</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-3">
-              <button id="catsheetLangToggle" onclick="window.toggleCatsheetLang()" class="px-3 py-1.5 text-sm font-medium border border-slate-200 bg-white rounded-lg text-slate-600 shadow-sm hover:bg-slate-50 transition-colors">
-                <span id="csLangEn" class="font-bold text-primary transition-all">ENG</span> | <span id="csLangVi" class="text-slate-400 transition-all">VIE</span>
-              </button>
-            </div>
-          </header>
-
-          <!-- Search Bar & Scan -->
-          <div class="px-6 py-4 bg-white z-10 shadow-sm border-b border-slate-100">
-            <div class="relative max-w-2xl mx-auto flex gap-2">
-              <div class="relative flex-1">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                <input id="catsheetSearchInput"
-                  class="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-base placeholder:text-slate-400 shadow-inner transition-all"
-                  placeholder="Search by Product Name..."
-                  type="text" oninput="window.searchCatsheets()" />
-              </div>
-              <label for="catsheetOcrInput" class="bg-primary text-white rounded-xl px-4 flex flex-col items-center justify-center hover:bg-primary/90 transition-colors shadow-md shrink-0 cursor-pointer active:scale-95">
-                <span class="material-symbols-outlined text-xl">center_focus_strong</span>
-                <span class="text-[10px] font-bold uppercase mt-0.5 tracking-widest">Scan</span>
-              </label>
-              <input type="file" id="catsheetOcrInput" accept="image/*" capture="environment" class="hidden" onchange="window.processOCRImage(event)">
-            </div>
-          </div>
-
-          <!-- Content Area -->
-          <main class="flex-1 overflow-y-auto p-6 bg-slate-50/50">
-            <div id="catsheetLoading" class="flex flex-col items-center justify-center py-20 text-slate-400">
-              <span class="material-symbols-outlined animate-spin text-4xl mb-3 text-primary">progress_activity</span>
-              <p class="font-medium">Loading Database Array...</p>
-            </div>
-            
-            <div id="catsheetsList" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 hidden">
-              <!-- Catsheet Cards Injected Here -->
-            </div>
-            
-            <div id="catsheetEmptyData" class="text-center py-20 text-slate-500 hidden flex-col items-center">
-              <span class="material-symbols-outlined text-5xl text-slate-300 mb-3">search_off</span>
-              <p class="text-lg font-medium">No results found in Catsheet index.</p>
-            </div>
-          </main>
+        <div class="max-w-7xl mx-auto py-20 text-center">
+          <h2 class="text-2xl font-bold text-slate-400">GuideX Area - Work In Progress</h2>
+          <p class="text-slate-400">Phiên bản mới đang được xây dựng hoàn toàn mới.</p>
         </div>
       </section>
 
