@@ -1609,6 +1609,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         if (!mobileBottomNav) return;
         
+        // Block scroll logic if login-overlay is still visible
+        const loginOverlay = document.getElementById('login-overlay');
+        if (loginOverlay && !loginOverlay.classList.contains('hidden')) {
+            mobileBottomNav.classList.add('nav-hidden');
+            return;
+        }
+
         const currentScrollY = window.scrollY;
         // Don't hide if we're at the very top (safeguard)
         if (currentScrollY < 10) {
