@@ -3767,15 +3767,53 @@ window.processGuidexOCR = async (event) => {
                 const imgDataUrl = e.target.result;
                 const worker = await Tesseract.createWorker('eng');
                 const ret = await worker.recognize(imgDataUrl);
-                const scannedText = ret.data.text.toLowerCase();
+                
+                // Get lines with their bounding boxes
+                const lines = ret.data.lines || [];
                 await worker.terminate();
 
-                let bestMatch = null;
-                for (const prodName in window.guidexData) {
-                    const normName = prodName.toLowerCase();
-                    if (scannedText.includes(normName)) {
-                        bestMatch = prodName;
-                        break;
+                let candidates = [];
+                const allProductNames = Object.keys(window.guidexData);
+
+                lines.forEach(line => {
+                    const text = line.text.toLowerCase().trim();
+                    const bbox = line.bbox;
+                    const height = bbox.y1 - bbox.y0; // Font size proxy
+                    
+                    if (text.length < 2) return;
+
+                    // Match against our database
+                    for (const prodName of allProductNames) {
+                        const normName = prodName.toLowerCase();
+                        // If the line contains the product name OR some product name is very similar to the line
+                        if (text.includes(normName) || normName.includes(text)) {
+                            candidates.push({
+                                name: prodName,
+                                height: height,
+                                confidence: line.confidence
+                            });
+                        }
+                    }
+                });
+
+                // Sort candidates by height (primary) and confidence (secondary)
+                candidates.sort((a, b) => {
+                    if (Math.abs(a.height - b.height) > 5) {
+                        return b.height - a.height;
+                    }
+                    return b.confidence - a.confidence;
+                });
+
+                let bestMatch = candidates.length > 0 ? candidates[0].name : null;
+
+                // Fallback to global text search if no candidates found via line-bbox logic
+                if (!bestMatch) {
+                    const scannedText = ret.data.text.toLowerCase();
+                    for (const prodName of allProductNames) {
+                        if (scannedText.includes(prodName.toLowerCase())) {
+                            bestMatch = prodName;
+                            break;
+                        }
                     }
                 }
 
