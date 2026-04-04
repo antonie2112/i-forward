@@ -759,11 +759,77 @@
       </div>
       </section>
 
-      <!-- SECTION 2: CATSHEETS & TRAINING LIBRARY -->
+      <!-- SECTION 2: GUIDEX -->
       <section id="guidex" class="tab-content">
-        <div class="max-w-7xl mx-auto py-20 text-center">
-          <h2 class="text-2xl font-bold text-slate-400">GuideX Area - Work In Progress</h2>
-          <p class="text-slate-400">Phiên bản mới đang được xây dựng hoàn toàn mới.</p>
+        <div class="max-w-4xl mx-auto flex flex-col min-h-[70vh] bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 my-8">
+          
+          <!-- GuideX Header & Segmented Control -->
+          <div class="px-6 pt-6 pb-4 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50">
+            <div class="flex items-center gap-3">
+              <div class="size-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl">library_books</span>
+              </div>
+              <div>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">GuideX</h2>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-0.5">ECOLAB INTELLIGENCE</p>
+              </div>
+            </div>
+
+            <!-- Language & Mode selectors -->
+            <div class="flex items-center gap-3">
+              <div class="flex bg-slate-200/50 p-1 rounded-xl">
+                <button onclick="window.switchGuidexMode('catsheet')" id="guidexModeCatsheet" class="px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all">Catsheet</button>
+                <button onclick="window.switchGuidexMode('dmap')" id="guidexModeDmap" class="px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all">D Mapping</button>
+              </div>
+              <button onclick="window.toggleGuidexLang()" id="guidexLangBtn" class="flex items-center gap-1 px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 shadow-sm transition-all pointer">
+                <span class="material-symbols-outlined text-[18px] text-slate-400">language</span>
+                <span id="guidexLangText">VNM</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Search Area -->
+          <div class="p-6 md:p-12 text-center flex flex-col items-center flex-1 bg-white relative">
+            <div class="max-w-md w-full mb-8 relative z-10">
+              <h3 class="text-3xl font-black text-slate-900 mb-3" id="guidexHeroTitle">Tra Cứu Nhanh</h3>
+              <p class="text-slate-500 text-sm leading-relaxed" id="guidexHeroDesc">Nhập tên sản phẩm Ecolab hoặc quét hình ảnh nhận diện thông minh (AI) để xem chi tiết sử dụng.</p>
+            </div>
+
+            <!-- Search Bar Wrapper -->
+            <div class="w-full max-w-lg relative z-20">
+              <div class="relative flex items-center bg-white border-2 border-slate-200 rounded-2xl focus-within:border-indigo-500 focus-within:ring-4 focus-within:ring-indigo-500/10 transition-all shadow-sm">
+                <span class="material-symbols-outlined absolute left-4 text-slate-400">search</span>
+                <input id="guidexSearchInput"
+                  class="w-full pl-12 pr-16 py-4 bg-transparent border-none outline-none focus:ring-0 text-lg placeholder:text-slate-400 font-medium"
+                  placeholder="Gõ tên sản phẩm (VD: Oasis)..." type="text" autocomplete="off" oninput="window.handleGuidexSearchInput(event)" onfocus="window.handleGuidexSearchInput(event)" />
+                
+                <!-- Scan OCR Button overlay -->
+                <div class="absolute right-2 top-1/2 -translate-y-1/2">
+                   <label for="guidexOcrInput" class="h-10 px-3 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center cursor-pointer hover:bg-indigo-100 transition-colors shadow-sm active:scale-95">
+                     <span class="material-symbols-outlined">document_scanner</span>
+                   </label>
+                   <input type="file" id="guidexOcrInput" accept="image/*" capture="environment" class="hidden" onchange="window.processGuidexOCR(event)">
+                </div>
+              </div>
+
+              <!-- Instant Results Dropdown -->
+              <div id="guidexSearchResults" class="absolute top-full left-0 w-full mt-2 bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-slate-100 hidden transform transition-all origin-top flex-col max-h-[50vh] overflow-y-auto z-[300]">
+                 <!-- Results injected by JS -->
+              </div>
+            </div>
+
+            <!-- Loading Spinner (OCR) -->
+            <div id="guidexOpticalLoader" class="mt-8 hidden flex-col items-center gap-3 text-indigo-500 animate-pulse relative z-10">
+               <span class="material-symbols-outlined text-4xl animate-spin">data_usage</span>
+               <p class="font-bold text-sm tracking-widest uppercase">Analyzing Image...</p>
+            </div>
+            
+            <div id="guidexDmapPlaceholder" class="mt-12 hidden flex-col items-center justify-center p-8 bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl w-full">
+                <span class="material-symbols-outlined text-4xl text-slate-300 mb-2">table_chart</span>
+                <h4 class="text-slate-700 font-bold mb-1">D Mapping Area</h4>
+                <p class="text-xs text-slate-500">Chưa có dữ liệu hệ thống tham chiếu D Mapping.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -2225,6 +2291,39 @@
       </div>
     </div> <!-- End main-dashboard -->
   </div> <!-- End app -->
+  <!-- GUIDEX DETAIL OVERLAY (STITCH DESIGN) -->
+  <div id="guidexDetailOverlay" class="hidden fixed inset-0 z-[200] overflow-y-auto bg-surface text-on-surface antialiased opacity-0 transition-opacity duration-300 pointer-events-none">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 bg-[#f9f9fa] dark:bg-slate-950/80 backdrop-blur-md">
+      <div class="flex items-center gap-4 w-full">
+        <span onclick="window.closeGuidexDetail()" class="material-symbols-outlined text-[#006bd3] active:scale-95 duration-150 cursor-pointer pointer-events-auto">arrow_back</span>
+        <h1 class="text-lg font-bold text-[#1a1c1d] dark:text-slate-100 font-['Inter'] tracking-tight flex-1">Ecolab GuideX</h1>
+        <span class="material-symbols-outlined text-slate-500 pointer-events-auto">more_vert</span>
+      </div>
+    </header>
+
+    <!-- Content injected via JS -->
+    <main id="guidexDetailRenderer" class="pt-20 pb-32 px-4 max-w-md mx-auto space-y-8 pointer-events-auto">
+      <!-- Content here -->
+    </main>
+
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 py-3 pb-safe bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-[#c1c6d5]/20 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] rounded-t-xl pointer-events-auto">
+      <a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-[#006bd3] transition-all active:opacity-70" href="#" onclick="window.printCatsheet()">
+        <span class="material-symbols-outlined font-light">print</span>
+        <span class="text-[11px] font-medium tracking-wide uppercase font-['Inter'] mt-1">In</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-[#006bd3] bg-[#f3f4f4] dark:bg-slate-800 rounded-xl px-4 py-1 active:opacity-70" href="#" onclick="window.downloadCatsheetPDF()">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">download</span>
+        <span class="text-[11px] font-medium tracking-wide uppercase font-['Inter'] mt-1">Tải PDF</span>
+      </a>
+      <a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-[#006bd3] transition-all active:opacity-70" href="#" onclick="navigator.share({title: 'Ecolab GuideX', url: window.location.href})">
+        <span class="material-symbols-outlined font-light">share</span>
+        <span class="text-[11px] font-medium tracking-wide uppercase font-['Inter'] mt-1">Chia sẻ</span>
+      </a>
+    </nav>
+  </div>
+
   <!-- OCR Loading Overlay -->
   <div id="ocrLoadingOverlay" class="hidden fixed inset-0 z-[300] bg-slate-900/80 flex flex-col items-center justify-center backdrop-blur-md opacity-0 transition-opacity duration-300">
      <span class="material-symbols-outlined text-white text-5xl animate-spin mb-4">progress_activity</span>
@@ -2232,37 +2331,7 @@
      <p class="text-white/60 text-xs mt-2 italic">This may take a few seconds...</p>
   </div>
 
-  <!-- CATSHEET FULLSCREEN OVERLAY (STITCH_GUIDEX) -->
-  <div id="catsheetGuidexOverlay" class="hidden fixed inset-0 z-[200] overflow-y-auto bg-surface text-on-surface antialiased opacity-0 transition-opacity duration-300">
-    <!-- TopAppBar -->
-    <header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 bg-[#f9f9fa] dark:bg-slate-950/90 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800">
-      <div class="flex items-center gap-4 w-full">
-        <span onclick="window.closeGuidexOverlay()" class="material-symbols-outlined text-primary dark:text-blue-400 active:scale-95 duration-150 cursor-pointer">arrow_back</span>
-        <h1 class="text-lg font-bold text-slate-800 dark:text-slate-100 font-['Inter'] tracking-tight flex-1">Ecolab Sales Toolkit</h1>
-        <span class="material-symbols-outlined text-slate-500">more_vert</span>
-      </div>
-    </header>
 
-    <main class="pt-20 pb-24 px-4 max-w-md mx-auto space-y-6" id="guidexRenderArea">
-      <!-- Dynamically Rendered by JS -->
-    </main>
-
-    <!-- BottomNavBar -->
-    <nav class="fixed bottom-0 left-0 w-full z-[201] flex justify-around items-center px-2 py-3 pb-safe bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-slate-200/50 dark:border-slate-800 shadow-[0_-4px_24px_rgba(0,0,0,0.04)] rounded-t-xl">
-      <a class="flex flex-col flex-1 items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-primary transition-all active:opacity-70" href="#" onclick="window.printCatsheet()">
-        <span class="material-symbols-outlined">print</span>
-        <span class="text-[10px] font-medium tracking-wide uppercase mt-1">Print</span>
-      </a>
-      <a class="flex flex-col flex-1 items-center justify-center text-primary bg-primary/10 dark:bg-primary/20 rounded-xl px-4 py-2 hover:bg-primary/20 transition-all active:opacity-70 mx-2" href="#" onclick="window.downloadCatsheetPDF()">
-        <span class="material-symbols-outlined font-bold">download</span>
-        <span class="text-[11px] font-bold tracking-wide uppercase mt-1">Export PDF</span>
-      </a>
-      <a class="flex flex-col flex-1 items-center justify-center text-slate-500 dark:text-slate-400 px-4 py-1 hover:text-primary transition-all active:opacity-70" href="#" onclick="navigator.share({title: 'Ecolab PDS', url: window.location.href})">
-        <span class="material-symbols-outlined">share</span>
-        <span class="text-[10px] font-medium tracking-wide uppercase mt-1">Share</span>
-      </a>
-    </nav>
-  </div>
   
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </body>
