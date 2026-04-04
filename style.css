@@ -1700,6 +1700,7 @@ main:has(#home.active) {
 }
 
 .mobile-bottom-nav.nav-hidden {
+    display: none !important;
     transform: translateY(100%);
 }
 
