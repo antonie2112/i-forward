@@ -3418,7 +3418,18 @@ window.initGuideX = async () => {
     try {
         const res = await fetch('./guidex_data.json');
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        window.guidexData = await res.json();
+        const rawData = await res.json();
+        
+        // Clean data: Filter out short header noise like "TH", "EN", "BC"
+        const cleanData = {};
+        for (const [key, value] of Object.entries(rawData)) {
+            if (key.length > 2) {
+                cleanData[key] = value;
+            } else {
+                console.warn(`GuideX: Removing potential garbage key: "${key}"`);
+            }
+        }
+        window.guidexData = cleanData;
     } catch (e) {
         console.error('Failed to load GuideX data:', e);
     }
@@ -3785,29 +3796,35 @@ window.processGuidexOCR = async (event) => {
                 lines.forEach(line => {
                     const text = line.text.toLowerCase().trim();
                     const bbox = line.bbox;
-                    const height = bbox.y1 - bbox.y0; // Font size proxy
+                    const height = bbox.y1 - bbox.y0; 
                     
-                    if (text.length < 2) return;
+                    if (text.length < 3) return;
 
-                    // Match against our database
                     for (const prodName of allProductNames) {
                         const normName = prodName.toLowerCase();
-                        // If the line contains the product name OR some product name is very similar to the line
-                        if (text.includes(normName) || normName.includes(text)) {
+                        
+                        // Rule 1: Exact word match (Using regex word boundaries)
+                        const wordRegex = new RegExp(`\\b${normName}\\b`, 'i');
+                        const isWordMatch = wordRegex.test(text);
+                        
+                        // Rule 2: Substring match (Only if significant part of the line)
+                        const isSubstringMatch = text.includes(normName) && (normName.length / text.length > 0.5);
+
+                        if (isWordMatch || isSubstringMatch) {
                             candidates.push({
                                 name: prodName,
                                 height: height,
-                                confidence: line.confidence
+                                confidence: line.confidence,
+                                matchWeight: normName.length * (isWordMatch ? 2 : 1) // Longer names & exact word matches weighted higher
                             });
                         }
                     }
                 });
 
-                // Sort candidates by height (primary) and confidence (secondary)
+                // Superior Sorting: Weight (Length/Match) > Height (Size) > Confidence
                 candidates.sort((a, b) => {
-                    if (Math.abs(a.height - b.height) > 5) {
-                        return b.height - a.height;
-                    }
+                    if (b.matchWeight !== a.matchWeight) return b.matchWeight - a.matchWeight;
+                    if (Math.abs(a.height - b.height) > 5) return b.height - a.height;
                     return b.confidence - a.confidence;
                 });
 
