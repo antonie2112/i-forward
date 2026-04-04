@@ -3455,9 +3455,24 @@ window.handleGuidexSearchInput = async (e) => {
     }
     
     let matches = [];
-    for(const prodName in window.guidexData) {
+    const seenNames = new Set();
+    
+    // Sort keys to have a consistent order before deduplication
+    const allProductNames = Object.keys(window.guidexData).sort();
+
+    for(const prodName of allProductNames) {
         if(prodName.toLowerCase().includes(q)) {
-            matches.push(prodName);
+            const lower = prodName.toLowerCase();
+            const prodData = window.guidexData[prodName]['vi'] || window.guidexData[prodName]['en'];
+            const hasContent = prodData && (prodData.properties || prodData.usage || prodData.ingredients);
+
+            // If we haven't seen this product name (case-insensitive) OR if the new one has content and the saved one doesn't
+            if (!seenNames.has(lower)) {
+                if (hasContent) {
+                   matches.push(prodName);
+                   seenNames.add(lower);
+                }
+            }
         }
     }
     
