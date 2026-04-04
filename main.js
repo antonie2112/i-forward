@@ -3772,7 +3772,7 @@ window.processGuidexOCR = async (event) => {
         reader.onload = async (e) => {
             try {
                 const imgDataUrl = e.target.result;
-                const worker = await Tesseract.createWorker('eng');
+                const worker = await Tesseract.createWorker('eng+vie');
                 const ret = await worker.recognize(imgDataUrl);
                 
                 // Get lines with their bounding boxes
