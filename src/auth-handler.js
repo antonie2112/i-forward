@@ -10,9 +10,9 @@ const mainDashboard = document.getElementById('main-dashboard');
 function toggleBottomNav(show) {
     if (bottomNav) {
         if (show) {
-            bottomNav.classList.remove('hidden');
+            bottomNav.classList.remove('nav-hidden');
         } else {
-            bottomNav.classList.add('hidden');
+            bottomNav.classList.add('nav-hidden');
         }
     }
 }
