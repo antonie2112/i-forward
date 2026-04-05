@@ -3818,6 +3818,21 @@ window.openGuidexDetail = async (prodName) => {
     const data = window.guidexData[prodName];
     if(!data) return;
     
+    // Resolve Category from D-Map data if available
+    if(!window.dmapData) {
+       try {
+          const resp = await fetch('./public/dmap_data.json');
+          window.dmapData = await resp.json();
+       } catch(e) { window.dmapData = []; }
+    }
+    const match = window.dmapData ? window.dmapData.find(d => {
+        const dEcolab = (d.Ecolab || '').toLowerCase().trim();
+        const dDiv = (d.DiverseyShort || '').toLowerCase().trim();
+        const pName = prodName.toLowerCase().trim();
+        return pName.includes(dEcolab) || pName.includes(dDiv) || dEcolab.includes(pName);
+    }) : null;
+    const prodCategory = match ? match.Category : 'Professional';
+    
     const langKey = window.currentGuidexLang;
     const prodContent = data[langKey] || data['en'] || data['vi'];
     if(!prodContent) return;
@@ -3943,8 +3958,8 @@ window.openGuidexDetail = async (prodName) => {
       <section class="grid grid-cols-2 gap-3">
         <div class="col-span-2 p-5 bg-[#0053a6] text-on-primary rounded-xl flex items-center justify-between overflow-hidden relative shadow-sm">
           <div class="relative z-10">
-            <p class="text-[10px] font-bold tracking-widest uppercase opacity-80 mb-1">Highlight</p>
-            <h3 class="text-xl font-bold">${keywords[0]}</h3>
+            <p class="text-[10px] font-bold tracking-widest uppercase opacity-80 mb-1">${langKey === 'en' ? 'CATEGORY' : 'NHÀNH HÀNG'}</p>
+            <h3 class="text-xl font-bold">${prodCategory}</h3>
           </div>
           <span class="material-symbols-outlined text-6xl opacity-20 absolute -right-2 -bottom-2">verified</span>
         </div>
