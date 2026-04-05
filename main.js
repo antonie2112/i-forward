@@ -3413,12 +3413,19 @@ window.guidexData = null;
 window.currentGuidexLang = 'vi'; // default
 window.currentGuidexMode = 'catsheet'; // 'catsheet' | 'dmap'
 
+window.guidexDMapData = null;
+
 window.initGuideX = async () => {
-    if (window.guidexData) return;
+    if (window.guidexData && window.guidexDMapData) return;
     try {
-        const res = await fetch('./guidex_data.json');
+        const [res, dmapRes] = await Promise.all([
+            fetch('./guidex_data.json'),
+            fetch('./dmap_data.json')
+        ]);
         if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!dmapRes.ok) throw new Error('HTTP ' + dmapRes.status);
         const rawData = await res.json();
+        window.guidexDMapData = await dmapRes.json();
         
         // Clean data: Filter out short header noise like "TH", "EN", "BC"
         const cleanData = {};
@@ -3431,7 +3438,7 @@ window.initGuideX = async () => {
         }
         window.guidexData = cleanData;
     } catch (e) {
-        console.error('Failed to load GuideX data:', e);
+        console.error('Failed to load GuideX data or DMap data:', e);
     }
 };
 
@@ -3441,18 +3448,27 @@ window.switchGuidexMode = (mode) => {
     const btnMap = document.getElementById('guidexModeDmap');
     const dmapArea = document.getElementById('guidexDmapPlaceholder');
     const searchWrapper = document.getElementById('guidexSearchInput').parentElement.parentElement;
+    const searchInput = document.getElementById('guidexSearchInput');
+    
+    // Always keep search bar visible
+    searchWrapper.style.display = 'block';
     
     if(mode === 'catsheet') {
         btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
         btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
-        dmapArea.classList.add('hidden');
-        searchWrapper.style.display = 'block';
+        if(dmapArea) dmapArea.classList.add('hidden');
+        searchInput.placeholder = "Gõ tên sản phẩm (VD: Oasis)...";
     } else {
         btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
         btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
-        dmapArea.classList.remove('hidden');
-        searchWrapper.style.display = 'none';
+        if(dmapArea) dmapArea.classList.add('hidden'); // We don't need this empty placeholder anymore
+        searchInput.placeholder = "Gõ tên SP đối thủ (VD: Suma, Diversey)...";
     }
+    
+    // Reset search state on switch
+    searchInput.value = '';
+    const resultBox = document.getElementById('guidexSearchResults');
+    if(resultBox) resultBox.classList.add('hidden');
 }
 
 window.toggleGuidexLang = () => {
@@ -3472,76 +3488,322 @@ window.handleGuidexSearchInput = async (e) => {
         return;
     }
     
-    let matches = [];
-    const seenNames = new Set();
-    
-    // Sort keys to have a consistent order before deduplication
-    const allProductNames = Object.keys(window.guidexData).sort();
+    let html = '';
+    const imgErrBlock = "this.onerror=null; this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full w-full bg-slate-100 text-slate-300\\'><span class=\\'material-symbols-outlined text-3xl\\'>image<\/span><\/div>';";
 
-    for(const prodName of allProductNames) {
-        if(prodName.toLowerCase().includes(q)) {
-            const lower = prodName.toLowerCase();
-            const prodData = window.guidexData[prodName]['vi'] || window.guidexData[prodName]['en'];
-            const hasContent = prodData && (prodData.properties || prodData.usage || prodData.ingredients);
+    if (window.currentGuidexMode === 'dmap') {
+        const matches = [];
+        for (const item of window.guidexDMapData) {
+            if (item.Diversey.toLowerCase().includes(q) || item.DiverseyShort.toLowerCase().includes(q)) {
+                matches.push(item);
+            }
+        }
+        
+        if(matches.length === 0) {
+            resultBox.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">Không tìm thấy sản phẩm Diversey từ kho đối chiếu.</div>';
+            resultBox.classList.remove('hidden');
+            return;
+        }
+        
+        matches.forEach(match => {
+            const safeObjStr = encodeURIComponent(JSON.stringify(match));
+            html += `
+              <div class="flex items-center gap-4 p-4 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0 transition-colors" onclick="window.openGuidexDMapDetail('${safeObjStr}')">
+                <div class="w-14 h-14 bg-white border border-slate-200 rounded-xl overflow-hidden shrink-0 shadow-sm flex items-center justify-center p-1 relative z-0">
+                    <img src="./generic_diversey.png" onerror="${imgErrBlock}" class="w-full h-full object-contain opacity-50" />
+                </div>
+                <div class="text-left flex-1 relative z-10 pointer-events-none">
+                    <h4 class="font-bold text-slate-800 text-sm pointer-events-none line-clamp-1">${match.DiverseyShort}</h4>
+                    <p class="text-xs text-primary font-bold line-clamp-1 mt-0.5 pointer-events-none">Ecolab: ${match.Ecolab}</p>
+                </div>
+                <span class="material-symbols-outlined text-primary pointer-events-none">compare_arrows</span>
+              </div>
+            `;
+        });
+    } else {
+        let matches = [];
+        const seenNames = new Set();
+        const allProductNames = Object.keys(window.guidexData).sort();
 
-            // If we haven't seen this product name (case-insensitive) OR if the new one has content and the saved one doesn't
-            if (!seenNames.has(lower)) {
-                if (hasContent) {
-                   matches.push(prodName);
-                   seenNames.add(lower);
+        for(const prodName of allProductNames) {
+            if(prodName.toLowerCase().includes(q)) {
+                const lower = prodName.toLowerCase();
+                const prodData = window.guidexData[prodName]['vi'] || window.guidexData[prodName]['en'];
+                const hasContent = prodData && (prodData.properties || prodData.usage || prodData.ingredients);
+
+                if (!seenNames.has(lower)) {
+                    if (hasContent) {
+                       matches.push(prodName);
+                       seenNames.add(lower);
+                    }
                 }
             }
         }
-    }
-    
-    // Sort and limit to 10
-    matches.sort();
-    matches = matches.slice(0, 10);
-    
-    if(matches.length === 0) {
-        resultBox.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">Không tìm thấy sản phẩm.</div>';
-        resultBox.classList.remove('hidden');
-        return;
-    }
-    
-    // Setup white fallback for image loading errors
-    const imgErrBlock = "this.onerror=null; this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full w-full bg-slate-100 text-slate-300\\'><span class=\\'material-symbols-outlined text-3xl\\'>image<\/span><\/div>';";
-
-    let html = '';
-    const langKey = window.currentGuidexLang; // 'vi' or 'en'
-    
-    for(const match of matches) {
-        const prodData = window.guidexData[match][langKey] || window.guidexData[match]['en'] || window.guidexData[match]['vi'];
-        if(!prodData) continue;
         
-        // Use properties or anything for short desc
-        let desc = prodData.properties || prodData.usage || '';
-        // Extract first 100 chars generically
-        desc = desc.substring(0, 80) + '...';
+        matches.sort();
         
-        // Image resolution
-        const imgName = match.replace(/ /g, '%20') + '.jpg';
-        const imgUrl = `./catsheet_images/${imgName}`;
+        if(matches.length === 0) {
+            resultBox.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">Không tìm thấy sản phẩm.</div>';
+            resultBox.classList.remove('hidden');
+            return;
+        }
         
-        html += `
-          <div class="flex items-center gap-4 p-4 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0 transition-colors" onclick="window.openGuidexDetail('${match.replace(/'/g, "\\'")}')">
-            <div class="w-14 h-14 bg-white border border-slate-200 rounded-xl overflow-hidden shrink-0 shadow-sm flex items-center justify-center p-1 relative z-0">
-                <img src="${imgUrl}" onerror="${imgErrBlock}" class="w-full h-full object-contain" />
-            </div>
-            <div class="text-left flex-1 relative z-10 pointer-events-none">
-                <h4 class="font-bold text-slate-800 text-sm pointer-events-none">${match}</h4>
-                <p class="text-xs text-slate-500 line-clamp-1 mt-0.5 pointer-events-none">${desc}</p>
-            </div>
-            <span class="material-symbols-outlined text-slate-300 pointer-events-none">chevron_right</span>
-          </div>
-        `;
+        const langKey = window.currentGuidexLang;
+        
+        matches.forEach(match => {
+            const prodData = window.guidexData[match][langKey] || window.guidexData[match]['en'] || window.guidexData[match]['vi'];
+            if(!prodData) return;
+            
+            let desc = prodData.properties || prodData.usage || '';
+            desc = desc.substring(0, 80) + '...';
+            
+            const imgName = match.replace(/ /g, '%20') + '.jpg';
+            const imgUrl = `./catsheet_images/${imgName}`;
+            
+            html += `
+              <div class="flex items-center gap-4 p-4 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0 transition-colors" onclick="window.openGuidexDetail('${match.replace(/'/g, "\\'")}')">
+                <div class="w-14 h-14 bg-white border border-slate-200 rounded-xl overflow-hidden shrink-0 shadow-sm flex items-center justify-center p-1 relative z-0">
+                    <img src="${imgUrl}" onerror="${imgErrBlock}" class="w-full h-full object-contain" />
+                </div>
+                <div class="text-left flex-1 relative z-10 pointer-events-none">
+                    <h4 class="font-bold text-slate-800 text-sm pointer-events-none">${match}</h4>
+                    <p class="text-xs text-slate-500 line-clamp-1 mt-0.5 pointer-events-none">${desc}</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 pointer-events-none">chevron_right</span>
+              </div>
+            `;
+        });
     }
     
     resultBox.innerHTML = html;
     resultBox.classList.remove('hidden');
 }
 
-// Close dropdown when clicking outside
+window.openGuidexDMapDetail = (safeObjStr) => {
+    const match = JSON.parse(decodeURIComponent(safeObjStr));
+    const ui = document.getElementById('guidexDetailRenderer');
+    const overlay = document.getElementById('guidexDetailOverlay');
+    
+    // Resolve Image
+    const ecolabImgName = match.Ecolab.replace(/ /g, '%20') + '.jpg';
+    const ecolabImgUrl = `./catsheet_images/${ecolabImgName}`;
+    const imgErrBlockStr = "this.onerror=null; this.parentElement.style.opacity=0;";
+
+    // Product data lookup for Features/Benefits
+    const langKey = window.currentGuidexLang || 'vi';
+    let prodData = window.guidexData[match.Ecolab] || window.guidexData[match.Ecolab + "_Catsheet"];
+    
+    if (!prodData) {
+        const keys = Object.keys(window.guidexData);
+        const bestMatch = keys.find(k => k.toLowerCase().includes(match.Ecolab.toLowerCase()) || match.Ecolab.toLowerCase().includes(k.replace('_Catsheet', '').toLowerCase()));
+        if (bestMatch) prodData = window.guidexData[bestMatch];
+    }
+    
+    const details = prodData ? (prodData[langKey] || prodData['vi'] || prodData['en']) : null;
+    const properties = details ? details.properties : "";
+    const usage = details ? details.usage : match.Description || "";
+
+    const uiHtml = `
+      <div class="px-4 pb-24 pt-4 max-w-lg mx-auto space-y-8 font-sans">
+        <section class="space-y-4">
+          <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-primary">
+            <div class="flex justify-between items-end mb-4">
+              <div class="space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-primary">Đối đầu trực tiếp</span>
+                <h2 class="text-2xl font-bold tracking-tight">${match.Ecolab} vs. Diversey</h2>
+              </div>
+              <span class="material-symbols-outlined text-primary text-3xl">compare_arrows</span>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative bg-slate-50 p-3 rounded-lg text-center shadow-inner">
+                <img src="${ecolabImgUrl}" onerror="${imgErrBlockStr}" class="h-24 mx-auto mb-2 object-contain" />
+                <p class="text-[10px] font-bold text-primary max-w-full truncate">${match.Ecolab}</p>
+                <span class="absolute top-1 left-1 px-1.5 py-0.5 bg-blue-100 text-blue-700 text-[8px] font-bold rounded">Ecolab</span>
+              </div>
+              <div class="relative bg-slate-50 p-3 rounded-lg text-center opacity-80 shadow-inner flex flex-col justify-center items-center">
+                <div class="h-24 flex items-center justify-center mb-2">
+                    <img src="./generic_diversey.png" onerror="${imgErrBlockStr}" class="h-24 mx-auto object-contain opacity-50" />
+                </div>
+                <p class="text-[10px] font-bold text-slate-500 w-full truncate">${match.DiverseyShort}</p>
+                <span class="absolute top-1 right-1 px-1.5 py-0.5 bg-rose-100 text-rose-700 text-[8px] font-bold rounded">Đối thủ</span>
+              </div>
+            </div>
+            <p class="text-[10px] text-slate-400 mt-3 text-center italic">${match.Diversey}</p>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">shield</span>
+            <h3 class="text-lg font-bold">Hồ sơ kỹ thuật</h3>
+          </div>
+          <div class="space-y-3">
+            <div onclick="const el=document.getElementById('div-tds-info'); el.classList.toggle('hidden');" class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-slate-500">description</span>
+                <span class="font-medium text-sm">Technical Data Sheet (TDS)</span>
+              </div>
+              <div class="flex gap-2">
+                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center border border-green-200" title="Ecolab: Có">
+                  <span class="material-symbols-outlined text-green-700 text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center border border-slate-200" title="Diversey: Click để xem hồ sơ">
+                  <span class="material-symbols-outlined text-slate-400 text-sm" style="font-variation-settings: 'FILL' 1;">help</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="div-tds-info" class="hidden animate-in slide-in-from-top-2 duration-300 bg-rose-50 border border-rose-100 rounded-2xl p-5 space-y-3">
+               <p class="text-[10px] font-bold text-rose-700 uppercase tracking-widest">Thông số kỹ thuật: ${match.DiverseyShort}</p>
+               <div class="grid grid-cols-2 gap-3 text-[10px]">
+                  <div class="p-2 bg-white rounded-lg shadow-sm">
+                    <p class="text-slate-400 mb-1">Độ pH</p>
+                    <p class="font-bold text-slate-700">${match.Technical.pH}</p>
+                  </div>
+                  <div class="p-2 bg-white rounded-lg shadow-sm">
+                    <p class="text-slate-400 mb-1">Tỉ lệ pha</p>
+                    <p class="font-bold text-slate-700">${match.Technical.Dilution}</p>
+                  </div>
+               </div>
+               <p class="text-[10px] text-slate-500 italic leading-relaxed">"Cảm quan: ${match.Technical.Appearance}. Đây là dòng hóa chất nồng độ cao chuyên dụng."</p>
+            </div>
+
+            <div onclick="const el=document.getElementById('div-sds-info'); el.classList.toggle('hidden');" class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between shadow-sm cursor-pointer hover:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-slate-500">security</span>
+                <span class="font-medium text-sm">SDS / MSDS (Tiêu chuẩn GHS)</span>
+              </div>
+              <div class="flex gap-2">
+                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center border border-green-200" title="Ecolab: Đạt tiêu chuẩn">
+                  <span class="material-symbols-outlined text-green-700 text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center border border-orange-200" title="Diversey: Cần xem xét">
+                  <span class="material-symbols-outlined text-orange-700 text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="div-sds-info" class="hidden animate-in slide-in-from-top-2 duration-300 bg-orange-50 border border-orange-100 rounded-2xl p-5 space-y-3">
+               <p class="text-[10px] font-bold text-orange-700 uppercase tracking-widest">An toàn GHS: ${match.Safety.Signal}</p>
+               <div class="space-y-2">
+                  <div class="flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm">
+                    <span class="material-symbols-outlined text-orange-500 text-sm">warning</span>
+                    <p class="text-[10px] font-bold text-slate-700">Nguy cơ: ${match.Safety.Hazards}</p>
+                  </div>
+                  <p class="text-[10px] text-slate-500 leading-relaxed px-1">Cần trang bị bảo hộ PPE đầy đủ khi thao tác với hóa chất nguyên chất của đối thủ.</p>
+               </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-rose-700">inventory_2</span>
+            <h3 class="text-lg font-bold">Công dụng & Tính năng</h3>
+          </div>
+          <div class="bg-rose-50 border border-rose-100 rounded-2xl p-6 shadow-sm space-y-5">
+            <div class="border-b border-rose-200 pb-3">
+               <p class="text-[10px] font-bold text-rose-700 uppercase tracking-widest mb-1">ECOLAB: ${match.Ecolab}</p>
+               <h4 class="text-sm font-bold text-slate-800">Thông tin chi tiết sản phẩm</h4>
+            </div>
+            
+            <div class="space-y-4">
+              ${properties ? `
+              <div class="space-y-2">
+                <p class="text-[10px] font-bold text-rose-600 flex items-center gap-2 uppercase">
+                   <span class="material-symbols-outlined text-xs">verified</span> ĐẶC TÍNH & LỢI ÍCH
+                </p>
+                <div class="text-[11px] text-slate-600 leading-relaxed whitespace-pre-line bg-white/50 p-3 rounded-xl border border-rose-100/50">
+                  ${properties}
+                </div>
+              </div>` : ''}
+
+              <div class="space-y-2">
+                <p class="text-[10px] font-bold text-rose-600 flex items-center gap-2 uppercase">
+                   <span class="material-symbols-outlined text-xs">layers</span> CÔNG DỤNG / CÁCH DÙNG
+                </p>
+                <div class="text-[11px] text-slate-600 leading-relaxed whitespace-pre-line bg-white/50 p-3 rounded-xl border border-rose-100/50">
+                  ${usage}
+                </div>
+              </div>
+            </div>
+            
+            <div class="pt-2 flex justify-between items-center opacity-60">
+                <span class="text-[9px] text-rose-500 font-medium">Nguồn: GuideX Catsheet 2026</span>
+                <span class="material-symbols-outlined text-rose-400 text-sm">stars</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">grid_view</span>
+            <h3 class="text-lg font-bold">Ma trận tiêu chí Performance</h3>
+          </div>
+          <div class="space-y-3">
+            <div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm">
+              <div class="grid grid-cols-5 bg-slate-100 py-2 px-4 text-[10px] font-bold text-slate-500">
+                <div class="col-span-3">TIÊU CHÍ</div>
+                <div class="text-center text-primary">ECOLAB</div>
+                <div class="text-center">ĐỐI THỦ</div>
+              </div>
+              <div class="divide-y divide-slate-100">
+                <div class="grid grid-cols-5 py-3 px-4 items-center gap-2">
+                  <div class="col-span-3 text-sm font-medium text-slate-700">Sức mạnh làm sạch</div>
+                  <div class="flex justify-center"><span class="w-2 h-2 rounded-full bg-primary"></span></div>
+                  <div class="flex justify-center"><span class="w-2 h-2 rounded-full bg-slate-300"></span></div>
+                </div>
+                <div class="grid grid-cols-5 py-3 px-4 items-center gap-2">
+                  <div class="col-span-3 text-sm font-medium text-slate-700">Tỷ lệ pha loãng</div>
+                  <div class="text-[10px] font-bold text-center text-primary whitespace-nowrap overflow-hidden text-clip">${match.Cost.dilution_eco}</div>
+                  <div class="text-[10px] font-bold text-center text-slate-500 whitespace-nowrap overflow-hidden text-clip">${match.Cost.dilution_div}</div>
+                </div>
+                <div class="grid grid-cols-5 py-3 px-4 items-center gap-2">
+                  <div class="col-span-3 text-sm font-medium text-slate-700">Nhánh hệ thống</div>
+                  <div class="text-[10px] font-bold text-center text-primary truncate">${match.Category}</div>
+                  <div class="text-[10px] font-bold text-center text-slate-500 truncate">${match.Category}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3 mt-3">
+              <div class="bg-surface-container-lowest p-4 rounded-xl text-center space-y-2 shadow-sm border border-slate-100 flex flex-col justify-center items-center">
+                <span class="material-symbols-outlined text-primary text-2xl">valve</span>
+                <p class="text-[10px] font-bold text-slate-700">Hệ thống châm Ecolab</p>
+              </div>
+              <div class="bg-surface-container-lowest p-4 rounded-xl text-center space-y-2 shadow-sm border border-slate-100 flex flex-col justify-center items-center">
+                <span class="material-symbols-outlined text-primary text-2xl">settings_input_component</span>
+                <p class="text-[10px] font-bold text-slate-700">Tương thích hoàn toàn</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    `;
+
+    ui.innerHTML = uiHtml;
+    ui.scrollTop = 0;
+    
+    // Hide search results
+    document.getElementById('guidexSearchResults').classList.add('hidden');
+    
+    // Stitch Overlay Transition
+    overlay.classList.remove('hidden');
+    overlay.scrollTop = 0;
+    ui.scrollTop = 0; 
+    
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100', 'pointer-events-auto');
+        overlay.scrollTop = 0; // Backup reset
+    }, 10);
+
+    // Clear search input
+    const searchInput = document.getElementById('guidexSearchInput');
+    if(searchInput) searchInput.value = '';
+};
 document.addEventListener('click', (e) => {
     const searchWrapper = document.getElementById('guidexSearchInput')?.parentElement?.parentElement;
     const resultBox = document.getElementById('guidexSearchResults');
@@ -3749,15 +4011,25 @@ window.openGuidexDetail = async (prodName) => {
     
     // Transition overlay
     overlay.classList.remove('hidden');
+    overlay.scrollTop = 0;
+    ui.scrollTop = 0; 
+    
     document.body.style.overflow = 'hidden';
     setTimeout(() => {
-        overlay.classList.remove('opacity-0');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100', 'pointer-events-auto');
+        overlay.scrollTop = 0; // Backup
     }, 10);
+    
+    // Clear search input for next time
+    const searchInput = document.getElementById('guidexSearchInput');
+    if(searchInput) searchInput.value = '';
 };
 
 window.closeGuidexDetail = () => {
     const overlay = document.getElementById('guidexDetailOverlay');
-    overlay.classList.add('opacity-0');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    overlay.classList.remove('opacity-100', 'pointer-events-auto');
     document.body.style.overflow = 'auto'; // restore
     setTimeout(() => {
         overlay.classList.add('hidden');
