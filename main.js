@@ -1522,9 +1522,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('quote-builder').style.display = 'none';
         }
 
-        // Initialize Catsheets if navigating there
+        // Initialize GuideX if navigating there
         if (tabId === 'guidex') {
-            if (typeof window.initCatsheets === 'function') {
+            if (typeof window.initGuideX === 'function') {
+                window.initGuideX();
+            } else if (typeof window.initCatsheets === 'function') {
                 window.initCatsheets();
             }
         }
@@ -3373,9 +3375,6 @@ async function exportHkToImage() {
         if (shareBtn) shareBtn.style.visibility = 'visible';
     }
 }
-window.exportHkToImage = exportHkToImage;
-
-// Functions consolidated at internal definitions above
 
 async function exportKitchenToImage() {
     const element = document.getElementById('tvd-kitchen-module');
@@ -3404,6 +3403,8 @@ async function exportKitchenToImage() {
         if (shareBtn) shareBtn.style.visibility = 'visible';
     }
 }
+
+window.exportHkToImage = exportHkToImage;
 window.exportKitchenToImage = exportKitchenToImage;
 
 // ==========================================
@@ -3412,34 +3413,55 @@ window.exportKitchenToImage = exportKitchenToImage;
 window.guidexData = null;
 window.currentGuidexLang = 'vi'; // default
 window.currentGuidexMode = 'catsheet'; // 'catsheet' | 'dmap'
-
 window.guidexDMapData = null;
+window.dmapData = null; 
+window.initGuideXPromise = null;
 
 window.initGuideX = async () => {
     if (window.guidexData && window.guidexDMapData) return;
-    try {
-        const [res, dmapRes] = await Promise.all([
-            fetch('./guidex_data.json'),
-            fetch('./dmap_data.json')
-        ]);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        if (!dmapRes.ok) throw new Error('HTTP ' + dmapRes.status);
-        const rawData = await res.json();
-        window.guidexDMapData = await dmapRes.json();
-        
-        // Clean data: Filter out short header noise like "TH", "EN", "BC"
-        const cleanData = {};
-        for (const [key, value] of Object.entries(rawData)) {
-            if (key.length > 2) {
-                cleanData[key] = value;
-            } else {
-                console.warn(`GuideX: Removing potential garbage key: "${key}"`);
+    if (window.initGuideXPromise) return window.initGuideXPromise;
+    
+    window.initGuideXPromise = (async () => {
+        try {
+            const [res, dmapRes] = await Promise.all([
+                fetch('./guidex_data.json'),
+                fetch('./dmap_data.json')
+            ]);
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            if (!dmapRes.ok) throw new Error('HTTP ' + dmapRes.status);
+            const rawData = await res.json();
+            const dMapData = await dmapRes.json();
+            
+            window.guidexDMapData = dMapData;
+            window.dmapData = dMapData;
+            
+            const cleanData = {};
+            for (const [key, value] of Object.entries(rawData)) {
+                if (key.length > 2) cleanData[key] = value;
             }
+            window.guidexData = cleanData;
+        } catch (e) {
+            console.error('GuideX Init Error:', e);
+            window.initGuideXPromise = null;
         }
-        window.guidexData = cleanData;
-    } catch (e) {
-        console.error('Failed to load GuideX data or DMap data:', e);
+    })();
+    return window.initGuideXPromise;
+};
+
+// --- Backward Compatibility & Aliases ---
+window.initCatsheets = window.initGuideX;
+
+window.printCatsheet = () => {
+    const detailOverlay = document.getElementById('guidexDetailOverlay');
+    if (!detailOverlay || detailOverlay.classList.contains('hidden')) {
+        alert("Vui lòng mở một Catsheet để in.");
+        return;
     }
+    window.print();
+};
+
+window.downloadCatsheetPDF = () => {
+    alert("Chức năng tải PDF đang được xử lý. Vui lòng sử dụng tính năng In (Print to PDF) để thay thế.");
 };
 
 window.switchGuidexMode = (mode) => {
@@ -3447,26 +3469,24 @@ window.switchGuidexMode = (mode) => {
     const btnCat = document.getElementById('guidexModeCatsheet');
     const btnMap = document.getElementById('guidexModeDmap');
     const dmapArea = document.getElementById('guidexDmapPlaceholder');
-    const searchWrapper = document.getElementById('guidexSearchInput').parentElement.parentElement;
     const searchInput = document.getElementById('guidexSearchInput');
+    const searchWrapper = searchInput ? searchInput.parentElement?.parentElement : null;
     
-    // Always keep search bar visible
-    searchWrapper.style.display = 'block';
+    if (searchWrapper) searchWrapper.style.display = 'block';
     
     if(mode === 'catsheet') {
-        btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
-        btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
-        if(dmapArea) dmapArea.classList.add('hidden');
-        searchInput.placeholder = "Gõ tên sản phẩm (VD: Oasis)...";
+        if (btnCat) btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
+        if (btnMap) btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
+        if (dmapArea) dmapArea.classList.add('hidden');
+        if (searchInput) searchInput.placeholder = "Gõ tên sản phẩm (VD: Oasis)...";
     } else {
-        btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
-        btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
-        if(dmapArea) dmapArea.classList.add('hidden'); // We don't need this empty placeholder anymore
-        searchInput.placeholder = "Gõ tên SP đối thủ (VD: Suma, Diversey)...";
+        if (btnMap) btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
+        if (btnCat) btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
+        if (dmapArea) dmapArea.classList.add('hidden');
+        if (searchInput) searchInput.placeholder = "Gõ tên SP đối thủ (VD: Suma, Diversey)...";
     }
     
-    // Reset search state on switch
-    searchInput.value = '';
+    if (searchInput) searchInput.value = '';
     const resultBox = document.getElementById('guidexSearchResults');
     if(resultBox) resultBox.classList.add('hidden');
 }
@@ -3479,10 +3499,22 @@ window.toggleGuidexLang = () => {
     window.handleGuidexSearchInput({target: document.getElementById('guidexSearchInput')});
 }
 
+function removeAccents(str) {
+    if (!str) return '';
+    return str.normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/đ/g, 'd')
+              .replace(/Đ/g, 'D')
+              .toLowerCase();
+}
+
 window.handleGuidexSearchInput = async (e) => {
     if(!window.guidexData) await window.initGuideX();
-    const q = (e.target.value || '').toLowerCase().trim();
+    const rawQ = (e.target.value || '').trim();
+    const q = removeAccents(rawQ);
     const resultBox = document.getElementById('guidexSearchResults');
+    if(!resultBox) return;
+
     if(q.length < 2) {
         resultBox.classList.add('hidden');
         return;
@@ -3493,14 +3525,20 @@ window.handleGuidexSearchInput = async (e) => {
 
     if (window.currentGuidexMode === 'dmap') {
         const matches = [];
-        for (const item of window.guidexDMapData) {
-            if (item.Diversey.toLowerCase().includes(q) || item.DiverseyShort.toLowerCase().includes(q)) {
+        const sourceData = window.guidexDMapData || window.dmapData || [];
+        for (const item of sourceData) {
+            const div = removeAccents(item.Diversey || '');
+            const divS = removeAccents(item.DiverseyShort || '');
+            const eco = removeAccents(item.Ecolab || '');
+            const desc = removeAccents(item.Description || '');
+            
+            if (div.includes(q) || divS.includes(q) || eco.includes(q) || desc.includes(q)) {
                 matches.push(item);
             }
         }
         
         if(matches.length === 0) {
-            resultBox.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">Không tìm thấy sản phẩm Diversey từ kho đối chiếu.</div>';
+            resultBox.innerHTML = '<div class="p-4 text-center text-slate-500 text-sm">Không tìm thấy sản phẩm đối chiếu.</div>';
             resultBox.classList.remove('hidden');
             return;
         }
@@ -3526,7 +3564,13 @@ window.handleGuidexSearchInput = async (e) => {
         const allProductNames = Object.keys(window.guidexData).sort();
 
         for(const prodName of allProductNames) {
-            if(prodName.toLowerCase().includes(q)) {
+            const nameNorm = removeAccents(prodName);
+            const viProps = window.guidexData[prodName]['vi']?.properties || '';
+            const enProps = window.guidexData[prodName]['en']?.properties || '';
+            const viNorm = removeAccents(viProps); // Search whole description
+            const enNorm = removeAccents(enProps);
+
+            if(nameNorm.includes(q) || viNorm.includes(q) || enNorm.includes(q)) {
                 const lower = prodName.toLowerCase();
                 const prodData = window.guidexData[prodName]['vi'] || window.guidexData[prodName]['en'];
                 const hasContent = prodData && (prodData.properties || prodData.usage || prodData.ingredients);
@@ -3577,6 +3621,18 @@ window.handleGuidexSearchInput = async (e) => {
     
     resultBox.innerHTML = html;
     resultBox.classList.remove('hidden');
+}
+
+window.handleGuidexSearchKeydown = (e) => {
+    if (e.key === 'Enter') {
+        const resultBox = document.getElementById('guidexSearchResults');
+        const firstResult = resultBox.querySelector('div[onclick]');
+        if (firstResult) {
+            firstResult.click();
+            resultBox.classList.add('hidden');
+            e.target.blur();
+        }
+    }
 }
 
 window.openGuidexDMapDetail = (safeObjStr) => {
@@ -3819,18 +3875,19 @@ window.openGuidexDetail = async (prodName) => {
     if(!data) return;
     
     // Resolve Category from D-Map data if available
-    if(!window.dmapData) {
+    if(!window.dmapData && !window.guidexDMapData) {
        try {
-          const resp = await fetch('./public/dmap_data.json');
+          const resp = await fetch('./dmap_data.json');
           window.dmapData = await resp.json();
        } catch(e) { window.dmapData = []; }
     }
-    const match = window.dmapData ? window.dmapData.find(d => {
+    const sourceData = window.dmapData || window.guidexDMapData || [];
+    const match = sourceData.find(d => {
         const dEcolab = (d.Ecolab || '').toLowerCase().trim();
         const dDiv = (d.DiverseyShort || '').toLowerCase().trim();
         const pName = prodName.toLowerCase().trim();
         return pName.includes(dEcolab) || pName.includes(dDiv) || dEcolab.includes(pName);
-    }) : null;
+    });
     const prodCategory = match ? match.Category : 'Professional';
     
     const langKey = window.currentGuidexLang;
@@ -4163,3 +4220,5 @@ window.processGuidexOCR = async (event) => {
         setTimeout(() => loader.classList.add('hidden'), 300);
     }
 };
+
+console.log("GuideX logic active!");

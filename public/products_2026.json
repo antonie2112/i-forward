@@ -5,7 +5,8 @@
     "specs": "",
     "unit": "100x1oz",
     "price": 2051600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "6100925",
@@ -13,7 +14,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 3818800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102666",
@@ -21,7 +23,8 @@
     "specs": "",
     "unit": "1x100",
     "price": 723100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102692",
@@ -29,7 +32,8 @@
     "specs": "",
     "unit": "30x3G",
     "price": 474200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102694",
@@ -37,7 +41,8 @@
     "specs": "",
     "unit": "30x40G",
     "price": 962400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102697",
@@ -45,7 +50,8 @@
     "specs": "",
     "unit": "60x6G",
     "price": 1006700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102699",
@@ -53,7 +59,8 @@
     "specs": "",
     "unit": "48x25G",
     "price": 1428800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "6102713",
@@ -61,7 +68,8 @@
     "specs": "",
     "unit": "100x30G",
     "price": 2109900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106974",
@@ -69,7 +77,8 @@
     "specs": "",
     "unit": "50x60GM",
     "price": 985500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7107397",
@@ -77,7 +86,8 @@
     "specs": "",
     "unit": "50x60GM",
     "price": 1241500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7107749",
@@ -85,7 +95,8 @@
     "specs": "",
     "unit": "50x60GM",
     "price": 1045200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102285",
@@ -93,7 +104,8 @@
     "specs": "",
     "unit": "4 x 6.75 lbs.",
     "price": 4125900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7102287",
@@ -101,7 +113,8 @@
     "specs": "",
     "unit": "2 x 2.5 lbs.",
     "price": 4495800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7103765",
@@ -109,7 +122,8 @@
     "specs": "",
     "unit": "3 x 4 lbs.",
     "price": 3044600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7103766",
@@ -117,7 +131,8 @@
     "specs": "",
     "unit": "3 x 2 lbs.",
     "price": 2873900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7103142",
@@ -125,7 +140,8 @@
     "specs": "",
     "unit": "2.5 Gal",
     "price": 3839300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7103813",
@@ -133,7 +149,8 @@
     "specs": "",
     "unit": "5 KG",
     "price": 711700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104901",
@@ -141,7 +158,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 1053600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107649",
@@ -149,7 +167,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 670800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7306259",
@@ -157,7 +176,8 @@
     "specs": "",
     "unit": "20KG",
     "price": 1192300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107037",
@@ -165,7 +185,8 @@
     "specs": "Chất rửa cho máy rửa / Liquid detergent for WW",
     "unit": "20 LT",
     "price": 1437800.0,
-    "dilution": "2 ml/lit"
+    "dilution": "2 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107038",
@@ -173,7 +194,8 @@
     "specs": "Chất tráng cho máy rửa / Rinse additive for WW",
     "unit": "20 LT",
     "price": 1996900.0,
-    "dilution": "0,16 ml/lit"
+    "dilution": "0,16 ml/lit",
+    "sector": "Kitchen"
   },
   {
     "code": "7107650",
@@ -181,7 +203,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 1457700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106036",
@@ -189,7 +212,8 @@
     "specs": "",
     "unit": "4x1 GAL",
     "price": 3695600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7108149",
@@ -197,7 +221,8 @@
     "specs": "",
     "unit": "4x5 LT",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7107045",
@@ -205,7 +230,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2628000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7107648",
@@ -213,7 +239,8 @@
     "specs": "",
     "unit": "4x5 LT",
     "price": 2759500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106431",
@@ -221,7 +248,8 @@
     "specs": "",
     "unit": "4x4 KG",
     "price": 6877900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106869",
@@ -229,7 +257,8 @@
     "specs": "",
     "unit": "4x9 LB",
     "price": 6877900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106040",
@@ -237,7 +266,8 @@
     "specs": "Nước rửa chén xoong nồi / Maunal detergent for pot and pan",
     "unit": "10 LT",
     "price": 982500.0,
-    "dilution": "1 ml/lit"
+    "dilution": "1 ml/lit",
+    "sector": "Kitchen"
   },
   {
     "code": "7106048",
@@ -245,7 +275,8 @@
     "specs": "",
     "unit": "4x1 GAL",
     "price": 1823200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7105024",
@@ -253,7 +284,8 @@
     "specs": "",
     "unit": "12x500ml",
     "price": 1399000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106063",
@@ -261,7 +293,8 @@
     "specs": "Chất khử trùng bề mặt tiếp xúc thực phẩm /Food contact sanitizer, SARS-CoV-2 disinfectant",
     "unit": "2x2 LT",
     "price": 2436000.0,
-    "dilution": "24 ml/lit"
+    "dilution": "24 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106058",
@@ -269,7 +302,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 1948800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106052",
@@ -277,7 +311,8 @@
     "specs": "",
     "unit": "20x1 KG",
     "price": 7213500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106045",
@@ -285,7 +320,8 @@
     "specs": "Vệ sinh cống rãnh, khử mùi cống / Cleaner, germicide and deodorizer for drain",
     "unit": "4x1 GAL",
     "price": 2671900.0,
-    "dilution": "16 ml/lit"
+    "dilution": "16 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106059",
@@ -293,7 +329,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 1027200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106039",
@@ -301,7 +338,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 1068100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106062",
@@ -309,7 +347,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 3063000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106043",
@@ -317,7 +356,8 @@
     "specs": "Tẩy lò / Heavy duty degreaser",
     "unit": "4x1 GAL",
     "price": 2340600.0,
-    "dilution": "Dùng ngày"
+    "dilution": "Dùng ngày",
+    "sector": "Kitchen"
   },
   {
     "code": "7106044",
@@ -325,7 +365,8 @@
     "specs": "Chất tẩy cặn vôi / Delimer",
     "unit": "4x1 GAL",
     "price": 2217400.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Kitchen"
   },
   {
     "code": "7106046",
@@ -333,7 +374,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 2299500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106049",
@@ -341,7 +383,8 @@
     "specs": "",
     "unit": "20 KG",
     "price": 3490300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106053",
@@ -349,7 +392,8 @@
     "specs": "Ngâm sành sứ / Chinaware presoak",
     "unit": "5 KG",
     "price": 1231900.0,
-    "dilution": "3,7 ml/lit"
+    "dilution": "3,7 ml/lit",
+    "sector": "Kitchen"
   },
   {
     "code": "7106449",
@@ -357,7 +401,8 @@
     "specs": "",
     "unit": "20 x 1 KG",
     "price": 4102100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7106666",
@@ -365,7 +410,8 @@
     "specs": "Vệ sinh inox đồng / Stainless steel, cooper cleaner",
     "unit": "6x475 ML",
     "price": 2053100.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106865",
@@ -373,7 +419,8 @@
     "specs": "Vệ sinh inox / Stainless steel cleaner",
     "unit": "6x32 OZ",
     "price": 2615300.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7103743",
@@ -381,7 +428,8 @@
     "specs": "",
     "unit": "4x1 GAL",
     "price": 2094200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102737",
@@ -389,7 +437,8 @@
     "specs": "",
     "unit": "6x750 ML",
     "price": 4236700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7303763",
@@ -397,7 +446,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 3510400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104558",
@@ -405,7 +455,8 @@
     "specs": "",
     "unit": "6x500mL",
     "price": 1169500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104988",
@@ -413,7 +464,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 2416500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7306280",
@@ -421,7 +473,8 @@
     "specs": "Lau sàn bếp / Kitchen floor cleaner",
     "unit": "21KG",
     "price": 2716900.0,
-    "dilution": "10 ml/lit"
+    "dilution": "10 ml/lit",
+    "sector": "Kitchen"
   },
   {
     "code": "7305114",
@@ -429,7 +482,8 @@
     "specs": "",
     "unit": "25 KG",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7306257",
@@ -437,7 +491,8 @@
     "specs": "",
     "unit": "25 KG",
     "price": 1443900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7300013",
@@ -445,7 +500,8 @@
     "specs": "",
     "unit": "25 kg",
     "price": 3040000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7306271",
@@ -453,7 +509,8 @@
     "specs": "",
     "unit": "20KG",
     "price": 1761300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7305085",
@@ -461,7 +518,8 @@
     "specs": "",
     "unit": "25 kg",
     "price": 3320900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7306286",
@@ -469,7 +527,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2840000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7307249",
@@ -477,7 +536,8 @@
     "specs": "",
     "unit": "4x5 LT",
     "price": 3124300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Kitchen"
   },
   {
     "code": "7101351",
@@ -485,7 +545,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 1520400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101352",
@@ -493,7 +554,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 888500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101355",
@@ -501,7 +563,8 @@
     "specs": "",
     "unit": "4X3.8LT",
     "price": 2138100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101358",
@@ -509,7 +572,8 @@
     "specs": "",
     "unit": "5 KGS",
     "price": 1227700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101359",
@@ -517,7 +581,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 819900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101823",
@@ -525,7 +590,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 1542200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101902",
@@ -533,7 +599,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 924800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102212",
@@ -541,7 +608,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 875400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102214",
@@ -549,7 +617,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 3446600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102377",
@@ -557,7 +626,8 @@
     "specs": "",
     "unit": "10LT",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101085",
@@ -565,7 +635,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 3531400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101088",
@@ -573,7 +644,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 4129900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101091",
@@ -581,7 +653,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 3818800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7103978",
@@ -589,7 +662,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 3041100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7103980",
@@ -597,7 +671,8 @@
     "specs": "Xịt mùi / Air Freshener",
     "unit": "2x2 LT",
     "price": 3962500.0,
-    "dilution": "31,3 ml/lit"
+    "dilution": "31,3 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104080",
@@ -605,7 +680,8 @@
     "specs": "",
     "unit": "12x100G",
     "price": 2381200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7105353",
@@ -613,7 +689,8 @@
     "specs": "",
     "unit": "6x946ML",
     "price": 5153900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106866",
@@ -621,7 +698,8 @@
     "specs": "",
     "unit": "12x17 OZ",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106870",
@@ -629,7 +707,8 @@
     "specs": "",
     "unit": "2x2 LT",
     "price": 4619400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7100858",
@@ -637,7 +716,8 @@
     "specs": "",
     "unit": "4x1 GAL",
     "price": 4432300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106106",
@@ -645,7 +725,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 1082800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106123",
@@ -653,7 +734,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 850900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106125",
@@ -661,7 +743,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 927100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106054",
@@ -669,7 +752,8 @@
     "specs": "Bóc tẩy sàn / Floor stripper",
     "unit": "10 LT",
     "price": 1319100.0,
-    "dilution": "200 ml/lit"
+    "dilution": "200 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106132",
@@ -677,7 +761,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 339800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106133",
@@ -685,7 +770,8 @@
     "specs": "",
     "unit": "5 GAL",
     "price": 1367400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106114",
@@ -693,7 +779,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 285900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106069",
@@ -701,7 +788,8 @@
     "specs": "Buffing sàn marble / Marble crytalizer",
     "unit": "2x5 LT",
     "price": 4232400.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106134",
@@ -709,7 +797,8 @@
     "specs": "Dust mop",
     "unit": "1 GAL",
     "price": 911600.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106055",
@@ -717,7 +806,8 @@
     "specs": "Lau sàn trung tính / Neutral floor cleaner",
     "unit": "10 LT",
     "price": 862300.0,
-    "dilution": "6 ml/lit"
+    "dilution": "6 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106056",
@@ -725,7 +815,8 @@
     "specs": "Xà bông giặt thảm / Carpet shampoo",
     "unit": "10 LT",
     "price": 1176900.0,
-    "dilution": "33 ml/lit"
+    "dilution": "33 ml/lit",
+    "sector": "Laundry"
   },
   {
     "code": "7106057",
@@ -733,7 +824,8 @@
     "specs": "Phun hút thảm / Carpet extraction",
     "unit": "10 LT",
     "price": 1262700.0,
-    "dilution": "25 ml/lit"
+    "dilution": "25 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102459",
@@ -741,7 +833,8 @@
     "specs": "",
     "unit": "4x22 OZ",
     "price": 1671800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101818",
@@ -749,7 +842,8 @@
     "specs": "",
     "unit": "4x1 GAL",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106330",
@@ -757,7 +851,8 @@
     "specs": "Đánh bóng đá marble / Marble poshing paste",
     "unit": "1x10 LB",
     "price": 6604500.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101070",
@@ -765,7 +860,8 @@
     "specs": "Xà bông rửa tay / Hand soap",
     "unit": "4x1 GAL",
     "price": 1192200.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101071",
@@ -773,7 +869,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1365200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104791",
@@ -781,7 +878,8 @@
     "specs": "",
     "unit": "4X3.8 LT",
     "price": 1091900.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7104792",
@@ -789,7 +887,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106066",
@@ -797,7 +896,8 @@
     "specs": "",
     "unit": "10 LT",
     "price": 1503300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106115",
@@ -805,7 +905,8 @@
     "specs": "Vệ sinh toilet / Toilet cleaner",
     "unit": "1 GAL",
     "price": 440000.0,
-    "dilution": "100 ml/lit"
+    "dilution": "100 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106104",
@@ -813,7 +914,8 @@
     "specs": "Vệ sinh đa năng / Mutipurpose cleaner",
     "unit": "1 GAL",
     "price": 285200.0,
-    "dilution": "7 ml/lit"
+    "dilution": "7 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106116",
@@ -821,7 +923,8 @@
     "specs": "",
     "unit": "5 GAL",
     "price": 1204400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106117",
@@ -829,7 +932,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 395000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106118",
@@ -837,7 +941,8 @@
     "specs": "",
     "unit": "1 GAL",
     "price": 451700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106119",
@@ -845,7 +950,8 @@
     "specs": "Vệ sinh kính / Glass cleaner",
     "unit": "1 GAL",
     "price": 317700.0,
-    "dilution": "100 ml/lit"
+    "dilution": "100 ml/lit",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106121",
@@ -853,7 +959,8 @@
     "specs": "Lau gỗ / Furniture polish",
     "unit": "1 GAL",
     "price": 891000.0,
-    "dilution": "Dùng ngay"
+    "dilution": "Dùng ngay",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106135",
@@ -861,7 +968,8 @@
     "specs": "",
     "unit": "3 KG",
     "price": 820700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107040",
@@ -869,7 +977,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 5502300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106074",
@@ -877,7 +986,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2617700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106089",
@@ -885,7 +995,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 3149500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7101635",
@@ -893,7 +1004,8 @@
     "specs": "",
     "unit": "25 KG",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106459",
@@ -901,7 +1013,8 @@
     "specs": "",
     "unit": "25 KG",
     "price": 2512000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106094",
@@ -909,7 +1022,8 @@
     "specs": "",
     "unit": "25 KG",
     "price": 2991400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106095",
@@ -917,7 +1031,8 @@
     "specs": "Bột giặt trắng sáng / Powder detergent",
     "unit": "25 KG",
     "price": 3670200.0,
-    "dilution": "10gr/kg"
+    "dilution": "10gr/kg",
+    "sector": "Laundry"
   },
   {
     "code": "7107048",
@@ -925,7 +1040,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1935600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107391",
@@ -933,7 +1049,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2761500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106072",
@@ -941,7 +1058,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2022800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107041",
@@ -949,7 +1067,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1398200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106073",
@@ -957,7 +1076,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2710100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107039",
@@ -965,7 +1085,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2363000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107042",
@@ -973,7 +1094,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2648500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107043",
@@ -981,7 +1103,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2063400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7106093",
@@ -989,7 +1112,8 @@
     "specs": "Bột tẩy gốc chlorine / Chlorinse based powder bleach",
     "unit": "25 KG",
     "price": 3469800.0,
-    "dilution": "7gr/kg"
+    "dilution": "7gr/kg",
+    "sector": "Laundry"
   },
   {
     "code": "7106098",
@@ -997,7 +1121,8 @@
     "specs": "",
     "unit": "20 KG",
     "price": 3367100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7106096",
@@ -1005,7 +1130,8 @@
     "specs": "Hồ vải / Starch",
     "unit": "15 KG",
     "price": 1936500.0,
-    "dilution": "7gr/kg"
+    "dilution": "7gr/kg",
+    "sector": "Laundry"
   },
   {
     "code": "7107044",
@@ -1013,7 +1139,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 5143000.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300066",
@@ -1021,7 +1148,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1862100.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "8300071",
@@ -1029,7 +1157,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 4281500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "8300083",
@@ -1037,7 +1166,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2742700.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7102011",
@@ -1045,7 +1175,8 @@
     "specs": "Chất trung hoà / Neutralizer",
     "unit": "20 LT",
     "price": 1639800.0,
-    "dilution": "1 - 2 ml/kg"
+    "dilution": "1 - 2 ml/kg",
+    "sector": "Laundry"
   },
   {
     "code": "7102014",
@@ -1053,7 +1184,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2054400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107047",
@@ -1061,7 +1193,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1365600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107090",
@@ -1069,7 +1202,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1855600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107392",
@@ -1077,7 +1211,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 2079600.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Housekeeping"
   },
   {
     "code": "7107046",
@@ -1085,7 +1220,8 @@
     "specs": "Tăng môi trường kiềm / Alkaline booster",
     "unit": "20 LT",
     "price": 1890400.0,
-    "dilution": "1-3ml/kg"
+    "dilution": "1-3ml/kg",
+    "sector": "Laundry"
   },
   {
     "code": "8300057",
@@ -1093,7 +1229,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1890400.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300059",
@@ -1101,7 +1238,8 @@
     "specs": "",
     "unit": "200 LT",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "7107393",
@@ -1109,7 +1247,8 @@
     "specs": "Tẩy trắng oxy / Oxygen bleach",
     "unit": "20 LT",
     "price": 2209200.0,
-    "dilution": "2 - 3ml/kg"
+    "dilution": "2 - 3ml/kg",
+    "sector": "Laundry"
   },
   {
     "code": "8300064",
@@ -1117,7 +1256,8 @@
     "specs": "",
     "unit": "200 LT",
     "price": 41797800.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300078",
@@ -1125,7 +1265,8 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1618300.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300158",
@@ -1133,7 +1274,8 @@
     "specs": "",
     "unit": "200 LT",
     "price": 0.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300089",
@@ -1141,7 +1283,8 @@
     "specs": "Nước giặt chính / Main liquid detergent",
     "unit": "20 LT",
     "price": 4401900.0,
-    "dilution": "0.8 - 1.0 ml/kg"
+    "dilution": "0.8 - 1.0 ml/kg",
+    "sector": "Laundry"
   },
   {
     "code": "8300092",
@@ -1149,7 +1292,8 @@
     "specs": "",
     "unit": "200 LT",
     "price": 42910200.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   },
   {
     "code": "8300095",
@@ -1157,6 +1301,7 @@
     "specs": "",
     "unit": "20 LT",
     "price": 1548500.0,
-    "dilution": ""
+    "dilution": "",
+    "sector": "Laundry"
   }
 ]

@@ -801,7 +801,10 @@
                 <span class="material-symbols-outlined absolute left-4 text-slate-400">search</span>
                 <input id="guidexSearchInput"
                   class="w-full pl-12 pr-16 py-4 bg-transparent border-none outline-none focus:ring-0 text-lg placeholder:text-slate-400 font-medium"
-                  placeholder="Gõ tên sản phẩm (VD: Oasis)..." type="text" autocomplete="off" oninput="window.handleGuidexSearchInput(event)" onfocus="window.handleGuidexSearchInput(event)" />
+                  placeholder="Gõ tên sản phẩm (VD: Oasis)..." type="text" autocomplete="off" 
+                  oninput="window.handleGuidexSearchInput(event)" 
+                  onfocus="window.handleGuidexSearchInput(event)"
+                  onkeydown="window.handleGuidexSearchKeydown(event)" />
                 
                 <!-- Scan OCR Button overlay -->
                 <div class="absolute right-2 top-1/2 -translate-y-1/2">
@@ -2179,7 +2182,7 @@
   <script type="module" src="/src/scanner.js"></script>
   <script type="module" src="/src/store.js"></script>
   <script type="module" src="/src/quotation.js"></script>
-  <script type="module" src="/main.js?v=200.0"></script>
+  <script type="module" src="/main.js?v=201.0"></script>
   <!-- TVD Math Modal -->
   <!-- LAUNDRY MATH MODAL -->
   <div id="tvd-laundry-math-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 transition-opacity duration-300">

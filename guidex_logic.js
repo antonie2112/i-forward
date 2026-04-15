@@ -187,7 +187,7 @@ window.openGuidexDetail = (prodName) => {
         </div>
         <div class="p-6 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-widest uppercase rounded">Professional</span>
+            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-widest uppercase rounded">${data.sector || 'Professional'}</span>
             <span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold tracking-widest uppercase rounded">Ecolab</span>
           </div>
           <h2 class="text-2xl font-extrabold text-[#0053a6] tracking-tight leading-none">${prodName}</h2>
