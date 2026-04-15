@@ -3423,9 +3423,10 @@ window.initGuideX = async () => {
     
     window.initGuideXPromise = (async () => {
         try {
+            const v = Date.now();
             const [res, dmapRes] = await Promise.all([
-                fetch('./guidex_data.json'),
-                fetch('./dmap_data.json')
+                fetch('./guidex_data.json?v=' + v),
+                fetch('./dmap_data.json?v=' + v)
             ]);
             if (!res.ok) throw new Error('HTTP ' + res.status);
             if (!dmapRes.ok) throw new Error('HTTP ' + dmapRes.status);
@@ -3814,10 +3815,10 @@ window.openGuidexDMapDetail = (safeObjStr) => {
                   <div class="text-[10px] font-bold text-center text-primary whitespace-nowrap overflow-hidden text-clip">${match.Cost.dilution_eco}</div>
                   <div class="text-[10px] font-bold text-center text-slate-500 whitespace-nowrap overflow-hidden text-clip">${match.Cost.dilution_div}</div>
                 </div>
-                <div class="grid grid-cols-5 py-3 px-4 items-center gap-2">
+                  <div class="grid grid-cols-5 py-3 px-4 items-center gap-2">
                   <div class="col-span-3 text-sm font-medium text-slate-700">Nhánh hệ thống</div>
-                  <div class="text-[10px] font-bold text-center text-primary truncate">${match.Category}</div>
-                  <div class="text-[10px] font-bold text-center text-slate-500 truncate">${match.Category}</div>
+                  <div class="text-[10px] font-bold text-center text-primary truncate">${prodCategory}</div>
+                  <div class="text-[10px] font-bold text-center text-slate-500 truncate">${prodCategory}</div>
                 </div>
               </div>
             </div>
@@ -3888,7 +3889,7 @@ window.openGuidexDetail = async (prodName) => {
         const pName = prodName.toLowerCase().trim();
         return pName.includes(dEcolab) || pName.includes(dDiv) || dEcolab.includes(pName);
     });
-    const prodCategory = match ? match.Category : 'Professional';
+    const prodCategory = data.sector || (match ? match.Category : 'Professional');
     
     const langKey = window.currentGuidexLang;
     const prodContent = data[langKey] || data['en'] || data['vi'];
@@ -4004,7 +4005,7 @@ window.openGuidexDetail = async (prodName) => {
         </div>
         <div class="p-6 space-y-3">
           <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-widest uppercase rounded">Professional</span>
+            <span class="px-2 py-0.5 bg-primary-fixed text-on-primary-fixed text-[10px] font-bold tracking-widest uppercase rounded">${data.sector || 'Professional'}</span>
             <span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold tracking-widest uppercase rounded">Ecolab</span>
           </div>
           <h2 class="text-2xl font-extrabold text-[#0053a6] tracking-tight leading-none">${prodName}</h2>
