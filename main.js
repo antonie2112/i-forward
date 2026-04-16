@@ -3483,7 +3483,7 @@ window.switchGuidexMode = (mode) => {
     } else {
         if (btnMap) btnMap.className = 'px-4 py-1.5 text-sm font-bold rounded-lg bg-white shadow-sm text-indigo-600 transition-all';
         if (btnCat) btnCat.className = 'px-4 py-1.5 text-sm font-bold rounded-lg text-slate-500 hover:text-slate-700 transition-all';
-        if (dmapArea) dmapArea.classList.add('hidden');
+        if (dmapArea) dmapArea.classList.remove('hidden');
         if (searchInput) searchInput.placeholder = "Gõ tên SP đối thủ (VD: Suma, Diversey)...";
     }
     
@@ -3518,7 +3518,16 @@ window.handleGuidexSearchInput = async (e) => {
 
     if(q.length < 2) {
         resultBox.classList.add('hidden');
+        if (window.currentGuidexMode === 'dmap') {
+            const dmapArea = document.getElementById('guidexDmapPlaceholder');
+            if (dmapArea) dmapArea.classList.remove('hidden');
+        }
         return;
+    }
+    
+    if (window.currentGuidexMode === 'dmap') {
+        const dmapArea = document.getElementById('guidexDmapPlaceholder');
+        if (dmapArea) dmapArea.classList.add('hidden');
     }
     
     let html = '';
@@ -3659,6 +3668,7 @@ window.openGuidexDMapDetail = (safeObjStr) => {
     const details = prodData ? (prodData[langKey] || prodData['vi'] || prodData['en']) : null;
     const properties = details ? details.properties : "";
     const usage = details ? details.usage : match.Description || "";
+    const prodCategory = (prodData && prodData.sector) || match.Category || 'Professional';
 
     const uiHtml = `
       <div class="px-4 pb-24 pt-4 max-w-lg mx-auto space-y-8 font-sans">
