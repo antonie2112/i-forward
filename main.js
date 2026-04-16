@@ -3919,7 +3919,7 @@ window.openGuidexDetail = async (prodName) => {
 
     // Data sections formatters
     const propertiesText = fixPdfText(prodContent.properties) || 'Không có bản mô tả đặc tính.';
-    const ingredientsText = prodContent.ingredients || 'Không có mô tả thành phần. Hãy tra cứu hệ thống SDS để biết thêm chi tiết về thành phần hoá chất.';
+    const ingredientsText = prodContent.ingredients || '';
     const rawDilution = fixPdfText(prodContent.dilution);
     let dilutionText = rawDilution || 'Dùng trực tiếp hoặc đọc Hướng dẫn sử dụng bên dưới để biết thêm chi tiết về tỉ lệ pha.';
     let usageText = fixPdfText(prodContent.usage) || 'Sử dụng theo chuẩn của Nhà Sản xuất.';
@@ -3985,7 +3985,29 @@ window.openGuidexDetail = async (prodName) => {
         return html;
     };
     
-    const formatIngredients = (text) => {
+    const formatIngredients = (text, pName, lang) => {
+        if (!text || text.trim() === '') {
+            const cCode = lang === 'en' ? 'United+States' : 'Vietnam';
+            const url = `https://www.ecolab.com/sds-search?query=${encodeURIComponent(pName)}&countryCode=${cCode}`;
+            return `
+              <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-50 border border-slate-200 rounded-xl p-4">
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+                    <span class="material-symbols-outlined text-xl">science</span>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-slate-800">${lang === 'en' ? 'SDS Integration' : 'Tích hợp SDS Ecolab'}</h4>
+                    <p class="text-[11px] text-slate-500 max-w-[250px] leading-relaxed mt-0.5">${lang === 'en' ? 'Complete ingredient details are available via the Ecolab Safety Data Sheet system.' : 'Thành phần hóa học chi tiết được lưu trữ trên hệ thống dữ liệu an toàn của Ecolab.'}</p>
+                  </div>
+                </div>
+                <a href="${url}" target="_blank" class="w-full sm:w-auto px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-bold text-indigo-600 hover:border-indigo-600 hover:bg-indigo-50 transition-all flex items-center justify-center gap-2 whitespace-nowrap active:scale-95 shadow-sm">
+                  <span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                  ${lang === 'en' ? 'Access SDS' : 'Xem trên ứng dụng'}
+                </a>
+              </div>
+            `;
+        }
+        
         const lines = text.split('\n');
         let html = '<ul class="space-y-2">';
         lines.forEach(l => {
@@ -4050,7 +4072,7 @@ window.openGuidexDetail = async (prodName) => {
             <div class="w-1 h-6 bg-[#006bd3] rounded-full shrink-0"></div>
             <h3 class="text-lg font-bold tracking-tight">${langKey === 'en' ? 'Ingredients' : 'Thành phần'}</h3>
           </div>
-          ${formatIngredients(ingredientsText)}
+          ${formatIngredients(ingredientsText, prodName, langKey)}
         </section>
 
         <!-- Tỉ lệ Pha -->
