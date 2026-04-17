@@ -2202,5 +2202,434 @@
       "dilution": "5-15g/kg"
     },
     "sector": "Laundry"
+  },
+  "Apex Power": {
+    "vi": {
+      "properties": "Apex Power là hóa chất rửa máy dạng viên nén siêu đậm đặc, giúp loại bỏ các vết bẩn thực phẩm cứng đầu nhất và ngăn chặn sự tích tụ cặn bẩn.",
+      "usage": "Sử dụng qua hệ thống điều khiển và pha chế Apex. Liều lượng được điều chỉnh tự động cho từng chu kỳ rửa.",
+      "dilution": "Tự động"
+    },
+    "en": {
+      "properties": "Apex Power is a concentrated solid machine detergent that removes the toughest food soils and prevents soil buildup.",
+      "usage": "Use through the Apex Dispenser system. Dosage is automatically adjusted for each wash cycle.",
+      "dilution": "Automatic"
+    },
+    "sector": "Kitchen"
+  },
+  "Lime-A-Way Liquid": {
+    "vi": {
+      "properties": "Lime-A-Way Liquid là chất tẩy cặn axit mạnh, chuyên biệt để hòa tan cặn vôi, cặn canxi và gỉ sét trong máy rửa bát, thiết bị nhiệt.",
+      "usage": "Đổ trực tiếp vào thùng rửa của máy hoặc xịt lên bề mặt cần tẩy cặn. Để tác động trong 5-10 phút rồi xả sạch.",
+      "dilution": "1:5 - 1:20"
+    },
+    "en": {
+      "properties": "Lime-A-Way Liquid is a powerful acid descaler designed to dissolve lime, scale, and rust in dish machines and heating equipment.",
+      "usage": "Add directly to the wash tank or spray onto surfaces. Let sit for 5-10 minutes then rinse thoroughly.",
+      "dilution": "1:5 - 1:20"
+    },
+    "sector": "Kitchen"
+  },
+  "Tsunami 100": {
+    "vi": {
+      "properties": "Tsunami 100 là chất khử trùng thực phẩm gốc Peracetic Acid (PAA), giúp diệt khuẩn cực nhanh trên rau củ quả mà không cần rửa lại.",
+      "usage": "Pha loãng vào bể ngâm thực phẩm. Thời gian tiếp xúc tối thiểu 30-60 giây.",
+      "dilution": "1:512 - 1:1000"
+    },
+    "en": {
+      "properties": "Tsunami 100 is a Peracetic Acid (PAA) food sanitizer that provides rapid kill of pathogens on fruits and vegetables with no rinse required.",
+      "usage": "Dilute into the soaking station. Maintain 30-60 seconds contact time.",
+      "dilution": "1:512 - 1:1000"
+    },
+    "sector": "Kitchen"
+  },
+  "Greasecutter Plus": {
+    "vi": {
+      "properties": "Greasecutter Plus là chất tẩy dầu mỡ cháy cực mạnh cho lò nướng và vỉ nướng, bám dính tốt trên bề mặt đứng giúp tăng thời gian tác dụng.",
+      "usage": "Xịt lên bề mặt còn ấm (khoảng 50-60°C). Chờ 5-10 phút để hóa chất nhũ hóa dầu mỡ, sau đó chà và xả sạch.",
+      "dilution": "RTU (Dùng trực tiếp)"
+    },
+    "en": {
+      "properties": "Greasecutter Plus is a heavy-duty oven and grill cleaner with high cling to vertical surfaces, ensuring maximum dwell time and cleaning power.",
+      "usage": "Spray onto warm surfaces (50-60°C). Wait 5-10 minutes for emulsification, then scrub and rinse.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Pantastic": {
+    "vi": {
+      "properties": "Pantastic là nước rửa chén bát bằng tay trung tính, tạo bọt nhiều, làm sạch dầu mỡ hiệu quả mà vẫn dịu nhẹ cho da tay.",
+      "usage": "Pha vào bồn rửa hoặc dùng trực tiếp lên miếng bọt biển. Chà sạch đồ dùng và xả lại với nước sạch.",
+      "dilution": "1:320 - 1:1280"
+    },
+    "en": {
+      "properties": "Pantastic is a neutral manual pot and pan detergent that provides high sudsing and superior grease cutting while remaining gentle on hands.",
+      "usage": "Dilute into sink or apply directly to sponge. Scrub and rinse with potable water.",
+      "dilution": "1:320 - 1:1280"
+    },
+    "sector": "Kitchen"
+  },
+  "Endure 300": {
+    "vi": {
+      "properties": "Endure 300 là xà phòng rửa tay diệt khuẩn cao cấp, chứa dưỡng chất bảo vệ da, lý tưởng cho nhân viên khu vực bếp.",
+      "usage": "Lấy một lượng nhỏ vào lòng bàn tay ướt, chà kỹ trong 30 giây rồi xả sạch với nước.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Endure 300 is an antimicrobial hand soap with skin conditioning ingredients, ideal for kitchen staff and regular use.",
+      "usage": "Apply a small amount to wet hands, rub for 30 seconds, and rinse with water.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Bactishield": {
+    "vi": {
+      "properties": "Bactishield là xà phòng rửa tay kháng khuẩn chứa Chlorhexidine Gluconate, diệt khuẩn kéo dài và an toàn cho da.",
+      "usage": "Dùng trong các bồn rửa tay vệ sinh trước khi vào phòng sạch hoặc khu vực chế biến thực phẩm.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Bactishield is an antimicrobial hand soap containing Chlorhexidine Gluconate for long-lasting germ protection and skin safety.",
+      "usage": "Use in handwashing stations before entering cleanrooms or food processing areas.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Isopropyl Alcohol Sanitizer": {
+    "vi": {
+      "properties": "IPA Sanitizer là cồn khử trùng tay nhanh dạng xịt, bốc hơi nhanh và diệt khuẩn tức thì mà không gây khô da.",
+      "usage": "Xịt trực tiếp lên tay và xoa đều cho đến khi khô hẳn. Tiện dụng cho sát khuẩn nhanh mọi lúc mọi nơi.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "IPA Sanitizer is a rapid hand sanitizer spray that evaporates quickly, providing instant germ kill without overdrying skin.",
+      "usage": "Spray directly onto hands and rub until completely dry. Convenient for quick sanitization anywhere.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Endure 450": {
+    "vi": {
+      "properties": "Endure 450 là gel sát khuẩn tay nồng độ cồn cao, hỗ trợ diệt khuẩn và duy trì độ ẩm cho da trong thời gian dài.",
+      "usage": "Lấy một lượng gel vừa đủ vào lòng bàn tay, xoa đều tay, kẽ ngón tay cho đến khi khô.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Endure 450 is a high-alcohol hand sanitizer gel that provides superior kill and maintains skin moisture for extended periods.",
+      "usage": "Apply a sufficient amount of gel to palms, rub hands and between fingers until dry.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Enforcer": {
+    "vi": {
+      "properties": "Enforcer là chất tẩy bồn cầu và nhà tắm đậm đặc, chuyên trị các vết bẩn hữu cơ và cặn khoáng bám lâu ngày.",
+      "usage": "Xịt trực tiếp vào lòng bồn cầu và các khu vực bẩn. Chờ 5 phút, chà sạch và xả nước.",
+      "dilution": "RTU - 1:100"
+    },
+    "en": {
+      "properties": "Enforcer is a concentrated toilet and bathroom cleaner formulated to tackle tough organic soils and mineral deposits.",
+      "usage": "Apply directly to toilet bowls and soiled areas. Wait 5 minutes, scrub, and flush.",
+      "dilution": "RTU - 1:100"
+    },
+    "sector": "Housekeeping"
+  },
+  "Dip-It Plus": {
+    "vi": {
+      "properties": "Dip-It Plus là bột tẩy trắng và làm sạch chuyên biệt cho đồ sứ, thủy tinh và inox, loại bỏ vết trà, cà phê cứng đầu.",
+      "usage": "Hòa tan bột vào nước ấm (70°C), ngâm đồ dùng trong 15-30 phút sau đó xả sạch.",
+      "dilution": "5g/L"
+    },
+    "en": {
+      "properties": "Dip-It Plus is a specialty powder destainer for china, glass, and stainless steel, effective against tough tea and coffee stains.",
+      "usage": "Dissolve powder in warm water (70°C), soak items for 30 minutes, then rinse.",
+      "dilution": "5g/L"
+    },
+    "sector": "Kitchen"
+  },
+  "Greasecutter": {
+    "vi": {
+      "properties": "Greasecutter là chất tẩy dầu mỡ đa năng cho bề mặt bếp, sàn nhà và thiết bị, giúp loại bỏ dầu mỡ béo động thực vật.",
+      "usage": "Xịt lên bề mặt, chờ 1-2 phút rồi lau sạch bằng khăn ẩm hoặc xả nước.",
+      "dilution": "1:10 - 1:100"
+    },
+    "en": {
+      "properties": "Greasecutter is a versatile degreaser for kitchen surfaces, floors, and equipment, designed to remove animal and vegetable fats.",
+      "usage": "Spray onto surface, wait 1-2 minutes, then wipe with a damp cloth or rinse.",
+      "dilution": "1:10 - 1:100"
+    },
+    "sector": "Kitchen"
+  },
+  "Greasepower": {
+    "vi": {
+      "properties": "Greasepower là chất tẩy dầu mỡ cực mạnh chuyên dụng cho các loại nồi, chảo và dụng cụ bếp bị bám bẩn nặng.",
+      "usage": "Ngâm trực tiếp đồ dùng vào dung dịch pha loãng hoặc dùng bình xịt để xử lý nhanh.",
+      "dilution": "RTU - 1:100"
+    },
+    "en": {
+      "properties": "Greasepower is a heavy-duty degreaser specifically formulated for heavily soiled pots, pans, and kitchen utensils.",
+      "usage": "Soak utensils in diluted solution or use a spray bottle for rapid spot cleaning.",
+      "dilution": "RTU - 1:100"
+    },
+    "sector": "Kitchen"
+  },
+  "Silver Power": {
+    "vi": {
+      "properties": "Silver Power là dung dịch ngâm tẩy các vết xỉn màu trên đồ bạc, giúp phục hồi độ sáng bóng lấp lánh tức thì.",
+      "usage": "Ngâm đồ bạc vào dung dịch trong vài giây. Rửa sạch bằng nước và lau khô bằng vải mềm.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Silver Power is a soaking solution for detarnishing silver items, instantly restoring a brilliant, sparkling shine.",
+      "usage": "Soak silver items for a few seconds. Rinse with water and dry with a soft cloth.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Toilet Bowl Cleaner": {
+    "vi": {
+      "properties": "Toilet Bowl Cleaner là chất tẩy rửa bồn cầu gốc axit nồng độ cao, đánh bật các vết gỉ sét và cặn vôi cứng nhất.",
+      "usage": "Xịt dưới vành bồn cầu. Chờ vài phút để axit tác động, chà sạch và xả nước.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Toilet Bowl Cleaner is a high-acid toilet cleaner designed to eliminate the toughest rust stains and lime scale.",
+      "usage": "Apply under the toilet rim. Allow a few minutes for acid action, scrub, and flush.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Housekeeping"
+  },
+  "Carestrip NR": {
+    "vi": {
+      "properties": "Carestrip NR là hóa chất bóc tầng wax sàn cao cấp, không cần xả lại nước (No-Rinse), tiết kiệm thời gian và công sức.",
+      "usage": "Pha loãng với nước, đổ lên sàn và chờ 5-10 phút. Dùng máy chà sàn bóc lớp wax cũ và hút sạch.",
+      "dilution": "1:4 - 1:8"
+    },
+    "en": {
+      "properties": "Carestrip NR is a high-performance floor finish stripper that requires no rinsing, saving time and labor cost.",
+      "usage": "Dilute with water, apply to floor and wait 5-10 minutes. Use floor machine to strip, then vacuum.",
+      "dilution": "1:4 - 1:8"
+    },
+    "sector": "Housekeeping"
+  },
+  "Star Crystallizer": {
+    "vi": {
+      "properties": "Star Crystallizer là bột đánh bóng sàn đá cẩm thạch (marble), tạo độ bóng như gương và bảo vệ bề mặt đá lâu dài.",
+      "usage": "Rắc bột lên sàn, thêm một ít nước và dùng máy chà sàn tốc độ cao với pad đỏ để đánh bóng.",
+      "dilution": "3:1 (Bột:Nước)"
+    },
+    "en": {
+      "properties": "Star Crystallizer is a marble polishing powder that creates a mirror-like shine and provides long-lasting stone protection.",
+      "usage": "Sprinkle powder on floor, add some water, and use a high-speed floor machine with a red pad to polish.",
+      "dilution": "3:1 (Powder:Water)"
+    },
+    "sector": "Housekeeping"
+  },
+  "Floordress R600": {
+    "vi": {
+      "properties": "Floordress R600 là hóa chất bảo trì và tăng cường độ bóng cho sàn đã được phủ wax, giúp sàn luôn như mới.",
+      "usage": "Xịt trực tiếp lên sàn và dùng máy đánh bóng tốc độ cao để làm sàn bóng lên tức thì.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Floordress R600 is a maintenance and spray-buff chemicals that enhances the gloss of finished floors, keeping them looking new.",
+      "usage": "Spray directly onto the floor and use a high-speed burnisher to instantly bring back the shine.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Housekeeping"
+  },
+  "Apex HD": {
+    "vi": {
+      "properties": "Apex HD là bột giặt máy dạng solid siêu đậm đạt hiệu quả tẩy rửa cực mạnh, thân thiện môi trường chuẩn Green.",
+      "usage": "Sử dụng thông qua bộ pha Apex của Ecolab để đạt nồng độ chính xác nhất.",
+      "dilution": "Tự động"
+    },
+    "en": {
+      "properties": "Apex HD is an ultra-concentrated solid machine detergent with superior cleaning power and Green-standard eco-safety.",
+      "usage": "Use through the Ecolab Apex Dispenser for precise concentration control.",
+      "dilution": "Automatic"
+    },
+    "sector": "Housekeeping"
+  },
+  "Apex Rinse": {
+    "vi": {
+      "properties": "Apex Rinse là chất trợ xả dạng solid đạt chuẩn Green, giúp bát đĩa khô nhanh và không để lại vết mờ.",
+      "usage": "Sử dụng thông qua bộ định lượng Apex trong chu trình tráng cuối của máy rửa bát.",
+      "dilution": "Tự động"
+    },
+    "en": {
+      "properties": "Apex Rinse is a Green-certified solid rinse aid that ensures fast drying and a spot-free shine on dishware.",
+      "usage": "Dispense through the Apex system during the final rinse cycle of the dishwasher.",
+      "dilution": "Automatic"
+    },
+    "sector": "Housekeeping"
+  },
+  "Oasis 197": {
+    "vi": {
+      "properties": "Oasis 197 là nước lau kính không chứa amonia, an toàn cho người dùng và cực kỳ hiệu quả trên các bề mặt bóng.",
+      "usage": "Pha loãng vào bình xịt, xịt lên bề mặt và lau sạch bằng khăn khô hoặc cây gạt kính.",
+      "dilution": "1:32 - 1:64"
+    },
+    "en": {
+      "properties": "Oasis 197 is an ammonia-free glass cleaner that is safe for users and highly effective on all shiny surfaces.",
+      "usage": "Dilute into a spray bottle, spray onto surface, and wipe clean with a dry cloth or squeegee.",
+      "dilution": "1:32 - 1:64"
+    },
+    "sector": "Housekeeping"
+  },
+  "Emulsol": {
+    "vi": {
+      "properties": "Emulsol là chất phụ gia nhũ hóa và làm trắng sáng đồ vải, đặc biệt hiệu quả với các vết dầu mỡ béo.",
+      "usage": "Dùng kết hợp với bột giặt chính trong bước giặt nếu đồ bám nhiều dầu mỡ (đồ bếp, khăn bàn).",
+      "dilution": "1-3 ml/kg"
+    },
+    "en": {
+      "properties": "Emulsol is an emulsifier and brightening additive for laundry, especially effective on grease and organic soils.",
+      "usage": "Use in conjunction with main detergent during the wash cycle for heavily soiled items.",
+      "dilution": "1-3 ml/kg"
+    },
+    "sector": "Laundry"
+  },
+  "Turbo Build": {
+    "vi": {
+      "properties": "Turbo Build là chất tăng cường độ kiềm đậm đặc cho nước giặt, giúp nhũ hóa vết bẩn tốt hơn trong nước cứng.",
+      "usage": "Bơm định lượng vào giai đoạn giặt chính để nâng độ pH cho dung dịch giặt.",
+      "dilution": "2-10 ml/kg"
+    },
+    "en": {
+      "properties": "Turbo Build is a concentrated alkali booster that improves soil emulsification, especially in systems with hard water.",
+      "usage": "Automated dispensing into the main wash cycle to raise wash solution pH levels.",
+      "dilution": "2-10 ml/kg"
+    },
+    "sector": "Laundry"
+  },
+  "Miraglo": {
+    "vi": {
+      "properties": "Miraglo là chất làm sạch và đánh bóng bề mặt inox chuyên nghiệp. Loại bỏ vết vân tay, dầu mỡ và tạo lớp màng bảo vệ sáng bóng.",
+      "usage": "Xịt trực tiếp lên bề mặt inox khô, lau sạch bằng khăn khô cho đến khi đạt độ bóng.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Miraglo is a professional stainless steel cleaner and polish. Removes fingerprints and grease while leaving a protective shiny film.",
+      "usage": "Spray onto dry surfaces and wipe with a clean cloth until shiny.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Greasestrip Plus": {
+    "vi": {
+      "properties": "Greasestrip Plus là chất tẩy dầu mỡ kiềm mạnh, chuyên trị các vết bám cháy khó tẩy nhất trên lò nướng và vỉ nướng.",
+      "usage": "Xịt lên bề mặt ấm, để tác động 5-10 phút rồi chà sạch và xả nước.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Greasestrip Plus is a high-performance alkaline degreaser designed to tackle the toughest carbonized grease on ovens and grills.",
+      "usage": "Apply to warm surfaces, dwell for 5-10 minutes, scrub and rinse.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "Rinse Dry Extra": {
+    "vi": {
+      "properties": "Rinse Dry Extra là chất trợ xả nồng độ cao, giúp bát đĩa khô nhanh vượt trội và không để lại đốm nước trong mọi điều kiện nước.",
+      "usage": "Dùng qua bộ pha máy rửa bát trong chu trình tráng cuối.",
+      "dilution": "1:2000 - 1:5000"
+    },
+    "en": {
+      "properties": "Rinse Dry Extra is a high-performance rinse additive that ensures superior drying and spot-free results in various water conditions.",
+      "usage": "Dispense into the final rinse cycle of mechanical dish machines.",
+      "dilution": "1:2000 - 1:5000"
+    },
+    "sector": "Kitchen"
+  },
+  "Zephair": {
+    "vi": {
+      "properties": "Zephair là nước xịt phòng và khử mùi vải chuyên dụng, diệt sạch mùi thuốc lá, ẩm mốc và mang lại hương thơm dễ chịu lâu dài.",
+      "usage": "Xịt trực tiếp vào không khí hoặc lên bề mặt vải (rèm, thảm, ghế sofa).",
+      "dilution": "RTU - 1:10"
+    },
+    "en": {
+      "properties": "Zephair is a professional-grade air and fabric refresher that eliminates tough odors like smoke and dampness, leaving a long-lasting scent.",
+      "usage": "Spray into the air or directly onto fabrics like curtains and carpets.",
+      "dilution": "RTU - 1:10"
+    },
+    "sector": "Housekeeping"
+  },
+  "Sanigard": {
+    "vi": {
+      "properties": "Sanigard là chất tẩy rửa bồn cầu và nhà tắm gốc axit mạnh, diệt khuẩn và loại bỏ các vết ố vàng, cặn vôi hiệu quả.",
+      "usage": "Xịt vào lòng bồn cầu, để tác động vài phút rồi chà sạch và xả nước.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Sanigard is a powerful acid-based toilet and bathroom cleaner that disinfects and removes yellow stains and lime scale.",
+      "usage": "Apply to toilet bowls, dwell for a few minutes, scrub and flush.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Housekeeping"
+  },
+  "Future DC": {
+    "vi": {
+      "properties": "Future DC là chất tẩy rửa và diệt khuẩn đa năng nồng độ cao, an toàn cho hầu hết các loại sàn và bề mặt cứng.",
+      "usage": "Pha loãng để lau sàn, tường hoặc xịt lau các bề mặt công cộng.",
+      "dilution": "1:64 - 1:128"
+    },
+    "en": {
+      "properties": "Future DC is a concentrated multi-purpose cleaner and disinfectant, safe for most flooring types and hard surfaces.",
+      "usage": "Dilute for floor mopping, wall cleaning, or spray-and-wipe applications.",
+      "dilution": "1:64 - 1:128"
+    },
+    "sector": "Housekeeping"
+  },
+  "Lemon Eze": {
+    "vi": {
+      "properties": "Lemon Eze là kem tẩy đa năng nồng độ cao, lý tưởng để tẩy sạch các vết bẩn cứng đầu trên bề mặt sứ, kim loại và nhựa mà không gây trầy xước.",
+      "usage": "Dùng trực tiếp lên miếng bọt biển hoặc bề mặt cần làm sạch, chà nhẹ và xả lại với nước.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Lemon Eze is a versatile crème cleanser that removes stubborn stains from porcelain, metal, and plastic without scratching.",
+      "usage": "Apply directly to sponge or surface, scrub gently, and rinse with water.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Housekeeping"
+  },
+  "Hand Fresh Plus": {
+    "vi": {
+      "properties": "Hand Fresh Plus là xà phòng rửa tay diệt khuẩn dịu nhẹ, chứa hoạt chất bảo vệ da và mùi hương tươi mát, phù hợp sử dụng thường xuyên.",
+      "usage": "Lấy một lượng nhỏ vào lòng bàn tay ướt, chà kỹ và xả lại với nước sạch.",
+      "dilution": "RTU"
+    },
+    "en": {
+      "properties": "Hand Fresh Plus is a gentle antimicrobial hand soap containing skin conditioners and a fresh scent, designed for frequent use.",
+      "usage": "Apply a small amount to wet hands, rub thoroughly, and rinse with water.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Kitchen"
+  },
+  "AC30": {
+    "vi": {
+      "properties": "AC30 là chất tẩy cặn vôi và gỉ sét gốc axit nồng độ cao, được thiết kế đặc biệt để làm sạch thanh nhiệt, khoang máy rửa chén và các thiết bị bếp bị bám cặn canxi nặng.",
+      "usage": "Cho máy chạy không tải, pha AC30 vào bồn chứa nước theo tỉ lệ khuyến cáo. Để máy chạy 15-20 phút rồi xả bỏ và tráng lại sạch sẽ.",
+      "dilution": "1:20 - 1:50"
+    },
+    "en": {
+      "properties": "AC30 is a concentrated acid-based descaler designed to remove heavy lime scale and rust from dishwashers, heating elements, and kitchen equipment.",
+      "usage": "Run the machine empty. Add AC30 to the tank at the recommended ratio. Run for 15-20 minutes, then drain and rinse thoroughly.",
+      "dilution": "1:20 - 1:50"
+    },
+    "sector": "Kitchen"
+  },
+  "22 Multi Quat Sanitizer": {
+    "vi": {
+      "properties": "22 Multi Quat là chất khử trùng nồng độ cao gốc QAC, đạt chuẩn an toàn thực phẩm. Hiệu quả diệt khuẩn cực mạnh trên bề mặt cứng mà không cần xả lại với nước.",
+      "usage": "Xịt trực tiếp lên bề mặt đã được làm sạch trước đó. Để khô tự nhiên để đạt hiệu quả diệt khuẩn tối ưu.",
+      "dilution": "1:500"
+    },
+    "en": {
+      "properties": "22 Multi Quat is a food-contact surface sanitizer based on high-performance QAC technology. Provides superior antimicrobial killing power without the need for rinsing.",
+      "usage": "Spray onto pre-cleaned surfaces. Allow to air dry for maximum sanitizing effectiveness.",
+      "dilution": "1:500"
+    },
+    "sector": "Kitchen"
   }
 }

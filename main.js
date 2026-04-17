@@ -3423,7 +3423,7 @@ window.initGuideX = async () => {
     
     window.initGuideXPromise = (async () => {
         try {
-            const v = Date.now();
+            const v = Date.now() + "_v201";
             const [res, dmapRes] = await Promise.all([
                 fetch('./guidex_data.json?v=' + v),
                 fetch('./dmap_data.json?v=' + v)
