@@ -97,5 +97,82 @@
     "Technical": { "pH": "2.5 - 3.5 (Axit)", "Appearance": "Dung dịch lỏng trong suốt", "Dilution": "2 - 5 ml / kg đồ khô" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Chất oxy hóa mạnh. Gây ăn mòn. Tránh tiếp xúc với chất hữu cơ dễ cháy." },
     "Cost": { "dilution_eco": "3ml/kg", "dilution_div": "3ml/kg", "cost_per_task_eco": "~180 VNĐ", "cost_per_task_div": "~250 VNĐ", "unit_price": "2,395,660 VND / 20L" }
+  },
+  {
+    "Category": "Laundry",
+    "Diversey": "LD CLAX RUST 20 lit - Laundry Neutraliser / Neutralizer",
+    "DiverseyShort": "Clax Rust",
+    "Ecolab": "StainBlaster Rust Remover",
+    "Description": "Chất trung hòa tính kiềm và loại bỏ vết rỉ sét hoặc sắt bám trên đồ vải.",
+    "Features": "- Trung hòa lượng kiềm dư trong bước xả cuối của quá trình giặt.\n- Loại bỏ các vết ố vàng do sắt trong nguồn nước gây ra.\n- Ngăn ngừa tình trạng vải bị ngả màu vôi, giữ độ trắng sáng.\n- Công thức gốc axit hữu cơ an toàn cho hầu hết các loại sợi vải.",
+    "Technical": { "pH": "3.5 - 4.5 (Axit)", "Appearance": "Dung dịch lỏng trong suốt", "Dilution": "0.5 - 3 ml / kg đồ khô" },
+    "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Ăn mòn mạnh. Gây bỏng da và hỏng mắt. Không dùng cho đồ kim loại." },
+    "Cost": { "dilution_eco": "1 : 1000", "dilution_div": "1 : 1000", "cost_per_task_eco": "~250 VNĐ", "cost_per_task_div": "~300 VNĐ", "unit_price": "2,076,294 VND / 20L" }
+  },
+  {
+    "Category": "Laundry",
+    "Diversey": "LD CLAX SOFTCARE 20 lit - Laundry Softener / Xả vải",
+    "DiverseyShort": "Clax Softcare",
+    "Ecolab": "Eco-Star Softener",
+    "Description": "Hóa chất xả làm mềm vải, chống tĩnh điện và lưu hương dịu nhẹ.",
+    "Features": "- Làm mềm sợi vải, giúp việc là ủi và gấp đồ dễ dàng hơn.\n- Chống tĩnh điện trên các loại vải sợi tự nhiên và sợi tổng hợp.\n- Lưu lại hương thơm tươi mát cho đồ vải sau khi sấy.\n- Thành phần hoạt động bề mặt cationic tự phân hủy sinh học.",
+    "Technical": { "pH": "3.2 - 7.5", "Appearance": "Dung dịch lỏng màu trắng sữa", "Dilution": "2 - 15 ml / kg đồ khô" },
+    "Safety": { "Signal": "Lưu lưu", "Hazards": "Tránh tiếp xúc trực tiếp với mắt. Không đổ trực tiếp lên vải khô khi giặt." },
+    "Cost": { "dilution_eco": "5ml/kg", "dilution_div": "5ml/kg", "cost_per_task_eco": "~120 VNĐ", "cost_per_task_div": "~150 VNĐ", "unit_price": "676,280 VND / 20L" }
+  },
+  {
+    "Category": "Laundry",
+    "Diversey": "LD CLAX ACTIVE 25 kg - Powder Chlorine Bleach / Tẩy trắng bột Clo",
+    "DiverseyShort": "Clax Active",
+    "Ecolab": "Eco-Star Chlorine Bleach",
+    "Description": "Bột tẩy trắng gốc Clo chuyên dụng cho đồ vải trắng ở nhiệt độ trung bình.",
+    "Features": "- Tẩy trắng mạnh mẽ các vết ố hữu cơ cứng đầu trên đồ vải.\n- Diệt khuẩn hiệu quả trong quá trình giặt công nghiệp.\n- Dạng bột tinh thể trắng, dễ bảo quản và định lượng khi sử dụng.\n- Chỉ sử dụng cho đồ vải trắng, tuyệt đối không dùng cho vải màu.",
+    "Technical": { "pH": "~ 10 (Dung dịch 1%)", "Appearance": "Bột tinh thể màu trắng", "Dilution": "1 - 4 g / kg đồ khô" },
+    "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Chứa Clo hoạt tính. Gây kích ứng mạnh. Tránh trộn lẫn với các chất axit." },
+    "Cost": { "dilution_eco": "2g/kg", "dilution_div": "2g/kg", "cost_per_task_eco": "~300 VNĐ", "cost_per_task_div": "~350 VNĐ", "unit_price": "2,856,476 VND / 25kg" }
+  },
+  {
+    "Category": "Housekeeping",
+    "Diversey": "CREW BATHROOM & SCALE REM. 5 lit - Bathroom Cleaner & Scale Remover / Tẩy cặn canxi",
+    "DiverseyShort": "Crew Bathroom",
+    "Ecolab": "Pink QC",
+    "Description": "Hóa chất tẩy rửa nhà tắm và loại bỏ cặn canxi, vết ố vôi cứng đầu.",
+    "Features": "- Loại bỏ cặn vôi, vết xà phòng và các vết rỉ sét nhẹ trong nhà vệ sinh.\n- Làm sáng bóng các bề mặt inox, chrome và đồ sứ trong nhà tắm.\n- Công thức axit nhẹ, đạt hiệu quả cao trên vách kính và vòi sen.\n- Mùi hương dễ chịu, an toàn hơn các loại hóa chất tẩy rửa axit mạnh.",
+    "Technical": { "pH": "3.8 - 4.4 (Axit nhẹ)", "Appearance": "Dung dịch lỏng màu tím", "Dilution": "1:18 (Dùng trực tiếp hoặc pha loãng)" },
+    "Safety": { "Signal": "WARNING (Cảnh báo)", "Hazards": "Có tính axit nhẹ. Tránh tiếp xúc lâu với đá tự nhiên (như cẩm thạch)." },
+    "Cost": { "dilution_eco": "1 : 20", "dilution_div": "1 : 18", "cost_per_task_eco": "~1,500 VNĐ", "cost_per_task_div": "~1,800 VNĐ", "unit_price": "2,434,740 VND / 5L" }
+  },
+  {
+    "Category": "Housekeeping",
+    "Diversey": "STRIDE FLORAL HC 5 lit - Neutral Floor Cleaner / Lau sàn trung tính",
+    "DiverseyShort": "Stride Floral HC",
+    "Ecolab": "Oasis 115",
+    "Description": "Nước lau sàn trung tính nồng độ cực cao với hương hoa thơm mát.",
+    "Features": "- Làm sạch sàn nhà mà không để lại màng mờ hoặc vệt bẩn sau khi khô.\n- Công thức trung tính, hoàn toàn an toàn cho mọi loại sàn cứng có phủ bóng.\n- Hương hoa tươi mát kéo dài, tạo cảm giác sạch sẽ cho không gian.\n- Đạt chứng nhận Green Seal về độ an toàn môi trường và người dùng.",
+    "Technical": { "pH": "6.5 - 7.5 (Trung tính)", "Appearance": "Dung dịch lỏng màu đỏ trong", "Dilution": "1:375 - 1:750" },
+    "Safety": { "Signal": "An toàn", "Hazards": "Sản phẩm trung tính, ít gây kích ứng. Tránh bắn trực tiếp vào mắt." },
+    "Cost": { "dilution_eco": "1 : 500", "dilution_div": "1 : 750", "cost_per_task_eco": "~500 VNĐ", "cost_per_task_div": "~600 VNĐ", "unit_price": "7,216,985 VND / 5L" }
+  },
+  {
+    "Category": "Laundry",
+    "Diversey": "LD CLAX PREWASH 20 lit - Laundry Pre-wash / Giặt sơ",
+    "DiverseyShort": "Clax Prewash",
+    "Ecolab": "StainBlaster Prewash",
+    "Description": "Hóa chất giặt sơ, tẩy điểm các vết bẩn cứng đầu trước chu trình giặt chính.",
+    "Features": "- Thẩm thấu nhanh vào sợi vải để đánh tan vết dầu mỡ và thức ăn.\n- Hiệu quả cực cao trên các vết bẩn ở cổ áo, cổ tay áo và khăn bàn.\n- Bảo vệ sợi vải trong quá trình xử lý bẩn nặng, giảm việc giặt lại.\n- Tăng cường hiệu quả làm sạch cho bước giặt chính tiếp theo.",
+    "Technical": { "pH": "8.5 - 9.5", "Appearance": "Dung dịch lỏng", "Dilution": "Xịt trực tiếp hoặc 2-5ml/kg" },
+    "Safety": { "Signal": "Lưu ý", "Hazards": "Có tính kiềm nhẹ. Nên đeo găng tay khi tiếp xúc trực tiếp lâu." },
+    "Cost": { "dilution_eco": "3ml/kg", "dilution_div": "3ml/kg", "cost_per_task_eco": "~400 VNĐ", "cost_per_task_div": "~450 VNĐ", "unit_price": "2,345,943 VND / 20L" }
+  },
+  {
+    "Category": "Laundry",
+    "Diversey": "LD CLAX AQUABLUE 25 kg - Main Wash Powder / Bột giặt chính",
+    "DiverseyShort": "Clax Aquablue",
+    "Ecolab": "Laundry Pro Powder",
+    "Description": "Bột giặt chính đậm đặc, hiệu quả tẩy rửa vết bẩn hữu cơ vượt trội.",
+    "Features": "- Công thức bột mịn, hòa tan cực nhanh, không để lại cặn trên đồ vải.\n- Đánh bay vết bẩn hữu cơ, dầu mỡ và bùn đất cứng đầu.\n- Chứa hoạt chất làm sáng giúp vải trắng sáng và bền màu lâu hơn.\n- Hiệu quả kinh tế cao và ổn định cho hệ thống giặt công nghiệp.",
+    "Technical": { "pH": "10.0 - 11.0", "Appearance": "Bột màu xanh/trắng", "Dilution": "5 - 15g / kg đồ khô" },
+    "Safety": { "Signal": "WARNING (Cảnh báo)", "Hazards": "Có tính kiềm. Tránh hít phải bụi bột và tiếp xúc với mắt." },
+    "Cost": { "dilution_eco": "10g/kg", "dilution_div": "10g/kg", "cost_per_task_eco": "~500 VNĐ", "cost_per_task_div": "~600 VNĐ", "unit_price": "1,482,473 VND / 25kg" }
   }
 ]

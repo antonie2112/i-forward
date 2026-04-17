@@ -2137,5 +2137,70 @@
       "ingredients": ""
     },
     "sector": "Housekeeping"
+  },
+  "StainBlaster Prewash": {
+    "vi": {
+      "properties": "StainBlaster Prewash là dung dịch xử lý vết bẩn trước khi giặt, chuyên biệt cho các vết dầu mỡ, thức ăn và vết bẩn khó tẩy ở cổ áo, cổ tay áo. Hiệu quả trên cả đồ vải trắng và vải màu.",
+      "usage": "Xịt trực tiếp lên vết bẩn trước khi giặt. Chờ 1-5 phút để hóa chất thấm thấu sau đó cho vào máy giặt bình thường. Không để hóa chất khô lòng trên mặt vải.\nTrong trường hợp khẩn cấp, hãy gọi Ecolab: 001 800 13 203 9987",
+      "dilution": "RTU (Dùng trực tiếp)"
+    },
+    "en": {
+      "properties": "StainBlaster Prewash is a laundry pre-treatment designed for tough grease, food, and cuff/collar stains. Effective on whites and colors.",
+      "usage": "Spray directly on stain. Wait 1-5 minutes for penetration then wash normally. Do not allow to dry on fabric.",
+      "dilution": "Ready to Use"
+    },
+    "sector": "Laundry"
+  },
+  "Eco-Star Chlorine Bleach": {
+    "vi": {
+      "properties": "Eco-Star Chlorine Bleach là chất tẩy trắng gốc Clo nồng độ cao, giúp đánh bật các vết ố hữu cơ và diệt khuẩn mạnh mẽ. Thích hợp cho đồ vải nhà hàng, khách sạn.",
+      "usage": "Sử dụng qua hệ thống bơm định lượng Ecolab. Liều lượng 1-4g/kg đồ vải khô. Hoạt động tốt nhất ở 40-60°C. Chỉ dùng cho đồ trắng.\nTrong trường hợp khẩn cấp, hãy gọi Ecolab: 001 800 13 203 9987",
+      "dilution": "1-4g/kg"
+    },
+    "en": {
+      "properties": "Eco-Star Chlorine Bleach is a high-concentration chlorine destainer and sanitizer for institutional laundry. Ideal for whites.",
+      "usage": "Use with Ecolab dispenser tips. Dose 1-4g/kg. Best at 40-60°C for optimal bleaching.",
+      "dilution": "1-4g/kg"
+    },
+    "sector": "Laundry"
+  },
+  "Pink QC": {
+    "vi": {
+      "properties": "Pink QC là hóa chất tẩy rửa nhà tắm đa năng với công thức axit nhẹ, giúp loại bỏ cặn canxi, vết ố vôi và gỉ sét trên vòi sen, vách kính mà không gây hại bề mặt.",
+      "usage": "Phun trực tiếp lên bề mặt cần làm sạch. Để tác động trong vài phút, chà nhẹ và xả sạch với nước. An toàn cho hầu hết các bề mặt phòng tắm.\nTrong trường hợp khẩn cấp, hãy gọi Ecolab: 001 800 13 203 9987",
+      "dilution": "1:20 - 1:128"
+    },
+    "en": {
+      "properties": "Pink QC is a versatile bathroom cleaner with a mild acid formula that effectively removes calcium, lime, and rust without damaging surfaces.",
+      "usage": "Apply to surface, let sit for a few minutes, scrub and rinse. Safe for most bathroom surfaces.",
+      "dilution": "1:20 - 1:128"
+    },
+    "sector": "Housekeeping"
+  },
+  "Oasis 115": {
+    "vi": {
+      "properties": "Oasis 115 là nước lau sàn trung tính cao cấp, không gây mờ sàn, giữ được độ bóng cho sàn đá và sàn gỗ. Hương hoa cỏ nhẹ nhàng và an toàn với môi trường.",
+      "usage": "Pha loãng theo tỉ lệ 1:256 đến 1:750. Sử dụng cây lau hoặc máy chà sàn. Không cần xả lại với nước sạch.\nTrong trường hợp khẩn cấp, hãy gọi Ecolab: 001 800 13 203 9987",
+      "dilution": "1:256 - 1:750"
+    },
+    "en": {
+      "properties": "Oasis 115 is a premium neutral cleaner that maintains floor gloss without leaving a film. Features a light floral scent and is Green Seal certified.",
+      "usage": "Dilute 1:256 to 1:750. Mop or use autoscrubber. No rinsing required.",
+      "dilution": "1:256 - 1:750"
+    },
+    "sector": "Housekeeping"
+  },
+  "Laundry Pro Powder": {
+    "vi": {
+      "properties": "Laundry Pro Powder là bột giặt chính đậm đặc với công thức làm sạch sâu, loại bỏ mọi vết bẩn hữu cơ và ngăn ngừa vết bẩn bám ngược. Giúp vải trắng sáng.",
+      "usage": "Liều lượng 5-15g/kg đồ vải tùy độ bẩn. Phù hợp cho cả máy giặt cửa trước và cửa trên.\nTrong trường hợp khẩn cấp, hãy gọi Ecolab: 001 800 13 203 9987",
+      "dilution": "5-15g/kg"
+    },
+    "en": {
+      "properties": "Laundry Pro Powder is a concentrated main wash detergent that deep cleans and prevents soil redeposition. Keeps whites bright.",
+      "usage": "Dose 5-15g/kg depending on soil level. Suitable for front and top loading washers.",
+      "dilution": "5-15g/kg"
+    },
+    "sector": "Laundry"
   }
 }
