@@ -3666,8 +3666,13 @@ window.openGuidexDMapDetail = (safeObjStr) => {
     }
     
     const details = prodData ? (prodData[langKey] || prodData['vi'] || prodData['en']) : null;
-    const properties = details ? details.properties : "";
-    const usage = details ? details.usage : match.Description || "";
+    const ecoProperties = details ? details.properties : "";
+    const ecoUsage = details ? details.usage : "";
+    
+    // Diversey data
+    const divFeatures = match.Features || "";
+    const divUsage = match.Description || "";
+    
     const prodCategory = (prodData && prodData.sector) || match.Category || 'Professional';
 
     const uiHtml = `
@@ -3770,18 +3775,18 @@ window.openGuidexDMapDetail = (safeObjStr) => {
           </div>
           <div class="bg-rose-50 border border-rose-100 rounded-2xl p-6 shadow-sm space-y-5">
             <div class="border-b border-rose-200 pb-3">
-               <p class="text-[10px] font-bold text-rose-700 uppercase tracking-widest mb-1">ECOLAB: ${match.Ecolab}</p>
-               <h4 class="text-sm font-bold text-slate-800">Thông tin chi tiết sản phẩm</h4>
+               <p class="text-[10px] font-bold text-rose-700 uppercase tracking-widest mb-1">DIVERSEY: ${match.DiverseyShort}</p>
+               <h4 class="text-sm font-bold text-slate-800">Thông tin sản phẩm đối thủ</h4>
             </div>
             
             <div class="space-y-4">
-              ${properties ? `
+              ${divFeatures ? `
               <div class="space-y-2">
                 <p class="text-[10px] font-bold text-rose-600 flex items-center gap-2 uppercase">
                    <span class="material-symbols-outlined text-xs">verified</span> ĐẶC TÍNH & LỢI ÍCH
                 </p>
                 <div class="text-[11px] text-slate-600 leading-relaxed whitespace-pre-line bg-white/50 p-3 rounded-xl border border-rose-100/50">
-                  ${properties}
+                  ${divFeatures}
                 </div>
               </div>` : ''}
 
@@ -3790,17 +3795,34 @@ window.openGuidexDMapDetail = (safeObjStr) => {
                    <span class="material-symbols-outlined text-xs">layers</span> CÔNG DỤNG / CÁCH DÙNG
                 </p>
                 <div class="text-[11px] text-slate-600 leading-relaxed whitespace-pre-line bg-white/50 p-3 rounded-xl border border-rose-100/50">
-                  ${usage}
+                  ${divUsage}
                 </div>
               </div>
             </div>
             
             <div class="pt-2 flex justify-between items-center opacity-60">
-                <span class="text-[9px] text-rose-500 font-medium">Nguồn: GuideX Catsheet 2026</span>
+                <span class="text-[9px] text-rose-500 font-medium">Nguồn: D-Mapping Database 2026</span>
                 <span class="material-symbols-outlined text-rose-400 text-sm">stars</span>
             </div>
           </div>
         </section>
+
+        ${ecoUsage ? `
+        <section class="space-y-4">
+           <div onclick="const el=document.getElementById('eco-details'); el.classList.toggle('hidden');" class="bg-slate-50 rounded-xl p-4 flex items-center justify-between cursor-pointer border border-slate-200">
+             <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[12px] text-primary">info</span>
+                <span class="text-[10px] font-bold text-slate-600 uppercase">Xem giải pháp từ Ecolab (${match.Ecolab})</span>
+             </div>
+             <span class="material-symbols-outlined text-sm text-slate-400">expand_more</span>
+           </div>
+           <div id="eco-details" class="hidden animate-in slide-in-from-top-2 bg-indigo-50/30 border border-indigo-100/50 rounded-2xl p-5 space-y-3">
+              <p class="text-[10px] font-bold text-primary flex items-center gap-1 uppercase"><span class="material-symbols-outlined text-xs">description</span> Ecolab Details</p>
+              <div class="text-[11px] text-slate-600 leading-relaxed whitespace-pre-line">
+                ${ecoProperties ? ecoProperties + '\n\n' : ''}${ecoUsage}
+              </div>
+           </div>
+        </section>` : ''}
 
         <section class="space-y-4">
           <div class="flex items-center gap-2">

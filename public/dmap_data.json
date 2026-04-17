@@ -5,6 +5,7 @@
     "DiverseyShort": "Suma Nova L6",
     "Ecolab": "Eco-Klene HD",
     "Description": "Hóa chất rửa máy nồng độ cao, tẩy sạch dầu mỡ và tinh bột cứng đầu trên đồ sứ, thủy tinh.",
+    "Features": "- Chất tẩy rửa kiềm mạnh, công thức cô đặc giúp tiết kiệm chi phí.\n- Chứa các tác nhân kiểm soát cặn bẩn vượt trội, hiệu quả ngay cả trong nước cứng.\n- Đánh bay nhanh chóng dầu mỡ và thức ăn khô bám trên bát đĩa.\n- Ngăn ngừa đóng cặn vôi, kéo dài tuổi thọ máy rửa bát.",
     "Technical": { "pH": "> 12.5 (Kiềm cao)", "Appearance": "Dung dịch lỏng màu đỏ trong", "Dilution": "0.1% - 0.4% (1:250 - 1:1000)" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Ăn mòn mạnh (H314). Gây bỏng da và hỏng mắt nghiêm trọng." },
     "Cost": { "dilution_eco": "1 : 1000", "dilution_div": "1 : 500", "cost_per_task_eco": "~150 VNĐ", "cost_per_task_div": "~300 VNĐ", "unit_price": "3,017,970 VND / 20L" }
@@ -15,6 +16,7 @@
     "DiverseyShort": "Suma Crystal",
     "Ecolab": "Rinse Dry",
     "Description": "Hóa chất trợ xả, giúp đồ dùng khô nhanh và không để lại vệt mờ, đốm nước.",
+    "Features": "- Dung dịch tráng rửa ít tạo bọt, nồng độ đậm đặc.\n- Giảm sức căng bề mặt nước, giúp bát đĩa khô nhanh, sáng bóng, không để lại vết vệt.\n- Kiểm soát cặn canxi hiệu quả trong môi trường nước cứng.\n- Nâng cao hiệu suất quy trình rửa và tiết kiệm thời gian sấy.",
     "Technical": { "pH": "1.5 - 2.0 (Axit)", "Appearance": "Dung dịch lỏng màu xanh lá", "Dilution": "0.2 - 0.5 ml/L (1:2000)" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Tính Axit mạnh. Gây kích ứng da và tổn thương mắt (H318)." },
     "Cost": { "dilution_eco": "1 : 2000", "dilution_div": "1 : 1000", "cost_per_task_eco": "~80 VNĐ", "cost_per_task_div": "~160 VNĐ", "unit_price": "4,738,000 VND / 20L" }
@@ -25,6 +27,7 @@
     "DiverseyShort": "Suma J512",
     "Ecolab": "Oasis 146",
     "Description": "Khử trùng bề mặt tiếp xúc thực phẩm, không gây mùi và an toàn cho thiết bị.",
+    "Features": "- Hóa chất khử trùng gốc QAC, không mùi, an toàn cho bề mặt tiếp xúc thực phẩm.\n- Phổ diệt khuẩn rộng, đáp ứng tiêu chuẩn vệ sinh an toàn thực phẩm.\n- Công thức \"no-rinse\" - không cần rửa lại bằng nước khi dùng đúng nồng độ.\n- Linh hoạt: có thể phun xịt, lau hoặc ngâm.",
     "Technical": { "pH": "7.0 - 8.0 (Trung tính)", "Appearance": "Dung dịch lỏng màu tím", "Dilution": "1:512 (Chuẩn an toàn thực phẩm)" },
     "Safety": { "Signal": "WARNING (Cảnh báo)", "Hazards": "Hợp chất QAC. Tránh tiếp xúc trực tiếp với mắt. Có hại nếu nuốt phải." },
     "Cost": { "dilution_eco": "1 : 512", "dilution_div": "1 : 512", "cost_per_task_eco": "~450 VNĐ", "cost_per_task_div": "~500 VNĐ", "unit_price": "10,052,800 VND / 4x5L" }
@@ -35,6 +38,7 @@
     "DiverseyShort": "Suma Grill",
     "Ecolab": "Greasecutter Plus",
     "Description": "Tẩy sạch dầu mỡ cháy khét trên lò nướng, bếp và thiết bị nhiệt độ cao.",
+    "Features": "- Chất tẩy rửa kiềm mạnh, đánh bay dầu mỡ cháy khét và carbon cứng đầu.\n- Dạng lỏng/gel đặc giúp bám dính tốt trên bề mặt đứng (lò nướng, vỉ nướng).\n- Công thức đậm đặc, hiệu quả kinh tế cao khi ngâm rửa thiết bị.\n- Duy trì hiệu suất nấu nướng và vệ sinh thiết bị.",
     "Technical": { "pH": "> 13.0 (Kiềm cực mạnh)", "Appearance": "Dung dịch lỏng màu nâu đậm", "Dilution": "Dùng trực tiếp hoặc 1:10" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Corrosive. Gây bỏng nghiêm trọng. Yêu cầu đồ bảo hộ PPE đầy đủ." },
     "Cost": { "dilution_eco": "RTU", "dilution_div": "RTU", "cost_per_task_eco": "~2,500 VNĐ", "cost_per_task_div": "~3,200 VNĐ", "unit_price": "2,575,000 VND / 20L" }
@@ -45,6 +49,7 @@
     "DiverseyShort": "Forward DC",
     "Ecolab": "Oasis 137 / Mikro-Quat",
     "Description": "Làm sạch đa năng, diệt khuẩn và khử mùi sàn, tường, các bề mặt cứng.",
+    "Features": "- Chất tẩy rửa và khử trùng đa năng cho bề mặt cứng (sàn, tường, kim loại, nhựa).\n- Loại bỏ hiệu quả bụi bẩn, dầu mỡ và cặn xà phòng.\n- Công thức chứa silicat đậm đặc độc quyền, vừa làm sạch vừa diệt khuẩn.\n- Tiết kiệm chi phí với tỉ lệ pha loãng linh hoạt (lên đến 1:128).",
     "Technical": { "pH": "12.0 - 13.0 (Kiềm)", "Appearance": "Dung dịch lỏng màu tím", "Dilution": "1:40 - 1:128" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Ăn mòn và kích ứng da mạnh. Tránh hít phải hơi sương." },
     "Cost": { "dilution_eco": "1 : 100", "dilution_div": "1 : 100", "cost_per_task_eco": "~1,200 VNĐ", "cost_per_task_div": "~1,800 VNĐ", "unit_price": "3,555,560 VND / 4x5L" }
@@ -55,6 +60,7 @@
     "DiverseyShort": "Glance 101",
     "Ecolab": "Oasis 197",
     "Description": "Làm sạch kính không để lại vệt, khô nhanh, không chứa Amonia.",
+    "Features": "- Chất làm sạch kính và bề mặt bóng nồng độ cao.\n- Loại bỏ dầu mỡ, dấu vân tay, bụi khói và xà phòng mà không để lại vệt.\n- Giúp bề mặt bóng loáng, trong suốt ngay lần lau đầu tiên.\n- Hiệu quả kinh tế cao với tỉ lệ pha loãng 1:20.",
     "Technical": { "pH": "7.0 - 8.0 (Trung tính)", "Appearance": "Dung dịch lỏng màu xanh dương", "Dilution": "1:20 (Concentrate)" },
     "Safety": { "Signal": "Low Risk", "Hazards": "Sản phẩm trung tính, an toàn trên hầu hết bề mặt. Tránh bắn vào mắt." },
     "Cost": { "dilution_eco": "1 : 20", "dilution_div": "1 : 20", "cost_per_task_eco": "~800 VNĐ", "cost_per_task_div": "~1,400 VNĐ", "unit_price": "2,823,850 VND / 4x5L" }
@@ -65,6 +71,7 @@
     "DiverseyShort": "Taski R5",
     "Ecolab": "Oasis 141",
     "Description": "Khử mùi hôi và lưu lại hương thơm sang trọng, lâu bền cho phòng khách sạn.",
+    "Features": "- Hóa chất khử mùi gốc nước hương hoa cỏ tươi mát.\n- Khử triệt để mùi ẩm mốc, thuốc lá, thức ăn và động vật.\n- Không chứa CFC, an toàn cho tầng ozone và người sử dụng.\n- Tiết kiệm hơn với tỉ lệ pha 1:5 so với bình xịt thông thường.",
     "Technical": { "pH": "6.5 - 7.5", "Appearance": "Dung dịch lỏng màu hồng", "Dilution": "1:5 (Xịt trực tiếp)" },
     "Safety": { "Signal": "Lưu ý", "Hazards": "Chứa hương liệu mạnh. Dùng ở nơi thoáng khí. Không xịt thẳng vào mặt." },
     "Cost": { "dilution_eco": "RTU", "dilution_div": "RTU", "cost_per_task_eco": "~3,500 VNĐ", "cost_per_task_div": "~5,500 VNĐ", "unit_price": "6,210,780 VND / 4x5L" }
@@ -75,6 +82,7 @@
     "DiverseyShort": "Clax 100 Super",
     "Ecolab": "Emulsol",
     "Description": "Phụ gia giặt, giúp tẩy sạch dầu mỡ, vết đốm trên khăn bàn và đồ bếp.",
+    "Features": "- Phụ gia tăng cường tẩy rửa gốc hoạt động bề mặt (non-ionic).\n- Nhũ hóa và loại bỏ dầu mỡ, chất béo cực tốt trên vải nhà hàng, đồng phục.\n- Phân tán vết bẩn tốt, ngăn bám ngược trở lại vải.\n- Ít bọt, tối ưu hóa hiệu quả cơ học của máy giặt.",
     "Technical": { "pH": "8.0 - 9.0", "Appearance": "Dung dịch lỏng màu xanh đục", "Dilution": "1 - 2 ml / kg đồ khô" },
     "Safety": { "Signal": "WARNING (Cảnh báo)", "Hazards": "Chất hoạt động bề mặt mạnh. Gây kích ứng da khi tiếp xúc lâu." },
     "Cost": { "dilution_eco": "1ml/kg", "dilution_div": "1ml/kg", "cost_per_task_eco": "~210 VNĐ", "cost_per_task_div": "~320 VNĐ", "unit_price": "3,536,505 VND / 20L" }
@@ -85,6 +93,7 @@
     "DiverseyShort": "Clax Sonril Ultra",
     "Ecolab": "Oxy Brite",
     "Description": "Tẩy trắng và diệt khuẩn ở nhiệt độ thấp đến trung bình, bảo vệ sợi vải.",
+    "Features": "- Chất tẩy trắng và khử trùng gốc Oxy (Hydrogen Peroxide) nồng độ cao.\n- Loại bỏ vết ố hữu cơ cứng đầu mà vẫn bảo vệ độ bền sợi vải.\n- Lựa chọn an toàn thay thế cho tẩy Clo, không làm mất màu vải.\n- Đạt hiệu quả khử trùng cao ở nhiệt độ 70°C - 90°C.",
     "Technical": { "pH": "2.5 - 3.5 (Axit)", "Appearance": "Dung dịch lỏng trong suốt", "Dilution": "2 - 5 ml / kg đồ khô" },
     "Safety": { "Signal": "DANGER (Nguy hiểm)", "Hazards": "Chất oxy hóa mạnh. Gây ăn mòn. Tránh tiếp xúc với chất hữu cơ dễ cháy." },
     "Cost": { "dilution_eco": "3ml/kg", "dilution_div": "3ml/kg", "cost_per_task_eco": "~180 VNĐ", "cost_per_task_div": "~250 VNĐ", "unit_price": "2,395,660 VND / 20L" }
