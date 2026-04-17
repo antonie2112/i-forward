@@ -3757,12 +3757,30 @@ window.openGuidexDMapDetail = (safeObjStr) => {
 
             <div id="div-sds-info" class="hidden animate-in slide-in-from-top-2 duration-300 bg-orange-50 border border-orange-100 rounded-2xl p-5 space-y-3">
                <p class="text-[10px] font-bold text-orange-700 uppercase tracking-widest">An toàn GHS: ${match.Safety.Signal}</p>
-               <div class="space-y-2">
-                  <div class="flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm">
+               <div class="space-y-4">
+                  <div class="flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm border border-orange-100/50">
                     <span class="material-symbols-outlined text-orange-500 text-sm">warning</span>
                     <p class="text-[10px] font-bold text-slate-700">Nguy cơ: ${match.Safety.Hazards}</p>
                   </div>
-                  <p class="text-[10px] text-slate-500 leading-relaxed px-1">Cần trang bị bảo hộ PPE đầy đủ khi thao tác với hóa chất nguyên chất của đối thủ.</p>
+                  <p class="text-[10px] text-slate-500 leading-relaxed px-1 font-medium">Cần trang bị bảo hộ PPE đầy đủ khi thao tác với hóa chất nguyên chất của đối thủ.</p>
+
+                  ${match.SKU ? `
+                  <div class="mt-4 pt-4 border-t border-orange-200/50 space-y-3">
+                    <div class="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm border border-orange-100">
+                      <div class="flex flex-col">
+                         <span class="text-[8px] text-orange-400 font-bold uppercase tracking-widest">Mã SKU Diversey</span>
+                         <span id="div-sku-text" class="text-xs font-bold text-slate-700 select-all">${match.SKU}</span>
+                      </div>
+                      <button onclick="navigator.clipboard.writeText('${match.SKU}'); alert('Đã copy mã SKU: ${match.SKU}');" class="bg-orange-50 text-orange-600 p-2 rounded-lg hover:bg-orange-100 transition-colors flex items-center gap-1 border border-orange-200/50">
+                         <span class="material-symbols-outlined text-sm">content_copy</span>
+                         <span class="text-[9px] font-bold uppercase">Copy</span>
+                      </button>
+                    </div>
+                    <a href="https://sds.solenis.com/en/" target="_blank" class="flex items-center justify-center gap-2 w-full p-3 bg-orange-600 text-white rounded-xl text-[10px] font-bold shadow-md hover:bg-orange-700 transition-all active:scale-95">
+                      <span class="material-symbols-outlined text-sm">open_in_new</span>
+                      TÌM SDS TRÊN SOLENIS
+                    </a>
+                  </div>` : ''}
                </div>
             </div>
           </div>
