@@ -33,15 +33,15 @@
     "Technical": {
       "pH": "2.0 (Axit)",
       "Appearance": "Dung dịch xanh dương",
-      "Dilution": "1:2000 - 1:5000"
+      "Dilution": "0.2-0.4 ml/l"
     },
     "Safety": {
       "Signal": "DANGER",
       "Hazards": "Tính axit. Tránh tiếp xúc trực tiếp với mắt."
     },
     "Cost": {
-      "dilution_eco": "1 : 2000",
-      "dilution_div": "1 : 5000",
+      "dilution_eco": "0.16m-0.276ml/L",
+      "dilution_div": "0.2-0.4 ml/l",
       "cost_per_task_eco": "~200 VNĐ",
       "cost_per_task_div": "~100 VNĐ",
       "unit_price": "2,741,969 VND / 20L"
@@ -105,15 +105,15 @@
     "Technical": {
       "pH": "3.5",
       "Appearance": "Dung dịch lỏng trong suốt",
-      "Dilution": "1:625"
+      "Dilution": "0.2 to 1% v/v (100 to 500 ppm as PAA.)"
     },
     "Safety": {
       "Signal": "DANGER",
       "Hazards": "Chất oxy hóa mạnh. Mùi hắc. Gây ăn mòn."
     },
     "Cost": {
-      "dilution_eco": "1 : 512",
-      "dilution_div": "1 : 625",
+      "dilution_eco": "0.2-0.5ml/L",
+      "dilution_div": "0.2 to 1% v/v (100 to 500 ppm as PAA.)",
       "cost_per_task_eco": "~600 VNĐ",
       "cost_per_task_div": "~550 VNĐ",
       "unit_price": "1,883,538 VND / 20L"
@@ -153,7 +153,7 @@
     "Technical": {
       "pH": "> 13.0",
       "Appearance": "Dung dịch lỏng nâu",
-      "Dilution": "RTU hoặc 1:5 - 1:10"
+      "Dilution": "RTU"
     },
     "Safety": {
       "Signal": "DANGER",
@@ -177,15 +177,15 @@
     "Technical": {
       "pH": "7.5",
       "Appearance": "Dung dịch vàng trong",
-      "Dilution": "1:100 - 1:500"
+      "Dilution": "10-50ml/ 5L => 1:100-1:500"
     },
     "Safety": {
       "Signal": "An toàn",
       "Hazards": "Ít gây kích ứng da. Tránh nuốt phải."
     },
     "Cost": {
-      "dilution_eco": "1 : 500",
-      "dilution_div": "1 : 500",
+      "dilution_eco": "1-30ml/L",
+      "dilution_div": "10-50ml/ 5L => 1:100-1:500",
       "cost_per_task_eco": "~80 VNĐ",
       "cost_per_task_div": "~280 VNĐ",
       "unit_price": "800,020 VND / 10L"
@@ -249,15 +249,15 @@
     "Technical": {
       "pH": "7.5",
       "Appearance": "Dung dịch hồng nhẹ",
-      "Dilution": "1:500"
+      "Dilution": "1:512"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "Hóa chất đậm đặc. Tránh văng vào mắt."
     },
     "Cost": {
-      "dilution_eco": "1 : 500",
-      "dilution_div": "1 : 512",
+      "dilution_eco": "2-7.8 ml/L",
+      "dilution_div": "1:512",
       "cost_per_task_eco": "~450 VNĐ",
       "cost_per_task_div": "~500 VNĐ",
       "unit_price": "1,983,660 VND / 2x2L"
@@ -369,15 +369,15 @@
     "Technical": {
       "pH": "12.5",
       "Appearance": "Dung dịch tím",
-      "Dilution": "1:30 - :166"
+      "Dilution": "'1:30"
     },
     "Safety": {
       "Signal": "DANGER",
       "Hazards": "Gây kích ứng da và mắt mạnh."
     },
     "Cost": {
-      "dilution_eco": "1 : 166",
-      "dilution_div": "1 : 100",
+      "dilution_eco": "6-25ml/L",
+      "dilution_div": "'1:30",
       "cost_per_task_eco": "~365 VNĐ",
       "cost_per_task_div": "~1,500 VNĐ",
       "unit_price": "232,200 VND / 3.8L"
@@ -393,15 +393,15 @@
     "Technical": {
       "pH": "7.5",
       "Appearance": "Dung dịch xanh dương",
-      "Dilution": "1:10 - 1:20"
+      "Dilution": "1:10"
     },
     "Safety": {
       "Signal": "An toàn",
       "Hazards": "Sản phẩm trung tính. Tránh bắn vào mắt."
     },
     "Cost": {
-      "dilution_eco": "1 : 10",
-      "dilution_div": "1 : 10",
+      "dilution_eco": "100ml/L",
+      "dilution_div": "1:10",
       "cost_per_task_eco": "~2,500 VNĐ",
       "cost_per_task_div": "~6,500 VNĐ",
       "unit_price": "271,605 VND / 3.8L"
@@ -417,15 +417,15 @@
     "Technical": {
       "pH": "7.0",
       "Appearance": "Dung dịch hồng hồng",
-      "Dilution": "1:5 - 1:10"
+      "Dilution": "150 ml per 750ml (200ml/L)"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "Xịt vào không trung, tránh xịt trực tiếp vào thực phẩm."
     },
     "Cost": {
-      "dilution_eco": "RTU",
-      "dilution_div": "RTU",
+      "dilution_eco": "15.6-46.9ml/L",
+      "dilution_div": "150 ml per 750ml (200ml/L)",
       "cost_per_task_eco": "~5,500 VNĐ",
       "cost_per_task_div": "~6,500 VNĐ",
       "unit_price": "3,725,679 VND / 4x5L"
@@ -465,15 +465,15 @@
     "Technical": {
       "pH": "13.0",
       "Appearance": "Dung dịch trong suốt",
-      "Dilution": "1:4"
+      "Dilution": "1 gal to 4 gal of water (1:4)"
     },
     "Safety": {
       "Signal": "DANGER",
       "Hazards": "Tính kiềm cực cao. Làm trung hòa sàn sau khi tẩy."
     },
     "Cost": {
-      "dilution_eco": "1 : 4",
-      "dilution_div": "1 : 4",
+      "dilution_eco": "200ml/L",
+      "dilution_div": "1 gal to 4 gal of water (1:4)",
       "cost_per_task_eco": "~2,500 VNĐ",
       "cost_per_task_div": "~3,000 VNĐ",
       "unit_price": "1,518,867 VND / 4x1 gal"
@@ -489,15 +489,15 @@
     "Technical": {
       "pH": "8.5",
       "Appearance": "Dung dịch trắng đục",
-      "Dilution": "1:32 - 1:64"
+      "Dilution": "64 ml with 1 liter water (1:64)."
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "Hút sạch bọt bằng máy hút thảm sau khi giặt."
     },
     "Cost": {
-      "dilution_eco": "1 : 30",
-      "dilution_div": "1 : 40",
+      "dilution_eco": "33-50ml/L",
+      "dilution_div": "64 ml with 1 liter water (1:64).",
       "cost_per_task_eco": "~1,500 VNĐ",
       "cost_per_task_div": "~1,800 VNĐ",
       "unit_price": "2,413,250 VND / 4x5L"
@@ -753,15 +753,15 @@
     "Technical": {
       "pH": "8.0",
       "Appearance": "Dung dịch trong suốt",
-      "Dilution": "1:128 - 1:640"
+      "Dilution": "'1:128"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "Thử trước ở góc thảm nhỏ để kiểm tra độ bền màu."
     },
     "Cost": {
-      "dilution_eco": "1 : 100",
-      "dilution_div": "1 : 128",
+      "dilution_eco": "25-300ml/L",
+      "dilution_div": "'1:128",
       "cost_per_task_eco": "~1,800 VNĐ",
       "cost_per_task_div": "~2,200 VNĐ",
       "unit_price": "4,242,592 VND / 4x5L"
@@ -873,15 +873,15 @@
     "Technical": {
       "pH": "13.5",
       "Appearance": "Dung dịch lỏng trong vàng",
-      "Dilution": "1.5% - 5% (1:20 - 1:66)"
+      "Dilution": "2-10 %v/v"
     },
     "Safety": {
       "Signal": "DANGER",
       "Hazards": "Ăn mòn mạnh. Cẩn thận khi tiếp xúc trực tiếp."
     },
     "Cost": {
-      "dilution_eco": "1 : 50",
-      "dilution_div": "1 : 30",
+      "dilution_eco": "10-20ml/lit",
+      "dilution_div": "2-10 %v/v",
       "cost_per_task_eco": "~1,200 VNĐ",
       "cost_per_task_div": "~1,800 VNĐ",
       "unit_price": "2,226,406 VND / 20L"
@@ -897,15 +897,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "Dilution as per PIS Diversey"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "Dilution",
+      "dilution_div": "Dilution as per PIS Diversey",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -921,15 +921,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "1-4ml/l"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "1.6-6ml/L",
+      "dilution_div": "1-4ml/l",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -945,15 +945,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "0.2-0.4 ml/l"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "0.16m-0.276ml/L",
+      "dilution_div": "0.2-0.4 ml/l",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -969,15 +969,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "RTU"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "RTU",
+      "dilution_div": "RTU",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -993,15 +993,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "6-12g per 1L."
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "3.7-7.5ml/ L",
+      "dilution_div": "6-12g per 1L.",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -1017,15 +1017,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "1:20"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "20ml/L",
+      "dilution_div": "1:20",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -1041,15 +1041,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "1:1 to 1:2"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "333-500ml/L",
+      "dilution_div": "1:1 to 1:2",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
@@ -1065,15 +1065,15 @@
     "Technical": {
       "pH": "-",
       "Appearance": "-",
-      "Dilution": "-"
+      "Dilution": "RTU"
     },
     "Safety": {
       "Signal": "Lưu ý",
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "-",
-      "dilution_div": "-",
+      "dilution_eco": "RTU",
+      "dilution_div": "RTU",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
       "unit_price": "-"
