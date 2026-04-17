@@ -40,7 +40,7 @@
       "Hazards": "Tính axit. Tránh tiếp xúc trực tiếp với mắt."
     },
     "Cost": {
-      "dilution_eco": "0.16m-0.276ml/L",
+      "dilution_eco": "1:6249",
       "dilution_div": "0.2-0.4 ml/l",
       "cost_per_task_eco": "~200 VNĐ",
       "cost_per_task_div": "~100 VNĐ",
@@ -112,7 +112,7 @@
       "Hazards": "Chất oxy hóa mạnh. Mùi hắc. Gây ăn mòn."
     },
     "Cost": {
-      "dilution_eco": "0.2-0.5ml/L",
+      "dilution_eco": "1:5000",
       "dilution_div": "0.2 to 1% v/v (100 to 500 ppm as PAA.)",
       "cost_per_task_eco": "~600 VNĐ",
       "cost_per_task_div": "~550 VNĐ",
@@ -184,7 +184,7 @@
       "Hazards": "Ít gây kích ứng da. Tránh nuốt phải."
     },
     "Cost": {
-      "dilution_eco": "1-30ml/L",
+      "dilution_eco": "1:999",
       "dilution_div": "10-50ml/ 5L => 1:100-1:500",
       "cost_per_task_eco": "~80 VNĐ",
       "cost_per_task_div": "~280 VNĐ",
@@ -256,7 +256,7 @@
       "Hazards": "Hóa chất đậm đặc. Tránh văng vào mắt."
     },
     "Cost": {
-      "dilution_eco": "2-7.8 ml/L",
+      "dilution_eco": "1:500",
       "dilution_div": "1:512",
       "cost_per_task_eco": "~450 VNĐ",
       "cost_per_task_div": "~500 VNĐ",
@@ -376,7 +376,7 @@
       "Hazards": "Gây kích ứng da và mắt mạnh."
     },
     "Cost": {
-      "dilution_eco": "6-25ml/L",
+      "dilution_eco": "1:166",
       "dilution_div": "'1:30",
       "cost_per_task_eco": "~365 VNĐ",
       "cost_per_task_div": "~1,500 VNĐ",
@@ -400,7 +400,7 @@
       "Hazards": "Sản phẩm trung tính. Tránh bắn vào mắt."
     },
     "Cost": {
-      "dilution_eco": "100ml/L",
+      "dilution_eco": "1:10",
       "dilution_div": "1:10",
       "cost_per_task_eco": "~2,500 VNĐ",
       "cost_per_task_div": "~6,500 VNĐ",
@@ -424,7 +424,7 @@
       "Hazards": "Xịt vào không trung, tránh xịt trực tiếp vào thực phẩm."
     },
     "Cost": {
-      "dilution_eco": "15.6-46.9ml/L",
+      "dilution_eco": "1:63",
       "dilution_div": "150 ml per 750ml (200ml/L)",
       "cost_per_task_eco": "~5,500 VNĐ",
       "cost_per_task_div": "~6,500 VNĐ",
@@ -472,7 +472,7 @@
       "Hazards": "Tính kiềm cực cao. Làm trung hòa sàn sau khi tẩy."
     },
     "Cost": {
-      "dilution_eco": "200ml/L",
+      "dilution_eco": "1:4",
       "dilution_div": "1 gal to 4 gal of water (1:4)",
       "cost_per_task_eco": "~2,500 VNĐ",
       "cost_per_task_div": "~3,000 VNĐ",
@@ -496,7 +496,7 @@
       "Hazards": "Hút sạch bọt bằng máy hút thảm sau khi giặt."
     },
     "Cost": {
-      "dilution_eco": "33-50ml/L",
+      "dilution_eco": "1:29",
       "dilution_div": "64 ml with 1 liter water (1:64).",
       "cost_per_task_eco": "~1,500 VNĐ",
       "cost_per_task_div": "~1,800 VNĐ",
@@ -760,7 +760,7 @@
       "Hazards": "Thử trước ở góc thảm nhỏ để kiểm tra độ bền màu."
     },
     "Cost": {
-      "dilution_eco": "25-300ml/L",
+      "dilution_eco": "1:39",
       "dilution_div": "'1:128",
       "cost_per_task_eco": "~1,800 VNĐ",
       "cost_per_task_div": "~2,200 VNĐ",
@@ -856,7 +856,7 @@
       "Hazards": "Tránh xịt vào mắt. Lau sạch sau khi dùng."
     },
     "Cost": {
-      "dilution_eco": "RTU",
+      "dilution_eco": "1:0",
       "dilution_div": "RTU",
       "cost_per_task_eco": "~2,000 VNĐ",
       "cost_per_task_div": "~2,500 VNĐ",
@@ -880,7 +880,7 @@
       "Hazards": "Ăn mòn mạnh. Cẩn thận khi tiếp xúc trực tiếp."
     },
     "Cost": {
-      "dilution_eco": "10-20ml/lit",
+      "dilution_eco": "1:112",
       "dilution_div": "2-10 %v/v",
       "cost_per_task_eco": "~1,200 VNĐ",
       "cost_per_task_div": "~1,800 VNĐ",
@@ -928,7 +928,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "1.6-6ml/L",
+      "dilution_eco": "1:624",
       "dilution_div": "1-4ml/l",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
@@ -952,7 +952,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "0.16m-0.276ml/L",
+      "dilution_eco": "1:6249",
       "dilution_div": "0.2-0.4 ml/l",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
@@ -1000,7 +1000,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "3.7-7.5ml/ L",
+      "dilution_eco": "1:270.27027027027026",
       "dilution_div": "6-12g per 1L.",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
@@ -1024,7 +1024,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "20ml/L",
+      "dilution_eco": "1:50",
       "dilution_div": "1:20",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
@@ -1048,7 +1048,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "333-500ml/L",
+      "dilution_eco": "1:3",
       "dilution_div": "1:1 to 1:2",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
@@ -1072,7 +1072,7 @@
       "Hazards": "-"
     },
     "Cost": {
-      "dilution_eco": "RTU",
+      "dilution_eco": "1:0",
       "dilution_div": "RTU",
       "cost_per_task_eco": "-",
       "cost_per_task_div": "-",
