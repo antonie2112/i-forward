@@ -3764,22 +3764,31 @@ window.openGuidexDMapDetail = (safeObjStr) => {
                   </div>
                   <p class="text-[10px] text-slate-500 leading-relaxed px-1 font-medium">Cần trang bị bảo hộ PPE đầy đủ khi thao tác với hóa chất nguyên chất của đối thủ.</p>
 
-                  ${match.SKU ? `
+                  ${match.SKU || match.DiverseyShort ? `
                   <div class="mt-4 pt-4 border-t border-orange-200/50 space-y-3">
-                    <div class="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm border border-orange-100">
-                      <div class="flex flex-col">
-                         <span class="text-[8px] text-orange-400 font-bold uppercase tracking-widest">Mã SKU Diversey</span>
-                         <span id="div-sku-text" class="text-xs font-bold text-slate-700 select-all">${match.SKU}</span>
-                      </div>
-                      <button onclick="navigator.clipboard.writeText('${match.SKU}'); alert('Đã copy mã SKU: ${match.SKU}');" class="bg-orange-50 text-orange-600 p-2 rounded-lg hover:bg-orange-100 transition-colors flex items-center gap-1 border border-orange-200/50">
-                         <span class="material-symbols-outlined text-sm">content_copy</span>
-                         <span class="text-[9px] font-bold uppercase">Copy</span>
-                      </button>
-                    </div>
-                    <a href="https://sds.solenis.com/en/" target="_blank" class="flex items-center justify-center gap-2 w-full p-3 bg-orange-600 text-white rounded-xl text-[10px] font-bold shadow-md hover:bg-orange-700 transition-all active:scale-95">
-                      <span class="material-symbols-outlined text-sm">open_in_new</span>
-                      TÌM SDS TRÊN SOLENIS
+                    <p class="text-[10px] text-orange-700 font-bold uppercase tracking-widest text-center px-2">Tra cứu an toàn sản phẩm đối thủ</p>
+                    
+                    <a href="https://www.google.com/search?q=${encodeURIComponent('Diversey ' + match.DiverseyShort + ' SDS Vietnamese PDF')}" target="_blank" class="flex items-center justify-center gap-2 w-full p-3.5 bg-orange-600 text-white rounded-xl text-xs font-bold shadow-lg hover:bg-orange-700 transition-all active:scale-95 group">
+                      <span class="material-symbols-outlined text-base group-hover:animate-pulse">description</span>
+                      XEM SDS TIẾNG VIỆT (PDF)
                     </a>
+
+                    <div class="flex items-center gap-2">
+                       <div class="flex-1 flex items-center justify-between bg-white p-2.5 rounded-xl border border-orange-100 shadow-sm">
+                          <div class="flex flex-col">
+                             <span class="text-[7px] text-orange-400 font-bold uppercase">Mã SKU dự án</span>
+                             <span class="text-[10px] font-bold text-slate-700">${match.SKU || '-'}</span>
+                          </div>
+                          ${match.SKU ? `
+                          <button onclick="navigator.clipboard.writeText('${match.SKU}'); alert('Đã copy mã: ${match.SKU}');" class="p-1.5 text-orange-500 hover:bg-orange-50 rounded-lg transition-colors">
+                             <span class="material-symbols-outlined text-sm">content_copy</span>
+                          </button>` : ''}
+                       </div>
+                       <a href="https://sds.solenis.com/en/" target="_blank" class="p-2.5 bg-slate-100 text-slate-500 rounded-xl hover:bg-slate-200 transition-colors" title="Tìm trên cổng Solenis">
+                          <span class="material-symbols-outlined text-sm">open_in_new</span>
+                       </a>
+                    </div>
+                    <p class="text-[9px] text-slate-400 italic text-center px-4">Bấm vào nút cam để xem ngay bản tiếng Việt từ nguồn dữ liệu công khai.</p>
                   </div>` : ''}
                </div>
             </div>
