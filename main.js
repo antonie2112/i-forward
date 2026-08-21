@@ -4397,19 +4397,33 @@ window.exportActiveCalculatorToA4 = async function() {
                         const span = clonedDoc.createElement('span');
                         span.textContent = input.value || '';
                         const style = window.getComputedStyle(input);
+                        
+                        // Copy essential layout classes from the input to the span so flex/grid systems work
+                        span.className = input.className;
+                        
+                        // Remove border/background classes and add minimal styling for print
+                        span.classList.remove('border', 'bg-white', 'bg-slate-100', 'dark:bg-slate-800', 'dark:border-slate-700', 'shadow-sm', 'focus:ring-2', 'focus:border-rose-500', 'dark:bg-slate-900', 'bg-orange-50/50', 'bg-blue-50/50', 'bg-emerald-50/50');
+                        
                         Object.assign(span.style, {
-                            display: 'inline-block',
-                            width: '100%',
+                            display: style.display !== 'none' ? style.display : 'inline-block',
                             fontFamily: style.fontFamily,
                             fontSize: style.fontSize,
                             fontWeight: style.fontWeight,
                             color: style.color,
                             textAlign: style.textAlign,
-                            borderBottom: '1px solid #ccc',
-                            padding: style.padding,
-                            whiteSpace: 'normal',
-                            wordBreak: 'break-word'
+                            borderBottom: '1px solid #e2e8f0', // minimal underline
+                            paddingTop: style.paddingTop,
+                            paddingBottom: style.paddingBottom,
+                            paddingLeft: style.paddingLeft,
+                            paddingRight: style.paddingRight,
+                            height: style.height,
+                            lineHeight: style.lineHeight,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            backgroundColor: 'transparent'
                         });
+                        
                         input.style.display = 'none';
                         parent.insertBefore(span, input);
                     });
