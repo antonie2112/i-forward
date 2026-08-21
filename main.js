@@ -4369,6 +4369,7 @@ window.exportActiveCalculatorToA4 = async function() {
                         .text-slate-500, .text-slate-400 { color: #334155 !important; font-weight: 700 !important; }
                         .text-slate-600 { color: #0f172a !important; font-weight: 800 !important; }
                         .a4-export-value { color: #0f172a !important; font-weight: 900 !important; font-size: 1.1em !important; }
+                        * { transition: none !important; animation: none !important; transform: none !important; }
                     `;
                     clonedDoc.head.appendChild(styleTag);
                     
@@ -4403,44 +4404,45 @@ window.exportActiveCalculatorToA4 = async function() {
                     
                     clonedElement.querySelectorAll('input:not([type="checkbox"]), textarea').forEach(input => {
                         const parent = input.parentNode;
-                        const span = clonedDoc.createElement('span');
-                        span.textContent = input.value || '';
+                        const div = clonedDoc.createElement('div');
+                        div.textContent = input.value || '';
                         const style = window.getComputedStyle(input);
                         
-                        // Copy essential layout classes from the input to the span so flex/grid systems work
-                        span.className = input.className;
+                        // Copy essential layout classes from the input to the div so flex/grid systems work
+                        div.className = input.className;
                         
                         // Remove border/background classes and add minimal styling for print
-                        span.classList.remove('border', 'bg-white', 'bg-slate-100', 'dark:bg-slate-800', 'dark:border-slate-700', 'shadow-sm', 'focus:ring-2', 'focus:border-rose-500', 'dark:bg-slate-900', 'bg-orange-50/50', 'bg-blue-50/50', 'bg-emerald-50/50');
+                        div.classList.remove('border', 'bg-white', 'bg-slate-100', 'dark:bg-slate-800', 'dark:border-slate-700', 'shadow-sm', 'focus:ring-2', 'focus:border-rose-500', 'dark:bg-slate-900', 'bg-orange-50/50', 'bg-blue-50/50', 'bg-emerald-50/50');
                         
                         // Add custom class for targeted styling in the injected CSS
-                        span.classList.add('a4-export-value');
+                        div.classList.add('a4-export-value');
                         
-                        Object.assign(span.style, {
-                            display: style.display !== 'none' ? style.display : 'inline-block',
-                            fontFamily: style.fontFamily,
-                            fontSize: style.fontSize,
-                            fontWeight: '900', // Force heavier weight
-                            color: '#0f172a', // Force high contrast dark color
-                            textAlign: style.textAlign,
-                            borderBottom: '1px solid #e2e8f0', // minimal underline
+                        Object.assign(div.style, {
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: style.textAlign === 'center' ? 'center' : (style.textAlign === 'right' ? 'flex-end' : 'flex-start'),
+                            width: style.width || '100%',
+                            height: style.height,
                             paddingTop: style.paddingTop,
                             paddingBottom: style.paddingBottom,
                             paddingLeft: style.paddingLeft,
                             paddingRight: style.paddingRight,
-                            height: style.height,
-                            lineHeight: style.lineHeight,
-                            whiteSpace: 'nowrap',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            backgroundColor: 'transparent'
+                            borderBottom: '1px solid #e2e8f0', // minimal underline
+                            backgroundColor: 'transparent',
+                            boxSizing: 'border-box',
+                            overflow: 'hidden'
                         });
                         
                         input.style.display = 'none';
-                        parent.insertBefore(span, input);
+                        parent.insertBefore(div, input);
                     });
                     
                     clonedElement.querySelectorAll('.no-print, button').forEach(el => el.style.display = 'none');
+                    
+                    // Strip problematic glassmorphism/blend-modes for html2canvas
+                    clonedElement.querySelectorAll('.mix-blend-overlay, [class*="backdrop-blur"]').forEach(el => {
+                        el.style.display = 'none';
+                    });
                 }
             }
         });
