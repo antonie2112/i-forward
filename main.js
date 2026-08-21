@@ -1263,6 +1263,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (clonedElement) {
                             clonedElement.style.width = '1200px';
                             clonedElement.style.margin = '0 auto';
+                            
+                            // Fix html2canvas object-fit bug for product images
+                            clonedElement.querySelectorAll('img').forEach(img => {
+                                if (img.style.objectFit === 'contain') {
+                                    const src = img.src;
+                                    const div = clonedDoc.createElement('div');
+                                    div.style.width = '100%';
+                                    div.style.height = '100%';
+                                    div.style.backgroundImage = `url("${src}")`;
+                                    div.style.backgroundSize = 'contain';
+                                    div.style.backgroundPosition = 'center';
+                                    div.style.backgroundRepeat = 'no-repeat';
+                                    div.style.backgroundColor = img.style.backgroundColor || 'transparent';
+                                    img.parentNode.replaceChild(div, img);
+                                }
+                            });
+
                             // Replace inputs with spans
                             clonedElement.querySelectorAll('input:not([type="checkbox"]), textarea').forEach(input => {
                                 const parent = input.parentNode;
