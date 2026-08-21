@@ -2209,7 +2209,8 @@ function submitSdsSearch() {
     if (!input) return;
     const query = input.value.trim();
     if (query) {
-        const url = `https://www.ecolab.com/sds-search?query=${encodeURIComponent(query)}&countryCode=Vietnam`;
+        // Use Ecolab's Coveo search hash format to filter by query and languages
+        const url = `https://www.ecolab.com/sds-search#q=${encodeURIComponent(query)}&t=sdsSearch&sort=relevancy&f:language=[Vietnamese,English]`;
         window.open(url, '_blank');
     }
 }
