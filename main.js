@@ -4321,3 +4321,136 @@ window.processGuidexOCR = async (event) => {
 };
 
 console.log("GuideX logic active!");
+
+window.exportActiveCalculatorToA4 = async function() {
+    const activeTabBtn = document.querySelector('.calc-tab-btn.active');
+    if (!activeTabBtn) return;
+    const tabId = activeTabBtn.dataset.calctab;
+    
+    let elementToCapture;
+    let fileName = '';
+    
+    if (tabId === 'cost') {
+        elementToCapture = document.getElementById('calctab-cost');
+        fileName = 'Cost_Calculator_Overview_A4.png';
+    } else if (tabId === 'tvd') {
+        elementToCapture = document.getElementById('calctab-tvd');
+        fileName = 'TVD_Calculator_Overview_A4.png';
+    }
+    
+    if (!elementToCapture) return;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'export-overlay';
+    overlay.id = 'export-processing-overlay';
+    overlay.innerHTML = `
+        <div class="export-spinner"></div>
+        <div class="export-status-text" style="color: white; font-weight: bold; margin-top: 20px; font-size: 16px;">Đang tạo khung A4 Khổ Dọc...</div>
+    `;
+    document.body.appendChild(overlay);
+
+    const clonedThemeSnapshot = document.body.dataset.theme;
+    document.body.dataset.theme = 'light';
+
+    try {
+        const canvas = await html2canvas(elementToCapture, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            logging: false,
+            backgroundColor: "#ffffff",
+            windowWidth: 1200,
+            onclone: (clonedDoc) => {
+                const clonedElement = clonedDoc.getElementById(elementToCapture.id);
+                if (clonedElement) {
+                    clonedElement.style.width = '800px'; 
+                    clonedElement.style.margin = '0 auto';
+                    clonedElement.style.background = '#ffffff';
+                    clonedElement.style.padding = '20px';
+                    clonedElement.style.display = 'block';
+                    
+                    if (tabId === 'cost') {
+                        const kitchen = clonedDoc.getElementById('calc-subtab-kitchen');
+                        const hk = clonedDoc.getElementById('calc-subtab-hk');
+                        if (kitchen) kitchen.classList.remove('hidden');
+                        if (hk) {
+                            hk.classList.remove('hidden');
+                            hk.style.marginTop = '40px'; 
+                        }
+                        const subtabNav = clonedElement.querySelector('.flex.overflow-x-auto');
+                        if (subtabNav) subtabNav.style.display = 'none';
+                    } else if (tabId === 'tvd') {
+                        const flexRow = clonedElement.querySelector('.lg\\:flex-row');
+                        if (flexRow) {
+                            flexRow.classList.remove('lg:flex-row');
+                            flexRow.classList.add('flex-col');
+                            const leftSide = flexRow.querySelector('.lg\\:w-\\[400px\\]');
+                            if (leftSide) {
+                                leftSide.classList.remove('lg:w-[400px]');
+                                leftSide.style.width = '100%';
+                            }
+                        }
+                    }
+                    
+                    clonedElement.querySelectorAll('input:not([type="checkbox"]), textarea').forEach(input => {
+                        const parent = input.parentNode;
+                        const span = clonedDoc.createElement('span');
+                        span.textContent = input.value || '';
+                        const style = window.getComputedStyle(input);
+                        Object.assign(span.style, {
+                            display: 'inline-block',
+                            width: '100%',
+                            fontFamily: style.fontFamily,
+                            fontSize: style.fontSize,
+                            fontWeight: style.fontWeight,
+                            color: style.color,
+                            textAlign: style.textAlign,
+                            borderBottom: '1px solid #ccc',
+                            padding: style.padding,
+                            whiteSpace: 'normal',
+                            wordBreak: 'break-word'
+                        });
+                        input.style.display = 'none';
+                        parent.insertBefore(span, input);
+                    });
+                    
+                    clonedElement.querySelectorAll('.no-print, button').forEach(el => el.style.display = 'none');
+                }
+            }
+        });
+
+        const a4Width = 1600;
+        const a4Height = 2262;
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = a4Width;
+        finalCanvas.height = a4Height;
+        const ctx = finalCanvas.getContext('2d');
+        
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, a4Width, a4Height);
+        
+        const scaleX = a4Width / canvas.width;
+        const scaleY = a4Height / canvas.height;
+        const scale = Math.min(scaleX, scaleY) * 0.95; 
+        
+        const scaledWidth = canvas.width * scale;
+        const scaledHeight = canvas.height * scale;
+        const offsetX = (a4Width - scaledWidth) / 2;
+        const offsetY = Math.max(60, (a4Height - scaledHeight) / 4); 
+        
+        ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, offsetX, offsetY, scaledWidth, scaledHeight);
+
+        const link = document.createElement('a');
+        link.download = fileName;
+        link.href = finalCanvas.toDataURL('image/png');
+        link.click();
+        
+    } catch (err) {
+        console.error("Export A4 Error:", err);
+        alert("Lỗi khi xuất A4: " + err.message);
+    } finally {
+        document.body.dataset.theme = clonedThemeSnapshot;
+        const overlayToRemove = document.getElementById('export-processing-overlay');
+        if (overlayToRemove) document.body.removeChild(overlayToRemove);
+    }
+};
