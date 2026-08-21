@@ -4349,8 +4349,8 @@ window.exportActiveCalculatorToA4 = async function() {
     `;
     document.body.appendChild(overlay);
 
-    const clonedThemeSnapshot = document.body.dataset.theme;
-    document.body.dataset.theme = 'light';
+    const hadDark = document.body.classList.contains('dark');
+    if (hadDark) document.body.classList.remove('dark');
 
     try {
         const canvas = await html2canvas(elementToCapture, {
@@ -4359,14 +4359,14 @@ window.exportActiveCalculatorToA4 = async function() {
             allowTaint: false,
             logging: false,
             backgroundColor: "#ffffff",
-            windowWidth: 1200,
+            windowWidth: 1000,
             onclone: (clonedDoc) => {
                 const clonedElement = clonedDoc.getElementById(elementToCapture.id);
                 if (clonedElement) {
-                    clonedElement.style.width = '800px'; 
+                    clonedElement.style.width = '1000px'; 
                     clonedElement.style.margin = '0 auto';
                     clonedElement.style.background = '#ffffff';
-                    clonedElement.style.padding = '20px';
+                    clonedElement.style.padding = '40px';
                     clonedElement.style.display = 'block';
                     
                     if (tabId === 'cost') {
@@ -4419,8 +4419,16 @@ window.exportActiveCalculatorToA4 = async function() {
             }
         });
 
-        const a4Width = 1600;
-        const a4Height = 2262;
+        // Maintain original sharp resolution, just pad to A4 proportion (1:1.414)
+        let a4Width = canvas.width;
+        let a4Height = Math.floor(canvas.width * 1.414);
+
+        if (canvas.height > a4Height) {
+            // Content is taller than portrait A4, so we expand the width to maintain A4 ratio
+            a4Height = canvas.height;
+            a4Width = Math.floor(canvas.height / 1.414);
+        }
+
         const finalCanvas = document.createElement('canvas');
         finalCanvas.width = a4Width;
         finalCanvas.height = a4Height;
@@ -4429,27 +4437,22 @@ window.exportActiveCalculatorToA4 = async function() {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, a4Width, a4Height);
         
-        const scaleX = a4Width / canvas.width;
-        const scaleY = a4Height / canvas.height;
-        const scale = Math.min(scaleX, scaleY) * 0.95; 
+        // Draw exactly at native scale, centered horizontally and padded top
+        const offsetX = (a4Width - canvas.width) / 2;
+        const offsetY = 40; 
         
-        const scaledWidth = canvas.width * scale;
-        const scaledHeight = canvas.height * scale;
-        const offsetX = (a4Width - scaledWidth) / 2;
-        const offsetY = Math.max(60, (a4Height - scaledHeight) / 4); 
-        
-        ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, offsetX, offsetY, scaledWidth, scaledHeight);
+        ctx.drawImage(canvas, offsetX, offsetY);
 
         const link = document.createElement('a');
         link.download = fileName;
-        link.href = finalCanvas.toDataURL('image/png');
+        link.href = finalCanvas.toDataURL('image/png', 1.0);
         link.click();
         
     } catch (err) {
         console.error("Export A4 Error:", err);
         alert("Lỗi khi xuất A4: " + err.message);
     } finally {
-        document.body.dataset.theme = clonedThemeSnapshot;
+        if (hadDark) document.body.classList.add('dark');
         const overlayToRemove = document.getElementById('export-processing-overlay');
         if (overlayToRemove) document.body.removeChild(overlayToRemove);
     }
