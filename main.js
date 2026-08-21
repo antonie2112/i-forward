@@ -4370,6 +4370,7 @@ window.exportActiveCalculatorToA4 = async function() {
                         .text-slate-600 { color: #0f172a !important; font-weight: 800 !important; }
                         .a4-export-value { color: #0f172a !important; font-weight: 900 !important; font-size: 1.1em !important; }
                         * { transition: none !important; animation: none !important; transform: none !important; }
+                        .truncate { overflow: visible !important; white-space: normal !important; text-overflow: clip !important; }
                     `;
                     clonedDoc.head.appendChild(styleTag);
                     
@@ -4419,18 +4420,18 @@ window.exportActiveCalculatorToA4 = async function() {
                         
                         Object.assign(div.style, {
                             display: 'flex',
-                            alignItems: 'center',
+                            alignItems: 'flex-end', // Sit the text at the bottom line
                             justifyContent: style.textAlign === 'center' ? 'center' : (style.textAlign === 'right' ? 'flex-end' : 'flex-start'),
                             width: style.width || '100%',
                             height: style.height,
                             paddingTop: style.paddingTop,
-                            paddingBottom: style.paddingBottom,
+                            paddingBottom: '4px', // Give a little space above the underline
                             paddingLeft: style.paddingLeft,
                             paddingRight: style.paddingRight,
-                            borderBottom: '1px solid #e2e8f0', // minimal underline
+                            borderBottom: '1px solid #cbd5e1', // slightly darker minimal underline
                             backgroundColor: 'transparent',
-                            boxSizing: 'border-box',
-                            overflow: 'hidden'
+                            boxSizing: 'border-box'
+                            // overflow hidden removed to prevent cutting off text
                         });
                         
                         input.style.display = 'none';
