@@ -4354,7 +4354,7 @@ window.exportActiveCalculatorToA4 = async function() {
 
     try {
         const canvas = await html2canvas(elementToCapture, {
-            scale: 2,
+            scale: 3, // Increased scale for maximum sharpness
             useCORS: true,
             allowTaint: false,
             logging: false,
@@ -4363,6 +4363,15 @@ window.exportActiveCalculatorToA4 = async function() {
             onclone: (clonedDoc) => {
                 const clonedElement = clonedDoc.getElementById(elementToCapture.id);
                 if (clonedElement) {
+                    // Inject High Contrast Print Styles
+                    const styleTag = clonedDoc.createElement('style');
+                    styleTag.innerHTML = `
+                        .text-slate-500, .text-slate-400 { color: #334155 !important; font-weight: 700 !important; }
+                        .text-slate-600 { color: #0f172a !important; font-weight: 800 !important; }
+                        .a4-export-value { color: #0f172a !important; font-weight: 900 !important; font-size: 1.1em !important; }
+                    `;
+                    clonedDoc.head.appendChild(styleTag);
+                    
                     clonedElement.style.width = '1000px'; 
                     clonedElement.style.margin = '0 auto';
                     clonedElement.style.background = '#ffffff';
@@ -4404,12 +4413,15 @@ window.exportActiveCalculatorToA4 = async function() {
                         // Remove border/background classes and add minimal styling for print
                         span.classList.remove('border', 'bg-white', 'bg-slate-100', 'dark:bg-slate-800', 'dark:border-slate-700', 'shadow-sm', 'focus:ring-2', 'focus:border-rose-500', 'dark:bg-slate-900', 'bg-orange-50/50', 'bg-blue-50/50', 'bg-emerald-50/50');
                         
+                        // Add custom class for targeted styling in the injected CSS
+                        span.classList.add('a4-export-value');
+                        
                         Object.assign(span.style, {
                             display: style.display !== 'none' ? style.display : 'inline-block',
                             fontFamily: style.fontFamily,
                             fontSize: style.fontSize,
-                            fontWeight: style.fontWeight,
-                            color: style.color,
+                            fontWeight: '900', // Force heavier weight
+                            color: '#0f172a', // Force high contrast dark color
                             textAlign: style.textAlign,
                             borderBottom: '1px solid #e2e8f0', // minimal underline
                             paddingTop: style.paddingTop,
