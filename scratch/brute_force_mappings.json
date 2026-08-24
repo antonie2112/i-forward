@@ -1,0 +1,308 @@
+[
+  {
+    "diversey": "Product",
+    "ecolab": "Product Name",
+    "sheet": "Kitchen",
+    "row": 2
+  },
+  {
+    "diversey": "SUMA SPECIAL",
+    "ecolab": "ECOKLENE HD",
+    "sheet": "Kitchen",
+    "row": 3
+  },
+  {
+    "diversey": "SUMA QUIK DRI",
+    "ecolab": "Rinse Dry",
+    "sheet": "Kitchen",
+    "row": 4
+  },
+  {
+    "diversey": "OXOFOAM",
+    "ecolab": "Topax 66",
+    "sheet": "Kitchen",
+    "row": 5
+  },
+  {
+    "diversey": "SUMA J512",
+    "ecolab": "22 Multi Quat Sanitizer",
+    "sheet": "Kitchen",
+    "row": 6
+  },
+  {
+    "diversey": "NOBLA LIQUID",
+    "ecolab": "Neo",
+    "sheet": "Kitchen",
+    "row": 7
+  },
+  {
+    "diversey": "SUMA GRILL GEL",
+    "ecolab": "Grillklene",
+    "sheet": "Kitchen",
+    "row": 8
+  },
+  {
+    "diversey": "DIVOSAN ACTIVE",
+    "ecolab": "Tsunami 100",
+    "sheet": "Kitchen",
+    "row": 9
+  },
+  {
+    "diversey": "DUAL DIP",
+    "ecolab": "Dip it plus",
+    "sheet": "Kitchen",
+    "row": 10
+  },
+  {
+    "diversey": "DILAC VA4",
+    "ecolab": "AC30",
+    "sheet": "Kitchen",
+    "row": 11
+  },
+  {
+    "diversey": "SUMA SPECIAL",
+    "ecolab": "Super Trump",
+    "sheet": "Kitchen",
+    "row": 12
+  },
+  {
+    "diversey": "SUMA QUIK DRI",
+    "ecolab": "Rinse Dry Extra",
+    "sheet": "Kitchen",
+    "row": 13
+  },
+  {
+    "diversey": "1-4ml/l",
+    "ecolab": "ECOKLENE HD",
+    "sheet": "Kitchen",
+    "row": 3
+  },
+  {
+    "diversey": "0.2-0.4 ml/l",
+    "ecolab": "Rinse Dry",
+    "sheet": "Kitchen",
+    "row": 4
+  },
+  {
+    "diversey": "2-10 %v/v",
+    "ecolab": "Topax 66",
+    "sheet": "Kitchen",
+    "row": 5
+  },
+  {
+    "diversey": "1:512",
+    "ecolab": "22 Multi Quat Sanitizer",
+    "sheet": "Kitchen",
+    "row": 6
+  },
+  {
+    "diversey": "10-50ml/ 5L => 1:100-1:500",
+    "ecolab": "Neo",
+    "sheet": "Kitchen",
+    "row": 7
+  },
+  {
+    "diversey": "RTU",
+    "ecolab": "Grillklene",
+    "sheet": "Kitchen",
+    "row": 8
+  },
+  {
+    "diversey": "0.2 to 1.0% v/v (100 to 500 ppm as PAA.)",
+    "ecolab": "Tsunami 100",
+    "sheet": "Kitchen",
+    "row": 9
+  },
+  {
+    "diversey": "6-12g per 1L.",
+    "ecolab": "Dip it plus",
+    "sheet": "Kitchen",
+    "row": 10
+  },
+  {
+    "diversey": "1:20",
+    "ecolab": "AC30",
+    "sheet": "Kitchen",
+    "row": 11
+  },
+  {
+    "diversey": "1-4ml/l",
+    "ecolab": "Super Trump",
+    "sheet": "Kitchen",
+    "row": 12
+  },
+  {
+    "diversey": "0.2-0.4 ml/l",
+    "ecolab": "Rinse Dry Extra",
+    "sheet": "Kitchen",
+    "row": 13
+  },
+  {
+    "diversey": "Taski R5",
+    "ecolab": "OASIS PRO GARDEN SUNSHINE/ ZEPHAIR",
+    "sheet": "Housekeeping_tương đương",
+    "row": 3
+  },
+  {
+    "diversey": "Crew",
+    "ecolab": "Sanigard",
+    "sheet": "Housekeeping_tương đương",
+    "row": 4
+  },
+  {
+    "diversey": "Glance 101",
+    "ecolab": "Miraglo",
+    "sheet": "Housekeeping_tương đương",
+    "row": 5
+  },
+  {
+    "diversey": "Forward DC",
+    "ecolab": "Future DC",
+    "sheet": "Housekeeping_tương đương",
+    "row": 6
+  },
+  {
+    "diversey": "Freedom",
+    "ecolab": "Carestrip NR",
+    "sheet": "Housekeeping_tương đương",
+    "row": 8
+  },
+  {
+    "diversey": "Shampoo Concentrate",
+    "ecolab": "Floordress T500",
+    "sheet": "Housekeeping_tương đương",
+    "row": 9
+  },
+  {
+    "diversey": "Extraction Cleaner",
+    "ecolab": "Floordress T510",
+    "sheet": "Housekeeping_tương đương",
+    "row": 10
+  },
+  {
+    "diversey": "Emerel",
+    "ecolab": "Lemon Eze",
+    "sheet": "Housekeeping_tương đương",
+    "row": 11
+  },
+  {
+    "diversey": "DIVOKLENS",
+    "ecolab": "Hand Fresh Plus",
+    "sheet": "Housekeeping_tương đương",
+    "row": 12
+  },
+  {
+    "diversey": "150 ml per 750ml (200ml/L)",
+    "ecolab": "OASIS PRO GARDEN SUNSHINE/ ZEPHAIR",
+    "sheet": "Housekeeping_tương đương",
+    "row": 3
+  },
+  {
+    "diversey": "1:1 to 1:2",
+    "ecolab": "Sanigard",
+    "sheet": "Housekeeping_tương đương",
+    "row": 4
+  },
+  {
+    "diversey": "1:10",
+    "ecolab": "Miraglo",
+    "sheet": "Housekeeping_tương đương",
+    "row": 5
+  },
+  {
+    "diversey": "'1:30",
+    "ecolab": "Future DC",
+    "sheet": "Housekeeping_tương đương",
+    "row": 6
+  },
+  {
+    "diversey": "1 gal to 4 gal of water (1:4)",
+    "ecolab": "Carestrip NR",
+    "sheet": "Housekeeping_tương đương",
+    "row": 8
+  },
+  {
+    "diversey": "64 ml with 1 liter water (1:64).",
+    "ecolab": "Floordress T500",
+    "sheet": "Housekeeping_tương đương",
+    "row": 9
+  },
+  {
+    "diversey": "'1:128",
+    "ecolab": "Floordress T510",
+    "sheet": "Housekeeping_tương đương",
+    "row": 10
+  },
+  {
+    "diversey": "RTU",
+    "ecolab": "Lemon Eze",
+    "sheet": "Housekeeping_tương đương",
+    "row": 11
+  },
+  {
+    "diversey": "RTU",
+    "ecolab": "Hand Fresh Plus",
+    "sheet": "Housekeeping_tương đương",
+    "row": 12
+  },
+  {
+    "diversey": "Crew",
+    "ecolab": "ECOLAB ACID BATHROOM CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 4
+  },
+  {
+    "diversey": "Glance 101",
+    "ecolab": "ECOLAB GLASS CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 5
+  },
+  {
+    "diversey": "Forward DC",
+    "ecolab": "OASIS COMPACT 10 HEAVY DUTY MULTI PURPOSE/ PEROXIDE MULTI PURPOSE CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 6
+  },
+  {
+    "diversey": "Forward DC",
+    "ecolab": "Floordress R600",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 7
+  },
+  {
+    "diversey": "1:1 to 1:2",
+    "ecolab": "ECOLAB ACID BATHROOM CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 4
+  },
+  {
+    "diversey": "1:10",
+    "ecolab": "ECOLAB GLASS CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 5
+  },
+  {
+    "diversey": "'1:30",
+    "ecolab": "OASIS COMPACT 10 HEAVY DUTY MULTI PURPOSE/ PEROXIDE MULTI PURPOSE CLEANER",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 6
+  },
+  {
+    "diversey": "'1:30",
+    "ecolab": "Floordress R600",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 7
+  },
+  {
+    "diversey": "Neat to 1:4",
+    "ecolab": "Lemon Eze",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 11
+  },
+  {
+    "diversey": "neat",
+    "ecolab": "Hand Fresh Plus",
+    "sheet": "Houseskeeping_sustainability",
+    "row": 12
+  }
+]
