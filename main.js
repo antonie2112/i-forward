@@ -2281,58 +2281,48 @@ function searchLibrary() {
 window.searchLibrary = searchLibrary;
 
 // ---------------------------------------------------------
-// PDF GENERATION LOGIC
+// PROPOSAL (WORD TEMPLATING) LOGIC
 // ---------------------------------------------------------
-let currentProposalLang = 'vn';
-let pdfOriginalBytes = null;
-let pdfCustomerLogoData = null;
-let pdfCustomerLogoType = null;
-let pdfModifiedBlobUrl = null;
-let pdfModifiedBlob = null;
-let pdfGenerateTimeout = null;
-
-async function loadPdfTemplate() {
-    const iframe = document.getElementById('pdfPreviewFrame');
-    if (!iframe) return;
-
-    // Show loading state in iframe (using srcdoc)
-    iframe.srcdoc = `
-        <div style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#fff; background:#525659;">
-            <h2>⏳ Đang tải Proposal Template...</h2>
-        </div>
-    `;
-
-    // Choose file based on language
-    const fileName = currentProposalLang === 'en' ? 'Ecolab proposal.pdf' : 'Ecolab - Bang de xuat hop tac.pdf';
-
-    try {
-        const encodedFileName = encodeURI(fileName);
-        const response = await fetch(encodedFileName);
-        if (!response.ok) {
-            throw new Error(`File not found: ${fileName}. Vui lòng cung cấp file PDF template bằng cách lưu file Word sang dạng PDF.`);
-        }
-        pdfOriginalBytes = await response.arrayBuffer();
-        await generateStampedPdf();
-    } catch (err) {
-        iframe.srcdoc = `
-            <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#ff6b6b; background:#525659; padding:20px; text-align:center;">
-                <h2>⚠️ Lỗi tải template</h2>
-                <p>${err.message}</p>
-            </div>
-        `;
+function updateProposalPreview() {
+    const clientName = document.getElementById('propClientName')?.value || '[Tên Khách Hàng]';
+    const recipient = document.getElementById('propRecipient')?.value || '[Tên Người Nhận]';
+    const recipientTitle = document.getElementById('propRecipientTitle')?.value || '[Chức vụ]';
+    const rawDate = document.getElementById('propDate')?.value;
+    let dateStr = '[Ngày Đề Xuất]';
+    if (rawDate) {
+        const d = new Date(rawDate);
+        dateStr = `Ngày ${String(d.getDate()).padStart(2, '0')} Tháng ${String(d.getMonth() + 1).padStart(2, '0')} Năm ${d.getFullYear()}`;
     }
-}
+    
+    const repName = document.getElementById('propRepName')?.value || '[Tên Sales]';
+    const repTitle = document.getElementById('propRepTitle')?.value || '[Chức Vụ Sales]';
+    const repPhone = document.getElementById('propRepPhone')?.value || '[Số Điện Thoại]';
+    const repEmail = document.getElementById('propRepEmail')?.value || '[Email]';
 
-function debounceGeneratePdf() {
-    if (pdfGenerateTimeout) {
-        clearTimeout(pdfGenerateTimeout);
-    }
-    pdfGenerateTimeout = setTimeout(() => {
-        generateStampedPdf();
-    }, 500);
-}
+    // Update HTML Preview
+    if(document.getElementById('prevClientName')) document.getElementById('prevClientName').innerText = clientName;
+    if(document.getElementById('prevRecipient')) document.getElementById('prevRecipient').innerText = recipient;
+    if(document.getElementById('prevRecipientTitle')) document.getElementById('prevRecipientTitle').innerText = recipientTitle;
+    if(document.getElementById('prevDate')) document.getElementById('prevDate').innerText = dateStr;
+    
+    if(document.getElementById('prevGreeting')) document.getElementById('prevGreeting').innerText = recipient;
+    if(document.getElementById('prevRepNameObj')) document.getElementById('prevRepNameObj').innerText = repName;
 
-function handlePdfLogoUpload(event) {
+    if(document.getElementById('prevRepName')) document.getElementById('prevRepName').innerText = repName;
+    if(document.getElementById('prevRepTitle')) document.getElementById('prevRepTitle').innerText = repTitle;
+    if(document.getElementById('prevRepPhone')) document.getElementById('prevRepPhone').innerText = repPhone;
+    if(document.getElementById('prevRepEmail')) document.getElementById('prevRepEmail').innerText = repEmail;
+
+    // Count items from Quotation tab (if active)
+    let count = window.quoteItems ? window.quoteItems.length : 0;
+    if(document.getElementById('propQuoteSummary')) document.getElementById('propQuoteSummary').innerText = `${count} items selected`;
+    if(document.getElementById('prevQuoteCount')) document.getElementById('prevQuoteCount').innerText = count.toString();
+}
+window.updateProposalPreview = updateProposalPreview;
+
+let propLogoArrayBuffer = null;
+
+function handlePropLogoUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
 
@@ -2343,152 +2333,124 @@ function handlePdfLogoUpload(event) {
         return;
     }
 
-    pdfCustomerLogoType = file.type;
-
     const reader = new FileReader();
     reader.onload = function (e) {
         const dataUrl = e.target.result;
-
         // Show in preview
-        const previewDiv = document.getElementById('pdfLogoPreview');
+        const previewDiv = document.getElementById('propLogoPreview');
         if (previewDiv) {
-            previewDiv.innerHTML = `<img src="${dataUrl}" style="max-width: 100%; max-height: 100px; border-radius: 4px; border: 1px solid #ccc;">`;
+            previewDiv.innerHTML = `<img src="${dataUrl}" style="max-width: 100%; max-height: 50px; border-radius: 4px; border: 1px solid #ccc;">`;
         }
 
-        // Keep raw array buffer for pdf-lib
+        // Keep raw array buffer for docxtemplater
         const arrayBufferReader = new FileReader();
         arrayBufferReader.onload = function (bufEvent) {
-            pdfCustomerLogoData = bufEvent.target.result;
-            generateStampedPdf();
+            propLogoArrayBuffer = bufEvent.target.result;
         };
         arrayBufferReader.readAsArrayBuffer(file);
     };
     reader.readAsDataURL(file);
 }
-window.handlePdfLogoUpload = handlePdfLogoUpload;
+window.handlePropLogoUpload = handlePropLogoUpload;
 
-async function generateStampedPdf() {
-    if (!pdfOriginalBytes) return;
-
+async function generateDocxProposal() {
     try {
-        const { PDFDocument, rgb } = window.PDFLib;
-        const pdfDoc = await PDFDocument.load(pdfOriginalBytes);
-
-        // Ensure standard fonts available
-        const HelveticaFont = await pdfDoc.embedFont(window.PDFLib.StandardFonts.Helvetica);
-        const HelveticaBoldFont = await pdfDoc.embedFont(window.PDFLib.StandardFonts.HelveticaBold);
-
-        const pages = pdfDoc.getPages();
-        const firstPage = pages[0];
-
-        // 1. Get input values
-        const clientName = document.getElementById('pdfClientName')?.value || '';
-        const dateStr = document.getElementById('pdfDate')?.value || '';
-        const recipient = document.getElementById('pdfRecipient')?.value || '';
-
-        // TỌA ĐỘ GIẢ ĐỊNH (Cần điều chỉnh khi có file PDF thực tế)
-        // Lưu ý: Tọa độ Y trong PDF tính từ dưới lên trên (Bottom-Left is 0,0)
-
-        if (clientName) {
-            firstPage.drawText(clientName, {
-                x: 100,
-                y: 500,
-                size: 24,
-                font: HelveticaBoldFont,
-                color: rgb(0, 0.3, 0.6)
-            });
+        // Fetch the local word template
+        const response = await fetch('/public/Ecolab_Template.docx');
+        if (!response.ok) {
+            alert('Lỗi: Không tìm thấy file template Ecolab_Template.docx trong thư mục public/');
+            return;
         }
+        const content = await response.arrayBuffer();
 
-        if (dateStr) {
-            firstPage.drawText(dateStr, {
-                x: 100,
-                y: 470,
-                size: 14,
-                font: HelveticaFont,
-                color: rgb(0, 0, 0)
-            });
-        }
+        // Load zip
+        const zip = new PizZip(content);
 
-        if (recipient) {
-            firstPage.drawText('Kính gửi: ' + recipient, {
-                x: 100,
-                y: 450,
-                size: 14,
-                font: HelveticaBoldFont,
-                color: rgb(0, 0, 0)
-            });
-        }
-
-        // Handle Image 
-        if (pdfCustomerLogoData) {
-            let embeddedImage;
-            if (pdfCustomerLogoType === 'image/png') {
-                embeddedImage = await pdfDoc.embedPng(pdfCustomerLogoData);
-            } else {
-                embeddedImage = await pdfDoc.embedJpg(pdfCustomerLogoData);
+        // Configure Image Module
+        const imageOptions = {
+            getImage: function(tagValue, tagName) {
+                if (tagName === 'Logo' && propLogoArrayBuffer) {
+                    return propLogoArrayBuffer;
+                }
+                return new ArrayBuffer(0); // empty if no logo
+            },
+            getSize: function(img, tagValue, tagName) {
+                // Return fixed width and height [width, height]
+                if (tagName === 'Logo') {
+                    return [150, 100]; // Fixed dimension for logo on cover page
+                }
+                return [150, 150];
             }
+        };
+        const imageModule = new window.ImageModule(imageOptions);
 
-            // TỌA ĐỘ LOGO: Scale to fit 150px width max
-            const imgDims = embeddedImage.scaleToFit(150, 100);
+        // Initialize docxtemplater
+        const doc = new window.docxtemplater(zip, {
+            paragraphLoop: true,
+            linebreaks: true,
+            modules: [imageModule]
+        });
 
-            firstPage.drawImage(embeddedImage, {
-                x: 230,
-                y: 200,
-                width: imgDims.width,
-                height: imgDims.height,
-            });
+        // Get Input Data
+        const clientName = document.getElementById('propClientName')?.value || '';
+        const recipient = document.getElementById('propRecipient')?.value || '';
+        const recipientTitle = document.getElementById('propRecipientTitle')?.value || '';
+        const rawDate = document.getElementById('propDate')?.value;
+        let dateStr = '';
+        if (rawDate) {
+            const d = new Date(rawDate);
+            dateStr = `Ngày ${String(d.getDate()).padStart(2, '0')} Tháng ${String(d.getMonth() + 1).padStart(2, '0')} Năm ${d.getFullYear()}`;
+        }
+        
+        const repName = document.getElementById('propRepName')?.value || '';
+        const repTitle = document.getElementById('propRepTitle')?.value || '';
+        const repPhone = document.getElementById('propRepPhone')?.value || '';
+        const repEmail = document.getElementById('propRepEmail')?.value || '';
+
+        // Prepare products table from quotation
+        let products = [];
+        if (window.quoteItems && window.quoteItems.length > 0) {
+            products = window.quoteItems
+                .filter(item => item.type !== 'section')
+                .map((item, idx) => ({
+                    stt: idx + 1,
+                    name: item.name,
+                    code: item.code,
+                    unit: item.unit || 'Ca',
+                    price: parseFloat(item.finalPrice || item.discountPrice || item.price || 0).toLocaleString('vi-VN') + ' VNĐ'
+                }));
         }
 
-        // Save and display
-        const modifiedBytes = await pdfDoc.save();
-        pdfModifiedBlob = new Blob([modifiedBytes], { type: 'application/pdf' });
+        // Render Data
+        doc.render({
+            TenDuan: clientName,
+            NguoiLienHe: recipient,
+            ChucVu: recipientTitle,
+            NgayDeXuat: dateStr,
+            TenSales: repName,
+            ChucVuSales: repTitle,
+            SoDienThoai: repPhone,
+            Email: repEmail,
+            products: products,
+            hasProducts: products.length > 0,
+            Logo: 'dummy_trigger'
+        });
 
-        if (pdfModifiedBlobUrl) {
-            URL.revokeObjectURL(pdfModifiedBlobUrl);
-        }
-        pdfModifiedBlobUrl = URL.createObjectURL(pdfModifiedBlob);
+        // Generate and Save
+        const blob = doc.getZip().generate({
+            type: "blob",
+            mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        });
 
-        const iframe = document.getElementById('pdfPreviewFrame');
-        if (iframe) {
-            // Remove srcdoc so it loads the src URL
-            iframe.removeAttribute('srcdoc');
-            // #toolbar=0&navpanes=0 makes preview cleaner
-            iframe.src = pdfModifiedBlobUrl + '#toolbar=0&navpanes=0&scrollbar=1';
-        }
-
-    } catch (err) {
-        // Silently handle error
+        const safeClientName = clientName.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        saveAs(blob, `Proposal_Ecolab_${safeClientName || 'New'}.docx`);
+        
+    } catch (error) {
+        console.error("Error generating DOCX:", error);
+        alert("Có lỗi xảy ra khi tạo file Word. " + (error.message || ''));
     }
 }
-window.generateStampedPdf = generateStampedPdf;
-window.debounceGeneratePdf = debounceGeneratePdf;
-
-function toggleProposalLang() {
-    currentProposalLang = currentProposalLang === 'vn' ? 'en' : 'vn';
-    const btn = document.getElementById('propLangToggle');
-    if (btn) {
-        btn.textContent = currentProposalLang === 'vn' ? 'Tiếng Việt' : 'English / Tiếng Anh';
-    }
-    loadPdfTemplate();
-}
-window.toggleProposalLang = toggleProposalLang;
-
-function downloadStampedPdf() {
-    if (!pdfModifiedBlob) {
-        alert("Chưa có bản xem trước nào được tạo.");
-        return;
-    }
-
-    const url = URL.createObjectURL(pdfModifiedBlob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = currentProposalLang === 'vn' ? 'DeXuatHopTac_Ecolab.pdf' : 'Ecolab_Proposal.pdf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-window.downloadStampedPdf = downloadStampedPdf;
+window.generateDocxProposal = generateDocxProposal;
 
 /**
  * Global search handler for the Ecolab-style home search bar.
@@ -3572,9 +3534,9 @@ window.handleGuidexSearchInput = async (e) => {
         }
         
         matches.forEach(match => {
-            const safeObjStr = encodeURIComponent(JSON.stringify(match));
+            const safeName = match.DiverseyShort.replace(/'/g, "\\'");
             html += `
-              <div class="flex items-center gap-4 p-4 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0 transition-colors" onclick="window.openGuidexDMapDetail('${safeObjStr}')">
+              <div class="flex items-center gap-4 p-4 hover:bg-slate-50 cursor-pointer border-b border-slate-100 last:border-0 transition-colors" onclick="window.openGuidexDMapDetail('${safeName}')">
                 <div class="w-14 h-14 bg-white border border-slate-200 rounded-xl overflow-hidden shrink-0 shadow-sm flex items-center justify-center p-1 relative z-0">
                     <img src="./generic_diversey.png" onerror="${imgErrBlock}" class="w-full h-full object-contain opacity-50" />
                 </div>
@@ -3663,15 +3625,21 @@ window.handleGuidexSearchKeydown = (e) => {
     }
 }
 
-window.openGuidexDMapDetail = (safeObjStr) => {
-    const match = JSON.parse(decodeURIComponent(safeObjStr));
-    const ui = document.getElementById('guidexDetailRenderer');
-    const overlay = document.getElementById('guidexDetailOverlay');
-    
-    // Resolve Image
-    const ecolabImgName = match.Ecolab.replace(/ /g, '%20') + '.jpg';
-    const ecolabImgUrl = `./catsheet_images/${ecolabImgName}`;
-    const imgErrBlockStr = "this.onerror=null; this.parentElement.style.opacity=0;";
+window.openGuidexDMapDetail = (diverseyName) => {
+    try {
+        const sourceData = window.guidexDMapData || window.dmapData || [];
+        const match = sourceData.find(d => d.DiverseyShort === diverseyName);
+        if (!match) throw new Error("Không tìm thấy dữ liệu đối chiếu cho: " + diverseyName);
+        
+        console.log("Opening DMap Detail:", match.DiverseyShort);
+        
+        const ui = document.getElementById('guidexDetailRenderer');
+        const overlay = document.getElementById('guidexDetailOverlay');
+        
+        // Resolve Image
+        const ecolabImgName = match.Ecolab.replace(/ /g, '%20') + '.jpg';
+        const ecolabImgUrl = `./catsheet_images/${ecolabImgName}`;
+        const imgErrBlockStr = "this.onerror=null; this.parentElement.style.opacity=0;";
 
     // Product data lookup for Features/Benefits
     const langKey = window.currentGuidexLang || 'vi';
@@ -3679,7 +3647,13 @@ window.openGuidexDMapDetail = (safeObjStr) => {
     
     if (!prodData) {
         const keys = Object.keys(window.guidexData);
-        const bestMatch = keys.find(k => k.toLowerCase().includes(match.Ecolab.toLowerCase()) || match.Ecolab.toLowerCase().includes(k.replace('_Catsheet', '').toLowerCase()));
+        const normalizeKey = (str) => str.toLowerCase().replace(/[-_ ]/g, '');
+        const targetNormalized = normalizeKey(match.Ecolab);
+        
+        const bestMatch = keys.find(k => {
+            const kNorm = normalizeKey(k.replace('_Catsheet', ''));
+            return kNorm.includes(targetNormalized) || targetNormalized.includes(kNorm);
+        });
         if (bestMatch) prodData = window.guidexData[bestMatch];
     }
     
@@ -3937,6 +3911,11 @@ window.openGuidexDMapDetail = (safeObjStr) => {
     // Clear search input
     const searchInput = document.getElementById('guidexSearchInput');
     if(searchInput) searchInput.value = '';
+    
+    } catch (e) {
+        console.error("DMap Detail Error:", e);
+        alert("Lỗi khi mở thông tin: " + e.message);
+    }
 };
 document.addEventListener('click', (e) => {
     const searchWrapper = document.getElementById('guidexSearchInput')?.parentElement?.parentElement;
